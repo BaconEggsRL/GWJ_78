@@ -2,7 +2,7 @@ extends Node
 
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var color_rect: ColorRect = $CanvasLayer/ColorRect
+@onready var overlay: ColorRect = $CanvasLayer/Overlay
 
 # transitions
 const _TRANSITIONS = {
@@ -95,7 +95,7 @@ func _on_child_entered_tree(scene:Node, custom_data:Dictionary={}) -> void:
 
 func _goto(scene:Resource, custom_data:Dictionary={}, fade_out:String="fade_out", fade_in:String="fade_in") -> void:
 	# disable mouse clicks during transition
-	color_rect.mouse_filter = Control.MOUSE_FILTER_STOP
+	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 	# play transition
 	# AudioManager.play_fx("scene_transition")
 	_play_animation(fade_out)
@@ -105,7 +105,7 @@ func _goto(scene:Resource, custom_data:Dictionary={}, fade_out:String="fade_out"
 	await animation_player.animation_finished
 	# enable mouse clicks after new scene is loaded in
 	# could do this before animation finshes, but it might break aniamtion continuity
-	color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	
 	
