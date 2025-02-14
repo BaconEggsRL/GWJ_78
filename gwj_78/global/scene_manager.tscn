@@ -1,6 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5ddittdngjou"]
+[gd_scene load_steps=8 format=3 uid="uid://c5ddittdngjou"]
 
 [ext_resource type="Script" uid="uid://dir43reu2t8s7" path="res://global/scene_manager.gd" id="1_bcgo2"]
+[ext_resource type="Shader" uid="uid://cwcy63jujxiev" path="res://global/transitions/shaders/diamond_sweep.gdshader" id="2_ujlvl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g063o"]
+shader = ExtResource("2_ujlvl")
+shader_parameter/progress = 1.0
+shader_parameter/size = 40.0
+shader_parameter/fill = true
 
 [sub_resource type="Animation" id="Animation_31l8p"]
 resource_name = "fade_in"
@@ -15,6 +22,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Overlay:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_hrpax"]
@@ -31,9 +50,37 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Overlay:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ujlvl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Overlay:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uws3b"]
 _data = {
+&"RESET": SubResource("Animation_ujlvl"),
 &"fade_in": SubResource("Animation_31l8p"),
 &"fade_out": SubResource("Animation_hrpax")
 }
@@ -47,6 +94,7 @@ layer = 100
 [node name="Overlay" type="ColorRect" parent="CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0)
 z_index = 20
+material = SubResource("ShaderMaterial_g063o")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

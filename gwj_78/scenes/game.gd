@@ -21,16 +21,16 @@ func _ready() -> void:
 
 
 func _on_main_pressed() -> void:
-	var target_scene = MAIN.instantiate()
-	var type = "pixelated_noise"
-	# SceneManager.goto("main")
-	# Transitions.change_scene_to_instance(target_scene, Transitions.FadeType.CrossFade, 1)
-	# Transitions.change_scene_to_instance(target_scene, Transitions.FadeType.Instant)
-	# FancyFade.new().blurry_noise(target_scene)
-	# FancyFade.new().circle_in(target_scene, anim_speed)
-	# FancyFade.new().tile_reveal(target_scene)
-	# FancyFade.new().wipe_conical(target_scene, anim_speed)
-	# FancyFade.new().wipe_right(target_scene, anim_speed)
-	fade[type].call(target_scene, anim_speed)
+	var _target_scene = MAIN.instantiate()
+	var _type = "pixelated_noise"
+	SceneManager.goto("main")
+	# Transitions.change_scene_to_instance(_target_scene, Transitions.FadeType.CrossFade, 1)
+	# Transitions.change_scene_to_instance(_target_scene, Transitions.FadeType.Instant)
+	# FancyFade.new().blurry_noise(_target_scene)
+	# FancyFade.new().circle_in(_target_scene, anim_speed)
+	# FancyFade.new().tile_reveal(_target_scene)
+	# FancyFade.new().wipe_conical(_target_scene, anim_speed)
+	# FancyFade.new().wipe_right(_target_scene, anim_speed)
+	# fade[type].call(_target_scene, anim_speed)
 	
 	pass
