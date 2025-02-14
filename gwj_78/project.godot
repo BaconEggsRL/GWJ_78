@@ -11,8 +11,20 @@ config_version=5
 [application]
 
 config/name="GWJ_78"
+run/main_scene="uid://bmavsyk2734g5"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*res://global/scene_manager.tscn"
+AudioManager="*res://global/audio_manager.tscn"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [internationalization]
 
