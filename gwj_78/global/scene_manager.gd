@@ -4,17 +4,49 @@ extends Node
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
 
-
+# transitions
+const _TRANSITIONS = {
+	# Circles
+	"circle_in": preload("res://global/transitions/circle.tres"),
+}
 
 # scenes
 const MAIN = preload("res://scenes/main.tscn")
 const GAME = preload("res://scenes/game.tscn")
-
 var next_scene:Resource
 
 
 
 
+## Circle
+#func circle_in(scene, fade_seconds:float = 1.0) -> void:
+	#_fade("circle_in", scene, fade_seconds)
+#
+## Core method
+#func _fade(type:String, scene, fade_seconds:float = 1.0) -> void:
+	#Transitions.change_scene_to_instance(scene, Transitions.FadeType.Blend, fade_seconds, _TRANSITIONS[type])
+	
+	
+#func change_scene_to_instance(new_scene, fade_type, fade_time_seconds:float = 1.0, shader_image:CompressedTexture2D = null) -> void:
+	#if new_scene == null:
+		#push_error("Can't change scene to null scene!")
+	#elif not is_instance_valid(new_scene):
+		#push_error("Can't change to scene that's freed!")
+	#
+	##if fade_type == FadeType.Blend and shader_image == null:
+		##push_error("You need to specify a shader image for blending!")
+	#
+	#var data = _common_pre_fade(fade_type, fade_time_seconds, shader_image)
+	#_set_scene(new_scene)
+	#emit_signal("pre_transition")
+	#
+	#await _common_wait_for_fade(data, fade_type, fade_time_seconds)
+	#
+	#_common_post_fade(data, new_scene)
+	#emit_signal("post_transition")
+	
+	
+	
 func _ready() -> void:
 	# save_data = SaveData.load_or_create()
 	# set bus volume
@@ -65,7 +97,7 @@ func _goto(scene:Resource, custom_data:Dictionary={}, fade_out:String="fade_out"
 	# disable mouse clicks during transition
 	color_rect.mouse_filter = Control.MOUSE_FILTER_STOP
 	# play transition
-	AudioManager.play_fx("scene_transition")
+	# AudioManager.play_fx("scene_transition")
 	_play_animation(fade_out)
 	await animation_player.animation_finished
 	_load_next_scene(scene, custom_data)
