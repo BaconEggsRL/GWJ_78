@@ -151,6 +151,8 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> void:
 	var fx:Resource
 	var pitch:float = 1.0
 	match fx_name:
+		"scene_transition":
+			fx = null  # for any time scene changes
 		"pitch_var_1":
 			fx = null  # insert fx const here
 			var diff = 0.2
