@@ -13,6 +13,8 @@ config_version=5
 config/name="GWJ_78"
 run/main_scene="uid://bmavsyk2734g5"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0.0784314, 0.137255, 0.247059, 1)
+boot_splash/image="uid://dw58l67dmow2s"
 config/icon="res://icon.svg"
 
 [autoload]
