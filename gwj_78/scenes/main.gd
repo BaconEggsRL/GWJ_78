@@ -4,6 +4,8 @@ extends Node
 const MANUAL_TEST = preload("res://ManualTest.tscn")
 const GAME = preload("res://scenes/game.tscn")
 
+const FancyFade = preload("res://addons/transitions/FancyFade.gd")
+
 
 func _ready() -> void:
 	play_btn.pressed.connect(_on_play_pressed)
@@ -12,4 +14,6 @@ func _ready() -> void:
 func _on_play_pressed() -> void:
 	# SceneManager.goto("game")
 	# Transitions.change_scene_to_instance(GAME.instantiate(), Transitions.FadeType.Instant)
-	Transitions.change_scene_to_instance(GAME.instantiate(), Transitions.FadeType.CrossFade, 1)
+	# Transitions.change_scene_to_instance(GAME.instantiate(), Transitions.FadeType.CrossFade, 1)
+	FancyFade.new().blurry_noise(GAME.instantiate())
+	pass
