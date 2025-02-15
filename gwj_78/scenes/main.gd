@@ -17,7 +17,11 @@ func _ready() -> void:
 func _on_play_pressed() -> void:
 	var _target_scene = GAME.instantiate()
 	var _type = "pixelated_noise"
-	SceneManager.goto("game")
+	
+	var custom_data = {
+		"override_level": 1,
+	}
+	SceneManager.goto("game", custom_data)
 	# Transitions.change_scene_to_instance(target_scene, Transitions.FadeType.Instant)
 	# Transitions.change_scene_to_instance(target_scene, Transitions.FadeType.CrossFade, 1)
 	# FancyFade.new().blurry_noise(target_scene)

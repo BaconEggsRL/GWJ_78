@@ -23,7 +23,7 @@ var last_state = current_state
 var last_erased = false
 
 @export var game:Game
-@export var tilemap: TileMapLayer
+var tilemap: TileMapLayer
 
 
 func set_state(new_state:State) -> void:
@@ -43,6 +43,8 @@ func set_state(new_state:State) -> void:
 	
 	
 func _ready() -> void:
+	await game.ready
+	tilemap = game.tilemap
 	set_state(State.NONE)
 	player_current_pos = get_player_pos()
 	print("player_current_pos = %s" % player_current_pos)

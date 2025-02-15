@@ -6,33 +6,38 @@
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="4_lbhrr"]
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "grid", "tilemap", "select_sprite", "mouse", "erase_label", "moves_label")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "grid", "select_sprite", "mouse", "erase_label", "moves_label")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/main_menu")
-grid = NodePath("tiles/grid")
-tilemap = NodePath("tiles/tilemap")
+grid = NodePath("grid")
 select_sprite = NodePath("select")
 mouse = NodePath("mouse")
 erase_label = NodePath("Control/MarginContainer/VBoxContainer/erase")
 moves_label = NodePath("Control/MarginContainer/VBoxContainer/moves")
+override_level = 2
 
-[node name="tiles" type="Node2D" parent="."]
-
-[node name="grid" type="TileMapLayer" parent="tiles"]
+[node name="grid" type="TileMapLayer" parent="."]
 texture_filter = 1
-tile_map_data = PackedByteArray("AAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAADAAEAAwAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAA=")
 tile_set = ExtResource("2_yqjtg")
 
-[node name="tilemap" type="TileMapLayer" parent="tiles"]
+[node name="levels" type="Node2D" parent="."]
+
+[node name="Level_1" type="TileMapLayer" parent="levels"]
+visible = false
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAFAAQAAgAAAAAAAAAFAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAEAAwAAAAAAAAAEAAQABAAAAAAAAAA=")
 tile_set = ExtResource("2_yqjtg")
 
-[node name="mouse" type="Sprite2D" parent="." node_paths=PackedStringArray("game", "tilemap")]
+[node name="Level_2" type="TileMapLayer" parent="levels"]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAEAAQABAAAAAAAAAADAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAAFAAMAAgAAAAAAAAAHAAAAAwAAAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAAAAgAAAAAAAAAGAAMAAgAAAAAAAAA=")
+tile_set = ExtResource("2_yqjtg")
+
+[node name="mouse" type="Sprite2D" parent="." node_paths=PackedStringArray("game")]
 texture = ExtResource("3_lnu2h")
 script = ExtResource("4_lbhrr")
 game = NodePath("..")
-tilemap = NodePath("../tiles/tilemap")
 
 [node name="select" type="Sprite2D" parent="."]
 texture = ExtResource("3_lbhrr")
