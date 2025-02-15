@@ -27,17 +27,18 @@ var last_erased = false
 
 
 func set_state(new_state:State) -> void:
-	last_state = current_state
-	current_state = new_state
-	match current_state:
-		State.NONE:
-			self.texture = none_sprite
-		State.ERASER:
-			self.texture = eraser_sprite
-		State.PENCIL:
-			self.texture = pencil_sprite
-		State.MOVING:
-			self.texture = moving_sprite
+	if new_state != current_state:
+		last_state = current_state
+		current_state = new_state
+		match current_state:
+			State.NONE:
+				self.texture = none_sprite
+			State.ERASER:
+				self.texture = eraser_sprite
+			State.PENCIL:
+				self.texture = pencil_sprite
+			State.MOVING:
+				self.texture = moving_sprite
 			
 	
 	
@@ -87,13 +88,11 @@ func update_state_based_on_hover():
 	var tile_pos = tilemap.local_to_map(tilemap.to_local(mouse_pos))  # Convert world to tile coords
 	var tile_id = tilemap.get_cell_source_id(tile_pos)  # Get tile ID
 
-	# var player_pos = get_player_pos()
-	var is_adjacent_to_player = is_adjacent(tile_pos, player_current_pos)
-
 	if tile_id == 2:  # Wall tile
 		set_state(State.ERASER)
-	elif (tile_id == -1 or tile_id == 3) and is_adjacent_to_player:  # Empty tile adjacent to player
+	elif is_valid_move(tile_pos):  # Empty tile adjacent to player
 		set_state(State.MOVING)
+		# print("Move distance: ", count_moves(player_current_pos, tile_pos))  # Debug movement distance
 	elif last_erased:  # If the last action was erasing, switch to pencil
 		set_state(State.PENCIL)
 		last_erased = false
@@ -124,8 +123,11 @@ func move_player_tile(new_tile_pos: Vector2i) -> bool:
 	# Check if the new tile is empty
 	var target_tile_id = tilemap.get_cell_source_id(new_tile_pos)
 	if target_tile_id == -1 or target_tile_id == 3:  # Tile is empty or finish
-		# Check if the new tile is adjacent to the player tile
-		if is_adjacent(player_current_pos, new_tile_pos):
+		
+		# Check if valid move
+		# var is_adjacent_to_player = is_adjacent(new_tile_pos, player_current_pos)
+	
+		if is_valid_move(new_tile_pos):
 			# Erase the current player tile
 			tilemap.set_cell(player_current_pos, -1)  # Erase current player position
 
@@ -153,6 +155,39 @@ func move_player_tile(new_tile_pos: Vector2i) -> bool:
 func is_adjacent(pos1: Vector2i, pos2: Vector2i) -> bool:
 	# Check if the positions are adjacent horizontally or vertically, not diagonally
 	return (abs(pos1.x - pos2.x) == 1 and pos1.y == pos2.y) or (abs(pos1.y - pos2.y) == 1 and pos1.x == pos2.x)
+	
+
+func is_valid_move(target_pos: Vector2i) -> bool:
+	# Ensure valid tile to move to
+	var tile_id = tilemap.get_cell_source_id(target_pos)  # Get tile ID
+	if tile_id != -1 and tile_id != 3:  # only move to empty or finish tile
+		return false
+	
+	# Ensure movement is along a row (same x) or column (same y)
+	if player_current_pos.x != target_pos.x and player_current_pos.y != target_pos.y:
+		return false  # Diagonal moves are not allowed
+
+	# Determine direction of movement
+	var step = Vector2i(
+		sign(target_pos.x - player_current_pos.x),  # Step in x direction (1, 0, or -1)
+		sign(target_pos.y - player_current_pos.y)   # Step in y direction (1, 0, or -1)
+	)
+
+	var check_pos = player_current_pos + step  # Start checking from the next tile
+	while check_pos != target_pos + step:  # Check every tile until reaching the target
+		
+		var check_tile_id = tilemap.get_cell_source_id(check_pos)
+		if check_tile_id != -1 and check_tile_id != 3:  # If the tile is not empty or floor, block move
+			return false  # Path is blocked
+
+		check_pos += step  # Move to the next tile in the path
+
+	return true  # All tiles were valid, move is allowed
+
+
+func count_moves(player_pos: Vector2i, target_pos: Vector2i) -> int:
+	return abs(target_pos.x - player_pos.x) + abs(target_pos.y - player_pos.y)  # Count steps moved
+	
 	
 	
 func erase_tile() -> bool:
