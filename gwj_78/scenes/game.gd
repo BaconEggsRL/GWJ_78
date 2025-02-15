@@ -19,11 +19,7 @@ var fade:Dictionary = {
 
 
 @export var select_sprite:Sprite2D
-
 @export var mouse:Mouse
-@onready var room_scenes: Node2D = $room_scenes
-
-
 
 
 		
