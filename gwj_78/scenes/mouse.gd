@@ -1,3 +1,4 @@
+class_name Mouse
 extends Sprite2D
 
 
@@ -28,9 +29,32 @@ func _ready() -> void:
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
-		var new_state = (current_state + 1) % State.size()
-		set_state(new_state)
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if current_state == State.ERASER:
+				erase_tile()
+			else:
+				pass
+			change_state()
 		
 		
 func _process(_delta) -> void:
 	self.global_position = get_global_mouse_position()
+
+
+func erase_tile() -> bool:
+	if not get_parent().wall_tile:
+		return false  # Safety check
+
+	var wall_tilemap = get_parent().wall_tile  # Get the wall tile layer
+	var tile_pos = wall_tilemap.local_to_map(get_global_mouse_position())  # Convert mouse position to tile coordinates
+
+	if wall_tilemap.get_cell_source_id(tile_pos) != -1:  # Check if a tile exists
+		wall_tilemap.erase_cell(tile_pos)  # Remove the tile
+		return true  # Tile was erased successfully
+
+	return false  # No tile was erased
+
+
+func change_state() -> void:
+	var new_state = (current_state + 1) % State.size()
+	set_state(new_state)

@@ -25,3 +25,6 @@ Floating /perspective tiles that get erased
 Kind of like Bastion?
 
 procedural generation of tiles after opening new paths
+
+godot 4:
+given 4 tile map layers (basic_tile, wall_tile, select_tile, player_tile)
