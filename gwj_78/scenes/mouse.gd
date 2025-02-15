@@ -12,7 +12,7 @@ var player_current_pos:Vector2i = player_start_pos  # Track player tile position
 
 var player_tile_atlas = Vector2i(0, 0)  # Player tile's atlas position (top-left)
 
-
+signal finished
 
 enum State {
 	ERASER, PENCIL, MOVING
@@ -51,7 +51,6 @@ func _input(event):
 			elif current_state == State.MOVING:
 				var tile_pos = get_parent().tilemap.local_to_map(get_global_mouse_position())  # Get the tile under the mouse
 				if move_player_tile(tile_pos):
-					pass
 					change_state()
 			else:
 				pass
@@ -85,7 +84,7 @@ func move_player_tile(new_tile_pos: Vector2i) -> bool:
 
 	# Check if the new tile is empty
 	var target_tile_id = tilemap.get_cell_source_id(new_tile_pos)
-	if target_tile_id == -1:  # Tile is empty
+	if target_tile_id == -1 or target_tile_id == 3:  # Tile is empty or finish
 		# Check if the new tile is adjacent to the player tile
 		if is_adjacent(player_current_pos, new_tile_pos):
 			# Erase the current player tile
@@ -97,6 +96,12 @@ func move_player_tile(new_tile_pos: Vector2i) -> bool:
 			# Update player position
 			player_current_pos = new_tile_pos
 			print("Player moved to ", player_current_pos)
+			
+			# check if finished
+			if target_tile_id == 3:
+				print("finished")
+				finished.emit()
+				
 			return true  # Move was successful
 		else:
 			print("Target tile is not adjacent!")

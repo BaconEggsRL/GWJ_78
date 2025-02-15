@@ -34,6 +34,7 @@ var player_tile_id = 4  # Player tile ID
 
 func _ready() -> void:
 	main_btn.pressed.connect(_on_main_pressed)
+	mouse.finished.connect(_on_finished_level)
 	tilemap.set_cell(player_start_pos, player_tile_id, Vector2i(0,0))
 
 func _process(_delta):
@@ -46,6 +47,10 @@ func update_selection_position():
 	var world_pos = grid.to_global(grid.map_to_local(tile_pos))  # Convert to world position
 
 	select_sprite.position = world_pos  # Snap sprite to tile position
+	
+	
+func _on_finished_level() -> void:
+	_on_main_pressed()
 	
 	
 func _on_main_pressed() -> void:
