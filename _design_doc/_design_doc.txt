@@ -28,3 +28,7 @@ procedural generation of tiles after opening new paths
 
 godot 4:
 given 4 tile map layers (basic_tile, wall_tile, select_tile, player_tile)
+
+
+add a new function called draw_tile() that functions similar to erase tile
+except it checks get_parent().b

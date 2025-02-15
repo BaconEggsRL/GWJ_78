@@ -42,15 +42,17 @@ func _process(_delta) -> void:
 
 
 func erase_tile() -> bool:
-	if not get_parent().wall_tile:
+	if not get_parent().tilemap:
 		return false  # Safety check
 
-	var wall_tilemap = get_parent().wall_tile  # Get the wall tile layer
-	var tile_pos = wall_tilemap.local_to_map(get_global_mouse_position())  # Convert mouse position to tile coordinates
+	var tilemap = get_parent().tilemap  # Get the wall tile layer
+	var tile_pos = tilemap.local_to_map(get_global_mouse_position())  # Convert mouse position to tile coordinates
+	var tile_id = tilemap.get_cell_source_id(tile_pos)  # Get the tile ID at the position
 
-	if wall_tilemap.get_cell_source_id(tile_pos) != -1:  # Check if a tile exists
-		wall_tilemap.erase_cell(tile_pos)  # Remove the tile
-		return true  # Tile was erased successfully
+	if tile_id != -1:  # Check if a tile exists
+		if tile_id == 2:  # remove wall_tile.png
+			tilemap.erase_cell(tile_pos)  # Remove the tile
+			return true  # Tile was erased successfully
 
 	return false  # No tile was erased
 
