@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjr5gvltau66l"]
+
+[ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="1_tewyd"]
+[ext_resource type="Script" uid="uid://2lnnmgxjn0xy" path="res://scenes/mouse_tiles.gd" id="2_tewyd"]
+
+[node name="mouse_tiles" type="Sprite2D"]
+texture = ExtResource("1_tewyd")
+script = ExtResource("2_tewyd")

@@ -1,43 +1,16 @@
-[gd_scene load_steps=6 format=4 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=4 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
-[ext_resource type="TileSet" uid="uid://dw5wxe05n7v2k" path="res://tileset.tres" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://rnvf4tdf6n3r" path="res://scenes/mouse.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cxcq6krr28s4p" path="res://assets/art/tiles/select_tile.png" id="3_lbhrr"]
-[ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="3_lnu2h"]
-[ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="4_lbhrr"]
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "grid", "select_sprite", "mouse", "erase_label", "moves_label")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/main_menu")
-grid = NodePath("grid")
-select_sprite = NodePath("select")
-mouse = NodePath("mouse")
-erase_label = NodePath("Control/MarginContainer/VBoxContainer/erase")
-moves_label = NodePath("Control/MarginContainer/VBoxContainer/moves")
-override_level = 2
 
-[node name="grid" type="TileMapLayer" parent="."]
-texture_filter = 1
-tile_map_data = PackedByteArray("AAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAA=")
-tile_set = ExtResource("2_yqjtg")
+[node name="room_scenes" type="Node2D" parent="."]
 
-[node name="levels" type="Node2D" parent="."]
-
-[node name="Level_1" type="TileMapLayer" parent="levels"]
-visible = false
-texture_filter = 1
-tile_map_data = PackedByteArray("AAAFAAQAAgAAAAAAAAAFAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAEAAwAAAAAAAAAEAAQABAAAAAAAAAA=")
-tile_set = ExtResource("2_yqjtg")
-
-[node name="Level_2" type="TileMapLayer" parent="levels"]
-texture_filter = 1
-tile_map_data = PackedByteArray("AAAEAAQABAAAAAAAAAADAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAAFAAMAAgAAAAAAAAAHAAAAAwAAAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAAAAgAAAAAAAAAGAAMAAgAAAAAAAAA=")
-tile_set = ExtResource("2_yqjtg")
-
-[node name="mouse" type="Sprite2D" parent="." node_paths=PackedStringArray("game")]
-texture = ExtResource("3_lnu2h")
-script = ExtResource("4_lbhrr")
-game = NodePath("..")
+[node name="mouse" parent="." instance=ExtResource("2_lnu2h")]
 
 [node name="select" type="Sprite2D" parent="."]
 texture = ExtResource("3_lbhrr")
@@ -67,11 +40,11 @@ alignment = 2
 
 [node name="erase" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Erases Left: 0"
+text = "Evidence found: 0"
 
 [node name="moves" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Moves Left: 0"
+text = "Time left: 0"
 
 [node name="main_menu" type="Button" parent="Control"]
 layout_mode = 1
@@ -85,7 +58,7 @@ offset_top = -88.0
 grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
-text = "main"
+text = "exit to main"
 
 [node name="restart_level" type="Button" parent="Control"]
 layout_mode = 1
@@ -96,6 +69,6 @@ offset_left = -161.0
 offset_bottom = 88.0
 grow_horizontal = 0
 focus_mode = 0
-text = "restart level"
+text = "restart"
 
 [connection signal="pressed" from="Control/restart_level" to="." method="_on_restart_level_pressed"]

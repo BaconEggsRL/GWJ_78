@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://rnvf4tdf6n3r"]
+
+[ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="1_tewyd"]
+[ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="2_ouscy"]
+
+[node name="mouse" type="Sprite2D"]
+texture = ExtResource("1_tewyd")
+script = ExtResource("2_ouscy")
