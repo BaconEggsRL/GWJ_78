@@ -5,3 +5,9 @@ Given a word or phase, need to be able to erase letters
 
 2D Excavator -- Right click to reveal what is underneath a tile
 
+Erase -- Draw a tunnel for a ball to roll through.
+Play as a mole excavating a tunnel to the center of the earth.
+Erase dirt tiles to move in that direction.
+Some tiles already show what are in them, so you can head towards those.
+
+Sharpen your claws so you can excavate more dirt at once
