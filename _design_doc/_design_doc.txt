@@ -32,3 +32,32 @@ given 4 tile map layers (basic_tile, wall_tile, select_tile, player_tile)
 
 add a new function called draw_tile() that functions similar to erase tile
 except it checks get_parent().b
+
+
+=============================
+
+Level design, mechanics
+so many blocks, put them down somewhere?
+
+Muqic -- Alex
+R. Lettece -- Jocyleyn (pixel art--backgrounds?)
+
+not word based?
+combat? clicking vs. WASD
+
+
+moving screen--mole dig tunnel
+
+timer to erase evidence
+2 levels?
+
+use mop to clean up the blood
+5 min track--panick closer to zero
+police sirens?
+
+how to get into person's password for laptop
+erase diary entry (someones out to get me)
+inventory?
+
+art style -- physically erase the object?
+click left/right to change scenes
