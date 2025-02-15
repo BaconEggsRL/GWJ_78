@@ -1,6 +1,11 @@
 Godot Wild Jam (GWJ) #78:
 Erase
 
+target resolution:
+non pixel art: 1280x720
+pixel art: 640 x 360
+
+
 Given a word or phase, need to be able to erase letters
 
 2D Excavator -- Right click to reveal what is underneath a tile
@@ -11,3 +16,12 @@ Erase dirt tiles to move in that direction.
 Some tiles already show what are in them, so you can head towards those.
 
 Sharpen your claws so you can excavate more dirt at once
+
+
+
+=============================
+
+Floating /perspective tiles that get erased
+Kind of like Bastion?
+
+procedural generation of tiles after opening new paths

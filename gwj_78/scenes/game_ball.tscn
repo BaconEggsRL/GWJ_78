@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg5rv44y1d5ne"]
+
+[ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_37p4f"]
+[ext_resource type="Texture2D" uid="uid://ccubv6rqogayt" path="res://icon.svg" id="2_jpwmj"]
+[ext_resource type="Script" uid="uid://idfslre4fnfd" path="res://scenes/camera_2d.gd" id="3_0t28f"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yqjtg"]
+bounce = 0.3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lnu2h"]
+radius = 64.0
+
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn")]
+script = ExtResource("1_37p4f")
+main_btn = NodePath("Control/main_menu")
+
+[node name="world" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="world"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="world/StaticBody2D"]
+polygon = PackedVector2Array(167, 111, 420, 190, 701, 235, 684, 308, 416, 280, 133, 181)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="world/StaticBody2D"]
+position = Vector2(1276, 332)
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(167, 111, 420, 190, 701, 235, 684, 308, 416, 280, 133, 181)
+
+[node name="player" type="RigidBody2D" parent="."]
+position = Vector2(273, 47)
+physics_material_override = SubResource("PhysicsMaterial_yqjtg")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+texture = ExtResource("2_jpwmj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+shape = SubResource("CircleShape2D_lnu2h")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+anchor_mode = 0
+script = ExtResource("3_0t28f")
+player = NodePath("../player")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="main_menu" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -150.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+text = "main"
