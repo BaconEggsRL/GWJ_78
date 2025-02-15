@@ -6,13 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="4_lbhrr"]
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "grid", "tilemap", "select_sprite", "mouse")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "grid", "tilemap", "select_sprite", "mouse", "erase_label", "moves_label")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/main_menu")
 grid = NodePath("tiles/grid")
 tilemap = NodePath("tiles/tilemap")
 select_sprite = NodePath("select")
 mouse = NodePath("mouse")
+erase_label = NodePath("Control/MarginContainer/VBoxContainer/erase")
+moves_label = NodePath("Control/MarginContainer/VBoxContainer/moves")
 
 [node name="tiles" type="Node2D" parent="."]
 
@@ -26,9 +28,11 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAFAAQAAgAAAAAAAAAFAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAEAAwAAAAAAAAAEAAQABAAAAAAAAAA=")
 tile_set = ExtResource("2_yqjtg")
 
-[node name="mouse" type="Sprite2D" parent="."]
+[node name="mouse" type="Sprite2D" parent="." node_paths=PackedStringArray("game", "tilemap")]
 texture = ExtResource("3_lnu2h")
 script = ExtResource("4_lbhrr")
+game = NodePath("..")
+tilemap = NodePath("../tiles/tilemap")
 
 [node name="select" type="Sprite2D" parent="."]
 texture = ExtResource("3_lbhrr")
@@ -77,3 +81,16 @@ grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
 text = "main"
+
+[node name="restart_level" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -161.0
+offset_bottom = 88.0
+grow_horizontal = 0
+focus_mode = 0
+text = "restart level"
+
+[connection signal="pressed" from="Control/restart_level" to="." method="_on_restart_level_pressed"]

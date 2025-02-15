@@ -1,3 +1,4 @@
+class_name Game
 extends Node2D
 
 @export var main_btn:Button
@@ -32,10 +33,23 @@ var player_tile_id = 4  # Player tile ID
 @export var player_start_pos := Vector2i(4, 4)
 
 
+@export var erase_label:Label
+@export var moves_label:Label
+
+@export var num_erases:int = 1
+@export var num_moves:int = 4
+@onready var erases_left:int = num_erases
+@onready var moves_left:int = num_moves
+
+
 func _ready() -> void:
 	main_btn.pressed.connect(_on_main_pressed)
 	mouse.finished.connect(_on_finished_level)
 	tilemap.set_cell(player_start_pos, player_tile_id, Vector2i(0,0))
+	
+	update_labels()
+	
+	
 
 func _process(_delta):
 	update_selection_position()
@@ -48,7 +62,12 @@ func update_selection_position():
 
 	select_sprite.position = world_pos  # Snap sprite to tile position
 	
-	
+
+func update_labels() -> void:
+	erase_label.text = "Erases left: %d" % erases_left
+	moves_label.text = "Moves left: %d" % moves_left
+
+
 func _on_finished_level() -> void:
 	_on_main_pressed()
 	
@@ -67,3 +86,10 @@ func _on_main_pressed() -> void:
 	# fade[type].call(_target_scene, anim_speed)
 	
 	pass
+
+
+func restart_level() -> void:
+	SceneManager.goto("game")
+	
+func _on_restart_level_pressed() -> void:
+	self.restart_level()
