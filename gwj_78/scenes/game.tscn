@@ -5,9 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://rnvf4tdf6n3r" path="res://scenes/mouse.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cxcq6krr28s4p" path="res://assets/art/tiles/select_tile.png" id="3_lbhrr"]
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "select_sprite", "mouse", "room_scene")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/main_menu")
+select_sprite = NodePath("mouse/select")
+mouse = NodePath("mouse")
+room_scene = NodePath("Control/MarginContainer/room_scene")
 
 [node name="mouse" parent="." instance=ExtResource("2_lnu2h")]
 
@@ -52,6 +55,24 @@ texture = ExtResource("2_lbhrr")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="look_left" type="Button" parent="Control/MarginContainer"]
+custom_minimum_size = Vector2(100, 460)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+text = "look
+left"
+
+[node name="look_right" type="Button" parent="Control/MarginContainer"]
+custom_minimum_size = Vector2(100, 460)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+focus_mode = 0
+text = "look
+right"
+
 [node name="main_menu" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = 3
@@ -77,4 +98,7 @@ grow_horizontal = 0
 focus_mode = 0
 text = "restart"
 
+[connection signal="pressed" from="Control/MarginContainer/look_left" to="." method="look_left"]
+[connection signal="pressed" from="Control/MarginContainer/look_right" to="." method="look_right"]
+[connection signal="pressed" from="Control/main_menu" to="." method="_on_main_pressed"]
 [connection signal="pressed" from="Control/restart_level" to="." method="_on_restart_level_pressed"]

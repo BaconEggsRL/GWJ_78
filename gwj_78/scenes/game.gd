@@ -22,11 +22,25 @@ var fade:Dictionary = {
 @export var mouse:Mouse
 
 
+
+###########################################################
+
+
+const SCENE_1 = preload("res://assets/art/room_scenes/scene_1.png")
+const SCENE_2 = preload("res://assets/art/room_scenes/scene_2.png")
+const SCENE_3 = preload("res://assets/art/room_scenes/scene_3.png")
+const SCENE_4 = preload("res://assets/art/room_scenes/scene_4.png")
+
+var room_scenes = [SCENE_1, SCENE_2, SCENE_3, SCENE_4]
+@export var starting_scene_index = 0
+@onready var current_scene_index = starting_scene_index
+
+@export var room_scene:TextureRect
+
 		
 		
 func _ready() -> void:
-	# other stuff
-	main_btn.pressed.connect(_on_main_pressed)
+	change_scene_to(starting_scene_index)
 	
 	
 
@@ -35,7 +49,24 @@ func _process(_delta):
 
 
 
+func change_scene_to(index:int) -> void:
+	print("index = %s" % index)
+	current_scene_index = index % room_scenes.size()
+	print("current_scene_index = %s" % current_scene_index)
+	room_scene.texture = room_scenes[current_scene_index]
+	
+	
+	
 
+
+
+func look_left() -> void:
+	change_scene_to(current_scene_index - 1)
+	
+func look_right() -> void:
+	change_scene_to(current_scene_index + 1)
+	
+	
 	
 	
 func restart_level() -> void:
