@@ -3,3 +3,5 @@ Erase
 
 Given a word or phase, need to be able to erase letters
 
+2D Excavator -- Right click to reveal what is underneath a tile
+
