@@ -16,6 +16,51 @@ var fade:Dictionary = {
 }
 
 
+var valentines_candy_messages := [
+	"You make life sweeter!",  # Chocolate
+	"You’re my favorite conversation!",  # Candy Hearts
+	"I’m a sucker for you!",  # Lollipops
+	"You’re one smart cookie, and I love you!",  # Cookies
+	"Bee mine!",  # Honey-flavored candy
+	"You’re the apple of my eye!",  # Caramel Apple
+	"We make the perfect pair!",  # Strawberries & Chocolate
+	"I’m nuts about you!",  # Nutty Candy
+	"You're as sweet as honey!",  # Bit-O-Honey
+	"You’re my sweet piece!",  # Reese’s
+	"We’re nuts about each other!",  # Peanut M&Ms
+	"I can’t bear to be without you!",  # Gummy Bears
+	"You're a great catch!",  # Swedish Fish
+	"You brighten my day!",  # Skittles
+	"You wormed your way into my heart!",  # Gummy Worms
+	"You take my breath away!",  # Peppermints
+	"You’re red-hot!",  # Hot Tamales
+	"You rock my world!"  # Ring Pop
+]
+
+var candy_heart_sayings := [
+	"Be Mine",
+	"Love You",
+	"XOXO",
+	"Cutie",
+	"Hug Me",
+	"Sweetheart",
+	"Forever",
+	"Miss U",
+	"You Rock",
+	"BFF",
+	"True Love",
+	"Kiss Me",
+	"My Boo",
+	"Only You",
+	"Soulmate",
+	"ILYSM",
+	"Crazy 4 U",
+	"4Ever Yours",
+	"UR Cute",
+	"Luv U"
+]
+
+
 func _ready() -> void:
 	main_btn.pressed.connect(_on_main_pressed)
 

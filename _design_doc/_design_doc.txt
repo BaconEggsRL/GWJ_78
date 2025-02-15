@@ -1,3 +1,5 @@
 Godot Wild Jam (GWJ) #78:
+Erase
 
+Given a word or phase, need to be able to erase letters
 
