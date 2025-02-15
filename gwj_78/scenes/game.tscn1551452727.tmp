@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=4 uid="uid://b61hh14421gi8"]
+
+[ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
+[ext_resource type="TileSet" uid="uid://dw5wxe05n7v2k" path="res://tileset.tres" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://cxcq6krr28s4p" path="res://assets/art/tiles/select_tile.png" id="3_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="4_lbhrr"]
+
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "grid", "tilemap", "select_sprite", "mouse")]
+script = ExtResource("1_uwrxv")
+main_btn = NodePath("Control/main_menu")
+grid = NodePath("tiles/grid")
+tilemap = NodePath("tiles/tilemap")
+select_sprite = NodePath("select")
+mouse = NodePath("mouse")
+
+[node name="tiles" type="Node2D" parent="."]
+
+[node name="grid" type="TileMapLayer" parent="tiles"]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAA=")
+tile_set = ExtResource("2_yqjtg")
+
+[node name="tilemap" type="TileMapLayer" parent="tiles"]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAFAAQAAgAAAAAAAAAFAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAEAAwAAAAAAAAAEAAQABAAAAAAAAAA=")
+tile_set = ExtResource("2_yqjtg")
+
+[node name="mouse" type="Sprite2D" parent="."]
+texture = ExtResource("3_lnu2h")
+script = ExtResource("4_lbhrr")
+
+[node name="select" type="Sprite2D" parent="."]
+texture = ExtResource("3_lbhrr")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="erase" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Erases Left: 0"
+
+[node name="moves" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Moves Left: 0"
+
+[node name="main_menu" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -161.0
+offset_top = -88.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+text = "main"

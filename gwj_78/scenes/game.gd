@@ -28,8 +28,13 @@ var cells = {}
 
 @export var mouse:Mouse
 
+var player_tile_id = 4  # Player tile ID
+@export var player_start_pos := Vector2i(4, 4)
+
+
 func _ready() -> void:
 	main_btn.pressed.connect(_on_main_pressed)
+	tilemap.set_cell(player_start_pos, player_tile_id, Vector2i(0,0))
 
 func _process(_delta):
 	update_selection_position()
