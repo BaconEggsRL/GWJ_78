@@ -2,9 +2,9 @@ Godot Wild Jam (GWJ) #78:
 Erase
 
 target resolution:
-non pixel art: 1280x720
+non pixel art: 1280 x 720
 pixel art: 640 x 360
-
+32 x 32 tiles
 
 Given a word or phase, need to be able to erase letters
 

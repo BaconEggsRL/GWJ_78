@@ -1,75 +1,39 @@
-[gd_scene load_steps=5 format=4 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=3 format=4 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
-[ext_resource type="Texture2D" uid="uid://bbr0rhhwj5jbs" path="res://assets/art/tiles/tilesetter_test.png" id="2_yqjtg"]
+[ext_resource type="TileSet" uid="uid://dw5wxe05n7v2k" path="res://tileset.tres" id="2_yqjtg"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
-texture = ExtResource("2_yqjtg")
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-8:2/0 = 0
-9:2/0 = 0
-10:2/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-8:3/0 = 0
-9:3/0 = 0
-10:3/0 = 0
-11:3/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-8:4/0 = 0
-9:4/0 = 0
-10:4/0 = 0
-11:4/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-8:5/0 = 0
-9:5/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_lbhrr"]
-sources/0 = SubResource("TileSetAtlasSource_lnu2h")
-
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "basic_tile", "wall_tile", "select_tile")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/main_menu")
+basic_tile = NodePath("basic_tile")
+wall_tile = NodePath("wall_tile")
+select_tile = NodePath("select_tile")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="basic_tile" type="TileMapLayer" parent="."]
 texture_filter = 1
-tile_map_data = PackedByteArray("AAAUAAsAAAACAAIAAAAUAAoAAAACAAEAAAATAAsAAAABAAIAAAAVAAsAAAADAAIAAAAUAAwAAAACAAMAAAATAAoAAAABAAEAAAATAAwAAAABAAMAAAAVAAoAAAADAAEAAAAVAAwAAAADAAMAAAATAAcAAAABAAEAAAATAAgAAAABAAIAAAATAAkAAAABAAMAAAAUAAcAAAACAAEAAAAUAAgAAAACAAIAAAAUAAkAAAACAAMAAAAVAAcAAAADAAEAAAAVAAgAAAADAAIAAAAVAAkAAAADAAMAAAAWAAoAAAABAAEAAAAWAAsAAAABAAIAAAAWAAwAAAABAAMAAAAXAAoAAAACAAEAAAAXAAsAAAACAAIAAAAXAAwAAAACAAMAAAAYAAoAAAADAAEAAAAYAAsAAAADAAIAAAAYAAwAAAADAAMAAAAQAAoAAAABAAEAAAAQAAsAAAABAAIAAAAQAAwAAAABAAMAAAARAAoAAAACAAEAAAARAAsAAAACAAIAAAARAAwAAAACAAMAAAASAAoAAAADAAEAAAASAAsAAAADAAIAAAASAAwAAAADAAMAAAATAA0AAAABAAEAAAATAA4AAAABAAIAAAATAA8AAAABAAMAAAAUAA0AAAACAAEAAAAUAA4AAAACAAIAAAAUAA8AAAACAAMAAAAVAA0AAAADAAEAAAAVAA4AAAADAAIAAAAVAA8AAAADAAMAAAA=")
-tile_set = SubResource("TileSet_lbhrr")
+tile_map_data = PackedByteArray("AAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAADAAEAAwAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAA=")
+tile_set = ExtResource("2_yqjtg")
+
+[node name="wall_tile" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAFAAQAAgAAAAAAAAAFAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAA=")
+tile_set = ExtResource("2_yqjtg")
+
+[node name="select_tile" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_set = ExtResource("2_yqjtg")
+
+[node name="player_tile" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAEAAQABAAAAAAAAAA=")
+tile_set = ExtResource("2_yqjtg")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 360.0
+offset_right = 1280.0
+offset_bottom = 720.0
 metadata/_edit_lock_ = true
 
 [node name="main_menu" type="Button" parent="Control"]
@@ -79,8 +43,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -31.0
+offset_left = -161.0
+offset_top = -88.0
 grow_horizontal = 0
 grow_vertical = 0
 focus_mode = 0
