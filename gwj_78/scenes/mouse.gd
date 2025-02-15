@@ -32,6 +32,8 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if current_state == State.ERASER:
 				erase_tile()
+			elif current_state == State.PENCIL:
+				draw_tile()
 			else:
 				pass
 			change_state()
@@ -42,6 +44,7 @@ func _process(_delta) -> void:
 
 
 func erase_tile() -> bool:
+
 	if not get_parent().tilemap:
 		return false  # Safety check
 
@@ -57,6 +60,27 @@ func erase_tile() -> bool:
 	return false  # No tile was erased
 
 
+func draw_tile() -> bool:
+	print("draw")
+	if not get_parent().tilemap:
+		return false  # Safety check
+
+	var tilemap = get_parent().tilemap  # Get the main tile layer
+	var tile_pos = tilemap.local_to_map(get_global_mouse_position())  # Convert mouse position to tile coordinates
+	var existing_tile_id = tilemap.get_cell_source_id(tile_pos)  # Get the current tile ID
+	
+	print("existing_tile_id = %s" % existing_tile_id)
+	if existing_tile_id == -1:  # Only draw if the position is empty
+		tilemap.set_cell(tile_pos, 2, Vector2i(0, 0))  # Place tile with Source ID = 2 (wall tile)
+		print("hello")
+		return true  # Tile was drawn successfully
+	#if existing_tile_id != -1:  # Only draw if the position is empty
+		#tilemap.set_cell(tile_pos, -1)  # Place tile with ID = 2
+		#return true  # Tile was drawn successfully
+
+	return false  # A tile already exists, do nothing
+	
+	
 func change_state() -> void:
 	var new_state = (current_state + 1) % State.size()
 	set_state(new_state)
