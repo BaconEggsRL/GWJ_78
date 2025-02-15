@@ -1,33 +1,41 @@
-[gd_scene load_steps=3 format=4 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=5 format=4 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="TileSet" uid="uid://dw5wxe05n7v2k" path="res://tileset.tres" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="4_lbhrr"]
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "basic_tile", "wall_tile", "select_tile")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/main_menu")
-basic_tile = NodePath("basic_tile")
-wall_tile = NodePath("wall_tile")
-select_tile = NodePath("select_tile")
+basic_tile = NodePath("tiles/basic_tile")
+wall_tile = NodePath("tiles/wall_tile")
+select_tile = NodePath("tiles/select_tile")
 
-[node name="basic_tile" type="TileMapLayer" parent="."]
+[node name="tiles" type="Node2D" parent="."]
+
+[node name="basic_tile" type="TileMapLayer" parent="tiles"]
 texture_filter = 1
 tile_map_data = PackedByteArray("AAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAADAAEAAwAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAA=")
 tile_set = ExtResource("2_yqjtg")
 
-[node name="wall_tile" type="TileMapLayer" parent="."]
+[node name="wall_tile" type="TileMapLayer" parent="tiles"]
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAFAAQAAgAAAAAAAAAFAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAA=")
 tile_set = ExtResource("2_yqjtg")
 
-[node name="select_tile" type="TileMapLayer" parent="."]
+[node name="select_tile" type="TileMapLayer" parent="tiles"]
 texture_filter = 1
 tile_set = ExtResource("2_yqjtg")
 
-[node name="player_tile" type="TileMapLayer" parent="."]
+[node name="player_tile" type="TileMapLayer" parent="tiles"]
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAEAAQABAAAAAAAAAA=")
 tile_set = ExtResource("2_yqjtg")
+
+[node name="mouse" type="Sprite2D" parent="."]
+texture = ExtResource("3_lnu2h")
+script = ExtResource("4_lbhrr")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
