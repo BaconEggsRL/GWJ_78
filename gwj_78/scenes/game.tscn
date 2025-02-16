@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=13 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://rnvf4tdf6n3r" path="res://scenes/mouse.tscn" id="2_lnu2h"]
@@ -6,11 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://cy0ibcr763xrr" path="res://assets/art/room_scenes/scene_1.png" id="4_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://cb2k575pov5pb" path="res://assets/art/room_scenes/scene_3.png" id="6_p57ef"]
+[ext_resource type="Shader" uid="uid://bwii0e5hn3fn6" path="res://scenes/floaty.gdshader" id="6_vtaks"]
 [ext_resource type="Texture2D" uid="uid://dunxwgsxseaf1" path="res://assets/art/room_scenes/scene_4.png" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bxr0wa5in3pdh" path="res://assets/art/inventory_objects/mop.png" id="8_gee14"]
 [ext_resource type="Script" uid="uid://5k3hfsuxvvbt" path="res://scenes/inventory_button.gd" id="9_0tnpc"]
 
 [sub_resource type="Theme" id="Theme_0tnpc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvpfn"]
+shader = ExtResource("6_vtaks")
+shader_parameter/amplitude = 0.0
+shader_parameter/speed = 4.0
+shader_parameter/texture_size = Vector2(64, 64)
+shader_parameter/enabled = false
+shader_parameter/start_time = 0.0
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "select_sprite", "mouse", "SCENE_1", "SCENE_2", "SCENE_3", "SCENE_4")]
 script = ExtResource("1_uwrxv")
@@ -375,12 +384,14 @@ focus_mode = 0
 text = "restart"
 
 [node name="inventory_container" type="HBoxContainer" parent="Control/UI_container"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+alignment = 1
 
 [node name="mop_btn" type="Button" parent="Control/UI_container/inventory_container"]
-custom_minimum_size = Vector2(64, 64)
+material = SubResource("ShaderMaterial_kvpfn")
 layout_mode = 2
 focus_mode = 0
 icon = ExtResource("8_gee14")
