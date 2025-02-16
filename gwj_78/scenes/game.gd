@@ -16,12 +16,14 @@ var fade:Dictionary = {
 	"cell_noise": Callable(ff.noise)
 }
 
-
+###########################################################
+# exports
 
 @export var mouse:Mouse
 @export var none:InventoryButton
-###########################################################
 
+###########################################################
+# Scenes
 
 @export var SCENE_1:TextureRect
 @export var SCENE_2:TextureRect
@@ -52,13 +54,42 @@ var state := {}
 
 # debugging
 @export var debug = false
-		
-		
+
+###########################################################
+
+# time
+@export var time_left_label:Label
+@export var max_seconds:float = 10# 60 * 5.0
+@onready var time_left:float = max_seconds
+var time_elapsed := 0.0
+
+signal out_of_time
+
+
+
+func _on_out_of_time() -> void:
+	self.set_process(false)
+	print("you ran out of time")
+	
+	
+func update_time_label() -> void:
+	if time_left >= -1:
+		var display_time = ceil(time_left)
+		var minutes = floor(display_time/60.0)
+		var seconds = display_time - minutes * 60.0
+		var pad = "0" if seconds < 10 else ""
+		time_left_label.text = "Time left = %d:%s%d" % [minutes, pad, seconds]
+	else:
+		out_of_time.emit()
+
+
+
 func _ready() -> void:
 	# GameProgress.reset_progress()
 	self.reset_progress()
 	init_scene_data()
 	change_scene_to(starting_scene_index)
+	update_time_label()
 	
 	# connect item buttons
 	var visible_count = 0
@@ -77,13 +108,16 @@ func _ready() -> void:
 		
 	# signals
 	inventory_updated.connect(_on_inventory_updated)
+	out_of_time.connect(_on_out_of_time)
 	
 	
 	
-	
-
 func _process(_delta):
-	pass
+	time_left -= _delta
+	time_elapsed += _delta
+	if time_elapsed >= 1.0:
+		update_time_label()
+		time_elapsed = 0.0
 
 
 # call this func every time the game starts
