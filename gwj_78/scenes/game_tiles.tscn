@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://c7uv03loedb15"]
+[gd_scene load_steps=5 format=4 uid="uid://c7uv03loedb15"]
 
-[ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_1ymfp"]
+[ext_resource type="Script" uid="uid://dstyg4o7b6y3f" path="res://scenes/game_tiles.gd" id="1_1ymfp"]
 [ext_resource type="TileSet" uid="uid://dw5wxe05n7v2k" path="res://tileset.tres" id="2_ixoq4"]
-[ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="3_f1fna"]
-[ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="4_srcw5"]
+[ext_resource type="PackedScene" uid="uid://bjr5gvltau66l" path="res://scenes/mouse_tiles.tscn" id="3_kfb2f"]
 [ext_resource type="Texture2D" uid="uid://cxcq6krr28s4p" path="res://assets/art/tiles/select_tile.png" id="5_22c67"]
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "grid", "select_sprite", "mouse", "erase_label", "moves_label")]
@@ -11,10 +10,9 @@ script = ExtResource("1_1ymfp")
 main_btn = NodePath("Control/main_menu")
 grid = NodePath("grid")
 select_sprite = NodePath("select")
-mouse = NodePath("mouse")
+mouse = NodePath("mouse_tiles")
 erase_label = NodePath("Control/MarginContainer/VBoxContainer/erase")
 moves_label = NodePath("Control/MarginContainer/VBoxContainer/moves")
-override_level = 2
 
 [node name="grid" type="TileMapLayer" parent="."]
 texture_filter = 1
@@ -34,9 +32,7 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAEAAQABAAAAAAAAAADAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAAFAAMAAgAAAAAAAAAHAAAAAwAAAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAAAAgAAAAAAAAAGAAMAAgAAAAAAAAA=")
 tile_set = ExtResource("2_ixoq4")
 
-[node name="mouse" type="Sprite2D" parent="." node_paths=PackedStringArray("game")]
-texture = ExtResource("3_f1fna")
-script = ExtResource("4_srcw5")
+[node name="mouse_tiles" parent="." node_paths=PackedStringArray("game") instance=ExtResource("3_kfb2f")]
 game = NodePath("..")
 
 [node name="select" type="Sprite2D" parent="."]

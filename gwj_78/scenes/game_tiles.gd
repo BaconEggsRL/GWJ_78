@@ -1,4 +1,4 @@
-# class_name Game
+class_name GameTiles
 extends Node2D
 
 @export var main_btn:Button
@@ -23,7 +23,7 @@ var fade:Dictionary = {
 
 @export var select_sprite:Sprite2D
 
-@export var mouse:Mouse
+@export var mouse:MouseTiles
 
 var player_tile_id = 4  # Player tile ID
 @export var player_start_pos := Vector2i(4, 4)

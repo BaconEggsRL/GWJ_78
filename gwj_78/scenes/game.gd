@@ -55,6 +55,23 @@ func change_scene_to(index:int) -> void:
 	print("current_scene_index = %s" % current_scene_index)
 	room_scene.texture = room_scenes[current_scene_index]
 	
+	# recapture all child nodes under room_scene to bind item data
+	var children = room_scene.get_children()
+	for child:Button in children:
+		var item_name = child.name
+		print(item_name)
+		
+		var regex := RegEx.new()
+		regex.compile("\\d+$")  # Ensure regex is compiled before use
+		var cleaned_item_name = regex.sub(item_name, "", true)  # Correct usage
+		print(cleaned_item_name)
+		
+		
+		
+		child.pressed.connect(_on_item_pressed.bind(cleaned_item_name))
+		child.text = ""
+		child.flat = true
+	
 	
 	
 
@@ -84,3 +101,8 @@ func _on_restart_level_pressed() -> void:
 
 func _on_main_pressed() -> void:
 	self.goto_main()
+
+
+func _on_item_pressed(item:String) -> void:
+	var MAIN_DIALOGUE = load("res://dialogue/main.dialogue")
+	DialogueManager.show_example_dialogue_balloon(MAIN_DIALOGUE, item)

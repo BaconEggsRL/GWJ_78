@@ -55,6 +55,77 @@ texture = ExtResource("2_lbhrr")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="body" type="Button" parent="Control/MarginContainer/room_scene"]
+layout_mode = 0
+offset_left = 349.0
+offset_top = 504.0
+offset_right = 634.0
+offset_bottom = 592.0
+focus_mode = 0
+text = "body"
+
+[node name="gun" type="Button" parent="Control/MarginContainer/room_scene"]
+layout_mode = 0
+offset_left = 813.0
+offset_top = 504.0
+offset_right = 942.0
+offset_bottom = 563.0
+focus_mode = 0
+text = "gun"
+
+[node name="door" type="Button" parent="Control/MarginContainer/room_scene"]
+layout_mode = 0
+offset_left = 781.0
+offset_top = 228.0
+offset_right = 910.0
+offset_bottom = 467.0
+focus_mode = 0
+text = "door"
+
+[node name="trash" type="Button" parent="Control/MarginContainer/room_scene"]
+layout_mode = 0
+offset_left = 633.0
+offset_top = 386.0
+offset_right = 710.0
+offset_bottom = 470.0
+focus_mode = 0
+text = "trash"
+
+[node name="computer" type="Button" parent="Control/MarginContainer/room_scene"]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 277.0
+offset_right = 529.0
+offset_bottom = 345.0
+focus_mode = 0
+text = "computer"
+
+[node name="chair" type="Button" parent="Control/MarginContainer/room_scene"]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 366.0
+offset_right = 528.0
+offset_bottom = 485.0
+focus_mode = 0
+text = "chair"
+
+[node name="chair2" type="Button" parent="Control/MarginContainer/room_scene"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 326.0
+offset_right = 458.0
+offset_bottom = 379.0
+focus_mode = 0
+
+[node name="closet" type="Button" parent="Control/MarginContainer/room_scene"]
+layout_mode = 0
+offset_left = 293.0
+offset_top = 213.0
+offset_right = 401.0
+offset_bottom = 489.0
+focus_mode = 0
+text = "closet"
+
 [node name="look_left" type="Button" parent="Control/MarginContainer"]
 custom_minimum_size = Vector2(100, 460)
 layout_mode = 2

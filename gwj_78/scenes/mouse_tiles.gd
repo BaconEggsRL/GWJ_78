@@ -1,4 +1,4 @@
-# class_name Mouse
+class_name MouseTiles
 extends Sprite2D
 
 
@@ -22,7 +22,7 @@ var current_state = State.NONE
 var last_state = current_state
 var last_erased = false
 
-@export var game:Game
+@export var game:GameTiles
 var tilemap: TileMapLayer
 
 

@@ -61,3 +61,9 @@ inventory?
 
 art style -- physically erase the object?
 click left/right to change scenes
+
+
+==============
+
+tooltip on hover?
+just click around?
