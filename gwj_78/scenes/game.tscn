@@ -1,16 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=6 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
-[ext_resource type="Texture2D" uid="uid://cy0ibcr763xrr" path="res://assets/art/room_scenes/scene_1.png" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://rnvf4tdf6n3r" path="res://scenes/mouse.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cxcq6krr28s4p" path="res://assets/art/tiles/select_tile.png" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://d0e8ub66qsnch" path="res://scenes/room_scenes/room_scene_1.tscn" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="5_iywne"]
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "select_sprite", "mouse", "room_scene")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "select_sprite", "mouse", "SCENE_1", "SCENE_2")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/main_menu")
 select_sprite = NodePath("mouse/select")
 mouse = NodePath("mouse")
-room_scene = NodePath("Control/MarginContainer/room_scene")
+SCENE_1 = NodePath("Control/MarginContainer/room_scene_1")
+SCENE_2 = NodePath("Control/MarginContainer/room_scene_2")
 
 [node name="mouse" parent="." instance=ExtResource("2_lnu2h")]
 
@@ -48,83 +50,26 @@ text = "Evidence found: 0"
 layout_mode = 2
 text = "Time left: 0"
 
-[node name="room_scene" type="TextureRect" parent="Control/MarginContainer"]
+[node name="room_scene_1" parent="Control/MarginContainer" instance=ExtResource("4_lbhrr")]
+layout_mode = 2
+
+[node name="room_scene_2" type="TextureRect" parent="Control/MarginContainer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
-texture = ExtResource("2_lbhrr")
+texture = ExtResource("5_iywne")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="body" type="Button" parent="Control/MarginContainer/room_scene"]
+[node name="bed_top" type="Button" parent="Control/MarginContainer/room_scene_2"]
 layout_mode = 0
-offset_left = 349.0
-offset_top = 504.0
-offset_right = 634.0
-offset_bottom = 592.0
+offset_left = 871.0
+offset_top = 190.0
+offset_right = 1156.0
+offset_bottom = 358.0
+rotation = 0.855211
 focus_mode = 0
-text = "body"
-
-[node name="gun" type="Button" parent="Control/MarginContainer/room_scene"]
-layout_mode = 0
-offset_left = 813.0
-offset_top = 504.0
-offset_right = 942.0
-offset_bottom = 563.0
-focus_mode = 0
-text = "gun"
-
-[node name="door" type="Button" parent="Control/MarginContainer/room_scene"]
-layout_mode = 0
-offset_left = 781.0
-offset_top = 228.0
-offset_right = 910.0
-offset_bottom = 467.0
-focus_mode = 0
-text = "door"
-
-[node name="trash" type="Button" parent="Control/MarginContainer/room_scene"]
-layout_mode = 0
-offset_left = 633.0
-offset_top = 386.0
-offset_right = 710.0
-offset_bottom = 470.0
-focus_mode = 0
-text = "trash"
-
-[node name="computer" type="Button" parent="Control/MarginContainer/room_scene"]
-layout_mode = 0
-offset_left = 445.0
-offset_top = 277.0
-offset_right = 529.0
-offset_bottom = 345.0
-focus_mode = 0
-text = "computer"
-
-[node name="chair" type="Button" parent="Control/MarginContainer/room_scene"]
-layout_mode = 0
-offset_left = 418.0
-offset_top = 366.0
-offset_right = 528.0
-offset_bottom = 485.0
-focus_mode = 0
-text = "chair"
-
-[node name="chair2" type="Button" parent="Control/MarginContainer/room_scene"]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 326.0
-offset_right = 458.0
-offset_bottom = 379.0
-focus_mode = 0
-
-[node name="closet" type="Button" parent="Control/MarginContainer/room_scene"]
-layout_mode = 0
-offset_left = 293.0
-offset_top = 213.0
-offset_right = 401.0
-offset_bottom = 489.0
-focus_mode = 0
-text = "closet"
+text = "bed_top"
 
 [node name="look_left" type="Button" parent="Control/MarginContainer"]
 custom_minimum_size = Vector2(100, 460)

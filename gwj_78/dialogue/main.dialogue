@@ -1,3 +1,6 @@
+#######################################
+# SCENE 1
+
 
 ~ body
 Nathan: It's a body.
@@ -25,4 +28,20 @@ Nathan: It's a chair.
 
 ~ closet
 Nathan: It's a storage closet.
+=> END!
+
+~ top_drawer
+Nathan: It's a top drawer.
+=> END!
+
+~ bottom_drawer
+Nathan: It's a bottom drawer.
+=> END!
+
+
+#######################################
+# SCENE 2
+
+~ bed_top
+Nathan: It's a bed.
 => END!

@@ -21,21 +21,22 @@ var fade:Dictionary = {
 @export var select_sprite:Sprite2D
 @export var mouse:Mouse
 
-
-
 ###########################################################
 
 
-const SCENE_1 = preload("res://assets/art/room_scenes/scene_1.png")
-const SCENE_2 = preload("res://assets/art/room_scenes/scene_2.png")
-const SCENE_3 = preload("res://assets/art/room_scenes/scene_3.png")
-const SCENE_4 = preload("res://assets/art/room_scenes/scene_4.png")
+@export var SCENE_1:TextureRect
+@export var SCENE_2:TextureRect
+@export var SCENE_3:TextureRect
+@export var SCENE_4:TextureRect
+@onready var room_scenes = [SCENE_1, SCENE_2]# , SCENE_3, SCENE_4]
 
-var room_scenes = [SCENE_1, SCENE_2, SCENE_3, SCENE_4]
 @export var starting_scene_index = 0
 @onready var current_scene_index = starting_scene_index
 
-@export var room_scene:TextureRect
+# @export var room_scene:TextureRect
+var current_room_scene:TextureRect
+
+
 
 		
 		
@@ -50,13 +51,26 @@ func _process(_delta):
 
 
 func change_scene_to(index:int) -> void:
+
 	print("index = %s" % index)
 	current_scene_index = index % room_scenes.size()
 	print("current_scene_index = %s" % current_scene_index)
-	room_scene.texture = room_scenes[current_scene_index]
+	# room_scene.texture = room_scenes[current_scene_index]
+	
+	# hide all scenes
+	var i = 0
+	for child_scene:TextureRect in room_scenes:
+		if i == current_scene_index:
+			child_scene.show()
+			current_room_scene = child_scene
+		else:
+			child_scene.hide()
+		i += 1
+		
+	# show next scene
 	
 	# recapture all child nodes under room_scene to bind item data
-	var children = room_scene.get_children()
+	var children = current_room_scene.get_children()
 	for child:Button in children:
 		var item_name = child.name
 		print(item_name)
