@@ -18,7 +18,6 @@ var fade:Dictionary = {
 
 
 
-@export var select_sprite:Sprite2D
 @export var mouse:Mouse
 
 ###########################################################
@@ -42,6 +41,7 @@ const BALLOON = preload("res://dialogue/balloon.tscn")
 var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
 
 var inventory := {}
+@export var inventory_container:Control
 
 
 
@@ -52,6 +52,10 @@ func _ready() -> void:
 	self.reset_progress()
 	init_scene_data()
 	change_scene_to(starting_scene_index)
+	
+	# connect item buttons
+	for child:InventoryButton in inventory_container.get_children():
+		child.inventory_item_pressed.connect(_on_inventory_item_pressed)
 	
 	
 
@@ -150,3 +154,8 @@ func _on_item_pressed(item:String) -> void:
 	# DialogueManager.show_example_dialogue_balloon(MAIN_DIALOGUE, item)  # shows example balloon
 	# DialogueManager.show_dialogue_balloon(MAIN_DIALOGUE, item)  # shows balloon configured in Project Settings
 	show_dialogue(MAIN_DIALOGUE, item)  # custom function
+
+# pressed item in inventory
+func _on_inventory_item_pressed(item:String) -> void:
+	print(item)
+	mouse.set_state(mouse.get_state_from_string(item))

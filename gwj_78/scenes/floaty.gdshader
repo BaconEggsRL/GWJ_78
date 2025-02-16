@@ -1,7 +1,8 @@
 shader_type canvas_item;
 
 uniform float amplitude : hint_range(0.0, 20.0) = 0.0;
-uniform float speed : hint_range(0.0, 10.0) = 4.0;
+const float speed = 10.0;
+
 uniform vec2 texture_size = vec2(64.0, 64.0); // Set this manually to match your texture
 uniform bool enabled = false;
 uniform float start_time = 0.0; // This needs to be updated externally

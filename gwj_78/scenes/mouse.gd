@@ -7,12 +7,41 @@ const pencil_sprite = preload("res://assets/art/mouse/pencil.png")
 const moving_sprite = preload("res://assets/art/mouse/moving.png")
 const none_sprite = preload("res://assets/art/mouse/none.png")
 
+const mop_sprite = preload("res://assets/art/inventory_objects/mop.png")
+
 
 enum State {
-	NONE, ERASER, PENCIL, MOVING
+	NONE, ERASER, MOP
 }
-var current_state = State.NONE
+var current_state:State
+var last_state:State
 
+func _ready() -> void:
+	self.set_state(State.NONE)
 
 func _process(_delta) -> void:
 	self.global_position = get_global_mouse_position()
+
+func get_state_from_string(item:String) -> State:
+	match item:
+		"none":
+			return State.NONE
+		"mop":
+			return State.MOP
+		
+		_:
+			return State.NONE
+	
+	
+func set_state(new_state:State) -> void:
+	if not current_state or new_state != current_state:
+		last_state = current_state
+		current_state = new_state
+		match current_state:
+			State.NONE:
+				self.texture = none_sprite
+				print("hello")
+			State.ERASER:
+				self.texture = eraser_sprite
+			State.MOP:
+				self.texture = mop_sprite

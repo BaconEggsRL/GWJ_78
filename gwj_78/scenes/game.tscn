@@ -1,35 +1,42 @@
-[gd_scene load_steps=13 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=15 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://rnvf4tdf6n3r" path="res://scenes/mouse.tscn" id="2_lnu2h"]
-[ext_resource type="Texture2D" uid="uid://cxcq6krr28s4p" path="res://assets/art/tiles/select_tile.png" id="3_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://cy0ibcr763xrr" path="res://assets/art/room_scenes/scene_1.png" id="4_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://cb2k575pov5pb" path="res://assets/art/room_scenes/scene_3.png" id="6_p57ef"]
 [ext_resource type="Shader" uid="uid://bwii0e5hn3fn6" path="res://scenes/floaty.gdshader" id="6_vtaks"]
+[ext_resource type="Texture2D" uid="uid://cp1csfwkymsgh" path="res://assets/art/inventory_objects/none.png" id="7_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://dunxwgsxseaf1" path="res://assets/art/room_scenes/scene_4.png" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bxr0wa5in3pdh" path="res://assets/art/inventory_objects/mop.png" id="8_gee14"]
 [ext_resource type="Script" uid="uid://5k3hfsuxvvbt" path="res://scenes/inventory_button.gd" id="9_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="9_kvpfn"]
+[ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="10_dinhu"]
 
 [sub_resource type="Theme" id="Theme_0tnpc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvpfn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dinhu"]
 shader = ExtResource("6_vtaks")
 shader_parameter/amplitude = 0.0
-shader_parameter/speed = 4.0
 shader_parameter/texture_size = Vector2(64, 64)
 shader_parameter/enabled = false
 shader_parameter/start_time = 0.0
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "select_sprite", "mouse", "SCENE_1", "SCENE_2", "SCENE_3", "SCENE_4")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvpfn"]
+shader = ExtResource("6_vtaks")
+shader_parameter/amplitude = 0.0
+shader_parameter/texture_size = Vector2(64, 64)
+shader_parameter/enabled = false
+shader_parameter/start_time = 0.0
+
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "mouse", "SCENE_1", "SCENE_2", "SCENE_3", "SCENE_4", "inventory_container")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/UI_container/main_menu")
-select_sprite = NodePath("mouse/select")
 mouse = NodePath("mouse")
 SCENE_1 = NodePath("Control/scene_container/room_scene_1")
 SCENE_2 = NodePath("Control/scene_container/room_scene_2")
 SCENE_3 = NodePath("Control/scene_container/room_scene_3")
 SCENE_4 = NodePath("Control/scene_container/room_scene_4")
+inventory_container = NodePath("Control/UI_container/inventory_container")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -390,7 +397,32 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 alignment = 1
 
-[node name="mop_btn" type="Button" parent="Control/UI_container/inventory_container"]
+[node name="none" type="Button" parent="Control/UI_container/inventory_container"]
+material = SubResource("ShaderMaterial_dinhu")
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("7_kvpfn")
+flat = true
+script = ExtResource("9_0tnpc")
+
+[node name="Label" type="Label" parent="Control/UI_container/inventory_container/none"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "none"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mop" type="Button" parent="Control/UI_container/inventory_container"]
 material = SubResource("ShaderMaterial_kvpfn")
 layout_mode = 2
 focus_mode = 0
@@ -398,7 +430,7 @@ icon = ExtResource("8_gee14")
 flat = true
 script = ExtResource("9_0tnpc")
 
-[node name="Label" type="Label" parent="Control/UI_container/inventory_container/mop_btn"]
+[node name="Label" type="Label" parent="Control/UI_container/inventory_container/mop"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -415,11 +447,9 @@ text = "mop"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="mouse" parent="." instance=ExtResource("2_lnu2h")]
-visible = false
-
-[node name="select" type="Sprite2D" parent="mouse"]
-texture = ExtResource("3_lbhrr")
+[node name="mouse" type="Sprite2D" parent="."]
+texture = ExtResource("9_kvpfn")
+script = ExtResource("10_dinhu")
 
 [connection signal="pressed" from="Control/UI_container/look_left" to="." method="look_left"]
 [connection signal="pressed" from="Control/UI_container/look_right" to="." method="look_right"]

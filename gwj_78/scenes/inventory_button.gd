@@ -1,3 +1,4 @@
+class_name InventoryButton
 extends Button
 
 var base_modulate = 1.0
@@ -10,13 +11,17 @@ var hover_modulate = 0.5
 var hover_tween:Tween
 var hover_tween_duration:float = 0.25
 
+signal inventory_item_pressed
+
 
 
 func _ready() -> void:
 	label.text = ""
 	self.self_modulate.a = base_modulate
+	
 	self.mouse_entered.connect(_on_mouse_entered)
 	self.mouse_exited.connect(_on_mouse_exited)
+	self.pressed.connect(_on_pressed)
 	
 	if material is ShaderMaterial:
 		material.set_shader_parameter("amplitude", 0.0)
@@ -50,15 +55,19 @@ func disable_hover_shader():
 			material.set_shader_parameter("enabled", false)
 		)
 	
-	
+
+func _on_pressed() -> void:
+	inventory_item_pressed.emit(self.name)
+
+
 func _on_mouse_entered() -> void:
 	# self.self_modulate.a = hover_modulate
-	print("hi")
+	# print("hi")
 	enable_hover_shader()
 	pass
 
 func _on_mouse_exited() -> void:
 	# self.self_modulate.a = base_modulate
-	print("bye")
+	# print("bye")
 	disable_hover_shader()
 	pass
