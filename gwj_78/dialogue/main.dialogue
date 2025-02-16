@@ -113,9 +113,24 @@ Nathan: It's a floor mat.
 #=> END!
 
 ~ window
-Nathan: It's a window. Might want to close the curtains.
+if state.curtains_closed == false:
+	Nathan: It's a window. Might want to close the curtains.
 => END!
 
+
 ~ curtain
-Nathan: It's the curtains. Pull them shut?
+if state.curtains_closed == false:
+	Nathan: It's the curtains. Pull them shut?
+	- Yes
+		Nathan: You closed the curtains.
+		do set_state("curtains_closed", true)
+	- No
+		Nathan: You didn't close the curtains.
+else:
+	Nathan: It's the curtains. Open them?
+	- Yes
+		Nathan: You opened the curtains.
+		do set_state("curtains_closed", false)
+	- No
+		Nathan: You didn't open the curtains.
 => END!

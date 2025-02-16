@@ -28,10 +28,11 @@ shader_parameter/texture_size = Vector2(64, 64)
 shader_parameter/enabled = false
 shader_parameter/start_time = 0.0
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "mouse", "SCENE_1", "SCENE_2", "SCENE_3", "SCENE_4", "inventory_container")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "mouse", "none", "SCENE_1", "SCENE_2", "SCENE_3", "SCENE_4", "inventory_container")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/UI_container/main_menu")
 mouse = NodePath("mouse")
+none = NodePath("Control/UI_container/inventory_container/none")
 SCENE_1 = NodePath("Control/scene_container/room_scene_1")
 SCENE_2 = NodePath("Control/scene_container/room_scene_2")
 SCENE_3 = NodePath("Control/scene_container/room_scene_3")

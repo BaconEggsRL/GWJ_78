@@ -19,7 +19,7 @@ var fade:Dictionary = {
 
 
 @export var mouse:Mouse
-
+@export var none:InventoryButton
 ###########################################################
 
 
@@ -37,14 +37,18 @@ var current_room_scene:TextureRect
 
 ###########################################################
 
+# dialogue
 const BALLOON = preload("res://dialogue/balloon.tscn")
 var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
 
+# inventory
 var inventory := {}
 @export var inventory_container:Control
-signal inventory_updated(item_name, value)  # Define a signal
+signal inventory_updated(item_name, value)
 const FLOATY_SHADER = preload("res://shaders/floaty.gdshader")
 
+# world state
+var state := {}
 
 
 		
@@ -56,11 +60,22 @@ func _ready() -> void:
 	change_scene_to(starting_scene_index)
 	
 	# connect item buttons
+	var visible_count = 0
 	for child:InventoryButton in inventory_container.get_children():
 		child.inventory_item_pressed.connect(_on_inventory_item_pressed)
+		if child.visible and child.name != "none":
+			visible_count += 1
+			
+	# inventory
+	if visible_count == 0:
+		none.hide()
+	else:
+		none.show()
 		
 	# signals
 	inventory_updated.connect(_on_inventory_updated)
+	
+	
 	
 	
 
@@ -73,18 +88,31 @@ func reset_progress() -> void:
 	inventory = {
 		"mop": false
 	}
-	
-func set_inventory_item(item_name: String, value: bool):
+	state = {
+		"curtains_closed": false
+	}
+
+
+func set_state(state_name: String, value) -> void:
+	if state.has(state_name) and state[state_name] != value:
+		state[state_name] = value
+		match state_name:
+			"curtains_closed":
+				print("curtains closed changed to %s" % value)
+
+
+
+func set_inventory_item(item_name: String, value: bool) -> void:
 	if inventory.has(item_name) and inventory[item_name] != value:
 		inventory[item_name] = value
 		inventory_updated.emit(item_name, value)  # Emit signal when changed
-		
-func _on_inventory_updated(item_name: String, value: bool):
+
+func _on_inventory_updated(item_name: String, value: bool) -> void:
 	if item_name == "mop" and value:
 		print("Mop acquired! Updating UI...")
 		# Call function to add mop button to inventory UI
 		add_inventory_button("mop")
-		
+
 func add_inventory_button(item_name: String) -> void:
 	var button := InventoryButton.new()
 	match item_name:
@@ -98,7 +126,9 @@ func add_inventory_button(item_name: String) -> void:
 	button.item_name = item_name
 	
 	button.inventory_item_pressed.connect(_on_inventory_item_pressed)
-	pass
+	
+	# make sure none is visible
+	none.show()
 
 
 
