@@ -36,6 +36,11 @@ var fade:Dictionary = {
 # @export var room_scene:TextureRect
 var current_room_scene:TextureRect
 
+###########################################################
+
+const BALLOON = preload("res://dialogue/balloon.tscn")
+var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
+
 
 
 		
@@ -123,6 +128,16 @@ func _on_main_pressed() -> void:
 	self.goto_main()
 
 
+# show dialogue
+func show_dialogue(resource:DialogueResource, title:String="", extra_game_states:Array=[]) -> Node:
+	var balloon:Node = BALLOON.instantiate()
+	add_child(balloon)
+	balloon.start(resource, title, extra_game_states)
+	DialogueManager.dialogue_started.emit(resource)
+	return balloon
+
+# show dialogue when item pressed
 func _on_item_pressed(item:String) -> void:
-	var MAIN_DIALOGUE = load("res://dialogue/main.dialogue")
-	DialogueManager.show_example_dialogue_balloon(MAIN_DIALOGUE, item)
+	# DialogueManager.show_example_dialogue_balloon(MAIN_DIALOGUE, item)  # shows example balloon
+	# DialogueManager.show_dialogue_balloon(MAIN_DIALOGUE, item)  # shows balloon configured in Project Settings
+	show_dialogue(MAIN_DIALOGUE, item)  # custom function

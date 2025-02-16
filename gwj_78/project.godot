@@ -25,6 +25,10 @@ Transitions="*res://addons/transitions/Transitions.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GameProgress="*res://global/game_progress.gd"
 
+[dialogue_manager]
+
+runtime/balloon_path="uid://d0w5v5f818v1r"
+
 [display]
 
 window/size/viewport_width=1280
