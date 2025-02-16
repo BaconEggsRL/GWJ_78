@@ -67,3 +67,7 @@ click left/right to change scenes
 
 tooltip on hover?
 just click around?
+
+Erase the Evidence
+Crime Wipe
+Magic Eraser
