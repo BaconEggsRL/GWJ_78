@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=11 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://rnvf4tdf6n3r" path="res://scenes/mouse.tscn" id="2_lnu2h"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://cb2k575pov5pb" path="res://assets/art/room_scenes/scene_3.png" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://dunxwgsxseaf1" path="res://assets/art/room_scenes/scene_4.png" id="7_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://bxr0wa5in3pdh" path="res://assets/art/inventory_objects/mop.png" id="8_gee14"]
+[ext_resource type="Script" uid="uid://5k3hfsuxvvbt" path="res://scenes/inventory_button.gd" id="9_0tnpc"]
+
+[sub_resource type="Theme" id="Theme_0tnpc"]
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "select_sprite", "mouse", "SCENE_1", "SCENE_2", "SCENE_3", "SCENE_4")]
 script = ExtResource("1_uwrxv")
@@ -17,11 +21,6 @@ SCENE_1 = NodePath("Control/scene_container/room_scene_1")
 SCENE_2 = NodePath("Control/scene_container/room_scene_2")
 SCENE_3 = NodePath("Control/scene_container/room_scene_3")
 SCENE_4 = NodePath("Control/scene_container/room_scene_4")
-
-[node name="mouse" parent="." instance=ExtResource("2_lnu2h")]
-
-[node name="select" type="Sprite2D" parent="mouse"]
-texture = ExtResource("3_lbhrr")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -144,6 +143,7 @@ offset_top = 213.0
 offset_right = 401.0
 offset_bottom = 489.0
 focus_mode = 0
+theme = SubResource("Theme_0tnpc")
 text = "storage
 closet"
 
@@ -336,10 +336,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 metadata/_edit_lock_ = true
 
 [node name="look_left" type="Button" parent="Control/UI_container"]
@@ -373,6 +373,42 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 focus_mode = 0
 text = "restart"
+
+[node name="inventory_container" type="HBoxContainer" parent="Control/UI_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="mop_btn" type="Button" parent="Control/UI_container/inventory_container"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("8_gee14")
+flat = true
+script = ExtResource("9_0tnpc")
+
+[node name="Label" type="Label" parent="Control/UI_container/inventory_container/mop_btn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "mop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mouse" parent="." instance=ExtResource("2_lnu2h")]
+visible = false
+
+[node name="select" type="Sprite2D" parent="mouse"]
+texture = ExtResource("3_lbhrr")
 
 [connection signal="pressed" from="Control/UI_container/look_left" to="." method="look_left"]
 [connection signal="pressed" from="Control/UI_container/look_right" to="." method="look_right"]
