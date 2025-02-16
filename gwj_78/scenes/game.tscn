@@ -10,13 +10,13 @@
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "select_sprite", "mouse", "SCENE_1", "SCENE_2", "SCENE_3", "SCENE_4")]
 script = ExtResource("1_uwrxv")
-main_btn = NodePath("Control/main_menu")
+main_btn = NodePath("Control/btn_container/main_menu")
 select_sprite = NodePath("mouse/select")
 mouse = NodePath("mouse")
-SCENE_1 = NodePath("Control/MarginContainer/room_scene_1")
-SCENE_2 = NodePath("Control/MarginContainer/room_scene_2")
-SCENE_3 = NodePath("Control/MarginContainer/room_scene_3")
-SCENE_4 = NodePath("Control/MarginContainer/room_scene_4")
+SCENE_1 = NodePath("Control/scene_container/room_scene_1")
+SCENE_2 = NodePath("Control/scene_container/room_scene_2")
+SCENE_3 = NodePath("Control/scene_container/room_scene_3")
+SCENE_4 = NodePath("Control/scene_container/room_scene_4")
 
 [node name="mouse" parent="." instance=ExtResource("2_lnu2h")]
 
@@ -30,35 +30,40 @@ offset_right = 1280.0
 offset_bottom = 720.0
 metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
+[node name="stat_container" type="VBoxContainer" parent="Control"]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 654.0
+offset_right = 153.0
+offset_bottom = 704.0
+alignment = 2
+
+[node name="erase" type="Label" parent="Control/stat_container"]
+layout_mode = 2
+text = "Evidence found: 0"
+
+[node name="moves" type="Label" parent="Control/stat_container"]
+layout_mode = 2
+text = "Time left: 0"
+
+[node name="scene_container" type="MarginContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="stat_container" type="VBoxContainer" parent="Control/MarginContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="erase" type="Label" parent="Control/MarginContainer/stat_container"]
-layout_mode = 2
-text = "Evidence found: 0"
-
-[node name="moves" type="Label" parent="Control/MarginContainer/stat_container"]
-layout_mode = 2
-text = "Time left: 0"
-
-[node name="room_scene_1" parent="Control/MarginContainer" instance=ExtResource("4_lbhrr")]
+[node name="room_scene_1" parent="Control/scene_container" instance=ExtResource("4_lbhrr")]
 visible = false
 layout_mode = 2
 
-[node name="room_scene_2" type="TextureRect" parent="Control/MarginContainer"]
+[node name="room_scene_2" type="TextureRect" parent="Control/scene_container"]
 visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
@@ -66,7 +71,7 @@ texture = ExtResource("5_iywne")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="bed_top" type="Button" parent="Control/MarginContainer/room_scene_2"]
+[node name="bed_top" type="Button" parent="Control/scene_container/room_scene_2"]
 layout_mode = 0
 offset_left = 871.0
 offset_top = 190.0
@@ -76,7 +81,7 @@ rotation = 0.855211
 focus_mode = 0
 text = "bed_top"
 
-[node name="room_scene_3" type="TextureRect" parent="Control/MarginContainer"]
+[node name="room_scene_3" type="TextureRect" parent="Control/scene_container"]
 visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
@@ -84,7 +89,7 @@ texture = ExtResource("6_p57ef")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="sink" type="Button" parent="Control/MarginContainer/room_scene_3"]
+[node name="sink" type="Button" parent="Control/scene_container/room_scene_3"]
 layout_mode = 0
 offset_left = 335.0
 offset_top = 186.0
@@ -93,7 +98,7 @@ offset_bottom = 403.0
 focus_mode = 0
 text = "sink"
 
-[node name="bed_top" type="Button" parent="Control/MarginContainer/room_scene_3"]
+[node name="bed_top" type="Button" parent="Control/scene_container/room_scene_3"]
 layout_mode = 0
 offset_left = 958.0
 offset_top = 416.0
@@ -103,14 +108,14 @@ rotation = -0.610865
 focus_mode = 0
 text = "bed_top"
 
-[node name="room_scene_4" type="TextureRect" parent="Control/MarginContainer"]
+[node name="room_scene_4" type="TextureRect" parent="Control/scene_container"]
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("7_u5sy4")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="sink" type="Button" parent="Control/MarginContainer/room_scene_4"]
+[node name="sink" type="Button" parent="Control/scene_container/room_scene_4"]
 layout_mode = 0
 offset_left = 928.0
 offset_top = 316.0
@@ -119,7 +124,7 @@ offset_bottom = 569.0
 focus_mode = 0
 text = "sink"
 
-[node name="bed_top" type="Button" parent="Control/MarginContainer/room_scene_4"]
+[node name="bed_top" type="Button" parent="Control/scene_container/room_scene_4"]
 layout_mode = 0
 offset_left = 275.0
 offset_top = 378.0
@@ -128,7 +133,20 @@ offset_bottom = 631.0
 focus_mode = 0
 text = "bed_top"
 
-[node name="look_left" type="Button" parent="Control/MarginContainer"]
+[node name="btn_container" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="look_left" type="Button" parent="Control/btn_container"]
 custom_minimum_size = Vector2(100, 460)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -137,7 +155,7 @@ focus_mode = 0
 text = "look
 left"
 
-[node name="look_right" type="Button" parent="Control/MarginContainer"]
+[node name="look_right" type="Button" parent="Control/btn_container"]
 custom_minimum_size = Vector2(100, 460)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -146,32 +164,21 @@ focus_mode = 0
 text = "look
 right"
 
-[node name="main_menu" type="Button" parent="Control"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -161.0
-offset_top = -88.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="main_menu" type="Button" parent="Control/btn_container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
 focus_mode = 0
 text = "exit to main"
 
-[node name="restart_level" type="Button" parent="Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -161.0
-offset_bottom = 88.0
-grow_horizontal = 0
+[node name="restart_level" type="Button" parent="Control/btn_container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 focus_mode = 0
 text = "restart"
 
-[connection signal="pressed" from="Control/MarginContainer/look_left" to="." method="look_left"]
-[connection signal="pressed" from="Control/MarginContainer/look_right" to="." method="look_right"]
-[connection signal="pressed" from="Control/main_menu" to="." method="_on_main_pressed"]
-[connection signal="pressed" from="Control/restart_level" to="." method="_on_restart_level_pressed"]
+[connection signal="pressed" from="Control/btn_container/look_left" to="." method="look_left"]
+[connection signal="pressed" from="Control/btn_container/look_right" to="." method="look_right"]
+[connection signal="pressed" from="Control/btn_container/main_menu" to="." method="_on_main_pressed"]
+[connection signal="pressed" from="Control/btn_container/restart_level" to="." method="_on_restart_level_pressed"]
