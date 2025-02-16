@@ -45,3 +45,20 @@ Nathan: It's a bottom drawer.
 ~ bed_top
 Nathan: It's a bed.
 => END!
+
+
+#######################################
+# SCENE 3
+
+~ sink
+Nathan: It's a sink.
+=> END!
+
+
+
+#######################################
+# SCENE 4
+
+#~ bed_top
+#Nathan: It's a bed.
+#=> END!

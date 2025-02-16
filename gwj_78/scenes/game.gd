@@ -28,7 +28,7 @@ var fade:Dictionary = {
 @export var SCENE_2:TextureRect
 @export var SCENE_3:TextureRect
 @export var SCENE_4:TextureRect
-@onready var room_scenes = [SCENE_1, SCENE_2]# , SCENE_3, SCENE_4]
+@onready var room_scenes = [SCENE_1, SCENE_2, SCENE_3, SCENE_4]
 
 @export var starting_scene_index = 0
 @onready var current_scene_index = starting_scene_index
@@ -41,6 +41,7 @@ var current_room_scene:TextureRect
 		
 		
 func _ready() -> void:
+	init_scene_data()
 	change_scene_to(starting_scene_index)
 	
 	
@@ -50,44 +51,48 @@ func _process(_delta):
 
 
 
-func change_scene_to(index:int) -> void:
-
-	print("index = %s" % index)
-	current_scene_index = index % room_scenes.size()
-	print("current_scene_index = %s" % current_scene_index)
-	# room_scene.texture = room_scenes[current_scene_index]
-	
-	# hide all scenes
+func init_scene_data() -> void:
+		
+	# initialize scene data
 	var i = 0
-	for child_scene:TextureRect in room_scenes:
+	for scene:TextureRect in room_scenes:
+		# show/hide scenes
 		if i == current_scene_index:
-			child_scene.show()
-			current_room_scene = child_scene
+			scene.show()
+			current_room_scene = scene
 		else:
-			child_scene.hide()
+			scene.hide()
 		i += 1
 		
+		# bind item data for each scene
+		var children = scene.get_children()
+		for child:Button in children:
+			var item_name = child.name
+			print(item_name)
+			
+			var regex := RegEx.new()
+			regex.compile("\\d+$")  # Ensure regex is compiled before use
+			var cleaned_item_name = regex.sub(item_name, "", true)  # Correct usage
+			print(cleaned_item_name)
+
+			child.pressed.connect(_on_item_pressed.bind(cleaned_item_name))
+			child.text = ""
+			child.flat = true
+		
+		
+func change_scene_to(new_scene_index:int) -> void:
+	
+	# hide current scene
+	current_room_scene.hide()
+	
+	# update current scene
+	print("index = %s" % new_scene_index)
+	current_scene_index = new_scene_index % room_scenes.size()
+	print("current_scene_index = %s" % current_scene_index)
+	current_room_scene = room_scenes[current_scene_index]
+	
 	# show next scene
-	
-	# recapture all child nodes under room_scene to bind item data
-	var children = current_room_scene.get_children()
-	for child:Button in children:
-		var item_name = child.name
-		print(item_name)
-		
-		var regex := RegEx.new()
-		regex.compile("\\d+$")  # Ensure regex is compiled before use
-		var cleaned_item_name = regex.sub(item_name, "", true)  # Correct usage
-		print(cleaned_item_name)
-		
-		
-		
-		child.pressed.connect(_on_item_pressed.bind(cleaned_item_name))
-		child.text = ""
-		child.flat = true
-	
-	
-	
+	current_room_scene.show()
 
 
 

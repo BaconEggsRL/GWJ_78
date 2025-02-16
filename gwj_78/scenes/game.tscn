@@ -1,18 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=8 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://rnvf4tdf6n3r" path="res://scenes/mouse.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cxcq6krr28s4p" path="res://assets/art/tiles/select_tile.png" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://d0e8ub66qsnch" path="res://scenes/room_scenes/room_scene_1.tscn" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://cb2k575pov5pb" path="res://assets/art/room_scenes/scene_3.png" id="6_p57ef"]
+[ext_resource type="Texture2D" uid="uid://dunxwgsxseaf1" path="res://assets/art/room_scenes/scene_4.png" id="7_u5sy4"]
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "select_sprite", "mouse", "SCENE_1", "SCENE_2")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "select_sprite", "mouse", "SCENE_1", "SCENE_2", "SCENE_3", "SCENE_4")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/main_menu")
 select_sprite = NodePath("mouse/select")
 mouse = NodePath("mouse")
 SCENE_1 = NodePath("Control/MarginContainer/room_scene_1")
 SCENE_2 = NodePath("Control/MarginContainer/room_scene_2")
+SCENE_3 = NodePath("Control/MarginContainer/room_scene_3")
+SCENE_4 = NodePath("Control/MarginContainer/room_scene_4")
 
 [node name="mouse" parent="." instance=ExtResource("2_lnu2h")]
 
@@ -51,6 +55,7 @@ layout_mode = 2
 text = "Time left: 0"
 
 [node name="room_scene_1" parent="Control/MarginContainer" instance=ExtResource("4_lbhrr")]
+visible = false
 layout_mode = 2
 
 [node name="room_scene_2" type="TextureRect" parent="Control/MarginContainer"]
@@ -68,6 +73,39 @@ offset_top = 190.0
 offset_right = 1156.0
 offset_bottom = 358.0
 rotation = 0.855211
+focus_mode = 0
+text = "bed_top"
+
+[node name="room_scene_3" type="TextureRect" parent="Control/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0.556863)
+layout_mode = 2
+texture = ExtResource("6_p57ef")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="sink" type="Button" parent="Control/MarginContainer/room_scene_3"]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 186.0
+offset_right = 526.0
+offset_bottom = 403.0
+focus_mode = 0
+text = "sink"
+
+[node name="room_scene_4" type="TextureRect" parent="Control/MarginContainer"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.556863)
+layout_mode = 2
+texture = ExtResource("7_u5sy4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="bed_top" type="Button" parent="Control/MarginContainer/room_scene_4"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 378.0
+offset_right = 509.0
+offset_bottom = 631.0
 focus_mode = 0
 text = "bed_top"
 
