@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bsknik7m63l2h"
+path="res://.godot/imported/home door handle wiggle 7.wav-d0fa6a5995b8fd1d2570bac9ca9fea97.sample"
+
+[deps]
+
+source_file="res://assets/sound/3_fx/home door handle wiggle 7.wav"
+dest_files=["res://.godot/imported/home door handle wiggle 7.wav-d0fa6a5995b8fd1d2570bac9ca9fea97.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

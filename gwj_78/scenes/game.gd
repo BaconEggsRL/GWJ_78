@@ -138,6 +138,9 @@ func remove_inventory_button(item_name: String) -> void:
 	
 	
 func add_inventory_button(item_name: String) -> void:
+	# play pickup sound
+	AudioManager.play_fx("item_pickup")
+	
 	var button := InventoryButton.new()
 	match item_name:
 		"mop":
@@ -148,16 +151,16 @@ func add_inventory_button(item_name: String) -> void:
 	mat.shader = FLOATY_SHADER
 	button.material = mat
 	
+	# add child and set item name
 	inventory_container.add_child(button)
 	button.item_name = item_name
 	
-	
+	# connect pressed signal
 	button.inventory_item_pressed.connect(_on_inventory_item_pressed)
 	
 	# make sure none is visible
 	none.show()
 	
-	print(button.item_name)
 
 
 

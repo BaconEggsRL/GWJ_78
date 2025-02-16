@@ -18,7 +18,7 @@ var active_fx_players: Dictionary = {}  # Store FX players with names
 # list of all sound effects
 const DOOR_UNLOCK_92281 = preload("res://assets/sound/3_fx/door-unlock-92281.mp3")
 const ITEM_PICK_UP_38258 = preload("res://assets/sound/3_fx/item-pick-up-38258.mp3")
-
+const HOME_DOOR_HANDLE_WIGGLE_7 = preload("res://assets/sound/3_fx/home door handle wiggle 7.wav")
 
 
 func play_ambient(ambient_name: String, fade_in_time: float = 2.0, final_db: float = -6.0) -> void:
@@ -163,6 +163,8 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> void:
 			fx = DOOR_UNLOCK_92281
 		"item_pickup":
 			fx = ITEM_PICK_UP_38258
+		"locked_door_wiggle":
+			fx = HOME_DOOR_HANDLE_WIGGLE_7
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	

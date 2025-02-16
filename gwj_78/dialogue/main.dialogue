@@ -45,6 +45,7 @@ if state.storage_closet_unlocked == true:
 		Nathan: You check the closet, but there's nothing inside.
 else:
 	if mouse.current_state != mouse.State.KEY:
+		do AudioManager.play_fx("locked_door_wiggle")
 		Nathan: It's locked.
 	else:
 		do set_state("storage_closet_unlocked", true)
@@ -75,7 +76,6 @@ if inventory.storage_closet_key == false and state.storage_closet_unlocked == fa
 	- Yes
 		Nathan: You took the key.
 		do set_inventory_item("storage_closet_key", true)
-		do AudioManager.play_fx("item_pickup")
 		
 	- No
 		Nathan: Probably nothing important.
@@ -85,7 +85,14 @@ else:
 
 
 ~ book_shelf
-Nathan: It's a bookshelf.
+Nathan: It's a bookshelf. Pick a book to read?
+- Yes
+	Nathan: "'How to Hide A Body', by M. Night Shyamalan:"
+	Nathan: Some pages are missing...
+	Nathan: "...Try mopping up the blood."
+	Nathan: "...And don't forget to close the window curtains!"
+- No
+
 => END!
 
 ~ night_stand
