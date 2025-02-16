@@ -1,6 +1,9 @@
 #######################################
 # SCENE 1
 
+~ wall
+Nathan: It's a wall. They could probably hang a nice painting there.
+=> END!
 
 ~ body
 Nathan: It's a body.
@@ -26,8 +29,16 @@ Nathan: It's a computer.
 Nathan: It's a chair.
 => END!
 
-~ closet
-Nathan: It's a storage closet.
+~ storage_closet
+Nathan: It's a storage closet. Open it?
+- Yes
+	Nathan: You decided to open it. There's a mop inside. Take the mop?
+	- Yes
+		Nathan: You took the mop.
+	- No
+		Nathan: You didn't take the mop.
+- No
+	Nathan: You decided not to open it, knowing that nothing useful could possibly be inside.
 => END!
 
 ~ top_drawer
@@ -46,12 +57,41 @@ Nathan: It's a bottom drawer.
 Nathan: It's a bed.
 => END!
 
+~ bed_bottom
+Nathan: It's under the bed.
+=> END!
+
+
+~ book_shelf
+Nathan: It's a bookshelf.
+=> END!
+
+~ night_stand
+Nathan: It's a nightstand.
+=> END!
+
 
 #######################################
 # SCENE 3
 
+#~ bed_top
+#Nathan: It's a bed.
+#=> END!
+
 ~ sink
 Nathan: It's a sink.
+=> END!
+
+~ sink_shelf
+Nathan: It's a shelf.
+=> END!
+
+~ mirror
+Nathan: It's a mirror. You take a moment to admire yourself in it.
+=> END!
+
+~ floor_mat
+Nathan: It's a floor mat.
 => END!
 
 
@@ -62,3 +102,15 @@ Nathan: It's a sink.
 #~ bed_top
 #Nathan: It's a bed.
 #=> END!
+
+#~ sink
+#Nathan: It's a sink.
+#=> END!
+
+~ window
+Nathan: It's a window. Might want to close the curtains.
+=> END!
+
+~ curtain
+Nathan: It's the curtains. Pull them shut?
+=> END!

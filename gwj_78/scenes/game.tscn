@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://rnvf4tdf6n3r" path="res://scenes/mouse.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cxcq6krr28s4p" path="res://assets/art/tiles/select_tile.png" id="3_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://d0e8ub66qsnch" path="res://scenes/room_scenes/room_scene_1.tscn" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://cy0ibcr763xrr" path="res://assets/art/room_scenes/scene_1.png" id="4_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://cb2k575pov5pb" path="res://assets/art/room_scenes/scene_3.png" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://dunxwgsxseaf1" path="res://assets/art/room_scenes/scene_4.png" id="7_u5sy4"]
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "select_sprite", "mouse", "SCENE_1", "SCENE_2", "SCENE_3", "SCENE_4")]
 script = ExtResource("1_uwrxv")
-main_btn = NodePath("Control/btn_container/main_menu")
+main_btn = NodePath("Control/UI_container/main_menu")
 select_sprite = NodePath("mouse/select")
 mouse = NodePath("mouse")
 SCENE_1 = NodePath("Control/scene_container/room_scene_1")
@@ -59,9 +59,111 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="room_scene_1" parent="Control/scene_container" instance=ExtResource("4_lbhrr")]
-visible = false
+[node name="room_scene_1" type="TextureRect" parent="Control/scene_container"]
+self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
+texture = ExtResource("4_u5sy4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="wall" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 553.0
+offset_top = 182.0
+offset_right = 760.0
+offset_bottom = 330.0
+focus_mode = 0
+text = "wall"
+
+[node name="body" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 349.0
+offset_top = 504.0
+offset_right = 634.0
+offset_bottom = 592.0
+focus_mode = 0
+text = "wall"
+
+[node name="gun" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 813.0
+offset_top = 504.0
+offset_right = 942.0
+offset_bottom = 563.0
+focus_mode = 0
+text = "gun"
+
+[node name="door" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 781.0
+offset_top = 228.0
+offset_right = 910.0
+offset_bottom = 467.0
+focus_mode = 0
+text = "door"
+
+[node name="trash" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 633.0
+offset_top = 386.0
+offset_right = 710.0
+offset_bottom = 470.0
+focus_mode = 0
+text = "trash"
+
+[node name="computer" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 277.0
+offset_right = 529.0
+offset_bottom = 345.0
+focus_mode = 0
+text = "computer"
+
+[node name="chair" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 366.0
+offset_right = 528.0
+offset_bottom = 485.0
+focus_mode = 0
+text = "chair"
+
+[node name="chair2" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 326.0
+offset_right = 458.0
+offset_bottom = 379.0
+focus_mode = 0
+
+[node name="storage_closet" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 293.0
+offset_top = 213.0
+offset_right = 401.0
+offset_bottom = 489.0
+focus_mode = 0
+text = "storage
+closet"
+
+[node name="top_drawer" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 366.0
+offset_right = 610.0
+offset_bottom = 408.0
+focus_mode = 0
+text = "top dra"
+
+[node name="bottom_drawer" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 414.0
+offset_right = 611.0
+offset_bottom = 463.0
+focus_mode = 0
+text = "bot dra"
 
 [node name="room_scene_2" type="TextureRect" parent="Control/scene_container"]
 visible = false
@@ -81,6 +183,32 @@ rotation = 0.855211
 focus_mode = 0
 text = "bed_top"
 
+[node name="bed_bottom" type="Button" parent="Control/scene_container/room_scene_2"]
+layout_mode = 0
+offset_left = 774.0
+offset_top = 396.0
+offset_right = 1015.0
+offset_bottom = 449.0
+rotation = 0.921534
+focus_mode = 0
+text = "bed_bottom"
+
+[node name="book_shelf" type="Button" parent="Control/scene_container/room_scene_2"]
+offset_left = 278.0
+offset_top = 134.0
+offset_right = 555.0
+offset_bottom = 489.0
+focus_mode = 0
+text = "book_shelf"
+
+[node name="night_stand" type="Button" parent="Control/scene_container/room_scene_2"]
+offset_left = 568.0
+offset_top = 284.0
+offset_right = 714.0
+offset_bottom = 489.0
+focus_mode = 0
+text = "night_stand"
+
 [node name="room_scene_3" type="TextureRect" parent="Control/scene_container"]
 visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
@@ -88,6 +216,26 @@ layout_mode = 2
 texture = ExtResource("6_p57ef")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="bed_top" type="Button" parent="Control/scene_container/room_scene_3"]
+layout_mode = 0
+offset_left = 951.0
+offset_top = 407.0
+offset_right = 1037.0
+offset_bottom = 568.0
+rotation = -0.610865
+focus_mode = 0
+text = "bed_top"
+
+[node name="bed_bottom" type="Button" parent="Control/scene_container/room_scene_3"]
+layout_mode = 0
+offset_left = 977.0
+offset_top = 481.0
+offset_right = 1137.0
+offset_bottom = 559.0
+rotation = 0.921534
+focus_mode = 0
+text = "bed_bottom"
 
 [node name="sink" type="Button" parent="Control/scene_container/room_scene_3"]
 layout_mode = 0
@@ -98,31 +246,40 @@ offset_bottom = 403.0
 focus_mode = 0
 text = "sink"
 
-[node name="bed_top" type="Button" parent="Control/scene_container/room_scene_3"]
+[node name="sink_shelf" type="Button" parent="Control/scene_container/room_scene_3"]
 layout_mode = 0
-offset_left = 958.0
-offset_top = 416.0
-offset_right = 1038.0
-offset_bottom = 566.0
-rotation = -0.610865
+offset_left = 543.0
+offset_top = 134.0
+offset_right = 664.0
+offset_bottom = 450.0
 focus_mode = 0
-text = "bed_top"
+text = "sink_shelf"
+
+[node name="mirror" type="Button" parent="Control/scene_container/room_scene_3"]
+layout_mode = 0
+offset_left = 723.0
+offset_top = 133.0
+offset_right = 851.0
+offset_bottom = 409.0
+focus_mode = 0
+text = "mirror"
+
+[node name="floor_mat" type="Button" parent="Control/scene_container/room_scene_3"]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 459.0
+offset_right = 532.0
+offset_bottom = 551.0
+focus_mode = 0
+text = "floor_mat"
 
 [node name="room_scene_4" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("7_u5sy4")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="sink" type="Button" parent="Control/scene_container/room_scene_4"]
-layout_mode = 0
-offset_left = 928.0
-offset_top = 316.0
-offset_right = 1025.0
-offset_bottom = 569.0
-focus_mode = 0
-text = "sink"
 
 [node name="bed_top" type="Button" parent="Control/scene_container/room_scene_4"]
 layout_mode = 0
@@ -133,7 +290,43 @@ offset_bottom = 631.0
 focus_mode = 0
 text = "bed_top"
 
-[node name="btn_container" type="MarginContainer" parent="Control"]
+[node name="sink" type="Button" parent="Control/scene_container/room_scene_4"]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 316.0
+offset_right = 1025.0
+offset_bottom = 569.0
+focus_mode = 0
+text = "sink"
+
+[node name="window" type="Button" parent="Control/scene_container/room_scene_4"]
+layout_mode = 0
+offset_left = 612.0
+offset_top = 115.0
+offset_right = 771.0
+offset_bottom = 427.0
+focus_mode = 0
+text = "window"
+
+[node name="curtain" type="Button" parent="Control/scene_container/room_scene_4"]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 115.0
+offset_right = 618.0
+offset_bottom = 427.0
+focus_mode = 0
+text = "curtain"
+
+[node name="curtain2" type="Button" parent="Control/scene_container/room_scene_4"]
+layout_mode = 0
+offset_left = 764.0
+offset_top = 114.0
+offset_right = 833.0
+offset_bottom = 426.0
+focus_mode = 0
+text = "curtain"
+
+[node name="UI_container" type="MarginContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -145,8 +338,9 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+metadata/_edit_lock_ = true
 
-[node name="look_left" type="Button" parent="Control/btn_container"]
+[node name="look_left" type="Button" parent="Control/UI_container"]
 custom_minimum_size = Vector2(100, 460)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -155,7 +349,7 @@ focus_mode = 0
 text = "look
 left"
 
-[node name="look_right" type="Button" parent="Control/btn_container"]
+[node name="look_right" type="Button" parent="Control/UI_container"]
 custom_minimum_size = Vector2(100, 460)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -164,21 +358,21 @@ focus_mode = 0
 text = "look
 right"
 
-[node name="main_menu" type="Button" parent="Control/btn_container"]
+[node name="main_menu" type="Button" parent="Control/UI_container"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 focus_mode = 0
 text = "exit to main"
 
-[node name="restart_level" type="Button" parent="Control/btn_container"]
+[node name="restart_level" type="Button" parent="Control/UI_container"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 focus_mode = 0
 text = "restart"
 
-[connection signal="pressed" from="Control/btn_container/look_left" to="." method="look_left"]
-[connection signal="pressed" from="Control/btn_container/look_right" to="." method="look_right"]
-[connection signal="pressed" from="Control/btn_container/main_menu" to="." method="_on_main_pressed"]
-[connection signal="pressed" from="Control/btn_container/restart_level" to="." method="_on_restart_level_pressed"]
+[connection signal="pressed" from="Control/UI_container/look_left" to="." method="look_left"]
+[connection signal="pressed" from="Control/UI_container/look_right" to="." method="look_right"]
+[connection signal="pressed" from="Control/UI_container/main_menu" to="." method="_on_main_pressed"]
+[connection signal="pressed" from="Control/UI_container/restart_level" to="." method="_on_restart_level_pressed"]
