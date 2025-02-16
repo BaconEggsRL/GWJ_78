@@ -42,6 +42,8 @@ var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
 
 var inventory := {}
 @export var inventory_container:Control
+signal inventory_updated(item_name, value)  # Define a signal
+const FLOATY_SHADER = preload("res://shaders/floaty.gdshader")
 
 
 
@@ -56,6 +58,9 @@ func _ready() -> void:
 	# connect item buttons
 	for child:InventoryButton in inventory_container.get_children():
 		child.inventory_item_pressed.connect(_on_inventory_item_pressed)
+		
+	# signals
+	inventory_updated.connect(_on_inventory_updated)
 	
 	
 
@@ -69,7 +74,34 @@ func reset_progress() -> void:
 		"mop": false
 	}
 	
+func set_inventory_item(item_name: String, value: bool):
+	if inventory.has(item_name) and inventory[item_name] != value:
+		inventory[item_name] = value
+		inventory_updated.emit(item_name, value)  # Emit signal when changed
+		
+func _on_inventory_updated(item_name: String, value: bool):
+	if item_name == "mop" and value:
+		print("Mop acquired! Updating UI...")
+		# Call function to add mop button to inventory UI
+		add_inventory_button("mop")
+		
+func add_inventory_button(item_name: String) -> void:
+	var button := InventoryButton.new()
+	match item_name:
+		"mop":
+			button.icon = mouse.mop_sprite
+	var mat := ShaderMaterial.new()
+	mat.shader = FLOATY_SHADER
+	button.material = mat
 	
+	inventory_container.add_child(button)
+	button.item_name = item_name
+	
+	button.inventory_item_pressed.connect(_on_inventory_item_pressed)
+	pass
+
+
+
 func init_scene_data() -> void:
 		
 	# initialize scene data

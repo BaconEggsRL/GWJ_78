@@ -36,7 +36,8 @@ Nathan: It's a storage closet. Open it?
 		Nathan: You open the closet, and there's a mop inside. Take the mop?
 		- Yes
 			Nathan: You took the mop.
-			set inventory.mop = true
+			# set inventory.mop = true
+			do set_inventory_item("mop", true)
 		- No
 			Nathan: You didn't take the mop.
 	else:

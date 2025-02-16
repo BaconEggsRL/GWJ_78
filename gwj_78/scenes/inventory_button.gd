@@ -4,19 +4,21 @@ extends Button
 var base_modulate = 1.0
 var hover_modulate = 0.5
 
-@onready var label: Label = $Label
-
 @export var shader_max_amplitude = 2.0
 
 var hover_tween:Tween
 var hover_tween_duration:float = 0.25
+
+@export var item_name:String
 
 signal inventory_item_pressed
 
 
 
 func _ready() -> void:
-	label.text = ""
+	self.flat = true
+	self.focus_mode = Control.FOCUS_NONE
+	
 	self.self_modulate.a = base_modulate
 	
 	self.mouse_entered.connect(_on_mouse_entered)
@@ -57,7 +59,8 @@ func disable_hover_shader():
 	
 
 func _on_pressed() -> void:
-	inventory_item_pressed.emit(self.name)
+	inventory_item_pressed.emit(item_name)
+	print("pressed: %s" % item_name)
 
 
 func _on_mouse_entered() -> void:
