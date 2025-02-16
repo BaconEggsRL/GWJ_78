@@ -41,6 +41,7 @@ var current_room_scene:TextureRect
 		
 		
 func _ready() -> void:
+	GameProgress.reset_progress()
 	init_scene_data()
 	change_scene_to(starting_scene_index)
 	

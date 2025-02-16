@@ -194,6 +194,7 @@ focus_mode = 0
 text = "bed_bottom"
 
 [node name="book_shelf" type="Button" parent="Control/scene_container/room_scene_2"]
+layout_mode = 0
 offset_left = 278.0
 offset_top = 134.0
 offset_right = 555.0
@@ -202,6 +203,7 @@ focus_mode = 0
 text = "book_shelf"
 
 [node name="night_stand" type="Button" parent="Control/scene_container/room_scene_2"]
+layout_mode = 0
 offset_left = 568.0
 offset_top = 284.0
 offset_right = 714.0
