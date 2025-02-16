@@ -32,11 +32,11 @@ Nathan: It's a chair.
 ~ storage_closet
 Nathan: It's a storage closet. Open it?
 - Yes
-	if GameProgress.inventory.mop == false:
+	if inventory.mop == false:
 		Nathan: You open the closet, and there's a mop inside. Take the mop?
 		- Yes
 			Nathan: You took the mop.
-			set GameProgress.inventory.mop = true
+			set inventory.mop = true
 		- No
 			Nathan: You didn't take the mop.
 	else:

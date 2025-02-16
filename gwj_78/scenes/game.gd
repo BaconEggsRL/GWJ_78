@@ -41,12 +41,15 @@ var current_room_scene:TextureRect
 const BALLOON = preload("res://dialogue/balloon.tscn")
 var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
 
+var inventory := {}
+
 
 
 		
 		
 func _ready() -> void:
-	GameProgress.reset_progress()
+	# GameProgress.reset_progress()
+	self.reset_progress()
 	init_scene_data()
 	change_scene_to(starting_scene_index)
 	
@@ -56,7 +59,13 @@ func _process(_delta):
 	pass
 
 
-
+# call this func every time the game starts
+func reset_progress() -> void:
+	inventory = {
+		"mop": false
+	}
+	
+	
 func init_scene_data() -> void:
 		
 	# initialize scene data
