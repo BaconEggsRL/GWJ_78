@@ -50,7 +50,8 @@ const FLOATY_SHADER = preload("res://shaders/floaty.gdshader")
 # world state
 var state := {}
 
-
+# debugging
+@export var debug = false
 		
 		
 func _ready() -> void:
@@ -63,6 +64,8 @@ func _ready() -> void:
 	var visible_count = 0
 	for child:InventoryButton in inventory_container.get_children():
 		child.inventory_item_pressed.connect(_on_inventory_item_pressed)
+		if debug:
+			child.show()
 		if child.visible and child.name != "none":
 			visible_count += 1
 			
@@ -86,38 +89,61 @@ func _process(_delta):
 # call this func every time the game starts
 func reset_progress() -> void:
 	inventory = {
-		"mop": false
+		"mop": false,
+		"storage_closet_key": false,
 	}
 	state = {
-		"curtains_closed": false
+		"curtains_closed": false,
+		"storage_closet_unlocked": false,
 	}
 
 
 func set_state(state_name: String, value) -> void:
-	if state.has(state_name) and state[state_name] != value:
+	if state.has(state_name): # and state[state_name] != value:
 		state[state_name] = value
 		match state_name:
 			"curtains_closed":
-				print("curtains closed changed to %s" % value)
+				print("curtains_closed changed to %s" % value)
+			"storage_closet_unlocked":
+				print("storage_closet_unlocked changed to %s" % value)
 
 
 
 func set_inventory_item(item_name: String, value: bool) -> void:
-	if inventory.has(item_name) and inventory[item_name] != value:
+	if inventory.has(item_name): # and inventory[item_name] != value:
 		inventory[item_name] = value
 		inventory_updated.emit(item_name, value)  # Emit signal when changed
 
 func _on_inventory_updated(item_name: String, value: bool) -> void:
-	if item_name == "mop" and value:
-		print("Mop acquired! Updating UI...")
-		# Call function to add mop button to inventory UI
-		add_inventory_button("mop")
-
+	print("%s set to %s. Updating UI..." % [item_name, value])
+	# Call function to add mop button to inventory UI
+	if value == true:
+		add_inventory_button(item_name)
+	else:
+		print("bye")
+		remove_inventory_button(item_name)
+		
+		
+func remove_inventory_button(item_name: String) -> void:
+	print("ajksdnjaskdnkj")
+	for button:InventoryButton in inventory_container.get_children():
+		if button.item_name == item_name and button.visible == true:
+			print("removing button: %s" % item_name)
+			inventory_container.remove_child(button)
+			# change state if needed
+			if mouse.current_state == mouse.get_state_from_string(item_name):
+				mouse.set_state(mouse.State.NONE)
+			return
+	print("button not found with name: %s" % item_name)
+	
+	
 func add_inventory_button(item_name: String) -> void:
 	var button := InventoryButton.new()
 	match item_name:
 		"mop":
 			button.icon = mouse.mop_sprite
+		"storage_closet_key":
+			button.icon = mouse.key_sprite
 	var mat := ShaderMaterial.new()
 	mat.shader = FLOATY_SHADER
 	button.material = mat
@@ -125,10 +151,13 @@ func add_inventory_button(item_name: String) -> void:
 	inventory_container.add_child(button)
 	button.item_name = item_name
 	
+	
 	button.inventory_item_pressed.connect(_on_inventory_item_pressed)
 	
 	# make sure none is visible
 	none.show()
+	
+	print(button.item_name)
 
 
 

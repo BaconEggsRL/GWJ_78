@@ -30,8 +30,9 @@ Nathan: It's a chair.
 => END!
 
 ~ storage_closet
-Nathan: It's a storage closet. Open it?
-- Yes
+
+
+if state.storage_closet_unlocked == true:
 	if inventory.mop == false:
 		Nathan: You open the closet, and there's a mop inside. Take the mop?
 		- Yes
@@ -42,8 +43,14 @@ Nathan: It's a storage closet. Open it?
 			Nathan: You didn't take the mop.
 	else:
 		Nathan: You check the closet, but there's nothing inside.
-- No
-	Nathan: You decided not to open it, knowing that nothing useful could possibly be inside.
+else:
+	if mouse.current_state != mouse.State.KEY:
+		Nathan: It's locked.
+	else:
+		do set_state("storage_closet_unlocked", true)
+		do set_inventory_item("storage_closet_key", false)
+		do AudioManager.play_fx("door_unlock")
+
 => END!
 
 ~ top_drawer
@@ -63,7 +70,17 @@ Nathan: It's a bed.
 => END!
 
 ~ bed_bottom
-Nathan: It's under the bed.
+if inventory.storage_closet_key == false and state.storage_closet_unlocked == false:
+	Nathan: Looking under the bed, you find a small key. Take it?
+	- Yes
+		Nathan: You took the key.
+		do set_inventory_item("storage_closet_key", true)
+		do AudioManager.play_fx("item_pickup")
+		
+	- No
+		Nathan: Probably nothing important.
+else:
+	Nathan: Nothing under here.
 => END!
 
 

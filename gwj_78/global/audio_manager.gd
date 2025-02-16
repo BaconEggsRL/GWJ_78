@@ -16,8 +16,8 @@ var active_fx_players: Dictionary = {}  # Store FX players with names
 
 # fx
 # list of all sound effects
-
-
+const DOOR_UNLOCK_92281 = preload("res://assets/sound/3_fx/door-unlock-92281.mp3")
+const ITEM_PICK_UP_38258 = preload("res://assets/sound/3_fx/item-pick-up-38258.mp3")
 
 
 
@@ -159,6 +159,10 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> void:
 			pitch = randf_range(1.0 - diff, 1.0 + diff)
 		"random_1":
 			fx = [].pick_random()  # can pick random from array of sounds
+		"door_unlock":
+			fx = DOOR_UNLOCK_92281
+		"item_pickup":
+			fx = ITEM_PICK_UP_38258
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	

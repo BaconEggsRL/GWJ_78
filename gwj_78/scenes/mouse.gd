@@ -5,13 +5,14 @@ extends Sprite2D
 const eraser_sprite = preload("res://assets/art/mouse/eraser.png")
 const pencil_sprite = preload("res://assets/art/mouse/pencil.png")
 const moving_sprite = preload("res://assets/art/mouse/moving.png")
-const none_sprite = preload("res://assets/art/mouse/none.png")
 
+const none_sprite = preload("res://assets/art/mouse/none.png")
 const mop_sprite = preload("res://assets/art/inventory_objects/mop.png")
+const key_sprite = preload("res://assets/art/inventory_objects/key.png")
 
 
 enum State {
-	NONE, ERASER, MOP
+	NONE, ERASER, MOP, KEY
 }
 var current_state:State
 var last_state:State
@@ -28,6 +29,8 @@ func get_state_from_string(item:String) -> State:
 			return State.NONE
 		"mop":
 			return State.MOP
+		"storage_closet_key":
+			return State.KEY
 		
 		_:
 			return State.NONE
@@ -40,8 +43,9 @@ func set_state(new_state:State) -> void:
 		match current_state:
 			State.NONE:
 				self.texture = none_sprite
-				print("hello")
 			State.ERASER:
 				self.texture = eraser_sprite
 			State.MOP:
 				self.texture = mop_sprite
+			State.KEY:
+				self.texture = key_sprite

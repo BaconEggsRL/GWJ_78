@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=17 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://cy0ibcr763xrr" path="res://assets/art/room_scenes/scene_1.png" id="4_u5sy4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://5k3hfsuxvvbt" path="res://scenes/inventory_button.gd" id="9_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="9_kvpfn"]
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="10_dinhu"]
+[ext_resource type="Texture2D" uid="uid://c5cuqk27im1mk" path="res://assets/art/inventory_objects/key.png" id="10_kvuet"]
 
 [sub_resource type="Theme" id="Theme_0tnpc"]
 
@@ -22,6 +23,13 @@ shader_parameter/enabled = false
 shader_parameter/start_time = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kvpfn"]
+shader = ExtResource("6_vtaks")
+shader_parameter/amplitude = 0.0
+shader_parameter/texture_size = Vector2(64, 64)
+shader_parameter/enabled = false
+shader_parameter/start_time = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvuet"]
 shader = ExtResource("6_vtaks")
 shader_parameter/amplitude = 0.0
 shader_parameter/texture_size = Vector2(64, 64)
@@ -76,6 +84,7 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="room_scene_1" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("4_u5sy4")
@@ -183,7 +192,6 @@ focus_mode = 0
 text = "bot dra"
 
 [node name="room_scene_2" type="TextureRect" parent="Control/scene_container"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("5_iywne")
@@ -408,6 +416,7 @@ script = ExtResource("9_0tnpc")
 item_name = "none"
 
 [node name="mop" type="Button" parent="Control/UI_container/inventory_container"]
+visible = false
 material = SubResource("ShaderMaterial_kvpfn")
 layout_mode = 2
 focus_mode = 0
@@ -415,6 +424,16 @@ icon = ExtResource("8_gee14")
 flat = true
 script = ExtResource("9_0tnpc")
 item_name = "mop"
+
+[node name="key" type="Button" parent="Control/UI_container/inventory_container"]
+visible = false
+material = SubResource("ShaderMaterial_kvuet")
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("10_kvuet")
+flat = true
+script = ExtResource("9_0tnpc")
+item_name = "storage_closet_key"
 
 [node name="mouse" type="Sprite2D" parent="."]
 texture = ExtResource("9_kvpfn")
