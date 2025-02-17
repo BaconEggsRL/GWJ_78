@@ -19,7 +19,7 @@ var active_fx_players: Dictionary = {}  # Store FX players with names
 const DOOR_UNLOCK_92281 = preload("res://assets/sound/3_fx/door-unlock-92281.mp3")
 const ITEM_PICK_UP_38258 = preload("res://assets/sound/3_fx/item-pick-up-38258.mp3")
 const HOME_DOOR_HANDLE_WIGGLE_7 = preload("res://assets/sound/3_fx/home door handle wiggle 7.wav")
-
+const OBJ_CONT_FLASK_WOOD_CANTEEN_MEDIUM_CLOTHSTRAP_METALBANDING_WOODCORK_LIQUID_SHAKING_SLOSHING_EWKR = preload("res://assets/sound/3_fx/OBJCont_Flask,wood,canteen,medium,clothstrap,metalbanding,woodcork,liquid,shaking,sloshing_EWKR.wav")
 
 func play_ambient(ambient_name: String, fade_in_time: float = 2.0, final_db: float = -6.0) -> void:
 	if ambient_name in ambient_players:
@@ -165,6 +165,8 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> void:
 			fx = ITEM_PICK_UP_38258
 		"locked_door_wiggle":
 			fx = HOME_DOOR_HANDLE_WIGGLE_7
+		"mopping_sound":
+			fx = OBJ_CONT_FLASK_WOOD_CANTEEN_MEDIUM_CLOTHSTRAP_METALBANDING_WOODCORK_LIQUID_SHAKING_SLOSHING_EWKR
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	

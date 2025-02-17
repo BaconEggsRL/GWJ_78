@@ -16,6 +16,7 @@ signal inventory_item_pressed
 
 
 func _ready() -> void:
+	self.action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
 	self.flat = true
 	self.focus_mode = Control.FOCUS_NONE
 	

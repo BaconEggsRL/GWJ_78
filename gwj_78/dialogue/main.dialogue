@@ -6,7 +6,16 @@ Nathan: It's a wall. They could probably hang a nice painting there.
 => END!
 
 ~ body
-Nathan: It's a body.
+Nathan: It's a dead body. Gross.
+=> END!
+
+~ blood_pool
+if state.blood_cleaned == false:
+	if mouse.current_state != mouse.State.MOP:
+		Nathan: It's a bunch of blood. (Probably will want to clean that up...)
+	else:
+		do mop_blood()
+
 => END!
 
 ~ gun
@@ -17,7 +26,7 @@ Nathan: It's a gun.
 if mouse.current_state != mouse.State.KEY:
 	Nathan: It's a door.
 else:
-	Nathan: The key doesn't fit.
+	Nathan: This door is already unlocked.
 => END!
 
 ~ trash
@@ -36,7 +45,7 @@ Nathan: It's a chair.
 
 
 if state.storage_closet_unlocked == true:
-	if inventory.mop == false:
+	if inventory.mop == false and state.blood_cleaned == false:
 		Nathan: You open the closet, and there's a mop inside. Take the mop?
 		- Yes
 			Nathan: You took the mop.

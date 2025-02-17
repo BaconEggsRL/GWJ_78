@@ -26,6 +26,9 @@ var fade:Dictionary = {
 # Scenes
 
 @export var SCENE_1:TextureRect
+@export var blood_pool_rect:TextureRect
+@export var body_rect:TextureRect
+
 @export var SCENE_2:TextureRect
 @export var SCENE_3:TextureRect
 @export var SCENE_4:TextureRect
@@ -120,6 +123,16 @@ func _process(_delta):
 		time_elapsed = 0.0
 
 
+# called when mopping the blood up
+func mop_blood() -> void:
+	AudioManager.play_fx("mopping_sound")
+	set_state("blood_cleaned", true)
+	set_inventory_item("mop", false)
+	# tween out the blood texture
+	var blood_tween = create_tween()
+	blood_tween.tween_property(blood_pool_rect, "self_modulate:a", 0.0, 1.0)
+	
+	
 # call this func every time the game starts
 func reset_progress() -> void:
 	inventory = {
@@ -129,6 +142,7 @@ func reset_progress() -> void:
 	state = {
 		"curtains_closed": false,
 		"storage_closet_unlocked": false,
+		"blood_cleaned": false,
 	}
 
 
@@ -152,6 +166,7 @@ func _on_inventory_updated(item_name: String, value: bool) -> void:
 	print("%s set to %s. Updating UI..." % [item_name, value])
 	# Call function to add mop button to inventory UI
 	if value == true:
+		print("hi")
 		add_inventory_button(item_name)
 	else:
 		print("bye")
@@ -160,15 +175,32 @@ func _on_inventory_updated(item_name: String, value: bool) -> void:
 		
 func remove_inventory_button(item_name: String) -> void:
 	print("ajksdnjaskdnkj")
+	var visible_count = 0
+	var success = false
 	for button:InventoryButton in inventory_container.get_children():
-		if button.item_name == item_name and button.visible == true:
-			print("removing button: %s" % item_name)
-			inventory_container.remove_child(button)
-			# change state if needed
-			if mouse.current_state == mouse.get_state_from_string(item_name):
-				mouse.set_state(mouse.State.NONE)
-			return
-	print("button not found with name: %s" % item_name)
+		if button.visible == true:
+			visible_count += 1
+			if button.item_name == item_name:
+				print("removing button: %s" % item_name)
+				inventory_container.remove_child(button)
+				
+				# change state if needed
+				if mouse.current_state == mouse.get_state_from_string(item_name):
+					mouse.set_state(mouse.State.NONE)
+				
+				# whether item was successfully removed
+				success = true
+			
+	# make sure none is not visible, if there are no items left to show
+	print(visible_count)
+	if visible_count == 2:
+		none.hide()
+					
+	if not success:
+		print("button not found with name: %s" % item_name)
+	
+	
+	
 	
 	
 func add_inventory_button(item_name: String) -> void:
@@ -213,18 +245,19 @@ func init_scene_data() -> void:
 		
 		# bind item data for each scene
 		var children = scene.get_children()
-		for child:Button in children:
-			var item_name = child.name
-			print(item_name)
-			
-			var regex := RegEx.new()
-			regex.compile("\\d+$")  # Ensure regex is compiled before use
-			var cleaned_item_name = regex.sub(item_name, "", true)  # Correct usage
-			print(cleaned_item_name)
+		for child in children:
+			if child is Button:
+				var item_name = child.name
+				print(item_name)
+				
+				var regex := RegEx.new()
+				regex.compile("\\d+$")  # Ensure regex is compiled before use
+				var cleaned_item_name = regex.sub(item_name, "", true)  # Correct usage
+				print(cleaned_item_name)
 
-			child.pressed.connect(_on_item_pressed.bind(cleaned_item_name))
-			child.text = ""
-			child.flat = true
+				child.pressed.connect(_on_item_pressed.bind(cleaned_item_name))
+				child.text = ""
+				child.flat = true
 		
 		
 func change_scene_to(new_scene_index:int) -> void:
