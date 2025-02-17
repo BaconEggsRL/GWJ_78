@@ -36,6 +36,8 @@ const SCENE_1_WITH_LAYERS__BODY_IN_TRASH = preload("res://assets/art/room_scenes
 
 
 @export var SCENE_2:TextureRect
+const SCENE_2__BODY_UNDER_BED = preload("res://assets/art/room_scenes/scene_2__body_under_bed.png")
+
 @export var SCENE_3:TextureRect
 @export var SCENE_4:TextureRect
 @export var window_rect:TextureRect
@@ -121,6 +123,10 @@ func hide_body(location:String) -> void:
 	match location:
 		"trash":
 			current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
+			set_state("hid_body_in_trash", true)
+		"bed_bottom":
+			current_room_scene.texture = SCENE_2__BODY_UNDER_BED
+			set_state("hid_body_under_bed", true)
 	# remove body from inventory
 	set_inventory_item("body", false)
 	# update game state
@@ -254,6 +260,10 @@ func reset_progress() -> void:
 	}
 	state = {
 		"hid_body": false,
+		"hid_body_in_trash": false,
+		"hid_body_under_bed": false,
+		"hid_body_in_closet": false,
+		
 		"curtains_closed": false,
 		"storage_closet_unlocked": false,
 		"blood_cleaned": false,

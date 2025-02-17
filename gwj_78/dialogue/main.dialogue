@@ -91,10 +91,11 @@ else:
 
 ~ trash
 if mouse.current_state != mouse.State.BODY:
-	if state.hid_body == false:
-		MC: Empty trash can. Very trash. Very can.
-	else:
+	if state.hid_body_in_trash == true:
 		MC: …yeeeah…that looks hidden.
+	else:
+		MC: Empty trash can. Very trash. Very can.
+
 else:
 	MC: It's as good a place as any.
 	Hide the body here?
@@ -158,11 +159,24 @@ if inventory.storage_closet_key == false and state.storage_closet_unlocked == fa
 	- Yes
 		MC: You took the key.
 		do set_inventory_item("storage_closet_key", true)
-		
 	- No
 		MC: Probably nothing important.
 else:
-	MC: Nothing under here.
+	if mouse.current_state != mouse.State.BODY:
+		if state.hid_body_under_bed == true:
+			MC: …yeeeah…that looks hidden.
+		else:
+			MC: Nothing under here.
+		
+	else:
+		MC: It's as good a place as any.
+		Hide the body here?
+		- Yes
+			do hide_body("bed_bottom")
+			MC: …yeeeah…that looks hidden.
+		- No
+			MC: I'll find another spot.
+		
 => END!
 
 
