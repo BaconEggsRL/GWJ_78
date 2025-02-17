@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8nhdgix5iyyw"
-path="res://.godot/imported/curtains_open - Copy.png-2e889e5992111f9bae95beea285a3268.ctex"
+uid="uid://duml50105kfg6"
+path="res://.godot/imported/curtains_closed.png-3134943130650040611403b77df9d1fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/room_scenes/curtains_open - Copy.png"
-dest_files=["res://.godot/imported/curtains_open - Copy.png-2e889e5992111f9bae95beea285a3268.ctex"]
+source_file="res://assets/art/room_scenes/curtains_closed.png"
+dest_files=["res://.godot/imported/curtains_closed.png-3134943130650040611403b77df9d1fe.ctex"]
 
 [params]
 

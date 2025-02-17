@@ -35,6 +35,11 @@ const BULLET_HOLE_RECT = preload("res://bullet_hole_rect.tscn")
 @export var SCENE_2:TextureRect
 @export var SCENE_3:TextureRect
 @export var SCENE_4:TextureRect
+@export var window_rect:TextureRect
+const CURTAINS_OPEN = preload("res://assets/art/room_scenes/curtains_open.png")
+const CURTAINS_CLOSED = preload("res://assets/art/room_scenes/curtains_closed.png")
+
+
 @onready var room_scenes = [SCENE_1, SCENE_2, SCENE_3, SCENE_4]
 
 @export var starting_scene_index = 0
@@ -141,6 +146,23 @@ func exit_through_front_door() -> void:
 		ending = "ending_body"
 	var custom_data = {"ending": ending}
 	SceneManager.goto("ending", custom_data)
+	
+
+
+# called when closing the curtains
+func close_curtains() -> void:
+	AudioManager.play_fx("curtains")
+	set_state("curtains_closed", true)
+	# set new icon
+	window_rect.texture = CURTAINS_CLOSED
+
+# called when closing the curtains
+func open_curtains() -> void:
+	AudioManager.play_fx("curtains")
+	set_state("curtains_closed", false)
+	# set new icon
+	window_rect.texture = CURTAINS_OPEN
+	
 	
 	
 # called when mopping the blood up
@@ -310,9 +332,9 @@ func init_scene_data() -> void:
 		for child in children:
 			if child is TextureRect:
 				if child.get_child_count() > 0:
-					var btn = child.get_child(0)
-					if btn:
-						init_button(btn)
+					for btn in child.get_children():
+						if btn is Button:
+							init_button(btn)
 			elif child is Button:
 				init_button(child)
 		
