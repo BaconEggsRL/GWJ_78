@@ -59,7 +59,7 @@ var state := {}
 
 # time
 @export var time_left_label:Label
-@export var max_seconds:float = 10# 60 * 5.0
+@export var max_seconds:float = 60 * 5.0
 @onready var time_left:float = max_seconds
 var time_elapsed := 0.0
 
@@ -73,7 +73,7 @@ func _on_out_of_time() -> void:
 	
 	
 func update_time_label() -> void:
-	if time_left >= -1:
+	if time_left >= -1:  # 1 second buffer before losing
 		var display_time = ceil(time_left)
 		var minutes = floor(display_time/60.0)
 		var seconds = display_time - minutes * 60.0

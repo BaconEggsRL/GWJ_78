@@ -14,7 +14,10 @@ Nathan: It's a gun.
 => END!
 
 ~ door
-Nathan: It's a door.
+if mouse.current_state != mouse.State.KEY:
+	Nathan: It's a door.
+else:
+	Nathan: The key doesn't fit.
 => END!
 
 ~ trash
