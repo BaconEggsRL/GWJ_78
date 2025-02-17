@@ -1,10 +1,10 @@
 extends Node2D
 
 var MAIN = load("res://scenes/main.tscn")
-@export var ending_text:Label
 
 var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
 const BALLOON = preload("res://dialogue/balloon.tscn")
+
 
 
 func _ready() -> void:

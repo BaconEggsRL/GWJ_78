@@ -17,6 +17,11 @@ const SKETCHBOOK_2024_05_22 = preload("res://assets/sound/1_music/Sketchbook 202
 
 # fx
 # list of all sound effects
+# phone
+const _762973__TALKTOMEGOOSE_10__PHONE_RINGING = preload("res://assets/sound/3_fx/762973__talktomegoose10__phone-ringing.wav")
+const PICK_UP_PHONE = preload("res://assets/sound/3_fx/pick_up_phone.wav")
+const SLAM_DOWN_PHONE = preload("res://assets/sound/3_fx/slam_down_phone.wav")
+
 const DOOR_UNLOCK_92281 = preload("res://assets/sound/3_fx/door-unlock-92281.mp3")
 const ITEM_PICK_UP_38258 = preload("res://assets/sound/3_fx/item-pick-up-38258.mp3")
 const HOME_DOOR_HANDLE_WIGGLE_7 = preload("res://assets/sound/3_fx/home door handle wiggle 7.wav")
@@ -181,6 +186,12 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> void:
 			fx = WOODEN_DESK_DRAWER_OPEN_12
 			var diff = 0.2
 			pitch = randf_range(1.0 - diff, 1.0 + diff)
+		"phone_ring":
+			fx = _762973__TALKTOMEGOOSE_10__PHONE_RINGING
+		"pick_up_phone":
+			fx = PICK_UP_PHONE
+		"slam_down_phone":
+			fx = SLAM_DOWN_PHONE
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	

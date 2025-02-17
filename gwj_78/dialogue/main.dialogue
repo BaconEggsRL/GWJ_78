@@ -2,11 +2,15 @@
 
 # OPENING
 ~ opening
-*ring ring ring*
+
+*ring ring ring* [do! AudioManager.play_fx("phone_ring", -12.0)]
+# do AudioManager.play_fx("pick_up_phone", -12.0)
 J: “Heyyyy man. How’s it hangin’?”
 MC: “Ahh you know. As well as cleaning up someone else’s mess can go.”
-J: “Haha you’re funny man. Funny. Look, so basically, it’s been about like 4? 5? Minutes since, uh, the unfortunate incident occurred. Ahmmmm, I kinda didn’t actually succeed at the beginning, so there are like…3 different weapons that you’ll probably have to get rid of. I thiiiink he got a call out to the police? So I’d give you like…5 minutes until they get here. Anyway, I gotta go, got another job to take care of, good luck maaan”
-*hang up*
+J: “Haha you’re funny man. Funny. Look, so basically, it’s been about like 4? 5? Minutes since, uh, the unfortunate incident occurred."
+MC: "OK. And how'd it go?"
+J: "Ahmmmm, well, I kinda didn’t actually succeed at the beginning, so there are like… 3 different weapons that you’ll probably have to get rid of. And I thiiiink he got a call out to the police? So I’d give you like… 5 minutes until they get there. Anyway, I gotta go, got another job to take care of, good luck maaan”
+*click* [do! AudioManager.play_fx("slam_down_phone", -12.0)]
 MC: Sigh. I hate this job.
 do start_game()
 => END!
@@ -24,15 +28,15 @@ MC: Oh well. Time for me to get to work...
 # ENDINGS
 
 ~ ending_normal
-Nathan: you didn't hide enough evidence
+you didn't hide enough evidence
 => END!
 
 ~ ending_body
-Nathan: bruh why are you holding a dead body
+bruh why are you holding a dead body
 => END!
 
 ~ ending_time
-Nathan: you ran out of time and the police showed up
+you ran out of time and the police showed up
 => END!
 
 
@@ -40,23 +44,24 @@ Nathan: you ran out of time and the police showed up
 # SCENE 1
 
 ~ wall
-Nathan: It's a wall. They could probably hang a nice painting there.
+MC: It's a wall. They could probably hang a nice painting there.
 => END!
 
 ~ body
 if inventory.body == false:
-	Nathan: It's a dead body. Gross.
-	Nathan: Pick up the body?
+	It's a dead body. Gross.
+	MC: J didn’t even do a good job, there are bruises and cuts everywhere…
+	Pick up the body?
 	- Yes
 		do pickup_body()
 	- No
-		Nathan: Better leave it alone.
+		Better leave it alone.
 => END!
 
 ~ blood_pool
 if state.blood_cleaned == false:
 	if mouse.current_state != mouse.State.MOP:
-		Nathan: It's a bunch of blood. (Probably will want to clean that up...)
+		It's a bunch of blood. (Probably will want to clean that up...)
 	else:
 		do mop_blood()
 
@@ -64,7 +69,7 @@ if state.blood_cleaned == false:
 
 ~ gun
 if inventory.gun == false:
-	Nathan: It's a gun. Pick it up?
+	It's a gun. Pick it up?
 	- Yes
 		do pickup_gun()
 	- No
@@ -73,47 +78,45 @@ if inventory.gun == false:
 
 ~ door
 if mouse.current_state != mouse.State.KEY:
-	Nathan: It's a door.
-	Nathan: Are you sure you want to leave?
+	It's a door.
+	Are you sure you want to leave?
 	- Yes
 		do exit_through_front_door()
 	- No
-		Nathan: Still more work to be done.
+		MC: Still more work to be done.
 else:
-	Nathan: This door is already unlocked.
+	This door is already unlocked.
 
 => END!
 
 ~ trash
-Nathan: It's a trash can.
+MC: It's a trash can.
 => END!
 
 ~ computer
-Nathan: It's a computer.
+MC: It's a computer.
 => END!
 
 ~ chair
-Nathan: It's a chair.
+MC: It's a chair.
 => END!
 
 ~ storage_closet
-
-
 if state.storage_closet_unlocked == true:
 	if inventory.mop == false and state.blood_cleaned == false:
-		Nathan: You open the closet, and there's a mop inside. Take the mop?
+		MC: You open the closet, and there's a mop inside. Take the mop?
 		- Yes
-			Nathan: You took the mop.
+			MC: You took the mop.
 			# set inventory.mop = true
 			do set_inventory_item("mop", true)
 		- No
-			Nathan: You didn't take the mop.
+			MC: You didn't take the mop.
 	else:
-		Nathan: You check the closet, but there's nothing inside.
+		MC: You check the closet, but there's nothing inside.
 else:
 	if mouse.current_state != mouse.State.KEY:
 		do AudioManager.play_fx("locked_door_wiggle")
-		Nathan: It's locked.
+		MC: Locked.
 	else:
 		do set_state("storage_closet_unlocked", true)
 		do set_inventory_item("storage_closet_key", false)
@@ -122,11 +125,11 @@ else:
 => END!
 
 ~ top_drawer
-Nathan: It's a top drawer.
+MC: It's a top drawer.
 => END!
 
 ~ bottom_drawer
-Nathan: It's a bottom drawer.
+MC: It's a bottom drawer.
 => END!
 
 
@@ -134,36 +137,36 @@ Nathan: It's a bottom drawer.
 # SCENE 2
 
 ~ bed_top
-Nathan: It's a bed.
+MC: It's a bed.
 => END!
 
 ~ bed_bottom
 if inventory.storage_closet_key == false and state.storage_closet_unlocked == false:
-	Nathan: Looking under the bed, you find a small key. Take it?
+	MC: Looking under the bed, you find a small key. Take it?
 	- Yes
-		Nathan: You took the key.
+		MC: You took the key.
 		do set_inventory_item("storage_closet_key", true)
 		
 	- No
-		Nathan: Probably nothing important.
+		MC: Probably nothing important.
 else:
-	Nathan: Nothing under here.
+	MC: Nothing under here.
 => END!
 
 
 ~ book_shelf
-Nathan: It's a bookshelf. Pick a book to read?
+MC: It's a bookshelf. Pick a book to read?
 - Yes
-	Nathan: "'How to Hide A Body', by M. Night Shyamalan:"
-	Nathan: Some pages are missing...
-	Nathan: "...Try mopping up the blood."
-	Nathan: "...And don't forget to close the window curtains!"
+	MC: "'How to Hide A Body', by M. Night Shyamalan:"
+	MC: Some pages are missing...
+	MC: "...Try mopping up the blood."
+	MC: "...And don't forget to close the window curtains!"
 - No
 
 => END!
 
 ~ night_stand
-Nathan: It's a nightstand.
+MC: It's a nightstand.
 => END!
 
 
@@ -171,23 +174,23 @@ Nathan: It's a nightstand.
 # SCENE 3
 
 #~ bed_top
-#Nathan: It's a bed.
+#MC: It's a bed.
 #=> END!
 
 ~ sink
-Nathan: It's a sink.
+MC: It's a sink.
 => END!
 
 ~ sink_shelf
-Nathan: It's a shelf.
+MC: It's a shelf.
 => END!
 
 ~ mirror
-Nathan: It's a mirror. You take a moment to admire yourself in it.
+MC: It's a mirror. You take a moment to admire yourself in it.
 => END!
 
 ~ floor_mat
-Nathan: It's a floor mat.
+MC: It's a floor mat.
 => END!
 
 
@@ -196,32 +199,32 @@ Nathan: It's a floor mat.
 # SCENE 4
 
 #~ bed_top
-#Nathan: It's a bed.
+#MC: It's a bed.
 #=> END!
 
 #~ sink
-#Nathan: It's a sink.
+#MC: It's a sink.
 #=> END!
 
 ~ window
 if state.curtains_closed == false:
-	Nathan: It's a window. Might want to close the curtains.
+	MC: It's a window. Might want to close the curtains.
 => END!
 
 
 ~ curtain
 if state.curtains_closed == false:
-	Nathan: It's the curtains. Pull them shut?
+	MC: It's the curtains. Pull them shut?
 	- Yes
-		Nathan: You closed the curtains.
+		MC: You closed the curtains.
 		do close_curtains()
 	- No
-		Nathan: You didn't close the curtains.
+		MC: You didn't close the curtains.
 else:
-	Nathan: It's the curtains. Open them?
+	MC: It's the curtains. Open them?
 	- Yes
-		Nathan: You opened the curtains.
+		MC: You opened the curtains.
 		do open_curtains()
 	- No
-		Nathan: You didn't open the curtains.
+		MC: You didn't open the curtains.
 => END!

@@ -114,10 +114,15 @@ func update_time_label() -> void:
 		out_of_time.emit()
 
 
-
+#func tween_audio_in() -> void:
+	#var tween = create_tween()
+	#tween.tween_property(AudioManager.MUSIC_PLAYER, "volume_db", -6.0, 1.0)
+	
+	
 func _ready() -> void:
 	# play music
 	AudioManager.play_music("music_funk", -6.0)
+	
 	
 	# GameProgress.reset_progress()
 	self.reset_progress()
