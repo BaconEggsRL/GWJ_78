@@ -26,8 +26,11 @@ var fade:Dictionary = {
 # Scenes
 
 @export var SCENE_1:TextureRect
+
 @export var blood_pool_rect:TextureRect
 @export var body_rect:TextureRect
+@export var gun_rect:TextureRect
+const BULLET_HOLE_RECT = preload("res://bullet_hole_rect.tscn")
 
 @export var SCENE_2:TextureRect
 @export var SCENE_3:TextureRect
@@ -67,6 +70,9 @@ var state := {}
 var time_elapsed := 0.0
 
 signal out_of_time
+
+###########################################################
+
 
 
 
@@ -112,6 +118,7 @@ func _ready() -> void:
 	# signals
 	inventory_updated.connect(_on_inventory_updated)
 	out_of_time.connect(_on_out_of_time)
+	mouse.fire_gun.connect(_on_fire_gun)
 	
 	
 	
@@ -131,12 +138,36 @@ func mop_blood() -> void:
 	# tween out the blood texture
 	var blood_tween = create_tween()
 	blood_tween.tween_property(blood_pool_rect, "self_modulate:a", 0.0, 1.0)
+
+# called when picking up the gun
+func pickup_gun() -> void:
+	set_inventory_item("gun", true)
+	# tween out the gun texture
+	var gun_tween = create_tween()
+	gun_tween.tween_property(gun_rect, "self_modulate:a", 0.0, 1.0)
+
+
+# fire gun
+func _on_fire_gun(pos:Vector2 = get_global_mouse_position()) -> void:
+	add_bullet_hole(pos)
+# add bullet hole at pos
+func add_bullet_hole(pos:Vector2 = get_global_mouse_position()) -> void:
+	AudioManager.play_fx("gun_shot")
+	var bullet_hole = BULLET_HOLE_RECT.instantiate()
+	bullet_hole.position = pos
+	current_room_scene.add_child(bullet_hole)
+	var bullet_hole_tween:Tween = create_tween()
+	bullet_hole_tween.tween_property(bullet_hole, "self_modulate:a", 0.0, 1.0)
+	bullet_hole_tween.finished.connect(func():
+		bullet_hole.queue_free.call_deferred()
+	)
 	
 	
 # call this func every time the game starts
 func reset_progress() -> void:
 	inventory = {
 		"mop": false,
+		"gun": false,
 		"storage_closet_key": false,
 	}
 	state = {
@@ -174,7 +205,6 @@ func _on_inventory_updated(item_name: String, value: bool) -> void:
 		
 		
 func remove_inventory_button(item_name: String) -> void:
-	print("ajksdnjaskdnkj")
 	var visible_count = 0
 	var success = false
 	for button:InventoryButton in inventory_container.get_children():
@@ -213,6 +243,8 @@ func add_inventory_button(item_name: String) -> void:
 			button.icon = mouse.mop_sprite
 		"storage_closet_key":
 			button.icon = mouse.key_sprite
+		"gun":
+			button.icon = mouse.gun_sprite
 	var mat := ShaderMaterial.new()
 	mat.shader = FLOATY_SHADER
 	button.material = mat

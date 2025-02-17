@@ -19,7 +19,12 @@ if state.blood_cleaned == false:
 => END!
 
 ~ gun
-Nathan: It's a gun.
+if inventory.gun == false:
+	Nathan: It's a gun. Pick it up?
+	- Yes
+		do pickup_gun()
+	- No
+	
 => END!
 
 ~ door

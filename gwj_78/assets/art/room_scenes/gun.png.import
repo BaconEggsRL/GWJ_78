@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1ofcwaf2lg11"
-path="res://.godot/imported/scene_1 - Copy.png-282e07050577cc459c6eaa87b47d9d91.ctex"
+uid="uid://c04qa7n7tkljs"
+path="res://.godot/imported/gun.png-0335548328a5b602539ed84895fc4554.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/room_scenes/scene_1 - Copy.png"
-dest_files=["res://.godot/imported/scene_1 - Copy.png-282e07050577cc459c6eaa87b47d9d91.ctex"]
+source_file="res://assets/art/room_scenes/gun.png"
+dest_files=["res://.godot/imported/gun.png-0335548328a5b602539ed84895fc4554.ctex"]
 
 [params]
 

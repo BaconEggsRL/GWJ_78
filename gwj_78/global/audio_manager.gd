@@ -20,6 +20,9 @@ const DOOR_UNLOCK_92281 = preload("res://assets/sound/3_fx/door-unlock-92281.mp3
 const ITEM_PICK_UP_38258 = preload("res://assets/sound/3_fx/item-pick-up-38258.mp3")
 const HOME_DOOR_HANDLE_WIGGLE_7 = preload("res://assets/sound/3_fx/home door handle wiggle 7.wav")
 const OBJ_CONT_FLASK_WOOD_CANTEEN_MEDIUM_CLOTHSTRAP_METALBANDING_WOODCORK_LIQUID_SHAKING_SLOSHING_EWKR = preload("res://assets/sound/3_fx/OBJCont_Flask,wood,canteen,medium,clothstrap,metalbanding,woodcork,liquid,shaking,sloshing_EWKR.wav")
+const PISTOL_SHOT_233473 = preload("res://assets/sound/3_fx/pistol-shot-233473.mp3")
+
+
 
 func play_ambient(ambient_name: String, fade_in_time: float = 2.0, final_db: float = -6.0) -> void:
 	if ambient_name in ambient_players:
@@ -167,6 +170,10 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> void:
 			fx = HOME_DOOR_HANDLE_WIGGLE_7
 		"mopping_sound":
 			fx = OBJ_CONT_FLASK_WOOD_CANTEEN_MEDIUM_CLOTHSTRAP_METALBANDING_WOODCORK_LIQUID_SHAKING_SLOSHING_EWKR
+		"gun_shot":
+			fx = PISTOL_SHOT_233473
+			var diff = 0.2
+			pitch = randf_range(1.0 - diff, 1.0 + diff)
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	

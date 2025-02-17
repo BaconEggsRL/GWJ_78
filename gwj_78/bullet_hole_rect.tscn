@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://djekikgjp0mln"]
+
+[ext_resource type="Texture2D" uid="uid://xgb1uvie0gn0" path="res://assets/art/inventory_objects/bullet_hole.png" id="1_sk7hw"]
+
+[node name="bullet_hole_rect" type="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.556863)
+texture = ExtResource("1_sk7hw")
