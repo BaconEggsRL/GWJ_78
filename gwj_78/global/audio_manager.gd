@@ -10,6 +10,7 @@ var active_fx_players: Dictionary = {}  # Store FX players with names
 
 # music
 # list of all music
+const SKETCHBOOK_2024_05_22 = preload("res://assets/sound/1_music/Sketchbook 2024-05-22.ogg")
 
 # ambient
 # list of all ambient sounds
@@ -143,6 +144,8 @@ func play_music(scene_name:String, final_db:float=0.0, fade_in_time=0.5) -> void
 	match scene_name:
 		"music_1":
 			music = null  # insert music const here
+		"music_funk":
+			music = SKETCHBOOK_2024_05_22
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % scene_name)
 	

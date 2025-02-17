@@ -94,6 +94,9 @@ func update_time_label() -> void:
 
 
 func _ready() -> void:
+	# play music
+	AudioManager.play_music("music_funk", -6.0)
+	
 	# GameProgress.reset_progress()
 	self.reset_progress()
 	init_scene_data()
@@ -144,6 +147,9 @@ func mop_blood() -> void:
 	# tween out the blood texture
 	var blood_tween = create_tween()
 	blood_tween.tween_property(blood_pool_rect, "self_modulate:a", 0.0, 1.0)
+	blood_tween.finished.connect(func():
+		blood_pool_rect.visible = false
+	)
 
 
 # called when picking up the body
@@ -152,6 +158,9 @@ func pickup_body() -> void:
 	# tween out the body texture
 	var body_tween = create_tween()
 	body_tween.tween_property(body_rect, "self_modulate:a", 0.0, 1.0)
+	body_tween.finished.connect(func():
+		body_rect.visible = false
+	)
 	
 # called when picking up the gun
 func pickup_gun() -> void:
@@ -166,7 +175,7 @@ func _on_fire_gun(pos:Vector2 = get_global_mouse_position()) -> void:
 	add_bullet_hole(pos)
 # add bullet hole at pos
 func add_bullet_hole(pos:Vector2 = get_global_mouse_position()) -> void:
-	AudioManager.play_fx("gun_shot")
+	AudioManager.play_fx("gun_shot", -6.0)
 	var bullet_hole = BULLET_HOLE_RECT.instantiate()
 	bullet_hole.position = pos
 	current_room_scene.add_child(bullet_hole)
@@ -295,20 +304,27 @@ func init_scene_data() -> void:
 		# bind item data for each scene
 		var children = scene.get_children()
 		for child in children:
-			if child is Button:
-				var item_name = child.name
-				print(item_name)
-				
-				var regex := RegEx.new()
-				regex.compile("\\d+$")  # Ensure regex is compiled before use
-				var cleaned_item_name = regex.sub(item_name, "", true)  # Correct usage
-				print(cleaned_item_name)
+			if child is TextureRect:
+				var btn = child.get_child(0)
+				init_button(btn)
+			elif child is Button:
+				init_button(child)
+		
 
-				child.pressed.connect(_on_item_pressed.bind(cleaned_item_name))
-				child.text = ""
-				child.flat = true
-		
-		
+func init_button(child:Button) -> void:
+	var item_name = child.name
+	print(item_name)
+	
+	var regex := RegEx.new()
+	regex.compile("\\d+$")  # Ensure regex is compiled before use
+	var cleaned_item_name = regex.sub(item_name, "", true)  # Correct usage
+	print(cleaned_item_name)
+
+	child.pressed.connect(_on_item_pressed.bind(cleaned_item_name))
+	child.text = ""
+	child.flat = true
+	
+	
 func change_scene_to(new_scene_index:int) -> void:
 	
 	# hide current scene
