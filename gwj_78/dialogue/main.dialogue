@@ -36,8 +36,14 @@ if inventory.gun == false:
 ~ door
 if mouse.current_state != mouse.State.KEY:
 	Nathan: It's a door.
+	Nathan: Are you sure you want to leave?
+	- Yes
+		do exit_through_front_door()
+	- No
+		Nathan: Still more work to be done.
 else:
 	Nathan: This door is already unlocked.
+
 => END!
 
 ~ trash

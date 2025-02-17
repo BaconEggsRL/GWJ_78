@@ -130,6 +130,12 @@ func _process(_delta):
 		time_elapsed = 0.0
 
 
+# called when the player tries to leave through the fron door
+func exit_through_front_door() -> void:
+	print("exit")
+	SceneManager.goto("ending")
+	
+	
 # called when mopping the blood up
 func mop_blood() -> void:
 	AudioManager.play_fx("mopping_sound")

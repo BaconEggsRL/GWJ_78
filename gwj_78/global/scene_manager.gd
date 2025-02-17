@@ -13,6 +13,7 @@ const _TRANSITIONS = {
 # scenes
 const MAIN = preload("res://scenes/main.tscn")
 const GAME = preload("res://scenes/game.tscn")
+const ENDING = preload("res://scenes/ending.tscn")
 var next_scene:Resource
 
 
@@ -116,6 +117,8 @@ func goto(scene_name:String, custom_data:Dictionary={}, fade_out:String="fade_ou
 			scene = MAIN
 		"game":
 			scene = GAME
+		"ending":
+			scene = ENDING
 		_:
 			push_warning("'%s' has no resource listed in SceneManager" % scene_name)
 	
