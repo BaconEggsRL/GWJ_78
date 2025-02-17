@@ -98,3 +98,16 @@ Bounty Hunter (But It’s Just Paper Towels)
 
 
 res://dialogue/balloon.tscn
+
+
+
+===============
+
+
+["Death of a Salesman", "To Kill a Mockingbird", "Les Miserables"]
+
+@onready var plays:Dictionary = {
+	"Death of a Salesman": "Arthur Miller", 
+	"To Kill a Mockingbird": "Harper Lee", 
+	"Les Miserables": "Victor Hugo",
+}

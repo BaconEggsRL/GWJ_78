@@ -44,6 +44,7 @@ const SCENE_2__BODY_UNDER_BED = preload("res://assets/art/room_scenes/scene_2__b
 @export var window_rect:TextureRect
 const CURTAINS_OPEN = preload("res://assets/art/room_scenes/curtains_open.png")
 const CURTAINS_CLOSED = preload("res://assets/art/room_scenes/curtains_closed.png")
+const CURTAINS_OPEN_EVENT = preload("res://assets/art/room_scenes/curtains_open_event.png")
 
 
 
@@ -61,6 +62,7 @@ var current_room_scene:TextureRect
 const BALLOON = preload("res://dialogue/balloon.tscn")
 var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
 var current_dialogue:Node  # reference to current dialogue
+var response:String = ""
 
 # inventory
 var inventory := {}
@@ -82,6 +84,13 @@ var state := {}
 @onready var time_left:float = max_seconds
 var time_elapsed := 0.0
 @onready var window_event_time:float = max_seconds / 2.0  # time for window check to occur
+@onready var plays:Dictionary = {
+	"Death of a Salesman": "Arthur Miller", 
+	"To Kill a Mockingbird": "Harper Lee", 
+	"Les Miserables": "Victor Hugo",
+}
+@onready var correct_play:String = ""
+@onready var correct_author:String = ""
 
 signal out_of_time
 
@@ -146,6 +155,16 @@ func hide_body(location:String) -> void:
 
 	
 func _ready() -> void:
+	# pick play
+	var play_index:int = randi_range(0, plays.size()-1)
+	print("play_index = %s" % play_index)
+	correct_play = plays.keys()[play_index]
+	correct_author = plays.values()[play_index]
+	print("correct_play = %s" % correct_play)
+	print("correct_author = %s" % correct_author)
+	
+	
+	
 	# play music
 	AudioManager.play_music("music_funk", -6.0)
 	
@@ -203,6 +222,7 @@ func start_window_event() -> void:
 	# skip if curtains closed
 	if state.curtains_closed == true:
 		return
+		
 	# start window event
 	AudioManager.play_fx("window_knock")
 	# delete active dialogue
@@ -210,6 +230,10 @@ func start_window_event() -> void:
 		current_dialogue.queue_free.call_deferred()
 	# show window event
 	current_dialogue = show_dialogue(MAIN_DIALOGUE, "window_event")
+	# update texture
+	window_rect.texture = CURTAINS_OPEN_EVENT
+	# update game state
+	set_state("window_event", true)
 	
 	
 
@@ -294,6 +318,8 @@ func reset_progress() -> void:
 		"hid_body_in_storage_closet": false,
 		
 		"curtains_closed": false,
+		"window_event": false,
+		
 		"storage_closet_unlocked": false,
 		"blood_cleaned": false,
 	}

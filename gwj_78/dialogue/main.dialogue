@@ -212,12 +212,27 @@ else:
 
 
 ~ book_shelf
-MC: It's a bookshelf. Pick a book to read?
+MC: Huh, wonder what this guy reads.
+Pick a book to read?
 - Yes
-	MC: "'How to Hide A Body', by M. Night Shyamalan:"
-	MC: Some pages are missing...
-	MC: "...Try mopping up the blood."
-	MC: "...And don't forget to close the window curtains!"
+	Which one?
+	- How to Hide A Body
+		"'How to Hide A Body', by M. Light Famalayan:"
+		MC: Some pages are missing...
+		"...Try mopping up the blood."
+		"...And don't forget to close the window curtains!"
+		MC: Who wrote this garbage?
+	- The Basics of Horseshoe Crab Racing
+		"'The Basics of Horseshoe Crab Racing', by Alice Jones:"
+		“...Horseshoe crabs are crustaceans.”
+		“...They are not that fast.”
+		“...They can be stealthy.”
+		MC: The heck?
+	- Theatre 101 Syllabus
+		“'Theatre 101 Syllabus', by T. A. Cher:”
+		"...This semester will be featuring [color=yellow]{{correct_play}}[/color] by [color=yellow]{{correct_author}}[/color]."
+		"Be sure to attend all rehearsals for a passing grade."
+		MC: Hope this guy wasn't the lead performer.
 - No
 
 => END!
@@ -264,24 +279,65 @@ MC: It's a floor mat.
 #=> END!
 
 ~ window
-if state.curtains_closed == false:
-	MC: It's a window. Might want to close the curtains.
+if state.window_event == true:
+	MC: Hello there.
+	???: Hey man. I heard some weird noises and saw some bloody dude jump out of the window. What's going on here?
+	MC: Uhh...
+	- We're filming a commercial.
+	- It's for a school play.
+		???: Oh yeah? Which one?
+		- Death of a Salesman.
+			do response = "Death of a Salesman"
+		- To Kill a Mockingbird.
+			do response = "To Kill a Mockingbird"
+		- Les Miserables.
+			do response = "Les Miserables"
+		if response == correct_play:
+			???: Oh yeah? And who wrote that one again?
+			- Arthur Miller.
+				do response = "Arthur Miller"
+			- Harper Lee.
+				do response = "Harper Lee"
+			- Victor Hugo.
+				do response = "Victor Hugo"
+			if response == correct_author:
+				???: Hmm. You really know your stuff. I guess I can trust you.
+				???: Be more careful next time. Somebody might think there was a murder or something.
+				MC: Roger that. Don't worry, no murders happening here!
+				???: Hahahaha... Yeah. I mean that body over there just looks [b]super[/b] realistic. Crazy.
+				MC: Yeah, our makeup artists, they're crazy good.
+				???: Hmm... Alright then. I won't bother you anymore. Have a good one.
+				MC: See ya later. (I hope not...)
+				???: What was that?
+				MC: Nothing. Bye!
+				???: Bye.
+			else:
+				???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+		else:
+			???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+			
+			
+	- That guy tried to kill me.
+else:
+	if state.curtains_closed == false:
+		MC: It's a window. Might want to close the curtains.
 => END!
 
 
 ~ curtain
-if state.curtains_closed == false:
-	MC: It's the curtains. Pull them shut?
-	- Yes
-		MC: You closed the curtains.
-		do close_curtains()
-	- No
-		MC: You didn't close the curtains.
-else:
-	MC: It's the curtains. Open them?
-	- Yes
-		MC: You opened the curtains.
-		do open_curtains()
-	- No
-		MC: You didn't open the curtains.
+if state.window_event == false:
+	if state.curtains_closed == false:
+		MC: It's the curtains. Pull them shut?
+		- Yes
+			MC: You closed the curtains.
+			do close_curtains()
+		- No
+			MC: You didn't close the curtains.
+	else:
+		MC: It's the curtains. Open them?
+		- Yes
+			MC: You opened the curtains.
+			do open_curtains()
+		- No
+			MC: You didn't open the curtains.
 => END!
