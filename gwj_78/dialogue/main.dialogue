@@ -281,43 +281,54 @@ MC: It's a floor mat.
 ~ window
 if state.window_event == true:
 	MC: Hello there.
-	???: Hey man. I heard some weird noises and saw some bloody dude jump out of the window. What's going on here?
+	???: Hey man. What's going on here?
 	MC: Uhh...
-	- We're filming a commercial.
-	- It's for a school play.
-		???: Oh yeah? Which one?
-		- Death of a Salesman.
-			do response = "Death of a Salesman"
-		- To Kill a Mockingbird.
-			do response = "To Kill a Mockingbird"
-		- Les Miserables.
-			do response = "Les Miserables"
-		if response == correct_play:
-			???: Oh yeah? And who wrote that one again?
-			- Arthur Miller.
-				do response = "Arthur Miller"
-			- Harper Lee.
-				do response = "Harper Lee"
-			- Victor Hugo.
-				do response = "Victor Hugo"
-			if response == correct_author:
-				???: Hmm. You really know your stuff. I guess I can trust you.
-				???: Be more careful next time. Somebody might think there was a murder or something.
-				MC: Roger that. Don't worry, no murders happening here!
-				???: Hahahaha... Yeah. I mean that body over there just looks [b]super[/b] realistic. Crazy.
-				MC: Yeah, our makeup artists, they're crazy good.
-				???: Hmm... Alright then. I won't bother you anymore. Have a good one.
-				MC: See ya later. (I hope not...)
-				???: What was that?
-				MC: Nothing. Bye!
-				???: Bye.
+	What do you do?
+	- Ignore him
+		???: Dude... I think that guy's dead. I'm calling the cops.
+	- Attempt to use jedi mind tricks
+		???: ...
+		???: I dunno what's going on here, but that was super weird. I'm calling the cops.
+	- Make up an excuse
+		What's your excuse?
+		- I killed someone, obviously.
+			???: ...
+			???: Riiiiight. Yeah I'm calling the cops.
+		- We're filming a commercial.
+			???: ...
+			???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+		- It's for a school play.
+			???: Oh yeah? Which one?
+			- Death of a Salesman.
+				do response = "Death of a Salesman"
+			- To Kill a Mockingbird.
+				do response = "To Kill a Mockingbird"
+			- Les Miserables.
+				do response = "Les Miserables"
+			if response == correct_play:
+				???: Right on. And who wrote that one again?
+				- Arthur Miller.
+					do response = "Arthur Miller"
+				- Harper Lee.
+					do response = "Harper Lee"
+				- Victor Hugo.
+					do response = "Victor Hugo"
+				if response == correct_author:
+					???: Hmm. You seem to really know your stuff. I guess I can trust you.
+					???: Be more careful next time. Somebody might think there was a murder or something.
+					MC: Roger that. Don't worry, no murders happening here!
+					???: Hahahaha... Yeah. I mean that body over there just looks [b]super[/b] realistic. Crazy.
+					MC: Yeah, our makeup artists, they're crazy good.
+					???: Hmm... Alright then. I won't bother you anymore. Have a good one.
+					MC: See ya later. (I hope not...)
+					???: What was that?
+					MC: Nothing. Bye!
+					???: Bye...
+				else:
+					???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
 			else:
 				???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
-		else:
-			???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
-			
-			
-	- That guy tried to kill me.
+
 else:
 	if state.curtains_closed == false:
 		MC: It's a window. Might want to close the curtains.

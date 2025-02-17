@@ -55,7 +55,6 @@ SCENE_4 = NodePath("Control/scene_container/room_scene_4")
 window_rect = NodePath("Control/scene_container/room_scene_4/window_rect")
 inventory_container = NodePath("Control/UI_container/inventory_container")
 time_left_label = NodePath("Control/stat_container/time")
-max_seconds = 60.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
