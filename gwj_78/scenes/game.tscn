@@ -124,17 +124,18 @@ offset_bottom = 330.0
 focus_mode = 0
 text = "wall"
 
-[node name="body" type="Button" parent="Control/scene_container/room_scene_1"]
+[node name="body_texture_version" type="Button" parent="Control/scene_container/room_scene_1"]
+visible = false
 layout_mode = 0
-offset_left = 362.0
-offset_top = 456.0
-offset_right = 662.0
-offset_bottom = 627.0
+offset_left = 374.0
+offset_top = 465.0
+offset_right = 674.0
+offset_bottom = 636.0
+scale = Vector2(0.9, 0.9)
 icon = ExtResource("3_kvuet")
 flat = true
 
-[node name="body_original" type="Button" parent="Control/scene_container/room_scene_1"]
-visible = false
+[node name="body" type="Button" parent="Control/scene_container/room_scene_1"]
 layout_mode = 0
 offset_left = 397.0
 offset_top = 498.0
@@ -451,6 +452,7 @@ size_flags_vertical = 8
 alignment = 1
 
 [node name="none" type="Button" parent="Control/UI_container/inventory_container"]
+visible = false
 material = SubResource("ShaderMaterial_dinhu")
 layout_mode = 2
 focus_mode = 0
