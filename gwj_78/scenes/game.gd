@@ -136,7 +136,11 @@ func _process(_delta):
 # called when the player tries to leave through the fron door
 func exit_through_front_door() -> void:
 	print("exit")
-	SceneManager.goto("ending")
+	var ending:String = "ending_normal"
+	if inventory.body == true:
+		ending = "ending_body"
+	var custom_data = {"ending": ending}
+	SceneManager.goto("ending", custom_data)
 	
 	
 # called when mopping the blood up

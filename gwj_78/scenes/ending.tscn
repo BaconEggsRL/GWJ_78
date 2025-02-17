@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://d3tcsyjlmekn6" path="res://scenes/ending.gd" id="1_fyrdv"]
 [ext_resource type="Texture2D" uid="uid://dvutrigsjrche" path="res://assets/art/room_scenes/ending_1.png" id="2_fyrdv"]
 
-[node name="ending" type="Node2D"]
+[node name="ending" type="Node2D" node_paths=PackedStringArray("ending_text")]
 script = ExtResource("1_fyrdv")
+ending_text = NodePath("Control/scene_container/room_scene_4/ending_text")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -33,6 +34,15 @@ layout_mode = 2
 texture = ExtResource("2_fyrdv")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ending_text" type="Label" parent="Control/scene_container/room_scene_4"]
+layout_mode = 0
+offset_left = 567.0
+offset_top = 221.0
+offset_right = 854.0
+offset_bottom = 244.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "(why are you holding a dead body???)"
 
 [node name="UI_container" type="MarginContainer" parent="Control"]
 layout_mode = 1

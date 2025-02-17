@@ -1,3 +1,16 @@
+
+#######################################
+# ENDINGS
+
+~ ending_normal
+Nathan: you didn't hide enough evidence
+=> END!
+
+~ ending_body
+Nathan: bruh why are you holding a dead body
+=> END!
+
+
 #######################################
 # SCENE 1
 
