@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://duvlndqbudogs"
+path="res://.godot/imported/knocking from outside 11.wav-3990e1bb5140e01779b062d6a6cceef9.sample"
+
+[deps]
+
+source_file="res://assets/sound/3_fx/knocking from outside 11.wav"
+dest_files=["res://.godot/imported/knocking from outside 11.wav-3990e1bb5140e01779b062d6a6cceef9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

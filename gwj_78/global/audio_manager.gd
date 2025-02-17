@@ -21,10 +21,14 @@ const SKETCHBOOK_2024_05_22 = preload("res://assets/sound/1_music/Sketchbook 202
 const _762973__TALKTOMEGOOSE_10__PHONE_RINGING = preload("res://assets/sound/3_fx/762973__talktomegoose10__phone-ringing.wav")
 const PICK_UP_PHONE = preload("res://assets/sound/3_fx/pick_up_phone.wav")
 const SLAM_DOWN_PHONE = preload("res://assets/sound/3_fx/slam_down_phone.wav")
-
+# door
 const DOOR_UNLOCK_92281 = preload("res://assets/sound/3_fx/door-unlock-92281.mp3")
-const ITEM_PICK_UP_38258 = preload("res://assets/sound/3_fx/item-pick-up-38258.mp3")
 const HOME_DOOR_HANDLE_WIGGLE_7 = preload("res://assets/sound/3_fx/home door handle wiggle 7.wav")
+const HOME_DOOR_WITH_LOTS_OF_ROOM_ECHO_CLOSE_7 = preload("res://assets/sound/3_fx/home door with lots of room echo close 7.wav")
+const KNOCKING_FROM_OUTSIDE_1 = preload("res://assets/sound/3_fx/knocking from outside 1.wav")
+const KNOCKING_FROM_OUTSIDE_11 = preload("res://assets/sound/3_fx/knocking from outside 11.wav")
+
+const ITEM_PICK_UP_38258 = preload("res://assets/sound/3_fx/item-pick-up-38258.mp3")
 const OBJ_CONT_FLASK_WOOD_CANTEEN_MEDIUM_CLOTHSTRAP_METALBANDING_WOODCORK_LIQUID_SHAKING_SLOSHING_EWKR = preload("res://assets/sound/3_fx/OBJCont_Flask,wood,canteen,medium,clothstrap,metalbanding,woodcork,liquid,shaking,sloshing_EWKR.wav")
 const PISTOL_SHOT_233473 = preload("res://assets/sound/3_fx/pistol-shot-233473.mp3")
 const WOODEN_DESK_DRAWER_OPEN_12 = preload("res://assets/sound/3_fx/wooden desk drawer open 12.wav")
@@ -198,6 +202,10 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> void:
 			fx = SPLATTT_6295
 		"body_drag":
 			fx = SOUND_EFFECT_005_OBJECT_DRAGGING_BODY_265185
+		"door_open":
+			fx = HOME_DOOR_WITH_LOTS_OF_ROOM_ECHO_CLOSE_7
+		"window_knock":
+			fx = KNOCKING_FROM_OUTSIDE_11
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	

@@ -41,6 +41,17 @@ you ran out of time and the police showed up
 
 
 #######################################
+# EVENTS
+
+~ window_event
+*knock knock*
+???: Hey! Anybody in there?
+MC: Shit. Somebody's at the window.
+=> END!
+
+
+
+#######################################
 # SCENE 1
 
 ~ wall

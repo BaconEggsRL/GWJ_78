@@ -39,10 +39,12 @@ const SCENE_1_WITH_LAYERS__BODY_IN_TRASH = preload("res://assets/art/room_scenes
 const SCENE_2__BODY_UNDER_BED = preload("res://assets/art/room_scenes/scene_2__body_under_bed.png")
 
 @export var SCENE_3:TextureRect
+
 @export var SCENE_4:TextureRect
 @export var window_rect:TextureRect
 const CURTAINS_OPEN = preload("res://assets/art/room_scenes/curtains_open.png")
 const CURTAINS_CLOSED = preload("res://assets/art/room_scenes/curtains_closed.png")
+
 
 
 @onready var room_scenes = [SCENE_1, SCENE_2, SCENE_3, SCENE_4]
@@ -58,6 +60,7 @@ var current_room_scene:TextureRect
 # dialogue
 const BALLOON = preload("res://dialogue/balloon.tscn")
 var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
+var current_dialogue:Node  # reference to current dialogue
 
 # inventory
 var inventory := {}
@@ -78,6 +81,7 @@ var state := {}
 @export var max_seconds:float = 60 * 5.0
 @onready var time_left:float = max_seconds
 var time_elapsed := 0.0
+@onready var window_event_time:float = max_seconds / 2.0  # time for window check to occur
 
 signal out_of_time
 
@@ -88,6 +92,7 @@ signal out_of_time
 # called when the player tries to leave through the fron door
 func exit_through_front_door() -> void:
 	print("exit")
+	AudioManager.play_fx("door_open")
 	var ending:String = "ending_normal"
 	if inventory.body == true:
 		ending = "ending_body"
@@ -173,22 +178,40 @@ func _ready() -> void:
 	
 	# start game
 	if not debug:
-		show_dialogue(MAIN_DIALOGUE, "opening_game")
+		current_dialogue = show_dialogue(MAIN_DIALOGUE, "opening_game")
 	
 	
 	
 func _process(_delta):
 	time_left -= _delta
 	time_elapsed += _delta
+	# avoid updating every frame
 	if time_elapsed >= 1.0:
 		update_time_label()
 		time_elapsed = 0.0
+		# check windown event
+		if ceil(time_left) == ceil(window_event_time):
+			start_window_event()
 
 
 
 
 
-
+# window event
+func start_window_event() -> void:
+	print("window time")
+	# skip if curtains closed
+	if state.curtains_closed == true:
+		return
+	# start window event
+	AudioManager.play_fx("window_knock")
+	# delete active dialogue
+	if current_dialogue:
+		current_dialogue.queue_free.call_deferred()
+	# show window event
+	current_dialogue = show_dialogue(MAIN_DIALOGUE, "window_event")
+	
+	
 
 # called when closing the curtains
 func close_curtains() -> void:
@@ -456,7 +479,7 @@ func show_dialogue(resource:DialogueResource, title:String="", extra_game_states
 func _on_item_pressed(item:String) -> void:
 	# DialogueManager.show_example_dialogue_balloon(MAIN_DIALOGUE, item)  # shows example balloon
 	# DialogueManager.show_dialogue_balloon(MAIN_DIALOGUE, item)  # shows balloon configured in Project Settings
-	show_dialogue(MAIN_DIALOGUE, item)  # custom function
+	current_dialogue = show_dialogue(MAIN_DIALOGUE, item)  # custom function
 
 # pressed item in inventory
 func _on_inventory_item_pressed(item:String) -> void:
