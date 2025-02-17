@@ -90,7 +90,19 @@ else:
 => END!
 
 ~ trash
-MC: It's a trash can.
+if mouse.current_state != mouse.State.BODY:
+	if state.hid_body == false:
+		MC: Empty trash can. Very trash. Very can.
+	else:
+		MC: …yeeeah…that looks hidden.
+else:
+	MC: It's as good a place as any.
+	Hide the body here?
+	- Yes
+		do hide_body("trash")
+		MC: …yeeeah…that looks hidden.
+	- No
+		MC: I'll find another spot.
 => END!
 
 ~ computer

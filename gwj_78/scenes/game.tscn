@@ -177,7 +177,12 @@ offset_bottom = 467.0
 focus_mode = 0
 text = "door"
 
-[node name="trash" type="Button" parent="Control/scene_container/room_scene_1"]
+[node name="trash_rect" type="TextureRect" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="trash" type="Button" parent="Control/scene_container/room_scene_1/trash_rect"]
 layout_mode = 0
 offset_left = 633.0
 offset_top = 386.0

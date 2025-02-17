@@ -25,12 +25,15 @@ var fade:Dictionary = {
 ###########################################################
 # Scenes
 
+const BULLET_HOLE_RECT = preload("res://bullet_hole_rect.tscn")
+
 @export var SCENE_1:TextureRect
 
 @export var blood_pool_rect:TextureRect
 @export var body_rect:TextureRect
 @export var gun_rect:TextureRect
-const BULLET_HOLE_RECT = preload("res://bullet_hole_rect.tscn")
+const SCENE_1_WITH_LAYERS__BODY_IN_TRASH = preload("res://assets/art/room_scenes/scene_1_with_layers__body_in_trash.png")
+
 
 @export var SCENE_2:TextureRect
 @export var SCENE_3:TextureRect
@@ -114,10 +117,16 @@ func update_time_label() -> void:
 		out_of_time.emit()
 
 
-#func tween_audio_in() -> void:
-	#var tween = create_tween()
-	#tween.tween_property(AudioManager.MUSIC_PLAYER, "volume_db", -6.0, 1.0)
-	
+func hide_body(location:String) -> void:
+	match location:
+		"trash":
+			current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
+	# remove body from inventory
+	set_inventory_item("body", false)
+	# update game state
+	set_state("hid_body", true)
+	# mouse.set_state(mouse.State.NONE)
+
 	
 func _ready() -> void:
 	# play music
@@ -244,6 +253,7 @@ func reset_progress() -> void:
 		"body": false,
 	}
 	state = {
+		"hid_body": false,
 		"curtains_closed": false,
 		"storage_closet_unlocked": false,
 		"blood_cleaned": false,
