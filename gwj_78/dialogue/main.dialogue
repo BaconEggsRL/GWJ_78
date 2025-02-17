@@ -1,3 +1,24 @@
+#######################################
+
+# OPENING
+~ opening
+*ring ring ring*
+J: “Heyyyy man. How’s it hangin’?”
+MC: “Ahh you know. As well as cleaning up someone else’s mess can go.”
+J: “Haha you’re funny man. Funny. Look, so basically, it’s been about like 4? 5? Minutes since, uh, the unfortunate incident occurred. Ahmmmm, I kinda didn’t actually succeed at the beginning, so there are like…3 different weapons that you’ll probably have to get rid of. I thiiiink he got a call out to the police? So I’d give you like…5 minutes until they get here. Anyway, I gotta go, got another job to take care of, good luck maaan”
+*hang up*
+MC: Sigh. I hate this job.
+do start_game()
+=> END!
+
+
+~ opening_game
+...
+MC: Seriously? What a mess... I don't get paid enough for this.
+MC: Seems like the mafia's really gone downhill lately.
+MC: Oh well. Time for me to get to work...
+=> END!
+
 
 #######################################
 # ENDINGS
@@ -8,6 +29,10 @@ Nathan: you didn't hide enough evidence
 
 ~ ending_body
 Nathan: bruh why are you holding a dead body
+=> END!
+
+~ ending_time
+Nathan: you ran out of time and the police showed up
 => END!
 
 

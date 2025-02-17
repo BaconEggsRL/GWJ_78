@@ -5,7 +5,7 @@
 
 [node name="ending" type="Node2D" node_paths=PackedStringArray("ending_text")]
 script = ExtResource("1_fyrdv")
-ending_text = NodePath("Control/scene_container/room_scene_4/ending_text")
+ending_text = NodePath("Control/scene_container/ending_scene/ending_text")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -28,14 +28,14 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="room_scene_4" type="TextureRect" parent="Control/scene_container"]
+[node name="ending_scene" type="TextureRect" parent="Control/scene_container"]
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("2_fyrdv")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ending_text" type="Label" parent="Control/scene_container/room_scene_4"]
+[node name="ending_text" type="Label" parent="Control/scene_container/ending_scene"]
 layout_mode = 0
 offset_left = 567.0
 offset_top = 221.0

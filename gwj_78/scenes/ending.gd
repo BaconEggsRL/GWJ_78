@@ -12,8 +12,10 @@ func _ready() -> void:
 	show_dialogue(MAIN_DIALOGUE, custom_data.ending)  # custom function
 	if custom_data.ending == "ending_body":
 		ending_text.text = "(why are you holding a dead body???)"
-	if custom_data.ending == "ending_normal":
+	elif custom_data.ending == "ending_normal":
 		ending_text.text = "(you didn't hide enough evidence.)"
+	elif custom_data.ending == "ending_time":
+		ending_text.text = "(you ran out of time and the police showed up.)"
 
 func _on_main_menu_pressed() -> void:
 	var _target_scene = MAIN.instantiate()

@@ -94,7 +94,6 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="room_scene_1" type="TextureRect" parent="Control/scene_container"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 mouse_filter = 2
@@ -160,6 +159,7 @@ focus_mode = 0
 text = "gun"
 
 [node name="wall" type="Button" parent="Control/scene_container/room_scene_1"]
+visible = false
 layout_mode = 0
 offset_left = 553.0
 offset_top = 182.0
@@ -167,17 +167,6 @@ offset_right = 760.0
 offset_bottom = 330.0
 focus_mode = 0
 text = "wall"
-
-[node name="body_texture_version" type="Button" parent="Control/scene_container/room_scene_1"]
-visible = false
-layout_mode = 0
-offset_left = 374.0
-offset_top = 465.0
-offset_right = 674.0
-offset_bottom = 636.0
-scale = Vector2(0.9, 0.9)
-icon = ExtResource("3_kvuet")
-flat = true
 
 [node name="door" type="Button" parent="Control/scene_container/room_scene_1"]
 layout_mode = 0
@@ -363,6 +352,7 @@ focus_mode = 0
 text = "floor_mat"
 
 [node name="room_scene_4" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("7_u5sy4")

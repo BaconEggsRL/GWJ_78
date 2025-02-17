@@ -78,14 +78,31 @@ signal out_of_time
 
 ###########################################################
 
+# Endings
 
-
-
+# called when the player tries to leave through the fron door
+func exit_through_front_door() -> void:
+	print("exit")
+	var ending:String = "ending_normal"
+	if inventory.body == true:
+		ending = "ending_body"
+	var custom_data = {"ending": ending}
+	SceneManager.goto("ending", custom_data)
+	
 func _on_out_of_time() -> void:
 	self.set_process(false)
 	print("you ran out of time")
+	var ending:String = "ending_time"
+	var custom_data = {"ending": ending}
+	SceneManager.goto("ending", custom_data)
 	
 	
+
+
+###########################################################
+
+
+
 func update_time_label() -> void:
 	if time_left >= -1:  # 1 second buffer before losing
 		var display_time = ceil(time_left)
@@ -128,6 +145,10 @@ func _ready() -> void:
 	out_of_time.connect(_on_out_of_time)
 	mouse.fire_gun.connect(_on_fire_gun)
 	
+	# start game
+	if not debug:
+		show_dialogue(MAIN_DIALOGUE, "opening_game")
+	
 	
 	
 func _process(_delta):
@@ -138,15 +159,9 @@ func _process(_delta):
 		time_elapsed = 0.0
 
 
-# called when the player tries to leave through the fron door
-func exit_through_front_door() -> void:
-	print("exit")
-	var ending:String = "ending_normal"
-	if inventory.body == true:
-		ending = "ending_body"
-	var custom_data = {"ending": ending}
-	SceneManager.goto("ending", custom_data)
-	
+
+
+
 
 
 # called when closing the curtains
@@ -194,6 +209,9 @@ func pickup_gun() -> void:
 	# tween out the gun texture
 	var gun_tween = create_tween()
 	gun_tween.tween_property(gun_rect, "self_modulate:a", 0.0, 1.0)
+	gun_tween.finished.connect(func():
+		gun_rect.visible = false
+	)
 
 
 # fire gun

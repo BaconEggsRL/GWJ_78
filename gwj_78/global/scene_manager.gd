@@ -13,7 +13,9 @@ const _TRANSITIONS = {
 # scenes
 const MAIN = preload("res://scenes/main.tscn")
 const GAME = preload("res://scenes/game.tscn")
+const OPENING = preload("res://scenes/opening.tscn")
 const ENDING = preload("res://scenes/ending.tscn")
+
 var next_scene:Resource
 
 
@@ -117,6 +119,8 @@ func goto(scene_name:String, custom_data:Dictionary={}, fade_out:String="fade_ou
 			scene = MAIN
 		"game":
 			scene = GAME
+		"opening":
+			scene = OPENING
 		"ending":
 			scene = ENDING
 		_:
