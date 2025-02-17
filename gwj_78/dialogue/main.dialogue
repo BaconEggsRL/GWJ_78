@@ -69,7 +69,9 @@ if state.blood_cleaned == false:
 
 ~ gun
 if inventory.gun == false:
-	It's a gun. Pick it up?
+	MC: Gun as a murder weapon? That’s so last year, how lame.
+	MC: Might come in handy though.
+	Pick up the gun?
 	- Yes
 		do pickup_gun()
 	- No
