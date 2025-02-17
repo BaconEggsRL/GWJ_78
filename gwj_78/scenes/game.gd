@@ -342,7 +342,7 @@ func show_dialogue(resource:DialogueResource, title:String="", extra_game_states
 	DialogueManager.dialogue_started.emit(resource)
 	return balloon
 
-# show dialogue when item pressed
+# show dialogue when item pressed (button in scene)
 func _on_item_pressed(item:String) -> void:
 	# DialogueManager.show_example_dialogue_balloon(MAIN_DIALOGUE, item)  # shows example balloon
 	# DialogueManager.show_dialogue_balloon(MAIN_DIALOGUE, item)  # shows balloon configured in Project Settings
