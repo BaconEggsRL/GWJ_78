@@ -6,7 +6,13 @@ Nathan: It's a wall. They could probably hang a nice painting there.
 => END!
 
 ~ body
-Nathan: It's a dead body. Gross.
+if inventory.body == false:
+	Nathan: It's a dead body. Gross.
+	Nathan: Pick up the body?
+	- Yes
+		do pickup_body()
+	- No
+		Nathan: Better leave it alone.
 => END!
 
 ~ blood_pool

@@ -10,9 +10,12 @@ const none_sprite = preload("res://assets/art/mouse/none.png")
 const mop_sprite = preload("res://assets/art/inventory_objects/mop.png")
 const key_sprite = preload("res://assets/art/inventory_objects/key.png")
 const gun_sprite = preload("res://assets/art/inventory_objects/gun.png")
+const body_sprite = preload("res://assets/art/inventory_objects/body.png")
+
+
 
 enum State {
-	NONE, ERASER, MOP, KEY, GUN
+	NONE, ERASER, MOP, KEY, GUN, BODY
 }
 var current_state:State
 var last_state:State
@@ -46,6 +49,8 @@ func get_state_from_string(item:String) -> State:
 			return State.KEY
 		"gun":
 			return State.GUN
+		"body":
+			return State.BODY
 		
 		_:
 			return State.NONE
@@ -67,4 +72,6 @@ func set_state(new_state:State) -> void:
 				self.texture = key_sprite
 			State.GUN:
 				self.texture = gun_sprite
+			State.BODY:
+				self.texture = body_sprite
 				

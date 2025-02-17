@@ -139,6 +139,14 @@ func mop_blood() -> void:
 	var blood_tween = create_tween()
 	blood_tween.tween_property(blood_pool_rect, "self_modulate:a", 0.0, 1.0)
 
+
+# called when picking up the body
+func pickup_body() -> void:
+	set_inventory_item("body", true)
+	# tween out the body texture
+	var body_tween = create_tween()
+	body_tween.tween_property(body_rect, "self_modulate:a", 0.0, 1.0)
+	
 # called when picking up the gun
 func pickup_gun() -> void:
 	set_inventory_item("gun", true)
@@ -169,6 +177,7 @@ func reset_progress() -> void:
 		"mop": false,
 		"gun": false,
 		"storage_closet_key": false,
+		"body": false,
 	}
 	state = {
 		"curtains_closed": false,
@@ -245,6 +254,8 @@ func add_inventory_button(item_name: String) -> void:
 			button.icon = mouse.key_sprite
 		"gun":
 			button.icon = mouse.gun_sprite
+		"body":
+			button.icon = mouse.body_sprite
 	var mat := ShaderMaterial.new()
 	mat.shader = FLOATY_SHADER
 	button.material = mat

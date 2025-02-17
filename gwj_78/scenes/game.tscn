@@ -149,23 +149,23 @@ scale = Vector2(0.9, 0.9)
 icon = ExtResource("3_kvuet")
 flat = true
 
-[node name="body" type="Button" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 397.0
-offset_top = 498.0
-offset_right = 634.0
-offset_bottom = 592.0
-focus_mode = 0
-text = "body"
-
 [node name="blood_pool" type="Button" parent="Control/scene_container/room_scene_1"]
 layout_mode = 0
 offset_left = 296.0
 offset_top = 547.0
-offset_right = 397.0
+offset_right = 541.0
 offset_bottom = 603.0
 focus_mode = 0
 text = "blood"
+
+[node name="body" type="Button" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 493.0
+offset_right = 634.0
+offset_bottom = 607.0
+focus_mode = 0
+text = "body"
 
 [node name="gun" type="Button" parent="Control/scene_container/room_scene_1"]
 layout_mode = 0
