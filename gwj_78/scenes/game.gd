@@ -127,6 +127,10 @@ func hide_body(location:String) -> void:
 		"bed_bottom":
 			current_room_scene.texture = SCENE_2__BODY_UNDER_BED
 			set_state("hid_body_under_bed", true)
+		"storage_closet":
+			AudioManager.play_fx("door_unlock")
+			set_state("hid_body_in_storage_closet", true)
+			
 	# remove body from inventory
 	set_inventory_item("body", false)
 	# update game state
@@ -262,7 +266,7 @@ func reset_progress() -> void:
 		"hid_body": false,
 		"hid_body_in_trash": false,
 		"hid_body_under_bed": false,
-		"hid_body_in_closet": false,
+		"hid_body_in_storage_closet": false,
 		
 		"curtains_closed": false,
 		"storage_closet_unlocked": false,

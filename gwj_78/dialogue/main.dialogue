@@ -90,13 +90,7 @@ else:
 => END!
 
 ~ trash
-if mouse.current_state != mouse.State.BODY:
-	if state.hid_body_in_trash == true:
-		MC: …yeeeah…that looks hidden.
-	else:
-		MC: Empty trash can. Very trash. Very can.
-
-else:
+if mouse.current_state == mouse.State.BODY:
 	MC: It's as good a place as any.
 	Hide the body here?
 	- Yes
@@ -104,15 +98,24 @@ else:
 		MC: …yeeeah…that looks hidden.
 	- No
 		MC: I'll find another spot.
+else:
+	if state.hid_body_in_trash == true:
+		MC: …yeeeah…that looks hidden.
+	else:
+		MC: Empty trash can. Very trash. Very can.
+		
 => END!
+
 
 ~ computer
 MC: It's a computer.
 => END!
 
+
 ~ chair
 MC: It's a chair.
 => END!
+
 
 ~ storage_closet
 if state.storage_closet_unlocked == true:
@@ -125,7 +128,21 @@ if state.storage_closet_unlocked == true:
 		- No
 			MC: You didn't take the mop.
 	else:
-		MC: You check the closet, but there's nothing inside.
+		if mouse.current_state == mouse.State.BODY:
+			MC: It's as good a place as any.
+			Hide the body here?
+			- Yes
+				do hide_body("storage_closet")
+				MC: Nice.
+			- No
+				MC: I'll find another spot.
+		else:
+			if state.hid_body_in_storage_closet == true:
+				MC: No one's finding him in there.
+			else:
+				MC: You check the closet, but there's nothing inside.
+		
+		
 else:
 	if mouse.current_state != mouse.State.KEY:
 		do AudioManager.play_fx("locked_door_wiggle")
@@ -162,13 +179,7 @@ if inventory.storage_closet_key == false and state.storage_closet_unlocked == fa
 	- No
 		MC: Probably nothing important.
 else:
-	if mouse.current_state != mouse.State.BODY:
-		if state.hid_body_under_bed == true:
-			MC: …yeeeah…that looks hidden.
-		else:
-			MC: Nothing under here.
-		
-	else:
+	if mouse.current_state == mouse.State.BODY:
 		MC: It's as good a place as any.
 		Hide the body here?
 		- Yes
@@ -176,6 +187,11 @@ else:
 			MC: …yeeeah…that looks hidden.
 		- No
 			MC: I'll find another spot.
+	else:
+		if state.hid_body_under_bed == true:
+			MC: …yeeeah…that looks hidden.
+		else:
+			MC: Nothing under here.
 		
 => END!
 
