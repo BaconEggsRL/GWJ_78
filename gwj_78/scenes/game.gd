@@ -122,9 +122,11 @@ func update_time_label() -> void:
 func hide_body(location:String) -> void:
 	match location:
 		"trash":
+			AudioManager.play_fx("trash")
 			current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
 			set_state("hid_body_in_trash", true)
 		"bed_bottom":
+			AudioManager.play_fx("body_drag")
 			current_room_scene.texture = SCENE_2__BODY_UNDER_BED
 			set_state("hid_body_under_bed", true)
 		"storage_closet":

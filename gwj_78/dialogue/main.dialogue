@@ -61,7 +61,8 @@ if inventory.body == false:
 ~ blood_pool
 if state.blood_cleaned == false:
 	if mouse.current_state != mouse.State.MOP:
-		It's a bunch of blood. (Probably will want to clean that up...)
+		MC: I'll need to find a way to clean up all this blood...
+		MC: Smells like iron-scented kool aid.
 	else:
 		do mop_blood()
 
@@ -69,7 +70,8 @@ if state.blood_cleaned == false:
 
 ~ gun
 if inventory.gun == false:
-	MC: Gun as a murder weapon? That’s so last year, how lame.
+	MC: Gun as a murder weapon?
+	MC: That’s so last year... how lame.
 	MC: Might come in handy though.
 	Pick up the gun?
 	- Yes

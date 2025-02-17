@@ -28,6 +28,8 @@ const HOME_DOOR_HANDLE_WIGGLE_7 = preload("res://assets/sound/3_fx/home door han
 const OBJ_CONT_FLASK_WOOD_CANTEEN_MEDIUM_CLOTHSTRAP_METALBANDING_WOODCORK_LIQUID_SHAKING_SLOSHING_EWKR = preload("res://assets/sound/3_fx/OBJCont_Flask,wood,canteen,medium,clothstrap,metalbanding,woodcork,liquid,shaking,sloshing_EWKR.wav")
 const PISTOL_SHOT_233473 = preload("res://assets/sound/3_fx/pistol-shot-233473.mp3")
 const WOODEN_DESK_DRAWER_OPEN_12 = preload("res://assets/sound/3_fx/wooden desk drawer open 12.wav")
+const SPLATTT_6295 = preload("res://assets/sound/3_fx/splattt-6295.mp3")
+const SOUND_EFFECT_005_OBJECT_DRAGGING_BODY_265185 = preload("res://assets/sound/3_fx/sound-effect-005-object-dragging-body-265185.wav")
 
 
 func play_ambient(ambient_name: String, fade_in_time: float = 2.0, final_db: float = -6.0) -> void:
@@ -192,6 +194,10 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> void:
 			fx = PICK_UP_PHONE
 		"slam_down_phone":
 			fx = SLAM_DOWN_PHONE
+		"trash":
+			fx = SPLATTT_6295
+		"body_drag":
+			fx = SOUND_EFFECT_005_OBJECT_DRAGGING_BODY_265185
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	
