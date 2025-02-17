@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=21 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://bi6fthdipnt24" path="res://assets/art/room_scenes/scene_1_with_layers.png" id="2_trtic"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dunxwgsxseaf1" path="res://assets/art/room_scenes/scene_4.png" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bxr0wa5in3pdh" path="res://assets/art/inventory_objects/mop.png" id="8_gee14"]
 [ext_resource type="Script" uid="uid://5k3hfsuxvvbt" path="res://scenes/inventory_button.gd" id="9_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://dknjl3wt50kbd" path="res://assets/art/room_scenes/curtains_open.png" id="9_ca42v"]
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="9_kvpfn"]
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="10_dinhu"]
 [ext_resource type="Texture2D" uid="uid://c5cuqk27im1mk" path="res://assets/art/inventory_objects/key.png" id="10_kvuet"]
@@ -92,6 +93,7 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="room_scene_1" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 mouse_filter = 2
@@ -360,10 +362,19 @@ focus_mode = 0
 text = "floor_mat"
 
 [node name="room_scene_4" type="TextureRect" parent="Control/scene_container"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("7_u5sy4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="window2" type="TextureRect" parent="Control/scene_container/room_scene_4"]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 96.0
+offset_right = 861.0
+offset_bottom = 470.0
+texture = ExtResource("9_ca42v")
 expand_mode = 1
 stretch_mode = 5
 

@@ -309,8 +309,10 @@ func init_scene_data() -> void:
 		var children = scene.get_children()
 		for child in children:
 			if child is TextureRect:
-				var btn = child.get_child(0)
-				init_button(btn)
+				if child.get_child_count() > 0:
+					var btn = child.get_child(0)
+					if btn:
+						init_button(btn)
 			elif child is Button:
 				init_button(child)
 		
