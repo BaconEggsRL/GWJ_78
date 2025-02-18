@@ -219,6 +219,10 @@ func turn_webcam_off() -> void:
 	
 func hide_body(location:String) -> void:
 	match location:
+		"sink":
+			AudioManager.play_fx("garbage_disposal")
+			# current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
+			set_state("hid_body_sink", true)
 		"trash":
 			AudioManager.play_fx("trash")
 			current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
@@ -421,7 +425,7 @@ func pickup_gun() -> void:
 
 # wash your hands then ya flithy animal
 func wash_hands() -> void:
-	AudioManager.play_fx("mopping_sound")
+	AudioManager.play_fx("sink_running")
 	set_state("washed_hands", true)
 	wash_count += 1
 	
@@ -459,6 +463,7 @@ func reset_progress() -> void:
 		"washed_hands": false,
 		
 		"hid_body": false,
+		"hid_body_sink": false,
 		"hid_body_in_trash": false,
 		"hid_body_under_bed": false,
 		"hid_body_in_storage_closet": false,

@@ -328,58 +328,71 @@ Read it?
 #=> END!
 
 ~ sink
-It's a sink.
-- Wash hands
-	if state.washed_hands == false:
-		Are you sure? You'll have to take your gloves off.
-		- Yes
-			Your fingerprints are gonna be everywhere.
-			- I don't care
-				Ooookayyy. Whatever you want buddy.
-				do wash_hands()
-				*splash splash*
-				*rub rub*
-				*rinse rinse*
-				There. You happy now?
-				- Yes
-					Good for you.
+if mouse.current_state == mouse.State.BODY:
+	MC: It's as good a place as any.
+	Hide the body here?
+	- Yes
+		do hide_body("sink")
+		MC: ...
+		MC: Dang...
+		MC: The garbage disposal on this thing is no joke.
+		MC: Really lives up to the hype.
+	- No
+		MC: I'll find another spot.
+else:
+	It's a sink.
+	- Wash hands
+		if state.washed_hands == false:
+			Are you sure? You'll have to take your gloves off.
+			- Yes
+				Your fingerprints are gonna be everywhere.
+				- I don't care
+					Ooookayyy. Whatever you want buddy.
+					do wash_hands()
+					*splash splash*
+					*rub rub*
+					*rinse rinse*
+					There. You happy now?
+					- Yes
+						Good for you.
+				- Nevermind then
 			- Nevermind then
-		- Nevermind then
-	else:
-		do wash_hands()
-		if wash_count == 2:
-			Sure. Why not?
-		elif wash_count == 3:
-			These hands must be filthy.
-		elif wash_count == 4:
-			Like, really filthy.
-		elif wash_count == 5:
-			Incredibly, incredibly filthy.
-		elif wash_count == 6:
-			[b]Unbelievably[/b] filthy.
-		elif wash_count == 7:
-			So filthy, that nothing could possibly clean them. Not even a magnificent industrial sink like this one.
-		elif wash_count == 8:
-			Even if you scrubbed them down to the very bone, these hands would still be, in fact, filthy.
-		elif wash_count == 9:
-			No matter how many times you do it, it won't make a difference.
-		elif wash_count == 10:
-			In the end, it doesn't really matter what it is.
-			Nothing could ever truly wipe these hands of yours clean.
-			Nothing...
-			do wash_count = 1
+		else:
+			do wash_hands()
+			if wash_count == 2:
+				Sure. Why not?
+			elif wash_count == 3:
+				These hands must be filthy.
+			elif wash_count == 4:
+				Like, really filthy.
+			elif wash_count == 5:
+				Incredibly, incredibly filthy.
+			elif wash_count == 6:
+				[b]Unbelievably[/b] filthy.
+			elif wash_count == 7:
+				So filthy, that nothing could possibly clean them. Not even a magnificent industrial sink like this one.
+			elif wash_count == 8:
+				Even if you scrubbed them down to the very bone, these hands would still be, in fact, filthy.
+			elif wash_count == 9:
+				No matter how many times you do it, it won't make a difference.
+			elif wash_count == 10:
+				In the end, it doesn't really matter what it is.
+				Nothing could ever truly wipe these hands of yours clean.
+				Nothing...
+				do wash_count = 1
 			
-		
-		
-- Read manufacturer tag
-	"LARGE INDUSTRIAL MEGA SINK WITH SUPER MEGA INDUSTRIAL DIAMOND CLAW GARBAGE DISPOSAL"
-	MC: Why is this even here? Dorm layouts make no sense... And where's the toilet?
+	- Read manufacturer tag
+		"LARGE INDUSTRIAL MEGA SINK WITH SUPER MEGA INDUSTRIAL DIAMOND CLAW GARBAGE DISPOSAL"
+		MC: Why is this even here? Dorm layouts make no sense... And where's the toilet?
+
 => END!
+
 
 ~ sink_shelf
 It's a shelf.
 MC: Why does this guy have so many toothbrushes?
 => END!
+
 
 ~ mirror
 if state.drank_blood == true:
@@ -390,9 +403,11 @@ else:
 	MC: Who's that handsome devil?
 => END!
 
+
 ~ floor_mat
 MC: It's a floor mat.
 => END!
+
 
 ~ toilet
 MC: Don't tell me...
