@@ -40,7 +40,7 @@ you ran out of time and the police showed up
 => END!
 
 ~ ending_window
-you got caught
+you got caught by the window guy
 => END!
 
 ~ ending_sleep
@@ -202,10 +202,12 @@ else:
 => END!
 
 ~ top_drawer
+You rummage through the top drawer.
 MC: Sonic, Halo, Minecraft... what a nerd.
 => END!
 
 ~ bottom_drawer
+You rummage through the bottom drawer.
 MC: Magic mushrooms? Hrmmmmm...
 MC: Seems like a waste to just leave them here.
 Eat the magic mushrooms?
@@ -324,10 +326,11 @@ MC: Why does this guy have so many toothbrushes?
 => END!
 
 ~ mirror
-It's a mirror.
 if state.drank_blood == true:
+	It's a mirror.
 	MC: Weird, I can't see anything. Must be broken or something.
 else:
+	It's a mirror. You take a moment to admire yourself in it.
 	MC: Who's that handsome devil?
 => END!
 

@@ -17,7 +17,7 @@ func _ready() -> void:
 	elif custom_data.ending == "ending_time":
 		ending_text.text = "(you ran out of time and the police showed up.)"
 	elif custom_data.ending == "ending_window":
-		ending_text.text = "(you got caught.)"
+		ending_text.text = "(you got caught by the window guy.)"
 	elif custom_data.ending == "ending_sleep":
 		ending_text.text = "(you got caught sleeping.)"
 
