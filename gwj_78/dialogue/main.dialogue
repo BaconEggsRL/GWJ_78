@@ -31,8 +31,20 @@ MC: Oh well. Time for me to get to work...
 you didn't hide enough evidence
 => END!
 
+~ ending_vampire
+they found the victim's blood in your stomach
+=> END!
+
+~ ending_webcam
+you got caught from webcam footage
+=> END!
+
 ~ ending_body
 bruh why are you holding a dead body
+=> END!
+
+~ ending_gun
+you got caught with the murder weapon
 => END!
 
 ~ ending_time
@@ -317,7 +329,24 @@ Read it?
 
 ~ sink
 It's a sink.
-MC: Why is this even here? Dorm layouts make no sense... And where's the toilet?
+- Wash hands
+	Are you sure? You'll have to take your gloves off.
+	- Yes
+		Your fingerprints are gonna be everywhere.
+		- I don't care
+			Ooookayyy. Whatever you want buddy.
+			*splash splash*
+			*rub rub*
+			*rinse rinse*
+			There. You happy now?
+			- Yes
+				Good for you.
+		- Nevermind then
+			
+	- Nevermind then
+- Read manufacturer tag
+	"LARGE INDUSTRIAL MEGA SINK WITH SUPER MEGA INDUSTRIAL DIAMOND CLAW GARBAGE DISPOSAL"
+	MC: Why is this even here? Dorm layouts make no sense... And where's the toilet?
 => END!
 
 ~ sink_shelf
@@ -339,7 +368,7 @@ MC: It's a floor mat.
 => END!
 
 ~ toilet
-MC: Don't tell me...
+MC: Don't tell me... Is that the toilet?
 => END!
 
 

@@ -113,8 +113,41 @@ func exit_through_front_door() -> void:
 	var ending:String = "ending_normal"
 	if inventory.body == true:
 		ending = "ending_body"
+	elif inventory.gun == true:
+		ending = "ending_gun"
+	elif state.webcam_off == false:
+		ending = "ending_webcam"
+	elif state.drank_blood == true:
+		ending = "ending_vampire"
+		
+
+	#inventory = {
+		#"mop": false,
+		#"gun": false,
+		#"storage_closet_key": false,
+		#"body": false,
+	#}
+	#state = {
+		#"webcam_off": false,
+		#
+		#"hid_body": false,
+		#"hid_body_in_trash": false,
+		#"hid_body_under_bed": false,
+		#"hid_body_in_storage_closet": false,
+		#
+		#"curtains_closed": false,
+		#"window_event": false,
+		#
+		#"storage_closet_unlocked": false,
+		#
+		#"blood_cleaned": false,
+		#"drank_blood": false,
+	#}
+	
 	var custom_data = {"ending": ending}
 	SceneManager.goto("ending", custom_data)
+
+
 
 func sleep_in_bed() -> void:
 	self.set_process(false)

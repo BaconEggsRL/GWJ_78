@@ -10,16 +10,26 @@ var custom_data = {"ending": "ending_normal"}
 
 func _ready() -> void:
 	show_dialogue(MAIN_DIALOGUE, custom_data.ending)  # custom function
-	if custom_data.ending == "ending_body":
-		ending_text.text = "(why are you holding a dead body???)"
-	elif custom_data.ending == "ending_normal":
-		ending_text.text = "(you didn't hide enough evidence.)"
-	elif custom_data.ending == "ending_time":
-		ending_text.text = "(you ran out of time and the police showed up.)"
-	elif custom_data.ending == "ending_window":
-		ending_text.text = "(you got caught by the window guy.)"
-	elif custom_data.ending == "ending_sleep":
-		ending_text.text = "(you got caught sleeping.)"
+
+	match custom_data.ending:
+		"ending_body":
+			ending_text.text = "(why are you holding a dead body???)"
+		"ending_normal":
+			ending_text.text = "(you didn't hide enough evidence.)"
+		"ending_time":
+			ending_text.text = "(you ran out of time and the police showed up.)"
+		"ending_window":
+			ending_text.text = "(you got caught by the window guy.)"
+		"ending_sleep":
+			ending_text.text = "(you got caught sleeping.)"
+		"ending_webcam":
+			ending_text.text = "(you got caught from webcam footage.)"
+		"ending_gun":
+			ending_text.text = "(you got caught with the murder weapon.)"
+		"ending_vampire":
+			ending_text.text = "(they found the victim's blood in your stomach.)"
+
+
 
 func _on_main_menu_pressed() -> void:
 	var _target_scene = MAIN.instantiate()
