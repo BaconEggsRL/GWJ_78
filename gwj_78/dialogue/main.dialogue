@@ -297,7 +297,6 @@ if state.window_event == true:
 	MC: Hello there.
 	???: Hey man. What's going on here?
 	MC: Uhh...
-	What do you do?
 	- Ignore him
 		???: Dude... I think that guy's dead. I'm calling the cops.
 		do stop_window_event(false)
