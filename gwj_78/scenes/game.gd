@@ -87,6 +87,10 @@ var state := {}
 
 # time
 @export var time_left_label:Label
+# evidence
+@export var evidence_left_label:Label
+@onready var evidence_left:int = 4
+
 @export var max_seconds:float = 60 * 5.0
 @onready var time_left:float = max_seconds
 var time_elapsed := 0.0
@@ -213,6 +217,9 @@ func update_time_label() -> void:
 		out_of_time.emit()
 
 
+func update_evidence_label() -> void:
+	evidence_left_label.text = "Evidence left: %d" % evidence_left
+
 
 
 func drink_blood() -> void:
@@ -229,6 +236,10 @@ func drink_blood() -> void:
 	# await fx finished here
 	await _fx.finished
 	await get_tree().create_timer(0.5).timeout
+	
+	# update evidence label
+	evidence_left -= 1
+	update_evidence_label()
 
 	
 	
@@ -238,6 +249,10 @@ func turn_webcam_off() -> void:
 	AudioManager.play_fx("webcam_off")
 	set_state("webcam_off", true)
 	webcam_rect.texture = WEBCAM_OFF
+	
+	# update evidence label
+	evidence_left -= 1
+	update_evidence_label()
 	
 	
 	
@@ -265,6 +280,10 @@ func hide_body(location:String) -> void:
 	# update game state
 	set_state("hid_body", true)
 	# mouse.set_state(mouse.State.NONE)
+	
+	# update evidence label
+	evidence_left -= 1
+	update_evidence_label()
 
 
 func hide_gun(location:String) -> void:
@@ -284,6 +303,10 @@ func hide_gun(location:String) -> void:
 	# update game state
 	set_state("hid_gun", true)
 	# mouse.set_state(mouse.State.NONE)
+	
+	# update evidence label
+	evidence_left -= 1
+	update_evidence_label()
 	
 	
 func _ready() -> void:
@@ -327,6 +350,9 @@ func _ready() -> void:
 	out_of_time.connect(_on_out_of_time)
 	mouse.fire_gun.connect(_on_fire_gun)
 	
+	# evidence label
+	update_evidence_label()
+	
 	# start game
 	if not debug:
 		# delete active dialogue
@@ -334,6 +360,8 @@ func _ready() -> void:
 			current_dialogue.queue_free.call_deferred()
 		# show dialogue
 		current_dialogue = show_dialogue(MAIN_DIALOGUE, "opening_game")
+		
+	
 	
 	
 	
@@ -453,6 +481,10 @@ func mop_blood() -> void:
 	blood_tween.finished.connect(func():
 		blood_pool_rect.visible = false
 	)
+	
+	# update evidence label
+	evidence_left -= 1
+	update_evidence_label()
 
 
 # called when picking up the body

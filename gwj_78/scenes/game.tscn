@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bi6fthdipnt24" path="res://assets/art/room_scenes/scene_1_with_layers.png" id="2_trtic"]
 [ext_resource type="Texture2D" uid="uid://crsy5aygii3a" path="res://assets/art/room_scenes/blood_cleaned_body.png" id="3_kvuet"]
 [ext_resource type="Texture2D" uid="uid://bhch7kbbcn22v" path="res://assets/art/room_scenes/blood_pool.png" id="3_trtic"]
-[ext_resource type="Texture2D" uid="uid://dhdqcacrm41cm" path="res://assets/art/room_scenes/webcam.png" id="4_264po"]
+[ext_resource type="Texture2D" uid="uid://lxc56e7w0xx2" path="res://assets/art/room_scenes/webcam_on.png" id="4_264po"]
 [ext_resource type="Texture2D" uid="uid://c04qa7n7tkljs" path="res://assets/art/room_scenes/gun.png" id="5_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://cb2k575pov5pb" path="res://assets/art/room_scenes/scene_3.png" id="6_p57ef"]
@@ -65,7 +65,7 @@ shader_parameter/noise_speed = 0.1
 shader_parameter/noise_blur_amount = 0.005
 shader_parameter/blob_strength = 0.0
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "blur", "mouse", "none", "SCENE_1", "blood_pool_rect", "body_rect", "gun_rect", "webcam_rect", "SCENE_2", "SCENE_3", "SCENE_4", "window_rect", "inventory_container", "time_left_label")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "blur", "mouse", "none", "SCENE_1", "blood_pool_rect", "body_rect", "gun_rect", "webcam_rect", "SCENE_2", "SCENE_3", "SCENE_4", "window_rect", "inventory_container", "time_left_label", "evidence_left_label")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/UI_container/main_menu")
 blur = NodePath("blur")
@@ -82,6 +82,7 @@ SCENE_4 = NodePath("Control/scene_container/room_scene_4")
 window_rect = NodePath("Control/scene_container/room_scene_4/window_rect")
 inventory_container = NodePath("Control/UI_container/inventory_container")
 time_left_label = NodePath("Control/stat_container/time")
+evidence_left_label = NodePath("Control/stat_container/evidence")
 max_seconds = 180.0
 
 [node name="Control" type="Control" parent="."]
@@ -92,22 +93,6 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
-
-[node name="stat_container" type="VBoxContainer" parent="Control"]
-layout_mode = 2
-offset_left = 16.0
-offset_top = 654.0
-offset_right = 153.0
-offset_bottom = 704.0
-alignment = 2
-
-[node name="erase" type="Label" parent="Control/stat_container"]
-layout_mode = 2
-text = "Evidence found: 0"
-
-[node name="time" type="Label" parent="Control/stat_container"]
-layout_mode = 2
-text = "Time left: 0"
 
 [node name="scene_container" type="MarginContainer" parent="Control"]
 layout_mode = 1
@@ -123,7 +108,6 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="room_scene_1" type="TextureRect" parent="Control/scene_container"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 mouse_filter = 2
@@ -414,6 +398,7 @@ focus_mode = 0
 text = "pee"
 
 [node name="room_scene_4" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("7_u5sy4")
@@ -558,6 +543,22 @@ icon = ExtResource("10_kvuet")
 flat = true
 script = ExtResource("9_0tnpc")
 item_name = "storage_closet_key"
+
+[node name="stat_container" type="VBoxContainer" parent="Control"]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 654.0
+offset_right = 153.0
+offset_bottom = 704.0
+alignment = 2
+
+[node name="evidence" type="Label" parent="Control/stat_container"]
+layout_mode = 2
+text = "Evidence left: 0"
+
+[node name="time" type="Label" parent="Control/stat_container"]
+layout_mode = 2
+text = "Time left: 0"
 
 [node name="mouse" type="Sprite2D" parent="."]
 texture = ExtResource("9_kvpfn")

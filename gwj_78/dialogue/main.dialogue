@@ -349,8 +349,7 @@ if mouse.current_state == mouse.State.BODY:
 		do hide_body("sink")
 		MC: ...
 		MC: ...
-		MC: Well that's a surprise.
-		MC: The garbage disposal on this thing is no joke.
+		MC: Damn. The garbage disposal on this thing is no joke.
 		MC: Really lives up to the hype.
 	- No
 		MC: I'll find another spot.
@@ -360,8 +359,7 @@ elif mouse.current_state == mouse.State.GUN:
 		do hide_gun("sink")
 		MC: ...
 		MC: ...
-		MC: Well that's a surprise.
-		MC: The garbage disposal on this thing is no joke.
+		MC: Damn. The garbage disposal on this thing is no joke.
 		MC: Really lives up to the hype.
 	- No
 		MC: I'll find another way.
