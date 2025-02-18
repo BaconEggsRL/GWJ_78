@@ -122,7 +122,6 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="room_scene_1" type="TextureRect" parent="Control/scene_container"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 mouse_filter = 2
@@ -338,6 +337,7 @@ focus_mode = 0
 text = "night_stand"
 
 [node name="room_scene_3" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("6_p57ef")

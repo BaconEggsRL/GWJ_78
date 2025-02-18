@@ -112,15 +112,40 @@ func exit_through_front_door() -> void:
 	print("exit")
 	AudioManager.play_fx("door_open")
 	var ending:String = "ending_normal"
-	if inventory.body == true:
-		ending = "ending_body"
-	elif inventory.gun == true:
-		ending = "ending_gun"
+	
+	# hide the body
+	if state.hid_body == false:
+		if inventory.body == true:
+			ending = "ending_body"
+		else:
+			ending = "ending_normal"
+	
+	# hide the gun
+	elif state.hid_gun == false:
+		if inventory.gun == true:
+			ending = "ending_gun"
+		else:
+			ending = "ending_normal"
+			
+	# clean the blood
+	elif state.blood_cleaned == false:
+		ending = "ending_normal"
+	
+	# Special endings
 	elif state.webcam_off == false:
 		ending = "ending_webcam"
+		
 	elif state.drank_blood == true:
 		ending = "ending_vampire"
+	
+	# Good ending
+	else:
+		ending = "ending_good"
 		
+	# hid body
+	# cleaned blood with mop
+	# picked up the gun
+	# webcam is off
 
 	#inventory = {
 		#"mop": false,
@@ -241,6 +266,20 @@ func hide_body(location:String) -> void:
 	set_state("hid_body", true)
 	# mouse.set_state(mouse.State.NONE)
 
+
+func hide_gun(location:String) -> void:
+	match location:
+		"sink":
+			AudioManager.play_fx("garbage_disposal")
+			# current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
+			set_state("hid_gun_sink", true)
+			
+	# remove body from inventory
+	set_inventory_item("gun", false)
+	# update game state
+	set_state("hid_gun", true)
+	# mouse.set_state(mouse.State.NONE)
+	
 	
 func _ready() -> void:
 	# pick play
@@ -461,6 +500,9 @@ func reset_progress() -> void:
 	state = {
 		"webcam_off": false,
 		"washed_hands": false,
+		
+		"hid_gun": false,
+		"hid_gun_sink": false,
 		
 		"hid_body": false,
 		"hid_body_sink": false,

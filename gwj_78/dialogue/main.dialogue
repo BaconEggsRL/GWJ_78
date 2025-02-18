@@ -59,6 +59,11 @@ you got caught by the window guy
 you got caught sleeping on the job
 => END!
 
+~ ending_good
+you got away
+=> END!
+
+
 
 #######################################
 # EVENTS
@@ -334,11 +339,24 @@ if mouse.current_state == mouse.State.BODY:
 	- Yes
 		do hide_body("sink")
 		MC: ...
-		MC: Dang...
+		MC: ...
+		MC: Well that's a surprise.
 		MC: The garbage disposal on this thing is no joke.
 		MC: Really lives up to the hype.
 	- No
 		MC: I'll find another spot.
+elif mouse.current_state == mouse.State.GUN:
+	MC: This might be the only way to get rid of this...
+	Put the gun in the garbage disposal?
+	- Yes
+		do hide_gun("sink")
+		MC: ...
+		MC: ...
+		MC: Well that's a surprise.
+		MC: The garbage disposal on this thing is no joke.
+		MC: Really lives up to the hype.
+	- No
+		MC: I'll find another way.
 else:
 	It's a sink.
 	- Wash hands

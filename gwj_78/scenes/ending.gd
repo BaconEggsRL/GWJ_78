@@ -28,6 +28,8 @@ func _ready() -> void:
 			ending_text.text = "(you got caught with the murder weapon.)"
 		"ending_vampire":
 			ending_text.text = "(they found the victim's blood in your stomach.)"
+		"ending_good":
+			ending_text.text = "(you got away.)"
 
 
 
