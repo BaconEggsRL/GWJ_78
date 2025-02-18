@@ -39,6 +39,11 @@ bruh why are you holding a dead body
 you ran out of time and the police showed up
 => END!
 
+~ ending_window
+you got caught
+=> END!
+
+
 
 #######################################
 # EVENTS
@@ -72,8 +77,7 @@ if inventory.body == false:
 ~ blood_pool
 if state.blood_cleaned == false:
 	if mouse.current_state != mouse.State.MOP:
-		MC: I'll need to find a way to clean up all this blood...
-		MC: Smells like iron-scented kool aid.
+		MC: I'll need to find a way to clean up all this blood... Smells like iron-scented kool aid.
 	else:
 		do mop_blood()
 
@@ -286,17 +290,21 @@ if state.window_event == true:
 	What do you do?
 	- Ignore him
 		???: Dude... I think that guy's dead. I'm calling the cops.
+		do stop_window_event(false)
 	- Attempt to use jedi mind tricks
 		???: ...
 		???: I dunno what's going on here, but that was super weird. I'm calling the cops.
+		do stop_window_event(false)
 	- Make up an excuse
 		What's your excuse?
 		- I killed someone, obviously.
 			???: ...
 			???: Riiiiight. Yeah I'm calling the cops.
+			do stop_window_event(false)
 		- We're filming a commercial.
 			???: ...
 			???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+			do stop_window_event(false)
 		- It's for a school play.
 			???: Oh yeah? Which one?
 			- Death of a Salesman.
@@ -324,10 +332,14 @@ if state.window_event == true:
 					???: What was that?
 					MC: Nothing. Bye!
 					???: Bye...
+					do stop_window_event(true)
+					
 				else:
 					???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+					do stop_window_event(false)
 			else:
 				???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+				do stop_window_event(false)
 
 else:
 	if state.curtains_closed == false:

@@ -100,6 +100,7 @@ signal out_of_time
 
 # called when the player tries to leave through the fron door
 func exit_through_front_door() -> void:
+	self.set_process(false)
 	print("exit")
 	AudioManager.play_fx("door_open")
 	var ending:String = "ending_normal"
@@ -115,6 +116,12 @@ func _on_out_of_time() -> void:
 	var custom_data = {"ending": ending}
 	SceneManager.goto("ending", custom_data)
 	
+func _on_window_failed() -> void:
+	self.set_process(false)
+	print("you got caught")
+	var ending:String = "ending_window"
+	var custom_data = {"ending": ending}
+	SceneManager.goto("ending", custom_data)
 	
 
 
@@ -235,7 +242,16 @@ func start_window_event() -> void:
 	# update game state
 	set_state("window_event", true)
 	
-	
+
+
+func stop_window_event(success:bool) -> void:
+	window_rect.texture = CURTAINS_OPEN
+	set_state("window_event", false)
+	if success == false:
+		_on_window_failed()
+
+
+
 
 # called when closing the curtains
 func close_curtains() -> void:
