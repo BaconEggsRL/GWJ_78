@@ -247,6 +247,10 @@ func _ready() -> void:
 	
 	# start game
 	if not debug:
+		# delete active dialogue
+		if current_dialogue:
+			current_dialogue.queue_free.call_deferred()
+		# show dialogue
 		current_dialogue = show_dialogue(MAIN_DIALOGUE, "opening_game")
 	
 	
@@ -309,11 +313,13 @@ func start_window_event() -> void:
 		
 	# start window event
 	AudioManager.play_fx("window_knock")
+	
 	# delete active dialogue
 	if current_dialogue:
 		current_dialogue.queue_free.call_deferred()
 	# show window event
 	current_dialogue = show_dialogue(MAIN_DIALOGUE, "window_event")
+	
 	# update texture
 	window_rect.texture = CURTAINS_OPEN_EVENT
 	# update game state
@@ -604,7 +610,12 @@ func show_dialogue(resource:DialogueResource, title:String="", extra_game_states
 func _on_item_pressed(item:String) -> void:
 	# DialogueManager.show_example_dialogue_balloon(MAIN_DIALOGUE, item)  # shows example balloon
 	# DialogueManager.show_dialogue_balloon(MAIN_DIALOGUE, item)  # shows balloon configured in Project Settings
-	current_dialogue = show_dialogue(MAIN_DIALOGUE, item)  # custom function
+	
+	# delete active dialogue
+	if current_dialogue:
+		current_dialogue.queue_free.call_deferred()
+	# show dialogue
+	current_dialogue = show_dialogue(MAIN_DIALOGUE, item)
 
 # pressed item in inventory
 func _on_inventory_item_pressed(item:String) -> void:
