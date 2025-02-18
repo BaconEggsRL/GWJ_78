@@ -66,6 +66,17 @@ MC: Shit. Somebody's at the window.
 MC: It's a wall. They could probably hang a nice painting there.
 => END!
 
+~ web_cam
+if state.webcam_off == false:
+	It's a webcam. It's on.
+	Turn it off?
+	- Yes
+		do turn_webcam_off()
+	- No
+else:
+	It's a webcam. It's off.
+=> END!
+
 ~ body
 if inventory.body == false:
 	It's a dead body. Gross.
@@ -80,7 +91,13 @@ if inventory.body == false:
 ~ blood_pool
 if state.blood_cleaned == false:
 	if mouse.current_state != mouse.State.MOP:
-		MC: I'll need to find a way to clean up all this blood... Smells like iron-scented kool aid.
+		MC: I'll need to find a way to clean up all this blood...
+		MC: Smells like iron-scented kool aid.
+		Drink the blood?
+		- Yes
+			do drink_blood()
+			MC: Ahh... Delicious antioxidants.
+		- No
 	else:
 		do mop_blood()
 
@@ -300,8 +317,11 @@ MC: Why does this guy have so many toothbrushes?
 => END!
 
 ~ mirror
-It's a mirror. You take a moment to admire yourself in it.
-MC: Did my hair always look like that?
+It's a mirror.
+if state.drank_blood == true:
+	MC: Weird, I can't see anything. Must be broken or something.
+else:
+	MC: Who's that handsome devil?
 => END!
 
 ~ floor_mat

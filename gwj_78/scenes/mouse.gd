@@ -30,12 +30,15 @@ func _process(_delta) -> void:
 	self.global_position = get_global_mouse_position()
 	
 func _unhandled_input(event: InputEvent) -> void:
+	print("unhandled_unput")
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		do_state_action()
 
 func do_state_action() -> void:
+	print("do_state_action")
 	match current_state:
 		State.GUN:
+			print("emit fire_gun")
 			fire_gun.emit(self.global_position)
 	
 

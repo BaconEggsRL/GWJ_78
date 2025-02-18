@@ -36,6 +36,9 @@ const BULLET_HOLE_RECT = preload("res://bullet_hole_rect.tscn")
 @export var body_rect:TextureRect
 @export var gun_rect:TextureRect
 const SCENE_1_WITH_LAYERS__BODY_IN_TRASH = preload("res://assets/art/room_scenes/scene_1_with_layers__body_in_trash.png")
+const WEBCAM_ON = preload("res://assets/art/room_scenes/webcam_on.png")
+const WEBCAM_OFF = preload("res://assets/art/room_scenes/webcam_off.png")
+@export var webcam_rect:TextureRect
 
 
 @export var SCENE_2:TextureRect
@@ -151,6 +154,33 @@ func update_time_label() -> void:
 		out_of_time.emit()
 
 
+
+
+func drink_blood() -> void:
+	var fx = AudioManager.play_fx("drink_blood")
+	# tween out the blood texture
+	var blood_tween = create_tween()
+	blood_tween.tween_property(blood_pool_rect, "self_modulate:a", 0.0, 1.0)
+	blood_tween.finished.connect(func():
+		blood_pool_rect.visible = false
+	)
+	# await fx finished here
+	# await fx.finished
+	# await get_tree().create_timer(0.5).timeout
+	# update state
+	set_state("blood_cleaned", true)
+	set_state("drank_blood", true)
+	
+	
+	
+func turn_webcam_off() -> void:
+	AudioManager.play_fx("webcam_off")
+	set_state("webcam_off", true)
+	webcam_rect.texture = WEBCAM_OFF
+	
+	
+	
+	
 func hide_body(location:String) -> void:
 	match location:
 		"trash":
@@ -350,9 +380,11 @@ func pickup_gun() -> void:
 
 # fire gun
 func _on_fire_gun(pos:Vector2 = get_global_mouse_position()) -> void:
+	print("_on_fire_gun")
 	add_bullet_hole(pos)
 # add bullet hole at pos
 func add_bullet_hole(pos:Vector2 = get_global_mouse_position()) -> void:
+	print("add_bullet_hole")
 	AudioManager.play_fx("gun_shot", -6.0)
 	var bullet_hole = BULLET_HOLE_RECT.instantiate()
 	bullet_hole.position = pos
@@ -373,6 +405,8 @@ func reset_progress() -> void:
 		"body": false,
 	}
 	state = {
+		"webcam_off": false,
+		
 		"hid_body": false,
 		"hid_body_in_trash": false,
 		"hid_body_under_bed": false,
@@ -382,7 +416,9 @@ func reset_progress() -> void:
 		"window_event": false,
 		
 		"storage_closet_unlocked": false,
+		
 		"blood_cleaned": false,
+		"drank_blood": false,
 	}
 
 

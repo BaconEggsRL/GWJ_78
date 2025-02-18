@@ -35,6 +35,9 @@ const WOODEN_DESK_DRAWER_OPEN_12 = preload("res://assets/sound/3_fx/wooden desk 
 const SPLATTT_6295 = preload("res://assets/sound/3_fx/splattt-6295.mp3")
 const SOUND_EFFECT_005_OBJECT_DRAGGING_BODY_265185 = preload("res://assets/sound/3_fx/sound-effect-005-object-dragging-body-265185.wav")
 
+const WEBCAM_OFF = preload("res://assets/sound/3_fx/slap 14.wav")
+const SLURP_76969 = preload("res://assets/sound/3_fx/slurp-76969.mp3")
+
 
 func play_ambient(ambient_name: String, fade_in_time: float = 2.0, final_db: float = -6.0) -> void:
 	if ambient_name in ambient_players:
@@ -164,7 +167,7 @@ func play_music(scene_name:String, final_db:float=0.0, fade_in_time=0.5) -> void
 		_play_music(music, final_db, fade_out, fade_out_time, fade_in, fade_in_time, init, init_db)
 
 
-func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> void:
+func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> AudioStreamPlayer:
 	var fx:Resource
 	var pitch:float = 1.0
 	match fx_name:
@@ -206,16 +209,22 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> void:
 			fx = HOME_DOOR_WITH_LOTS_OF_ROOM_ECHO_CLOSE_7
 		"window_knock":
 			fx = KNOCKING_FROM_OUTSIDE_11
+		"webcam_off":
+			fx = WEBCAM_OFF
+		"drink_blood":
+			fx = SLURP_76969
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	
 	if fx:
-		_play_fx(fx_name, fx, volume, pitch)
+		return _play_fx(fx_name, fx, volume, pitch)
+		
+	return null
 	
 	
 	
 	
-func _play_fx(fx_name: String, stream: AudioStream, volume: float = 0.0, pitch: float = 1.0) -> void:
+func _play_fx(fx_name: String, stream: AudioStream, volume: float = 0.0, pitch: float = 1.0) -> AudioStreamPlayer:
 	var fx_player = AudioStreamPlayer.new()
 	fx_player.stream = stream
 	fx_player.name = "FX_PLAYER_" + fx_name  # Name it uniquely
@@ -231,13 +240,15 @@ func _play_fx(fx_name: String, stream: AudioStream, volume: float = 0.0, pitch: 
 	active_fx_players[fx_name].append(fx_player)  # Track this FX under its name
 	
 	if fx_player != null:
+		# play the fx
 		fx_player.play()
-		await fx_player.finished
-		
-		if active_fx_players.has(fx_name):
-			active_fx_players[fx_name].erase(fx_player)  # Remove from tracking
-			fx_player.queue_free()
-
+		# Handle cleanup separately without blocking return
+		_cleanup_fx(fx_name, fx_player)
+	
+	# Return the fx_player
+	return fx_player
+	
+	
 
 func stop_fx(fx_name: String, fade_time: float = 0.5) -> void:
 	if active_fx_players.has(fx_name):
@@ -252,6 +263,17 @@ func stop_fx(fx_name: String, fade_time: float = 0.5) -> void:
 		
 		active_fx_players.erase(fx_name)  # Remove all instances of that FX
 
+
+func _cleanup_fx(fx_name: String, fx_player: AudioStreamPlayer) -> void:
+	await fx_player.finished  # Wait until the sound is done
+	
+	if active_fx_players.has(fx_name):
+		active_fx_players[fx_name].erase(fx_player)  # Remove from tracking
+		
+	fx_player.queue_free()  # Free memory
+	
+	
+	
 
 func clear(fade_time:float = 2.0) -> void:
 	# stop music

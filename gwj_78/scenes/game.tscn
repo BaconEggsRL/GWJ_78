@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=26 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="Shader" uid="uid://dny7c3ex6hojy" path="res://shaders/blur.gdshader" id="2_rysoc"]
 [ext_resource type="Texture2D" uid="uid://bi6fthdipnt24" path="res://assets/art/room_scenes/scene_1_with_layers.png" id="2_trtic"]
 [ext_resource type="Texture2D" uid="uid://crsy5aygii3a" path="res://assets/art/room_scenes/blood_cleaned_body.png" id="3_kvuet"]
 [ext_resource type="Texture2D" uid="uid://bhch7kbbcn22v" path="res://assets/art/room_scenes/blood_pool.png" id="3_trtic"]
+[ext_resource type="Texture2D" uid="uid://dhdqcacrm41cm" path="res://assets/art/room_scenes/webcam.png" id="4_264po"]
 [ext_resource type="Texture2D" uid="uid://c04qa7n7tkljs" path="res://assets/art/room_scenes/gun.png" id="5_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://cb2k575pov5pb" path="res://assets/art/room_scenes/scene_3.png" id="6_p57ef"]
@@ -64,7 +65,7 @@ shader_parameter/noise_speed = 0.1
 shader_parameter/noise_blur_amount = 0.005
 shader_parameter/blob_strength = 0.0
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "blur", "mouse", "none", "SCENE_1", "blood_pool_rect", "body_rect", "gun_rect", "SCENE_2", "SCENE_3", "SCENE_4", "window_rect", "inventory_container", "time_left_label")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "blur", "mouse", "none", "SCENE_1", "blood_pool_rect", "body_rect", "gun_rect", "webcam_rect", "SCENE_2", "SCENE_3", "SCENE_4", "window_rect", "inventory_container", "time_left_label")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/UI_container/main_menu")
 blur = NodePath("blur")
@@ -74,6 +75,7 @@ SCENE_1 = NodePath("Control/scene_container/room_scene_1")
 blood_pool_rect = NodePath("Control/scene_container/room_scene_1/blood_pool_rect")
 body_rect = NodePath("Control/scene_container/room_scene_1/body_rect")
 gun_rect = NodePath("Control/scene_container/room_scene_1/gun_rect")
+webcam_rect = NodePath("Control/scene_container/room_scene_1/web_cam_rect")
 SCENE_2 = NodePath("Control/scene_container/room_scene_2")
 SCENE_3 = NodePath("Control/scene_container/room_scene_3")
 SCENE_4 = NodePath("Control/scene_container/room_scene_4")
@@ -120,13 +122,28 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="room_scene_1" type="TextureRect" parent="Control/scene_container"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("2_trtic")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="web_cam_rect" type="TextureRect" parent="Control/scene_container/room_scene_1"]
+layout_mode = 0
+offset_left = 473.0
+offset_top = 263.0
+offset_right = 499.0
+offset_bottom = 289.0
+texture = ExtResource("4_264po")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="web_cam" type="Button" parent="Control/scene_container/room_scene_1/web_cam_rect"]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 25.0
+focus_mode = 0
 
 [node name="blood_pool_rect" type="TextureRect" parent="Control/scene_container/room_scene_1"]
 layout_mode = 0
@@ -221,7 +238,7 @@ text = "trash"
 [node name="computer" type="Button" parent="Control/scene_container/room_scene_1"]
 layout_mode = 0
 offset_left = 445.0
-offset_top = 277.0
+offset_top = 285.0
 offset_right = 529.0
 offset_bottom = 345.0
 focus_mode = 0
@@ -320,6 +337,7 @@ focus_mode = 0
 text = "night_stand"
 
 [node name="room_scene_3" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("6_p57ef")
@@ -549,6 +567,7 @@ material = SubResource("ShaderMaterial_rysoc")
 position = Vector2(631.5, 357.5)
 scale = Vector2(10.8672, 6.58594)
 texture = ExtResource("18_ssvqc")
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="Control/UI_container/look_left" to="." method="look_left"]
 [connection signal="pressed" from="Control/UI_container/look_right" to="." method="look_right"]
