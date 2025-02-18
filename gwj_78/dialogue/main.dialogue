@@ -88,6 +88,7 @@ if inventory.body == false:
 		Better leave it alone.
 => END!
 
+
 ~ blood_pool
 if state.blood_cleaned == false:
 	if mouse.current_state != mouse.State.MOP:
@@ -103,6 +104,8 @@ if state.blood_cleaned == false:
 
 => END!
 
+
+
 ~ gun
 if inventory.gun == false:
 	MC: Gun as a murder weapon?
@@ -114,6 +117,10 @@ if inventory.gun == false:
 	- No
 	
 => END!
+
+
+
+
 
 ~ door
 if mouse.current_state != mouse.State.KEY:

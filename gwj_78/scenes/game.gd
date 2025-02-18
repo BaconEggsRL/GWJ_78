@@ -157,7 +157,10 @@ func update_time_label() -> void:
 
 
 func drink_blood() -> void:
-	var fx = AudioManager.play_fx("drink_blood")
+	var _fx = AudioManager.play_fx("drink_blood")
+	# update state
+	set_state("blood_cleaned", true)
+	set_state("drank_blood", true)
 	# tween out the blood texture
 	var blood_tween = create_tween()
 	blood_tween.tween_property(blood_pool_rect, "self_modulate:a", 0.0, 1.0)
@@ -165,11 +168,10 @@ func drink_blood() -> void:
 		blood_pool_rect.visible = false
 	)
 	# await fx finished here
-	# await fx.finished
-	# await get_tree().create_timer(0.5).timeout
-	# update state
-	set_state("blood_cleaned", true)
-	set_state("drank_blood", true)
+	await _fx.finished
+	await get_tree().create_timer(0.5).timeout
+
+	
 	
 	
 	
