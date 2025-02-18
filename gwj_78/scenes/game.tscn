@@ -120,6 +120,7 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="room_scene_1" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 mouse_filter = 2
@@ -319,7 +320,6 @@ focus_mode = 0
 text = "night_stand"
 
 [node name="room_scene_3" type="TextureRect" parent="Control/scene_container"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("6_p57ef")
@@ -327,6 +327,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="bed_top" type="Button" parent="Control/scene_container/room_scene_3"]
+visible = false
 layout_mode = 0
 offset_left = 951.0
 offset_top = 407.0
@@ -382,6 +383,15 @@ offset_right = 532.0
 offset_bottom = 551.0
 focus_mode = 0
 text = "floor_mat"
+
+[node name="toilet" type="Button" parent="Control/scene_container/room_scene_3"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 440.0
+offset_right = 317.0
+offset_bottom = 482.0
+focus_mode = 0
+text = "pee"
 
 [node name="room_scene_4" type="TextureRect" parent="Control/scene_container"]
 visible = false

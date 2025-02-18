@@ -43,6 +43,9 @@ you ran out of time and the police showed up
 you got caught
 => END!
 
+~ ending_sleep
+you got caught sleeping on the job
+=> END!
 
 
 #######################################
@@ -127,7 +130,8 @@ else:
 
 
 ~ computer
-MC: It's a computer.
+It's a computer.
+MC: Why is this guy’s lockscreen a horseshoe crab?
 => END!
 
 
@@ -159,7 +163,7 @@ if state.storage_closet_unlocked == true:
 			if state.hid_body_in_storage_closet == true:
 				MC: No one's finding him in there.
 			else:
-				MC: You check the closet, but there's nothing inside.
+				You check the closet, but there's nothing inside.
 		
 		
 else:
@@ -196,14 +200,22 @@ MC: Oh damn... I don't feel so good...
 # SCENE 2
 
 ~ bed_top
-MC: It's a bed.
+It's a bed.
+MC: Hmm, looks comfy. Maybe I could lie down for a moment.
+Sit on the bed?
+- Yes
+	MC: Ahh... amazing... is this cashmere? So soft...
+	do sleep_in_bed()
+- No
+	MC: What am I thinking... Gotta finish this job first.
+
+
 => END!
 
 ~ bed_bottom
 if inventory.storage_closet_key == false and state.storage_closet_unlocked == false:
-	MC: Looking under the bed, you find a small key. Take it?
+	Looking under the bed, you find a small key. Take it?
 	- Yes
-		MC: You took the key.
 		do set_inventory_item("storage_closet_key", true)
 	- No
 		MC: Probably nothing important.
@@ -220,7 +232,7 @@ else:
 		if state.hid_body_under_bed == true:
 			MC: …yeeeah…that looks hidden.
 		else:
-			MC: Nothing under here.
+			MC: It’s kinda dusty down here…
 		
 => END!
 
@@ -252,7 +264,21 @@ Pick a book to read?
 => END!
 
 ~ night_stand
-MC: It's a nightstand.
+On the nightstand, you find a sticky note.
+Read it?
+- Yes
+	Sticky note, reads:
+	To do:
+	Brush teeth
+	Audition for {{club_name}}
+	Brush teeth
+	Find another race candidate
+	Brush teeth
+	Go to the ring
+	Brush teeth
+	MC: Why does this guy like brushing his teeth so much?
+- No
+
 => END!
 
 
@@ -264,21 +290,27 @@ MC: It's a nightstand.
 #=> END!
 
 ~ sink
-MC: It's a sink.
+It's a sink.
+MC: Why is this even here? Dorm layouts make no sense... And where's the toilet?
 => END!
 
 ~ sink_shelf
-MC: It's a shelf.
+It's a shelf.
+MC: Why does this guy have so many toothbrushes?
 => END!
 
 ~ mirror
-MC: It's a mirror. You take a moment to admire yourself in it.
+It's a mirror. You take a moment to admire yourself in it.
+MC: Did my hair always look like that?
 => END!
 
 ~ floor_mat
 MC: It's a floor mat.
 => END!
 
+~ toilet
+MC: Don't tell me...
+=> END!
 
 
 #######################################

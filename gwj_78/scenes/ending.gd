@@ -18,6 +18,8 @@ func _ready() -> void:
 		ending_text.text = "(you ran out of time and the police showed up.)"
 	elif custom_data.ending == "ending_window":
 		ending_text.text = "(you got caught.)"
+	elif custom_data.ending == "ending_sleep":
+		ending_text.text = "(you got caught sleeping.)"
 
 func _on_main_menu_pressed() -> void:
 	var _target_scene = MAIN.instantiate()

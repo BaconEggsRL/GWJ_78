@@ -94,6 +94,7 @@ var time_elapsed := 0.0
 }
 @onready var correct_play:String = ""
 @onready var correct_author:String = ""
+@onready var club_name:String = "Theatre Club"
 
 signal out_of_time
 
@@ -111,7 +112,14 @@ func exit_through_front_door() -> void:
 		ending = "ending_body"
 	var custom_data = {"ending": ending}
 	SceneManager.goto("ending", custom_data)
-	
+
+func sleep_in_bed() -> void:
+	self.set_process(false)
+	print("you got caught sleeping")
+	var ending:String = "ending_sleep"
+	var custom_data = {"ending": ending}
+	SceneManager.goto("ending", custom_data)
+
 func _on_out_of_time() -> void:
 	self.set_process(false)
 	print("you ran out of time")
