@@ -111,3 +111,19 @@ res://dialogue/balloon.tscn
 	"To Kill a Mockingbird": "Harper Lee", 
 	"Les Miserables": "Victor Hugo",
 }
+
+
+LOD = 0.0
+wave_amplitude = 0.02
+wave_frequency = 10.0
+wave_speed = 2.0
+time_offset = 0.0
+noise_scale = 5.0
+noise_speed = 0.424
+noise_blur_amount = 0.005
+blob_strength = 0.0
+
+tween:
+wave_amplitude from 0 to 0.02
+# noise_scale from 0.1 to 5.0
+blob_strength from 0.0 to 0.5

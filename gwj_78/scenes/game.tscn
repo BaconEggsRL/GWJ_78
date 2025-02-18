@@ -26,6 +26,10 @@ shader_parameter/wave_amplitude = 0.02
 shader_parameter/wave_frequency = 10.0
 shader_parameter/wave_speed = 2.0
 shader_parameter/time_offset = 0.0
+shader_parameter/noise_scale = 5.0
+shader_parameter/noise_speed = 1.0
+shader_parameter/noise_blur_amount = 0.005
+shader_parameter/blob_strength = 0.0
 
 [sub_resource type="Theme" id="Theme_0tnpc"]
 
@@ -57,6 +61,10 @@ shader_parameter/wave_amplitude = 0.0
 shader_parameter/wave_frequency = 10.0
 shader_parameter/wave_speed = 2.0
 shader_parameter/time_offset = 0.0
+shader_parameter/noise_scale = 5.0
+shader_parameter/noise_speed = 0.1
+shader_parameter/noise_blur_amount = 0.005
+shader_parameter/blob_strength = 0.0
 
 [node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "blur", "mouse", "none", "SCENE_1", "blood_pool_rect", "body_rect", "gun_rect", "SCENE_2", "SCENE_3", "SCENE_4", "window_rect", "inventory_container", "time_left_label")]
 script = ExtResource("1_uwrxv")

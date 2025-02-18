@@ -21,8 +21,6 @@ var fade:Dictionary = {
 
 @export var blur:Sprite2D
 const BLUR = preload("res://shaders/blur.gdshader")
-var max_blur_strength = 2.5
-var blur_strength = 0.0
 
 @export var mouse:Mouse
 @export var none:InventoryButton
@@ -243,16 +241,23 @@ func eat_mushrooms() -> void:
 	mat.shader = BLUR
 	# apply material
 	blur.material = mat
+	
 	# tween shader
-	var tween = _create_shader_tween(blur, "lod", 0.0, max_blur_strength, 2.0)
-	tween.finished.connect(func():
+	var tween_time = 2.0
+	# set shader params
+	_create_shader_tween(blur, "wave_amplitude", 0.0, 0.02, tween_time)
+	_create_shader_tween(blur, "blob_strength", 0.0, 0.5, tween_time)
+	_create_shader_tween(blur, "lod", 0.0, 1.0, tween_time)
+	# trippy dialogue
+	var timer = get_tree().create_timer(tween_time)
+	timer.timeout.connect(func():
 		# delete active dialogue
 		if current_dialogue:
 			current_dialogue.queue_free.call_deferred()
 		# show dialogue
 		show_dialogue(MAIN_DIALOGUE, "mushroom")
 	)
-	_create_shader_tween(blur, "wave_amplitude", 0.0, 0.01, 2.0)
+	
 
 
 # window event
