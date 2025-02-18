@@ -19,6 +19,11 @@ var fade:Dictionary = {
 ###########################################################
 # exports
 
+@export var blur:Sprite2D
+const BLUR = preload("res://shaders/blur.gdshader")
+var max_blur_strength = 2.5
+var blur_strength = 0.0
+
 @export var mouse:Mouse
 @export var none:InventoryButton
 
@@ -220,7 +225,34 @@ func _process(_delta):
 			start_window_event()
 
 
+func _create_shader_tween(node: Node, shader_property: String, value_start: float, value_end: float, duration: float) -> Tween:
+	var tween = get_tree().create_tween()
+	tween.tween_method(
+		func(value): node.material.set_shader_parameter(shader_property, value),  
+		value_start,
+		value_end,
+		duration
+	);
+	return tween
 
+
+# eat the magic mushrooms
+func eat_mushrooms() -> void:
+	print("eat the mushrooms")
+	var mat = ShaderMaterial.new()
+	mat.shader = BLUR
+	# apply material
+	blur.material = mat
+	# tween shader
+	var tween = _create_shader_tween(blur, "lod", 0.0, max_blur_strength, 2.0)
+	tween.finished.connect(func():
+		# delete active dialogue
+		if current_dialogue:
+			current_dialogue.queue_free.call_deferred()
+		# show dialogue
+		show_dialogue(MAIN_DIALOGUE, "mushroom")
+	)
+	_create_shader_tween(blur, "wave_amplitude", 0.0, 0.01, 2.0)
 
 
 # window event

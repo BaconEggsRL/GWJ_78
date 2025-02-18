@@ -174,13 +174,23 @@ else:
 => END!
 
 ~ top_drawer
-MC: It's a top drawer.
+MC: Sonic, Halo, Minecraft... what a nerd.
 => END!
 
 ~ bottom_drawer
-MC: It's a bottom drawer.
+MC: Magic mushrooms? Hrmmmmm...
+MC: Seems like a waste.
+Eat the magic mushrooms?
+- Yes
+	MC: Alright, here goes nothing...
+	do eat_mushrooms()
+- No
+	MC: Better not.
 => END!
 
+~ mushroom
+MC: Oh damn... I don't feel so good...
+=> END!
 
 #######################################
 # SCENE 2

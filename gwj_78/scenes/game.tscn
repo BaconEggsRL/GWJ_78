@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=25 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
+[ext_resource type="Shader" uid="uid://dny7c3ex6hojy" path="res://shaders/blur.gdshader" id="2_rysoc"]
 [ext_resource type="Texture2D" uid="uid://bi6fthdipnt24" path="res://assets/art/room_scenes/scene_1_with_layers.png" id="2_trtic"]
 [ext_resource type="Texture2D" uid="uid://crsy5aygii3a" path="res://assets/art/room_scenes/blood_cleaned_body.png" id="3_kvuet"]
 [ext_resource type="Texture2D" uid="uid://bhch7kbbcn22v" path="res://assets/art/room_scenes/blood_pool.png" id="3_trtic"]
@@ -16,6 +17,15 @@
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="9_kvpfn"]
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="10_dinhu"]
 [ext_resource type="Texture2D" uid="uid://c5cuqk27im1mk" path="res://assets/art/inventory_objects/key.png" id="10_kvuet"]
+[ext_resource type="Texture2D" uid="uid://ccubv6rqogayt" path="res://icon.svg" id="18_ssvqc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssvqc"]
+shader = ExtResource("2_rysoc")
+shader_parameter/lod = 1.41
+shader_parameter/wave_amplitude = 0.02
+shader_parameter/wave_frequency = 10.0
+shader_parameter/wave_speed = 2.0
+shader_parameter/time_offset = 0.0
 
 [sub_resource type="Theme" id="Theme_0tnpc"]
 
@@ -40,9 +50,18 @@ shader_parameter/texture_size = Vector2(64, 64)
 shader_parameter/enabled = false
 shader_parameter/start_time = 0.0
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "mouse", "none", "SCENE_1", "blood_pool_rect", "body_rect", "gun_rect", "SCENE_2", "SCENE_3", "SCENE_4", "window_rect", "inventory_container", "time_left_label")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rysoc"]
+shader = ExtResource("2_rysoc")
+shader_parameter/lod = 0.0
+shader_parameter/wave_amplitude = 0.0
+shader_parameter/wave_frequency = 10.0
+shader_parameter/wave_speed = 2.0
+shader_parameter/time_offset = 0.0
+
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "blur", "mouse", "none", "SCENE_1", "blood_pool_rect", "body_rect", "gun_rect", "SCENE_2", "SCENE_3", "SCENE_4", "window_rect", "inventory_container", "time_left_label")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/UI_container/main_menu")
+blur = NodePath("blur")
 mouse = NodePath("mouse")
 none = NodePath("Control/UI_container/inventory_container/none")
 SCENE_1 = NodePath("Control/scene_container/room_scene_1")
@@ -57,6 +76,7 @@ inventory_container = NodePath("Control/UI_container/inventory_container")
 time_left_label = NodePath("Control/stat_container/time")
 
 [node name="Control" type="Control" parent="."]
+material = SubResource("ShaderMaterial_ssvqc")
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
@@ -94,7 +114,6 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="room_scene_1" type="TextureRect" parent="Control/scene_container"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 mouse_filter = 2
@@ -359,6 +378,7 @@ focus_mode = 0
 text = "floor_mat"
 
 [node name="room_scene_4" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("7_u5sy4")
@@ -507,6 +527,12 @@ item_name = "storage_closet_key"
 [node name="mouse" type="Sprite2D" parent="."]
 texture = ExtResource("9_kvpfn")
 script = ExtResource("10_dinhu")
+
+[node name="blur" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_rysoc")
+position = Vector2(631.5, 357.5)
+scale = Vector2(10.8672, 6.58594)
+texture = ExtResource("18_ssvqc")
 
 [connection signal="pressed" from="Control/UI_container/look_left" to="." method="look_left"]
 [connection signal="pressed" from="Control/UI_container/look_right" to="." method="look_right"]
