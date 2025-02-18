@@ -21,7 +21,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssvqc"]
 shader = ExtResource("2_rysoc")
-shader_parameter/lod = 1.41
 shader_parameter/wave_amplitude = 0.02
 shader_parameter/wave_frequency = 10.0
 shader_parameter/wave_speed = 2.0
@@ -56,7 +55,6 @@ shader_parameter/start_time = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rysoc"]
 shader = ExtResource("2_rysoc")
-shader_parameter/lod = 0.0
 shader_parameter/wave_amplitude = 0.0
 shader_parameter/wave_frequency = 10.0
 shader_parameter/wave_speed = 2.0

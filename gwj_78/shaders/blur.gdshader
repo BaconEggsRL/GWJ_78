@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float lod: hint_range(0.0, 5) = 0.0;
+//uniform float lod: hint_range(0.0, 5) = 0.0;
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
 
 uniform float wave_amplitude: hint_range(0.0, 0.1) = 0.02;
@@ -52,7 +52,8 @@ void fragment() {
     uv.x += wave * wave_amplitude;
 
     // Sample the blurred screen texture
-    vec4 color = texture(SCREEN_TEXTURE, uv, lod);
+    //vec4 color = texture(SCREEN_TEXTURE, uv, lod);
+	vec4 color = texture(SCREEN_TEXTURE, uv, 0.0);
 
     // Generate animated, smooth blob noise
     vec2 noise_uv = uv * noise_scale + vec2(TIME * noise_speed, TIME * noise_speed * 0.5);
