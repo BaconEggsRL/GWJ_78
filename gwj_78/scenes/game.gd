@@ -273,6 +273,11 @@ func hide_gun(location:String) -> void:
 			AudioManager.play_fx("garbage_disposal")
 			# current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
 			set_state("hid_gun_sink", true)
+		"nightstand":
+			AudioManager.play_fx("nightstand")
+			# current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
+			set_state("hid_gun_nightstand", true)
+			
 			
 	# remove body from inventory
 	set_inventory_item("gun", false)
@@ -503,6 +508,7 @@ func reset_progress() -> void:
 		
 		"hid_gun": false,
 		"hid_gun_sink": false,
+		"hid_gun_nightstand": false,
 		
 		"hid_body": false,
 		"hid_body_sink": false,

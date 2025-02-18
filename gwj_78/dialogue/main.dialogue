@@ -126,8 +126,7 @@ if state.blood_cleaned == false:
 ~ gun
 if inventory.gun == false:
 	MC: Gun as a murder weapon?
-	MC: That’s so last year... how lame.
-	MC: Might come in handy though.
+	MC: That’s so last year... how lame. Might come in handy though.
 	Pick up the gun?
 	- Yes
 		do pickup_gun()
@@ -307,20 +306,29 @@ Pick a book to read?
 => END!
 
 ~ night_stand
-On the nightstand, you find a sticky note.
-Read it?
-- Yes
-	Sticky note, reads:
-	To do:
-	Brush teeth
-	Audition for {{club_name}}
-	Brush teeth
-	Find another race candidate
-	Brush teeth
-	Go to the ring
-	Brush teeth
-	MC: Why does this guy like brushing his teeth so much?
-- No
+if mouse.current_state == mouse.State.GUN:
+	Hide the gun in the nightstand drawer?
+	- Yes
+		do hide_gun("nightstand")
+		MC: ...
+		MC: I guess that'll have to do.
+	- No
+		MC: I'll find another way.
+else:
+	On the nightstand, you find a sticky note.
+	Read it?
+	- Yes
+		Sticky note, reads:
+		To do:
+		Brush teeth
+		Audition for {{club_name}}
+		Brush teeth
+		Find another race candidate
+		Brush teeth
+		Go to the ring
+		Brush teeth
+		MC: Why does this guy like brushing his teeth so much?
+	- No
 
 => END!
 
@@ -346,7 +354,6 @@ if mouse.current_state == mouse.State.BODY:
 	- No
 		MC: I'll find another spot.
 elif mouse.current_state == mouse.State.GUN:
-	MC: This might be the only way to get rid of this...
 	Put the gun in the garbage disposal?
 	- Yes
 		do hide_gun("sink")

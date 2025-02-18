@@ -39,6 +39,8 @@ const WEBCAM_OFF = preload("res://assets/sound/3_fx/slap 14.wav")
 const SLURP_76969 = preload("res://assets/sound/3_fx/slurp-76969.mp3")
 const SINK_RUNNING = preload("res://assets/sound/3_fx/sink_running.wav")
 const GARBAGE_DISPOSAL = preload("res://assets/sound/3_fx/garbage_disposal-56458.wav")
+const NIGHTSTAND_DRAWER_CLOSE_9 = preload("res://assets/sound/3_fx/nightstand drawer close 9.wav")
+
 
 func play_ambient(ambient_name: String, fade_in_time: float = 2.0, final_db: float = -6.0) -> void:
 	if ambient_name in ambient_players:
@@ -218,6 +220,8 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> AudioStreamPlay
 			fx = SINK_RUNNING
 		"garbage_disposal":
 			fx = GARBAGE_DISPOSAL
+		"nightstand":
+			fx = NIGHTSTAND_DRAWER_CLOSE_9
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	
