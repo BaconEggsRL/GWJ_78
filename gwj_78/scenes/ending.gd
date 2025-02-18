@@ -9,6 +9,12 @@ const BALLOON = preload("res://dialogue/balloon.tscn")
 var custom_data = {"ending": "ending_normal"}
 
 func _ready() -> void:
+	if custom_data.ending != "ending_good":
+		AudioManager.play_fx("fbi")
+	else:
+		AudioManager.play_fx("yay")
+		
+		
 	show_dialogue(MAIN_DIALOGUE, custom_data.ending)  # custom function
 
 	match custom_data.ending:

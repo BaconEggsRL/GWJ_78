@@ -72,6 +72,7 @@ you got away
 *knock knock*
 ???: Hey! Anybody in there?
 MC: Shit. Somebody's at the window.
+MC: If I don't get rid of him somehow, the cops might come sooner.
 => END!
 
 
@@ -472,7 +473,10 @@ if state.window_event == true:
 		???: Hey man. What's going on here?
 		MC: Uhh...
 		- Ignore him
-			???: Dude... I think that guy's dead. I'm calling the cops.
+			if state.hid_body == false:
+				???: Dude... I think that guy's dead. I'm calling the cops.
+			else:
+				???: Hmmm... something's not right here. I'm calling the kappas.
 			do stop_window_event(false)
 		- Attempt to use jedi mind tricks
 			???: ...

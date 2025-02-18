@@ -90,7 +90,7 @@ var state := {}
 @export var max_seconds:float = 60 * 5.0
 @onready var time_left:float = max_seconds
 var time_elapsed := 0.0
-@onready var window_event_time:float = max_seconds-1 # max_seconds / 2.0  # time for window check to occur
+@onready var window_event_time:float = max_seconds * 0.95  # time for window check to occur
 @onready var plays:Dictionary = {
 	"Death of a Salesman": "Arthur Miller", 
 	"To Kill a Mockingbird": "Harper Lee", 
@@ -340,8 +340,16 @@ func _ready() -> void:
 func _process(_delta):
 	time_left -= _delta
 	time_elapsed += _delta
+	
+	var update_time := 1.0
+	
+	# double time during window event
+	if state.window_event == true:
+		update_time = 0.5
+		time_left -= _delta
+		
 	# avoid updating every frame
-	if time_elapsed >= 1.0:
+	if time_elapsed >= update_time:
 		update_time_label()
 		time_elapsed = 0.0
 		# check windown event
