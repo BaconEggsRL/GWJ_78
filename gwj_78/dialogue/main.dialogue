@@ -452,61 +452,77 @@ MC: Don't tell me...
 
 ~ window
 if state.window_event == true:
-	MC: Hello there.
-	???: Hey man. What's going on here?
-	MC: Uhh...
-	- Ignore him
-		???: Dude... I think that guy's dead. I'm calling the cops.
-		do stop_window_event(false)
-	- Attempt to use jedi mind tricks
-		???: ...
-		???: I dunno what's going on here, but that was super weird. I'm calling the cops.
-		do stop_window_event(false)
-	- Make up an excuse
-		What's your excuse?
-		- I killed someone, obviously.
-			???: ...
-			???: Riiiiight. Yeah I'm calling the cops.
+	if mouse.current_state == mouse.State.GUN:
+		???: AHHH! Please don't shoot mister!
+		MC: You gonna keep your mouth shut, punk?
+		???: A-hh-..I..--I mean, about what, sir?
+		MC: I mean, you didn't see nothing suspicious here, am I right?
+		???: Oh--oh, yes, yes of course sir.
+		MC: And we ain't gonna be calling no men in blue uniforms, are we now?
+		???: Uhh... no sir, no. I swear.
+		MC: You swear? *puts gun to forehead*
+		???: AHHHH!! ...
+		???: I.... I swear... Please let me go... *sobs*
+		MC: Alright. Scram.
+		???: Th-th...Thanks mister... You won't regret this!
+		do stop_window_event(true)
+		
+	else:
+		MC: Hello there.
+		???: Hey man. What's going on here?
+		MC: Uhh...
+		- Ignore him
+			???: Dude... I think that guy's dead. I'm calling the cops.
 			do stop_window_event(false)
-		- We're filming a commercial.
+		- Attempt to use jedi mind tricks
 			???: ...
-			???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+			???: I dunno what's going on here, but that was super weird. I'm calling the cops.
 			do stop_window_event(false)
-		- It's for a school play.
-			???: Oh yeah? Which one?
-			- Death of a Salesman.
-				do response = "Death of a Salesman"
-			- To Kill a Mockingbird.
-				do response = "To Kill a Mockingbird"
-			- Les Miserables.
-				do response = "Les Miserables"
-			if response == correct_play:
-				???: Right on. And who wrote that one again?
-				- Arthur Miller.
-					do response = "Arthur Miller"
-				- Harper Lee.
-					do response = "Harper Lee"
-				- Victor Hugo.
-					do response = "Victor Hugo"
-				if response == correct_author:
-					???: Hmm. You seem to really know your stuff. I guess I can trust you.
-					???: Be more careful next time. Somebody might think there was a murder or something.
-					MC: Roger that. Don't worry, no murders happening here!
-					???: Hahahaha... Yeah. I mean that body over there just looks [b]super[/b] realistic. Crazy.
-					MC: Yeah, our makeup artists, they're crazy good.
-					???: Hmm... Alright then. I won't bother you anymore. Have a good one.
-					MC: See ya later. (I hope not...)
-					???: What was that?
-					MC: Nothing. Bye!
-					???: Bye...
-					do stop_window_event(true)
-					
+		- Make up an excuse
+			What's your excuse?
+			- I killed someone, obviously.
+				???: ...
+				???: Riiiiight. Yeah I'm calling the cops.
+				do stop_window_event(false)
+			- We're filming a commercial.
+				???: ...
+				???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+				do stop_window_event(false)
+			- It's for a school play.
+				???: Oh yeah? Which one?
+				- Death of a Salesman.
+					do response = "Death of a Salesman"
+				- To Kill a Mockingbird.
+					do response = "To Kill a Mockingbird"
+				- Les Miserables.
+					do response = "Les Miserables"
+				if response == correct_play:
+					???: Right on. And who wrote that one again?
+					- Arthur Miller.
+						do response = "Arthur Miller"
+					- Harper Lee.
+						do response = "Harper Lee"
+					- Victor Hugo.
+						do response = "Victor Hugo"
+					if response == correct_author:
+						???: Hmm. You seem to really know your stuff. I guess I can trust you.
+						???: Be more careful next time. Somebody might think there was a murder or something.
+						MC: Roger that. Don't worry, no murders happening here!
+						???: Hahahaha... Yeah. I mean that body over there just looks [b]super[/b] realistic. Crazy.
+						MC: Yeah, our makeup artists, they're crazy good.
+						???: Hmm... Alright then. I won't bother you anymore. Have a good one.
+						MC: See ya later. (I hope not...)
+						???: What was that?
+						MC: Nothing. Bye!
+						???: Bye...
+						do stop_window_event(true)
+						
+					else:
+						???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+						do stop_window_event(false)
 				else:
 					???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
 					do stop_window_event(false)
-			else:
-				???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
-				do stop_window_event(false)
 
 else:
 	if state.curtains_closed == false:

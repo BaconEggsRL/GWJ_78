@@ -292,6 +292,7 @@ focus_mode = 0
 text = "bot dra"
 
 [node name="room_scene_2" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("5_iywne")
@@ -412,7 +413,6 @@ focus_mode = 0
 text = "pee"
 
 [node name="room_scene_4" type="TextureRect" parent="Control/scene_container"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("7_u5sy4")
