@@ -243,13 +243,13 @@ func eat_mushrooms() -> void:
 	blur.material = mat
 	
 	# tween shader
-	var tween_time = 2.0
+	var tween_time = 3.0
 	# set shader params
 	_create_shader_tween(blur, "wave_amplitude", 0.0, 0.02, tween_time)
 	_create_shader_tween(blur, "blob_strength", 0.0, 0.5, tween_time)
 	_create_shader_tween(blur, "lod", 0.0, 1.0, tween_time)
 	# trippy dialogue
-	var timer = get_tree().create_timer(tween_time)
+	var timer = get_tree().create_timer(tween_time + 1.0)
 	timer.timeout.connect(func():
 		# delete active dialogue
 		if current_dialogue:
