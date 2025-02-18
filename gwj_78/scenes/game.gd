@@ -45,6 +45,7 @@ const WEBCAM_OFF = preload("res://assets/art/room_scenes/webcam_off.png")
 const SCENE_2__BODY_UNDER_BED = preload("res://assets/art/room_scenes/scene_2__body_under_bed.png")
 
 @export var SCENE_3:TextureRect
+@onready var wash_count = 0
 
 @export var SCENE_4:TextureRect
 @export var window_rect:TextureRect
@@ -418,6 +419,14 @@ func pickup_gun() -> void:
 		gun_rect.visible = false
 	)
 
+# wash your hands then ya flithy animal
+func wash_hands() -> void:
+	AudioManager.play_fx("mopping_sound")
+	set_state("washed_hands", true)
+	wash_count += 1
+	
+	
+	
 
 # fire gun
 func _on_fire_gun(pos:Vector2 = get_global_mouse_position()) -> void:
@@ -447,6 +456,7 @@ func reset_progress() -> void:
 	}
 	state = {
 		"webcam_off": false,
+		"washed_hands": false,
 		
 		"hid_body": false,
 		"hid_body_in_trash": false,
