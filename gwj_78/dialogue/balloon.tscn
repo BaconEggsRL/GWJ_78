@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0w5v5f818v1r"]
+[gd_scene load_steps=10 format=3 uid="uid://d0w5v5f818v1r"]
 
 [ext_resource type="Script" uid="uid://dhqdgc3y0yc3" path="res://dialogue/balloon.gd" id="1_36de5"]
+[ext_resource type="Theme" uid="uid://dfqh8o2volg3o" path="res://dialogue/balloon_test_theme.tres" id="2_3fodd"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
 
@@ -91,8 +92,10 @@ offset_bottom = -19.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
+theme = ExtResource("2_3fodd")
 
 [node name="Dialogue" type="MarginContainer" parent="Balloon/Panel"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

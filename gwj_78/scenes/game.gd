@@ -135,12 +135,21 @@ func exit_through_front_door() -> void:
 	elif state.blood_cleaned == false:
 		ending = "ending_normal"
 	
+	# Event endings
+	elif state.window_event == true:
+		ending = "ending_window"
+	
 	# Special endings
 	elif state.webcam_off == false:
 		ending = "ending_webcam"
 		
 	elif state.drank_blood == true:
 		ending = "ending_vampire"
+		
+	elif state.washed_hands == true:
+		ending = "ending_clean_hands"
+	
+	
 	
 	# Good ending
 	else:

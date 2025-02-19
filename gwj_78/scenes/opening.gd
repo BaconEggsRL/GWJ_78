@@ -5,13 +5,19 @@ var MAIN = load("res://scenes/main.tscn")
 var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
 const BALLOON = preload("res://dialogue/balloon.tscn")
 
+const SKIP_CONTAINER = preload("res://skip_container.tscn")
 
 
 func _ready() -> void:
 	# play music
 	AudioManager.play_music("music_funk", -6.0)
 	# show dialogue
-	show_dialogue(MAIN_DIALOGUE, "opening")  # custom function
+	var dialogue = show_dialogue(MAIN_DIALOGUE, "opening")  # custom function
+	
+	# add skip
+	var skip = SKIP_CONTAINER.instantiate()
+	dialogue.add_child(skip)
+	skip.get_node("skip").pressed.connect(_on_skip_pressed)
 
 
 #func _on_main_menu_pressed() -> void:

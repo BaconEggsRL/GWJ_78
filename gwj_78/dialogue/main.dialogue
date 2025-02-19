@@ -59,6 +59,10 @@ you got caught by the window guy
 you got caught sleeping on the job
 => END!
 
+~ ending_clean_hands
+you had suspiciously clean hands
+=> END!
+
 ~ ending_good
 you got away
 => END!
