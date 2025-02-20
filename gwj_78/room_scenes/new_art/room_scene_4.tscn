@@ -1,0 +1,127 @@
+[gd_scene load_steps=7 format=3 uid="uid://badabtk8rm04w"]
+
+[ext_resource type="Texture2D" uid="uid://dl2i2kjm0vrbr" path="res://room_scenes/new_art/Assets - scene 4/Background.png" id="1_0ikeq"]
+[ext_resource type="Texture2D" uid="uid://dwc640nonne01" path="res://room_scenes/new_art/Assets - scene 4/Curtain-open-window-shut.png" id="2_enhmx"]
+[ext_resource type="Texture2D" uid="uid://cwpd1qrkwhhf1" path="res://room_scenes/new_art/Assets - scene 4/Bed.png" id="3_ma70m"]
+[ext_resource type="Texture2D" uid="uid://c64btxxeng686" path="res://room_scenes/new_art/Assets - scene 4/Mess.png" id="4_cjfxt"]
+[ext_resource type="Texture2D" uid="uid://blg7t53cboa6c" path="res://room_scenes/new_art/Assets - scene 4/Toilet_.png" id="5_tqdne"]
+[ext_resource type="Texture2D" uid="uid://d2r3kxnm3dkn3" path="res://room_scenes/new_art/Assets - scene 4/Sink.png" id="6_8d878"]
+
+[node name="room_scene_4" type="TextureRect"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.556863)
+texture = ExtResource("1_0ikeq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="window_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_enhmx")
+
+[node name="window" type="Button" parent="window_rect"]
+layout_mode = 0
+offset_left = 533.0
+offset_top = 24.0
+offset_right = 734.0
+offset_bottom = 384.0
+focus_mode = 0
+text = "window"
+
+[node name="curtain" type="Button" parent="window_rect"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 11.0
+offset_right = 543.0
+offset_bottom = 421.0
+focus_mode = 0
+text = "curtain"
+
+[node name="curtain2" type="Button" parent="window_rect"]
+layout_mode = 0
+offset_left = 721.0
+offset_top = 10.0
+offset_right = 832.0
+offset_bottom = 420.0
+focus_mode = 0
+text = "curtain"
+
+[node name="night_stand_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="night_stand" type="Button" parent="night_stand_rect"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 384.0
+offset_right = 238.0
+offset_bottom = 589.0
+focus_mode = 0
+text = "night_stand"
+
+[node name="bed_top_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_ma70m")
+
+[node name="bed_top" type="Button" parent="bed_top_rect"]
+layout_mode = 0
+offset_top = 411.0
+offset_right = 448.0
+offset_bottom = 645.0
+focus_mode = 0
+text = "bed_top"
+
+[node name="sheets_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("4_cjfxt")
+
+[node name="floor_mat" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1053.0
+offset_top = 567.0
+offset_right = 1183.0
+offset_bottom = 862.0
+rotation = -0.7662
+focus_mode = 0
+text = "floor_mat"
+
+[node name="toilet_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("5_tqdne")
+
+[node name="toilet" type="Button" parent="toilet_rect"]
+layout_mode = 0
+offset_left = 1070.0
+offset_top = 457.0
+offset_right = 1188.0
+offset_bottom = 515.0
+focus_mode = 0
+text = "pee"
+
+[node name="sink_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("6_8d878")
+
+[node name="sink" type="Button" parent="sink_rect"]
+layout_mode = 0
+offset_left = 1153.0
+offset_top = 308.0
+offset_right = 1284.0
+offset_bottom = 574.0
+focus_mode = 0
+text = "sink"

@@ -32,11 +32,23 @@ const BULLET_HOLE_RECT = preload("res://bullet_hole_rect.tscn")
 
 @export var scene_container:MarginContainer
 
-@onready var SCENE_1:TextureRect = scene_container.get_node("room_scene_1")
+const ROOM_SCENE_1_NEW = preload("res://room_scenes/new_art/room_scene_1.tscn")
+const ROOM_SCENE_2_NEW = preload("res://room_scenes/new_art/room_scene_2.tscn")
+const ROOM_SCENE_3_NEW = preload("res://room_scenes/new_art/room_scene_3.tscn")
+const ROOM_SCENE_4_NEW = preload("res://room_scenes/new_art/room_scene_4.tscn")
 
-@onready var blood_pool_rect:TextureRect = SCENE_1.get_node("blood_pool_rect")
-@onready var body_rect:TextureRect = SCENE_1.get_node("body_rect")
-@onready var gun_rect:TextureRect = SCENE_1.get_node("gun_rect")
+const ROOM_SCENE_1 = preload("res://room_scenes/old_art/room_scene_1.tscn")
+const ROOM_SCENE_2 = preload("res://room_scenes/old_art/room_scene_2.tscn")
+const ROOM_SCENE_3 = preload("res://room_scenes/old_art/room_scene_3.tscn")
+const ROOM_SCENE_4 = preload("res://room_scenes/old_art/room_scene_4.tscn")
+
+
+var SCENE_1:TextureRect
+
+var blood_pool_rect:TextureRect
+var body_rect:TextureRect
+var gun_rect:TextureRect
+var webcam_rect:TextureRect
 
 const SCENE_1_WITH_LAYERS__BODY_IN_TRASH = preload("res://assets/art/room_scenes/scene_1_with_layers__body_in_trash.png")
 const TRASH_WITH_CORPSE_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Trash_with_corpse.png")
@@ -46,17 +58,20 @@ const WEBCAM_OFF = preload("res://assets/art/room_scenes/webcam_off.png")
 const WEBCAM_ON_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webcam-on.png")
 const WEBCAM_OFF_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webcam-off.png")
 
-@onready var webcam_rect:TextureRect = SCENE_1.get_node("webcam_rect")
 
 
-@onready var SCENE_2:TextureRect = scene_container.get_node("room_scene_2")
+var SCENE_2:TextureRect
 const SCENE_2__BODY_UNDER_BED = preload("res://assets/art/room_scenes/scene_2__body_under_bed.png")
 
-@onready var SCENE_3:TextureRect = scene_container.get_node("room_scene_3")
+
+var SCENE_3:TextureRect
 @onready var wash_count = 0
 
-@onready var SCENE_4:TextureRect = scene_container.get_node("room_scene_4")
-@onready var window_rect:TextureRect = SCENE_4.get_node("window_rect")
+
+
+var SCENE_4:TextureRect
+var window_rect:TextureRect
+
 const CURTAINS_OPEN = preload("res://assets/art/room_scenes/curtains_open.png")
 const CURTAINS_CLOSED = preload("res://assets/art/room_scenes/curtains_closed.png")
 const CURTAINS_OPEN_EVENT = preload("res://assets/art/room_scenes/curtains_open_event.png")
@@ -348,17 +363,44 @@ func _ready() -> void:
 	
 	# old art
 	if save_data.use_old_art:
+		SCENE_1 = ROOM_SCENE_1.instantiate()
+		SCENE_2 = ROOM_SCENE_2.instantiate()
+		SCENE_3 = ROOM_SCENE_3.instantiate()
+		SCENE_4 = ROOM_SCENE_4.instantiate()
+
 		room_scenes = [SCENE_1, SCENE_2, SCENE_3, SCENE_4]
+		
 		scene_container.add_theme_constant_override("margin_left", 16)
 		scene_container.add_theme_constant_override("margin_top", 16)
 		scene_container.add_theme_constant_override("margin_right", 16)
 		scene_container.add_theme_constant_override("margin_bottom", 16)
+		
 	else:
+		SCENE_1 = ROOM_SCENE_1_NEW.instantiate()
+		SCENE_2 = ROOM_SCENE_2_NEW.instantiate()
+		SCENE_3 = ROOM_SCENE_3_NEW.instantiate()
+		SCENE_4 = ROOM_SCENE_4_NEW.instantiate()
+		
 		room_scenes = [SCENE_1, SCENE_2, SCENE_4, SCENE_3]
+		
 		scene_container.add_theme_constant_override("margin_left", 0)
 		scene_container.add_theme_constant_override("margin_top", 0)
 		scene_container.add_theme_constant_override("margin_right", 0)
 		scene_container.add_theme_constant_override("margin_bottom", 0)
+	
+	# add childs
+	scene_container.add_child(SCENE_1)
+	scene_container.add_child(SCENE_2)
+	scene_container.add_child(SCENE_3)
+	scene_container.add_child(SCENE_4)
+	
+	# update vars
+	blood_pool_rect = SCENE_1.get_node("blood_pool_rect")
+	body_rect = SCENE_1.get_node("body_rect")
+	gun_rect = SCENE_1.get_node("gun_rect")
+	webcam_rect = SCENE_1.get_node("webcam_rect")
+	window_rect = SCENE_4.get_node("window_rect")
+
 
 	
 	# pick play
