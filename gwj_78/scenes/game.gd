@@ -440,18 +440,7 @@ func eat_mushrooms() -> void:
 	
 	
 
-
-func unlock_achievement(achievement_name:String) -> void:
-	# unlock achievement
-	# check if this ending has been reached before
-	if SaveData.has_unlocked(achievement_name):
-		print("Player has reached '%s' before!" % achievement_name)
-		return
-		
-		
-	# update save data
-	SaveData.unlock_achievement(achievement_name)
-	
+func show_achievement_popup(achievement_name:String) -> void:
 	# show achievement popup
 	var popup = Panel.new()
 	popup.size = Vector2(256, 84)
@@ -488,6 +477,19 @@ func unlock_achievement(achievement_name:String) -> void:
 		await tween_out.finished
 		popup.queue_free.call_deferred()  # Remove popup after animation
 	)
+	
+	
+
+func unlock_achievement(achievement_name:String) -> void:
+	# unlock achievement
+	# check if this ending has been reached before
+	if SaveData.has_unlocked(achievement_name):
+		print("Player has reached '%s' before!" % achievement_name)
+		return
+	# update save data
+	SaveData.unlock_achievement(achievement_name)
+	# show popup
+	show_achievement_popup(achievement_name)
 
 
 # window event

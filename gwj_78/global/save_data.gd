@@ -8,7 +8,7 @@ var all_achievements: Array = [
 	"ending_sleep", "ending_webcam", "ending_gun", "ending_vampire", 
 	"ending_clean_hands", "ending_good",
 	
-	"shrooms", "intimidation",
+	"shrooms", "intimidation", "playwright"
 ]
 
 var achievement_icons: Dictionary = {
@@ -25,6 +25,7 @@ var achievement_icons: Dictionary = {
 	
 	"shrooms": preload("res://icons/shrooms.png"),
 	"intimidation": preload("res://icons/intimidation.png"),
+	"playwright": preload("res://icons/playwright.png"),
 }
 var locked_icon = preload("res://icons/locked.png")
 
@@ -49,7 +50,7 @@ var achievement_hover_text: Dictionary = {
 	"ending_body": "Leave with the body in your inventory",
 	"ending_normal": "Leave without getting rid of the evidence",
 	"ending_time": "Run out of time",
-	"ending_window": "Get caught by the window guy",
+	"ending_window": "Get caught by window guy",
 	"ending_sleep": "Get caught sleeping on the job",
 	"ending_webcam": "Get caught via webcam footage",
 	"ending_gun": "Leave with the murder weapon",
@@ -58,7 +59,8 @@ var achievement_hover_text: Dictionary = {
 	"ending_good": "You got away!",
 	
 	"shrooms": "Get high on shrooms",
-	"intimidation": "Bully the window guy into submission",
+	"intimidation": "Bully window guy into submission",
+	"playwright": "Charm window guy with your literary prowess",
 }
 var locked_hover = "(You haven't unlocked this achievement yet.)"
 
@@ -74,10 +76,11 @@ var achievement_names: Dictionary = {
 	"ending_gun": "Prime Suspect",
 	"ending_vampire": "Vampirism",
 	"ending_clean_hands": "Germaphobe",
-	"ending_good": "'The Good Ending'™",
+	"ending_good": "The Good Ending™",
 	
 	"shrooms": "Shroom Lover",
 	"intimidation": "Intimidation",
+	"playwright": "Playwright",
 }
 var locked_name = "Locked"
 
@@ -99,6 +102,11 @@ func load_achievements() -> void:
 		for achievement in config.get_section_keys("achievements"):
 			achievements_unlocked[achievement] = config.get_value("achievements", achievement, false)
 
+
+
+	
+	
+	
 func unlock_achievement(achievement: String) -> void:
 	if not achievements_unlocked.has(achievement):
 		achievements_unlocked[achievement] = true
@@ -108,6 +116,14 @@ func unlock_achievement(achievement: String) -> void:
 func has_unlocked(achievement: String) -> bool:
 	return achievements_unlocked.get(achievement, false)
 
+func has_unlocked_all() -> bool:
+	for achievement in all_achievements:
+		var unlocked = achievements_unlocked.get(achievement, false)
+		if not unlocked:
+			return false
+	return true 
+	
+	
 #func get_unlocked_achievements() -> Array:
 	#var unlocked = []
 	#for achievement in achievements_unlocked.keys():

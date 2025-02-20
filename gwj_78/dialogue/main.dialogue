@@ -514,6 +514,7 @@ if state.window_event == true:
 					- Victor Hugo.
 						do response = "Victor Hugo"
 					if response == correct_author:
+						do unlock_achievement("playwright")
 						???: Hmm. You seem to really know your stuff. I guess I can trust you.
 						???: Be more careful next time. Somebody might think there was a murder or something.
 						MC: Roger that. Don't worry, no murders happening here!

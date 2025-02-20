@@ -3,9 +3,16 @@ extends Node2D
 @export var main_menu_btn:Button
 @export var grid_container:GridContainer
 
+@export var fireworks:ColorRect
+
 
 
 func _ready() -> void:
+	var unlocked_all = SaveData.has_unlocked_all()
+	if unlocked_all:
+		fireworks.show()
+	else:
+		fireworks.hide()
 	main_menu_btn.pressed.connect(_to_main)
 	display_achievements()
 	

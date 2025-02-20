@@ -1,13 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cocaiu0npv5dm"]
+[gd_scene load_steps=6 format=3 uid="uid://cocaiu0npv5dm"]
 
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="1_2q86a"]
 [ext_resource type="Script" uid="uid://bruuj2q4n77ct" path="res://scenes/achievements.gd" id="1_jqgop"]
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="2_jqgop"]
+[ext_resource type="Shader" uid="uid://uwggyrjhhx7t" path="res://scenes/fireworks.gdshader" id="2_ttb8s"]
 
-[node name="achievements" type="Node2D" node_paths=PackedStringArray("main_menu_btn", "grid_container")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uhxyi"]
+shader = ExtResource("2_ttb8s")
+shader_parameter/TWOPI = 6.28319
+shader_parameter/NUM_EXPLOSIONS = 8.0
+shader_parameter/NUM_PARTICLES = 70.0
+shader_parameter/MOD3 = Vector3(0.1031, 0.11369, 0.13787)
+
+[node name="achievements" type="Node2D" node_paths=PackedStringArray("main_menu_btn", "grid_container", "fireworks")]
 script = ExtResource("1_jqgop")
 main_menu_btn = NodePath("Control/UI_container/main_menu")
 grid_container = NodePath("Control/Panel/MarginContainer/ScrollContainer/GridContainer")
+fireworks = NodePath("Control/fireworks")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -18,6 +27,13 @@ offset_right = 1280.0
 offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="fireworks" type="ColorRect" parent="Control"]
+visible = false
+material = SubResource("ShaderMaterial_uhxyi")
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
 
 [node name="title" type="RichTextLabel" parent="Control"]
 layout_mode = 1
