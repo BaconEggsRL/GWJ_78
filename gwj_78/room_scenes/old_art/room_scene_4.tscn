@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmik07t8t2ugi"]
+
+[ext_resource type="Texture2D" uid="uid://dunxwgsxseaf1" path="res://assets/art/room_scenes/scene_4.png" id="1_5p3n8"]
+[ext_resource type="Texture2D" uid="uid://dknjl3wt50kbd" path="res://assets/art/room_scenes/curtains_open.png" id="2_kao2m"]
+
+[node name="room_scene_4" type="TextureRect"]
+self_modulate = Color(1, 1, 1, 0.556863)
+texture = ExtResource("1_5p3n8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="window_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 96.0
+offset_right = 861.0
+offset_bottom = 470.0
+texture = ExtResource("2_kao2m")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="window" type="Button" parent="window_rect"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 19.0
+offset_right = 264.0
+offset_bottom = 331.0
+focus_mode = 0
+text = "window"
+
+[node name="curtain" type="Button" parent="window_rect"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 19.0
+offset_right = 111.0
+offset_bottom = 331.0
+focus_mode = 0
+text = "curtain"
+
+[node name="curtain2" type="Button" parent="window_rect"]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 18.0
+offset_right = 326.0
+offset_bottom = 330.0
+focus_mode = 0
+text = "curtain"
+
+[node name="bed_top" type="Button" parent="."]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 378.0
+offset_right = 509.0
+offset_bottom = 631.0
+focus_mode = 0
+text = "bed_top"
+
+[node name="sink" type="Button" parent="."]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 316.0
+offset_right = 1025.0
+offset_bottom = 569.0
+focus_mode = 0
+text = "sink"

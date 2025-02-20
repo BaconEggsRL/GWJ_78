@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://dls3xrjd7lj0r"]
+
+[ext_resource type="Texture2D" uid="uid://cb2k575pov5pb" path="res://assets/art/room_scenes/scene_3.png" id="1_cbr5q"]
+
+[node name="room_scene_3" type="TextureRect"]
+self_modulate = Color(1, 1, 1, 0.556863)
+texture = ExtResource("1_cbr5q")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="bed_top" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 951.0
+offset_top = 407.0
+offset_right = 1037.0
+offset_bottom = 568.0
+rotation = -0.610865
+focus_mode = 0
+text = "bed_top"
+
+[node name="bed_bottom" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 977.0
+offset_top = 481.0
+offset_right = 1137.0
+offset_bottom = 559.0
+rotation = 0.921534
+focus_mode = 0
+text = "bed_bottom"
+
+[node name="sink" type="Button" parent="."]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 186.0
+offset_right = 526.0
+offset_bottom = 403.0
+focus_mode = 0
+text = "sink"
+
+[node name="sink_shelf" type="Button" parent="."]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 134.0
+offset_right = 664.0
+offset_bottom = 450.0
+focus_mode = 0
+text = "sink_shelf"
+
+[node name="mirror" type="Button" parent="."]
+layout_mode = 0
+offset_left = 723.0
+offset_top = 133.0
+offset_right = 851.0
+offset_bottom = 409.0
+focus_mode = 0
+text = "mirror"
+
+[node name="floor_mat" type="Button" parent="."]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 459.0
+offset_right = 532.0
+offset_bottom = 551.0
+focus_mode = 0
+text = "floor_mat"
+
+[node name="toilet" type="Button" parent="."]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 440.0
+offset_right = 317.0
+offset_bottom = 482.0
+focus_mode = 0
+text = "pee"

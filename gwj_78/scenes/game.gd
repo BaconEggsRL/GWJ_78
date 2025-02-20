@@ -52,18 +52,18 @@ const WEBCAM_OFF_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webca
 @onready var SCENE_2:TextureRect = scene_container.get_node("room_scene_2")
 const SCENE_2__BODY_UNDER_BED = preload("res://assets/art/room_scenes/scene_2__body_under_bed.png")
 
-@export var SCENE_3:TextureRect
+@onready var SCENE_3:TextureRect = scene_container.get_node("room_scene_3")
 @onready var wash_count = 0
 
-@export var SCENE_4:TextureRect
-@export var window_rect:TextureRect
+@onready var SCENE_4:TextureRect = scene_container.get_node("room_scene_4")
+@onready var window_rect:TextureRect = SCENE_4.get_node("window_rect")
 const CURTAINS_OPEN = preload("res://assets/art/room_scenes/curtains_open.png")
 const CURTAINS_CLOSED = preload("res://assets/art/room_scenes/curtains_closed.png")
 const CURTAINS_OPEN_EVENT = preload("res://assets/art/room_scenes/curtains_open_event.png")
 
 
 
-@onready var room_scenes = [SCENE_1, SCENE_2, SCENE_3, SCENE_4]
+var room_scenes:Array
 
 @export var starting_scene_index = 0
 @onready var current_scene_index = starting_scene_index
@@ -344,17 +344,18 @@ func _ready() -> void:
 	
 	# old art
 	if save_data.use_old_art:
+		room_scenes = [SCENE_1, SCENE_2, SCENE_3, SCENE_4]
 		scene_container.add_theme_constant_override("margin_left", 16)
 		scene_container.add_theme_constant_override("margin_top", 16)
 		scene_container.add_theme_constant_override("margin_right", 16)
 		scene_container.add_theme_constant_override("margin_bottom", 16)
 	else:
+		room_scenes = [SCENE_1, SCENE_2, SCENE_4, SCENE_3]
 		scene_container.add_theme_constant_override("margin_left", 0)
 		scene_container.add_theme_constant_override("margin_top", 0)
 		scene_container.add_theme_constant_override("margin_right", 0)
 		scene_container.add_theme_constant_override("margin_bottom", 0)
-		
-	
+
 	
 	# pick play
 	var play_index:int = randi_range(0, plays.size()-1)
@@ -803,6 +804,7 @@ func change_scene_to(new_scene_index:int) -> void:
 	# update current scene
 	print("index = %s" % new_scene_index)
 	current_scene_index = new_scene_index % room_scenes.size()
+	
 	print("current_scene_index = %s" % current_scene_index)
 	current_room_scene = room_scenes[current_scene_index]
 	
