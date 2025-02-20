@@ -422,105 +422,7 @@ offset_bottom = 720.0
 mouse_filter = 2
 texture = ExtResource("18_suyxu")
 
-[node name="room_scene_3" type="TextureRect" parent="Control/scene_container"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.556863)
-layout_mode = 2
-texture = ExtResource("19_suyxu")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="storage_closet_rect" type="TextureRect" parent="Control/scene_container/room_scene_3"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource("20_sgl2t")
-
-[node name="storage_closet" type="Button" parent="Control/scene_container/room_scene_3/storage_closet_rect"]
-layout_mode = 0
-offset_left = 1021.0
-offset_top = 97.0
-offset_right = 1279.0
-offset_bottom = 624.0
-focus_mode = 0
-text = "storage_closet"
-
-[node name="mirror_rect" type="TextureRect" parent="Control/scene_container/room_scene_3"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource("21_qouja")
-
-[node name="mirror" type="Button" parent="Control/scene_container/room_scene_3/mirror_rect"]
-layout_mode = 0
-offset_left = 649.0
-offset_top = 65.0
-offset_right = 820.0
-offset_bottom = 433.0
-focus_mode = 0
-text = "mirror"
-
-[node name="sink_shelf_rect" type="TextureRect" parent="Control/scene_container/room_scene_3"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource("22_wljb1")
-
-[node name="sink_shelf" type="Button" parent="Control/scene_container/room_scene_3/sink_shelf_rect"]
-layout_mode = 0
-offset_left = 430.0
-offset_top = 241.0
-offset_right = 601.0
-offset_bottom = 551.0
-focus_mode = 0
-text = "sink_shelf"
-
-[node name="sink_rect" type="TextureRect" parent="Control/scene_container/room_scene_3"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource("23_v2yb1")
-
-[node name="sink" type="Button" parent="Control/scene_container/room_scene_3/sink_rect"]
-layout_mode = 0
-offset_left = 210.0
-offset_top = 206.0
-offset_right = 433.0
-offset_bottom = 450.0
-focus_mode = 0
-text = "sink"
-
-[node name="floor_mat" type="Button" parent="Control/scene_container/room_scene_3"]
-layout_mode = 0
-offset_left = 170.0
-offset_top = 482.0
-offset_right = 416.0
-offset_bottom = 574.0
-focus_mode = 0
-text = "floor_mat"
-
-[node name="toilet_rect" type="TextureRect" parent="Control/scene_container/room_scene_3"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource("24_js0lu")
-
-[node name="toilet" type="Button" parent="Control/scene_container/room_scene_3/toilet_rect"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 458.0
-offset_right = 191.0
-offset_bottom = 505.0
-focus_mode = 0
-text = "pee"
-
 [node name="room_scene_4" type="TextureRect" parent="Control/scene_container"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("25_js0lu")
@@ -638,6 +540,103 @@ offset_right = 1284.0
 offset_bottom = 574.0
 focus_mode = 0
 text = "sink"
+
+[node name="room_scene_3" type="TextureRect" parent="Control/scene_container"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.556863)
+layout_mode = 2
+texture = ExtResource("19_suyxu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="storage_closet_rect" type="TextureRect" parent="Control/scene_container/room_scene_3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("20_sgl2t")
+
+[node name="storage_closet" type="Button" parent="Control/scene_container/room_scene_3/storage_closet_rect"]
+layout_mode = 0
+offset_left = 1021.0
+offset_top = 97.0
+offset_right = 1279.0
+offset_bottom = 624.0
+focus_mode = 0
+text = "storage_closet"
+
+[node name="mirror_rect" type="TextureRect" parent="Control/scene_container/room_scene_3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("21_qouja")
+
+[node name="mirror" type="Button" parent="Control/scene_container/room_scene_3/mirror_rect"]
+layout_mode = 0
+offset_left = 649.0
+offset_top = 65.0
+offset_right = 820.0
+offset_bottom = 433.0
+focus_mode = 0
+text = "mirror"
+
+[node name="sink_shelf_rect" type="TextureRect" parent="Control/scene_container/room_scene_3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("22_wljb1")
+
+[node name="sink_shelf" type="Button" parent="Control/scene_container/room_scene_3/sink_shelf_rect"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 241.0
+offset_right = 601.0
+offset_bottom = 551.0
+focus_mode = 0
+text = "sink_shelf"
+
+[node name="sink_rect" type="TextureRect" parent="Control/scene_container/room_scene_3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("23_v2yb1")
+
+[node name="sink" type="Button" parent="Control/scene_container/room_scene_3/sink_rect"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 206.0
+offset_right = 433.0
+offset_bottom = 450.0
+focus_mode = 0
+text = "sink"
+
+[node name="floor_mat" type="Button" parent="Control/scene_container/room_scene_3"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 482.0
+offset_right = 416.0
+offset_bottom = 574.0
+focus_mode = 0
+text = "floor_mat"
+
+[node name="toilet_rect" type="TextureRect" parent="Control/scene_container/room_scene_3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("24_js0lu")
+
+[node name="toilet" type="Button" parent="Control/scene_container/room_scene_3/toilet_rect"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 458.0
+offset_right = 191.0
+offset_bottom = 505.0
+focus_mode = 0
+text = "pee"
 
 [node name="UI_container" type="MarginContainer" parent="Control"]
 layout_mode = 1

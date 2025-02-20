@@ -545,15 +545,17 @@ if state.window_event == false:
 	if state.curtains_closed == false:
 		MC: It's the curtains. Pull them shut?
 		- Yes
-			MC: You closed the curtains.
 			do close_curtains()
+			MC: You closed the curtains.
+			
 		- No
 			MC: You didn't close the curtains.
 	else:
 		MC: It's the curtains. Open them?
 		- Yes
-			MC: You opened the curtains.
 			do open_curtains()
+			MC: You opened the curtains.
+			
 		- No
 			MC: You didn't open the curtains.
 => END!

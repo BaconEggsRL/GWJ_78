@@ -61,6 +61,10 @@ const CURTAINS_OPEN = preload("res://assets/art/room_scenes/curtains_open.png")
 const CURTAINS_CLOSED = preload("res://assets/art/room_scenes/curtains_closed.png")
 const CURTAINS_OPEN_EVENT = preload("res://assets/art/room_scenes/curtains_open_event.png")
 
+const CURTAINS_OPEN_NEW = preload("res://room_scenes/new_art/Assets - scene 4/Curtain-open-window-shut.png")
+const CURTAINS_CLOSED_NEW = preload("res://room_scenes/new_art/Assets - scene 4/Curtains-closed.png")
+const CURTAINS_OPEN_EVENT_NEW = preload("res://room_scenes/new_art/Assets - scene 4/Witness-in-window.png")
+
 
 
 var room_scenes:Array
@@ -543,14 +547,24 @@ func start_window_event() -> void:
 	current_dialogue = show_dialogue(MAIN_DIALOGUE, "window_event")
 	
 	# update texture
-	window_rect.texture = CURTAINS_OPEN_EVENT
+	var new_texture:CompressedTexture2D
+	if save_data.use_old_art:
+		new_texture = CURTAINS_OPEN_EVENT
+	else:
+		new_texture = CURTAINS_OPEN_EVENT_NEW
+	window_rect.texture = new_texture
 	# update game state
 	set_state("window_event", true)
 	
 
 
 func stop_window_event(success:bool) -> void:
-	window_rect.texture = CURTAINS_OPEN
+	var new_texture:CompressedTexture2D
+	if save_data.use_old_art:
+		new_texture = CURTAINS_OPEN
+	else:
+		new_texture = CURTAINS_OPEN_NEW
+	window_rect.texture = new_texture
 	set_state("window_event", false)
 	if success == false:
 		_on_window_failed()
@@ -563,14 +577,24 @@ func close_curtains() -> void:
 	AudioManager.play_fx("curtains")
 	set_state("curtains_closed", true)
 	# set new icon
-	window_rect.texture = CURTAINS_CLOSED
+	var new_texture:CompressedTexture2D
+	if save_data.use_old_art:
+		new_texture = CURTAINS_CLOSED
+	else:
+		new_texture = CURTAINS_CLOSED_NEW
+	window_rect.texture = new_texture
 
 # called when closing the curtains
 func open_curtains() -> void:
 	AudioManager.play_fx("curtains")
 	set_state("curtains_closed", false)
 	# set new icon
-	window_rect.texture = CURTAINS_OPEN
+	var new_texture:CompressedTexture2D
+	if save_data.use_old_art:
+		new_texture = CURTAINS_OPEN
+	else:
+		new_texture = CURTAINS_OPEN_NEW
+	window_rect.texture = new_texture
 	
 	
 	
