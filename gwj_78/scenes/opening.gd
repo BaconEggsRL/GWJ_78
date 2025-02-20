@@ -7,10 +7,21 @@ const BALLOON = preload("res://dialogue/balloon.tscn")
 
 const SKIP_CONTAINER = preload("res://skip_container.tscn")
 
+# save data
+var save_data:SaveData
+
+
 
 func _ready() -> void:
+	# load save data
+	save_data = SaveData.load_or_create()
+	
+	# get target volume
+	var target_volume = save_data.volume_dict[save_data.load_volume_state()]
+	AudioServer.set_bus_volume_db(0, target_volume)
+
 	# play music
-	# AudioManager.play_music("music_funk", -6.0)
+	AudioManager.play_music("music_funk", -6.0)
 	
 	# show dialogue
 	var dialogue = show_dialogue(MAIN_DIALOGUE, "opening")  # custom function

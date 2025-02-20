@@ -17,6 +17,10 @@ func _ready() -> void:
 	# load save data
 	save_data = SaveData.load_or_create()
 	
+	# get target volume
+	var target_volume = save_data.volume_dict[save_data.load_volume_state()]
+	AudioServer.set_bus_volume_db(0, target_volume)
+	
 	
 	if custom_data.ending != "ending_good":
 		AudioManager.play_fx("fbi")
