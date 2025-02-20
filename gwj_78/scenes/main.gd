@@ -12,8 +12,15 @@ const FancyFade = preload("res://addons/transitions/FancyFade.gd")
 var anim_speed = 0.5
 
 
+@export var volume_btn:VolumeButton
+
+
 
 func _ready() -> void:
+	# play music
+	AudioManager.play_music("music_funk", -6.0)
+	
+	
 	play_btn.pressed.connect(_on_play_pressed)
 	play_btn.mouse_entered.connect(_on_mouse_entered)
 	
@@ -22,8 +29,9 @@ func _ready() -> void:
 
 
 
+
 func _on_mouse_entered() -> void:
-	AudioManager.play_fx("btn_hover")
+	AudioManager.play_fx("btn_hover", -12.0)
 	
 func _on_play_pressed() -> void:
 	SceneManager.goto("opening")

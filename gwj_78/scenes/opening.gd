@@ -10,7 +10,8 @@ const SKIP_CONTAINER = preload("res://skip_container.tscn")
 
 func _ready() -> void:
 	# play music
-	AudioManager.play_music("music_funk", -6.0)
+	# AudioManager.play_music("music_funk", -6.0)
+	
 	# show dialogue
 	var dialogue = show_dialogue(MAIN_DIALOGUE, "opening")  # custom function
 	

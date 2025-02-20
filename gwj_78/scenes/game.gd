@@ -330,7 +330,7 @@ func _ready() -> void:
 	
 	
 	# play music
-	AudioManager.play_music("music_funk", -6.0)
+	# AudioManager.play_music("music_funk", -6.0)
 	
 	
 	# GameProgress.reset_progress()

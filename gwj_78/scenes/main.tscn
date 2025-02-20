@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmavsyk2734g5"]
+[gd_scene load_steps=6 format=3 uid="uid://bmavsyk2734g5"]
 
 [ext_resource type="Script" uid="uid://7ypqu8uyiu70" path="res://scenes/main.gd" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://cx07of4dhi070" path="res://assets/art/UI/speaker_3.png" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="3_jyhfs"]
+[ext_resource type="Script" uid="uid://delgwi5jon8fp" path="res://scenes/volume_btn.gd" id="3_tbgi4"]
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn", "volume_btn")]
 script = ExtResource("1_o5qli")
 play_btn = NodePath("Control/VBoxContainer/play")
 achievements_btn = NodePath("Control/VBoxContainer/achievements")
+volume_btn = NodePath("Control/volume_btn")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -57,7 +60,23 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 24
 text = "achievements"
 
+[node name="volume_btn" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+action_mode = 0
+icon = ExtResource("2_jyhfs")
+flat = true
+script = ExtResource("3_tbgi4")
+
 [node name="mouse" type="Sprite2D" parent="."]
 texture = ExtResource("2_sugp2")
 script = ExtResource("3_jyhfs")
-default_state = 1

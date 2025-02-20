@@ -70,20 +70,20 @@ func set_state(new_state:State) -> void:
 		match current_state:
 			State.NONE:
 				self.texture = none_sprite
-				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				# Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			State.ERASER:
 				self.texture = eraser_sprite
-				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+				# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			State.MOP:
 				self.texture = mop_sprite
-				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+				# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			State.KEY:
 				self.texture = key_sprite
-				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+				# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			State.GUN:
 				self.texture = gun_sprite
-				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+				# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			State.BODY:
 				self.texture = body_sprite
-				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+				# Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 				
