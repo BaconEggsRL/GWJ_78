@@ -80,8 +80,6 @@ const FLOATY_SHADER = preload("res://shaders/floaty.gdshader")
 # world state
 var state := {}
 
-# debugging
-@export var debug = false
 
 ###########################################################
 
@@ -105,6 +103,12 @@ var time_elapsed := 0.0
 @onready var club_name:String = "Theatre Club"
 
 signal out_of_time
+
+
+# debugging
+@export var debug = false
+
+@export var old_art = false
 
 ###########################################################
 
@@ -456,7 +460,8 @@ func unlock_achievement(achievement_name:String) -> void:
 	popup.modulate.a = 0.0
 	
 	var label = Label.new()
-	label.text = "Achievement Unlocked: \n" + achievement_name.replace("_", " ").capitalize()
+	var ach_name = SaveData.achievement_names.get(achievement_name)
+	label.text = "Achievement Unlocked: \n" + ach_name.replace("_", " ").capitalize()
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	# label.set_anchors_preset(Control.PRESET_CENTER)

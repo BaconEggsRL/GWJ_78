@@ -23,7 +23,7 @@ func display_achievements() -> void:
 		icon.tooltip_text = ach.hover_text
 		
 		var label = Label.new()
-		label.text = ach.name.replace("_", " ").capitalize()
+		label.text = ach.ach_name.replace("_", " ").capitalize()
 		label.tooltip_text = ach.hover_text
 		
 		hbox.add_child(icon)

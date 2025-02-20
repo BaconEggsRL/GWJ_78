@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=26 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="Shader" uid="uid://dny7c3ex6hojy" path="res://shaders/blur.gdshader" id="2_rysoc"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://crsy5aygii3a" path="res://assets/art/room_scenes/blood_cleaned_body.png" id="3_kvuet"]
 [ext_resource type="Texture2D" uid="uid://bhch7kbbcn22v" path="res://assets/art/room_scenes/blood_pool.png" id="3_trtic"]
 [ext_resource type="Texture2D" uid="uid://lxc56e7w0xx2" path="res://assets/art/room_scenes/webcam_on.png" id="4_264po"]
-[ext_resource type="Texture2D" uid="uid://dix61so7q02xv" path="res://assets/art/room_scenes/new/blood_pool.png" id="5_1kice"]
 [ext_resource type="Texture2D" uid="uid://c04qa7n7tkljs" path="res://assets/art/room_scenes/gun.png" id="5_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://cb2k575pov5pb" path="res://assets/art/room_scenes/scene_3.png" id="6_p57ef"]
@@ -131,22 +130,6 @@ layout_mode = 0
 offset_right = 26.0
 offset_bottom = 25.0
 focus_mode = 0
-
-[node name="TextureRectTest" type="TextureRect" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource("5_1kice")
-
-[node name="blood_pool2" type="Button" parent="Control/scene_container/room_scene_1/TextureRectTest"]
-layout_mode = 0
-offset_left = 649.0
-offset_top = 571.0
-offset_right = 894.0
-offset_bottom = 680.0
-focus_mode = 0
-text = "blood"
 
 [node name="blood_pool_rect" type="TextureRect" parent="Control/scene_container/room_scene_1"]
 layout_mode = 0

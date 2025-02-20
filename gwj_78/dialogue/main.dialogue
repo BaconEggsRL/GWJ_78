@@ -405,10 +405,11 @@ else:
 			elif wash_count == 9:
 				No matter how many times you do it, it won't make a difference.
 			elif wash_count == 10:
+				do unlock_achievement("ending_clean_hands")
+				do wash_count = 1
 				In the end, it doesn't really matter what it is.
 				Nothing could ever truly wipe these hands of yours clean.
 				Nothing...
-				do wash_count = 1
 			
 	- Read manufacturer tag
 		"LARGE INDUSTRIAL MEGA SINK WITH SUPER MEGA INDUSTRIAL DIAMOND CLAW GARBAGE DISPOSAL"
@@ -425,8 +426,8 @@ MC: Why does this guy have so many toothbrushes?
 
 ~ mirror
 if state.drank_blood == true:
-	It's a mirror.
-	MC: Weird, I can't see anything. Must be broken or something.
+	do unlock_achievement("ending_vampire")
+	MC: Weird, I can't see anything. This mirror must be broken or something.
 else:
 	It's a mirror. You take a moment to admire yourself in it.
 	MC: Who's that handsome devil?
