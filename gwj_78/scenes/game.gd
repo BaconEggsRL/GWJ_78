@@ -37,7 +37,9 @@ const BULLET_HOLE_RECT = preload("res://bullet_hole_rect.tscn")
 @onready var blood_pool_rect:TextureRect = SCENE_1.get_node("blood_pool_rect")
 @onready var body_rect:TextureRect = SCENE_1.get_node("body_rect")
 @onready var gun_rect:TextureRect = SCENE_1.get_node("gun_rect")
+
 const SCENE_1_WITH_LAYERS__BODY_IN_TRASH = preload("res://assets/art/room_scenes/scene_1_with_layers__body_in_trash.png")
+const TRASH_WITH_CORPSE_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Trash_with_corpse.png")
 
 const WEBCAM_ON = preload("res://assets/art/room_scenes/webcam_on.png")
 const WEBCAM_OFF = preload("res://assets/art/room_scenes/webcam_off.png")
@@ -283,11 +285,14 @@ func hide_body(location:String) -> void:
 	match location:
 		"sink":
 			AudioManager.play_fx("garbage_disposal")
-			# current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
 			set_state("hid_body_sink", true)
 		"trash":
 			AudioManager.play_fx("trash")
-			current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
+			if save_data.use_old_art:
+				current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
+			else:
+				var trash_rect:TextureRect = current_room_scene.get_node("trash_rect")
+				trash_rect.texture = TRASH_WITH_CORPSE_NEW
 			set_state("hid_body_in_trash", true)
 		"bed_bottom":
 			AudioManager.play_fx("body_drag")
@@ -312,11 +317,9 @@ func hide_gun(location:String) -> void:
 	match location:
 		"sink":
 			AudioManager.play_fx("garbage_disposal")
-			# current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
 			set_state("hid_gun_sink", true)
 		"nightstand":
 			AudioManager.play_fx("nightstand")
-			# current_room_scene.texture = SCENE_1_WITH_LAYERS__BODY_IN_TRASH
 			set_state("hid_gun_nightstand", true)
 			
 			
