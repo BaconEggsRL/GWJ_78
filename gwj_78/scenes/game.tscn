@@ -537,6 +537,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+mouse_filter = 2
 alignment = 1
 
 [node name="none" type="Button" parent="Control/UI_container/inventory_container"]
