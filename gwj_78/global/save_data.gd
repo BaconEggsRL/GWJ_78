@@ -28,6 +28,24 @@ var achievement_icons: Dictionary = {
 }
 var locked_icon = preload("res://icons/locked.png")
 
+var achievement_hover_text: Dictionary = {
+	"ending_body": "(why are you holding a dead body???)",
+	"ending_normal": "(you didn't hide enough evidence.)",
+	"ending_time": "(you ran out of time and the police showed up.)",
+	"ending_window": "(you got caught by the window guy.)",
+	"ending_sleep": "(you got caught sleeping on the job.)",
+	"ending_webcam": "(you got caught from webcam footage.)",
+	"ending_gun": "(you got caught with the murder weapon.)",
+	"ending_vampire": "(they found the victim's blood in your stomach.)",
+	"ending_clean_hands": "(you had suspiciously clean hands.)",
+	"ending_good": "(you got away.)",
+	
+	"shrooms": "(you ate the shrooms.)",
+	"intimidation": "(you bullied the window guy into submission.)",
+}
+var locked_hover = "locked"
+
+
 
 func _ready() -> void:
 	load_achievements()
@@ -57,7 +75,11 @@ func get_unlocked_achievements() -> Array:
 	var unlocked = []
 	for achievement in achievements_unlocked.keys():
 		if achievements_unlocked[achievement]:
-			unlocked.append({"name": achievement, "icon": achievement_icons.get(achievement, null)})
+			unlocked.append({
+				"name": achievement, 
+				"icon": achievement_icons.get(achievement, null),
+				"hover_text": achievement_hover_text.get(achievement, null)
+			})
 	return unlocked
 
 func get_all_achievements() -> Array:
@@ -65,7 +87,8 @@ func get_all_achievements() -> Array:
 	for achievement in all_achievements:
 		var unlocked = has_unlocked(achievement)
 		achievements.append({
-			"name": achievement.replace("_", " ").capitalize() if unlocked else "Locked",
-			"icon": achievement_icons.get(achievement, locked_icon) if unlocked else locked_icon
+			"name": achievement.replace("_", " ").capitalize() if unlocked else "locked",
+			"icon": achievement_icons.get(achievement, locked_icon) if unlocked else locked_icon,
+			"hover_text": achievement_hover_text.get(achievement, locked_hover) if unlocked else locked_hover,
 		})
 	return achievements

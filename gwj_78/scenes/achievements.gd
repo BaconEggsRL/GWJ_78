@@ -20,9 +20,11 @@ func display_achievements() -> void:
 		icon.texture = ach.icon
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		icon.custom_minimum_size = Vector2(64, 64)
+		icon.tooltip_text = ach.hover_text
 		
 		var label = Label.new()
 		label.text = ach.name.replace("_", " ").capitalize()
+		label.tooltip_text = ach.hover_text
 		
 		hbox.add_child(icon)
 		hbox.add_child(label)

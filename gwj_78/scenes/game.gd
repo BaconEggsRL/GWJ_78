@@ -440,9 +440,11 @@ func eat_mushrooms() -> void:
 func unlock_achievement(achievement_name:String) -> void:
 	# unlock achievement
 	# check if this ending has been reached before
-	#if SaveData.has_unlocked(achievement_name):
-		#print("Player has reached '%s' before!" % achievement_name)
-	#else:
+	if SaveData.has_unlocked(achievement_name):
+		print("Player has reached '%s' before!" % achievement_name)
+		return
+		
+		
 	# update save data
 	SaveData.unlock_achievement(achievement_name)
 	
@@ -464,7 +466,7 @@ func unlock_achievement(achievement_name:String) -> void:
 	# Center the label within the panel
 	label.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 	
-	
+	# add label
 	popup.add_child(label)
 	
 	# add poppup

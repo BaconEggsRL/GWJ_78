@@ -34,7 +34,7 @@ func _ready() -> void:
 		"ending_window":
 			ending_text.text = "(you got caught by the window guy.)"
 		"ending_sleep":
-			ending_text.text = "(you got caught sleeping.)"
+			ending_text.text = "(you got caught sleeping on the job.)"
 		"ending_webcam":
 			ending_text.text = "(you got caught from webcam footage.)"
 		"ending_gun":
