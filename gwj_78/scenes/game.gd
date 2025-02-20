@@ -30,14 +30,20 @@ const BLUR = preload("res://shaders/blur.gdshader")
 
 const BULLET_HOLE_RECT = preload("res://bullet_hole_rect.tscn")
 
+@export var scene_container:MarginContainer
+
 @export var SCENE_1:TextureRect
 
 @onready var blood_pool_rect:TextureRect = SCENE_1.get_node("blood_pool_rect")
 @onready var body_rect:TextureRect = SCENE_1.get_node("body_rect")
 @onready var gun_rect:TextureRect = SCENE_1.get_node("gun_rect")
 const SCENE_1_WITH_LAYERS__BODY_IN_TRASH = preload("res://assets/art/room_scenes/scene_1_with_layers__body_in_trash.png")
+
 const WEBCAM_ON = preload("res://assets/art/room_scenes/webcam_on.png")
 const WEBCAM_OFF = preload("res://assets/art/room_scenes/webcam_off.png")
+const WEBCAM_ON_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webcam-on.png")
+const WEBCAM_OFF_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webcam-off.png")
+
 @onready var webcam_rect:TextureRect = SCENE_1.get_node("webcam_rect")
 
 
@@ -92,7 +98,7 @@ var state := {}
 @export var max_seconds:float = 60 * 5.0
 @onready var time_left:float = max_seconds
 var time_elapsed := 0.0
-@onready var window_event_time:float = max_seconds * 0.95  # time for window check to occur
+@onready var window_event_time:float = max_seconds * 0.5  # time for window check to occur
 @onready var plays:Dictionary = {
 	"Death of a Salesman": "Arthur Miller", 
 	"To Kill a Mockingbird": "Harper Lee", 
@@ -107,8 +113,6 @@ signal out_of_time
 
 # debugging
 @export var debug = false
-
-@export var old_art = false
 
 
 # save data
@@ -266,7 +270,7 @@ func drink_blood() -> void:
 func turn_webcam_off() -> void:
 	AudioManager.play_fx("webcam_off")
 	set_state("webcam_off", true)
-	webcam_rect.texture = WEBCAM_OFF
+	webcam_rect.texture = WEBCAM_OFF if save_data.use_old_art else WEBCAM_OFF_NEW
 	
 	# update evidence label
 	evidence_left -= 1
@@ -326,10 +330,28 @@ func hide_gun(location:String) -> void:
 	evidence_left -= 1
 	update_evidence_label()
 	
-	
+
+###########################################################
+
+
+
 func _ready() -> void:
 	# load save data
 	save_data = SaveData.load_or_create()
+	
+	# old art
+	if save_data.use_old_art:
+		scene_container.add_theme_constant_override("margin_left", 16)
+		scene_container.add_theme_constant_override("margin_top", 16)
+		scene_container.add_theme_constant_override("margin_right", 16)
+		scene_container.add_theme_constant_override("margin_bottom", 16)
+	else:
+		scene_container.add_theme_constant_override("margin_left", 0)
+		scene_container.add_theme_constant_override("margin_top", 0)
+		scene_container.add_theme_constant_override("margin_right", 0)
+		scene_container.add_theme_constant_override("margin_bottom", 0)
+		
+	
 	
 	# pick play
 	var play_index:int = randi_range(0, plays.size()-1)
