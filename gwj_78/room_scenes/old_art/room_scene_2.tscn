@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx21ve7rrrjmn"]
+
+[ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="1_vk03p"]
+
+[node name="room_scene_2" type="TextureRect"]
+self_modulate = Color(1, 1, 1, 0.556863)
+texture = ExtResource("1_vk03p")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="bed_top" type="Button" parent="."]
+layout_mode = 0
+offset_left = 871.0
+offset_top = 190.0
+offset_right = 1156.0
+offset_bottom = 358.0
+rotation = 0.855211
+focus_mode = 0
+text = "bed_top"
+
+[node name="bed_bottom" type="Button" parent="."]
+layout_mode = 0
+offset_left = 774.0
+offset_top = 396.0
+offset_right = 1015.0
+offset_bottom = 449.0
+rotation = 0.921534
+focus_mode = 0
+text = "bed_bottom"
+
+[node name="book_shelf" type="Button" parent="."]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 134.0
+offset_right = 555.0
+offset_bottom = 489.0
+focus_mode = 0
+text = "book_shelf"
+
+[node name="night_stand" type="Button" parent="."]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 284.0
+offset_right = 714.0
+offset_bottom = 489.0
+focus_mode = 0
+text = "night_stand"

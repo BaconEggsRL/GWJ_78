@@ -1,11 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=36 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="Shader" uid="uid://dny7c3ex6hojy" path="res://shaders/blur.gdshader" id="2_rysoc"]
 [ext_resource type="Texture2D" uid="uid://b43vverfsih8h" path="res://room_scenes/new_art/Assets - scene 1/Background.png" id="3_264po"]
 [ext_resource type="Texture2D" uid="uid://d4eorudvt2vp2" path="res://room_scenes/new_art/Assets - scene 1/Webcam-on.png" id="4_pl11u"]
 [ext_resource type="Texture2D" uid="uid://bjyothy1ks12b" path="res://room_scenes/new_art/Assets - scene 1/Blood.png" id="5_264po"]
-[ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://dck5g2eqil3ya" path="res://room_scenes/new_art/Assets - scene 1/Corpse-1.png" id="5_pl11u"]
 [ext_resource type="Texture2D" uid="uid://cb2k575pov5pb" path="res://assets/art/room_scenes/scene_3.png" id="6_p57ef"]
 [ext_resource type="Shader" uid="uid://bwii0e5hn3fn6" path="res://shaders/floaty.gdshader" id="6_vtaks"]
@@ -24,7 +23,12 @@
 [ext_resource type="Texture2D" uid="uid://c5cuqk27im1mk" path="res://assets/art/inventory_objects/key.png" id="10_kvuet"]
 [ext_resource type="Texture2D" uid="uid://dqmeglaok7wtq" path="res://room_scenes/new_art/Assets - scene 1/Mop.png" id="12_e1j6l"]
 [ext_resource type="Texture2D" uid="uid://gj8s8dgnrbib" path="res://room_scenes/new_art/Assets - scene 1/Trash.png" id="13_pl11u"]
+[ext_resource type="Texture2D" uid="uid://s11p87o45tot" path="res://room_scenes/new_art/Assets - scene 2/Background.png" id="14_bhx41"]
+[ext_resource type="Texture2D" uid="uid://d2fnw2nknr7kg" path="res://room_scenes/new_art/Assets - scene 2/Bed.png" id="15_qnb83"]
+[ext_resource type="Texture2D" uid="uid://deonbbqibcv71" path="res://room_scenes/new_art/Assets - scene 2/Bookshelf.png" id="16_qnb83"]
+[ext_resource type="Texture2D" uid="uid://dy22fsoa3qro" path="res://room_scenes/new_art/Assets - scene 2/Lamp.png" id="17_sww3w"]
 [ext_resource type="Texture2D" uid="uid://ccubv6rqogayt" path="res://icon.svg" id="18_ssvqc"]
+[ext_resource type="Texture2D" uid="uid://cdbe6yq0bem0d" path="res://room_scenes/new_art/Assets - scene 2/Sheets.png" id="18_suyxu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssvqc"]
 shader = ExtResource("2_rysoc")
@@ -71,15 +75,13 @@ shader_parameter/noise_speed = 0.1
 shader_parameter/noise_blur_amount = 0.005
 shader_parameter/blob_strength = 0.0
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "blur", "mouse", "none", "scene_container", "SCENE_1", "SCENE_2", "SCENE_3", "SCENE_4", "window_rect", "inventory_container", "time_left_label", "evidence_left_label")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "blur", "mouse", "none", "scene_container", "SCENE_3", "SCENE_4", "window_rect", "inventory_container", "time_left_label", "evidence_left_label")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/UI_container/main_menu")
 blur = NodePath("blur")
 mouse = NodePath("mouse")
 none = NodePath("Control/UI_container/inventory_container/none")
 scene_container = NodePath("Control/scene_container")
-SCENE_1 = NodePath("Control/scene_container/room_scene_1")
-SCENE_2 = NodePath("Control/scene_container/room_scene_2")
 SCENE_3 = NodePath("Control/scene_container/room_scene_3")
 SCENE_4 = NodePath("Control/scene_container/room_scene_4")
 window_rect = NodePath("Control/scene_container/room_scene_4/window_rect")
@@ -107,6 +109,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="room_scene_1" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 mouse_filter = 2
@@ -303,50 +306,114 @@ offset_bottom = 513.0
 text = "mop"
 
 [node name="room_scene_2" type="TextureRect" parent="Control/scene_container"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
-texture = ExtResource("5_iywne")
-expand_mode = 1
-stretch_mode = 5
+mouse_filter = 2
+texture = ExtResource("14_bhx41")
 
-[node name="bed_top" type="Button" parent="Control/scene_container/room_scene_2"]
+[node name="lamp_rect" type="TextureRect" parent="Control/scene_container/room_scene_2"]
 layout_mode = 0
-offset_left = 871.0
-offset_top = 190.0
-offset_right = 1156.0
-offset_bottom = 358.0
-rotation = 0.855211
-focus_mode = 0
-text = "bed_top"
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("17_sww3w")
 
-[node name="bed_bottom" type="Button" parent="Control/scene_container/room_scene_2"]
+[node name="book_shelf_rect" type="TextureRect" parent="Control/scene_container/room_scene_2"]
 layout_mode = 0
-offset_left = 774.0
-offset_top = 396.0
-offset_right = 1015.0
-offset_bottom = 449.0
-rotation = 0.921534
-focus_mode = 0
-text = "bed_bottom"
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("16_qnb83")
 
-[node name="book_shelf" type="Button" parent="Control/scene_container/room_scene_2"]
+[node name="book_shelf" type="Button" parent="Control/scene_container/room_scene_2/book_shelf_rect"]
 layout_mode = 0
-offset_left = 278.0
-offset_top = 134.0
-offset_right = 555.0
-offset_bottom = 489.0
+offset_left = 379.0
+offset_top = 147.0
+offset_right = 656.0
+offset_bottom = 502.0
 focus_mode = 0
 text = "book_shelf"
 
-[node name="night_stand" type="Button" parent="Control/scene_container/room_scene_2"]
+[node name="night_stand_rect" type="TextureRect" parent="Control/scene_container/room_scene_2"]
 layout_mode = 0
-offset_left = 568.0
-offset_top = 284.0
-offset_right = 714.0
-offset_bottom = 489.0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="night_stand" type="Button" parent="Control/scene_container/room_scene_2/night_stand_rect"]
+layout_mode = 0
+offset_left = 1009.0
+offset_top = 327.0
+offset_right = 1165.0
+offset_bottom = 532.0
 focus_mode = 0
 text = "night_stand"
+
+[node name="bed_bottom_rect" type="TextureRect" parent="Control/scene_container/room_scene_2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="bed_bottom" type="Button" parent="Control/scene_container/room_scene_2/bed_bottom_rect"]
+layout_mode = 0
+offset_left = 790.0
+offset_top = 439.0
+offset_right = 1044.0
+offset_bottom = 481.0
+rotation = 1.15192
+focus_mode = 0
+text = "bed_bottom"
+
+[node name="bed_bottom2" type="Button" parent="Control/scene_container/room_scene_2/bed_bottom_rect"]
+layout_mode = 0
+offset_left = 853.0
+offset_top = 671.0
+offset_right = 1229.0
+offset_bottom = 707.0
+focus_mode = 0
+text = "bed_bottom"
+
+[node name="bed_top_rect" type="TextureRect" parent="Control/scene_container/room_scene_2"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("15_qnb83")
+
+[node name="bed_top" type="Button" parent="Control/scene_container/room_scene_2/bed_top_rect"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 278.0
+offset_right = 1007.0
+offset_bottom = 363.0
+focus_mode = 0
+text = "bed_top"
+
+[node name="bed_top2" type="Button" parent="Control/scene_container/room_scene_2/bed_top_rect"]
+layout_mode = 0
+offset_left = 785.0
+offset_top = 363.0
+offset_right = 1091.0
+offset_bottom = 448.0
+focus_mode = 0
+text = "bed_top"
+
+[node name="bed_top3" type="Button" parent="Control/scene_container/room_scene_2/bed_top_rect"]
+layout_mode = 0
+offset_left = 824.0
+offset_top = 424.0
+offset_right = 1140.0
+offset_bottom = 520.0
+focus_mode = 0
+text = "bed_top"
+
+[node name="sheets_rect" type="TextureRect" parent="Control/scene_container/room_scene_2"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("18_suyxu")
 
 [node name="room_scene_3" type="TextureRect" parent="Control/scene_container"]
 visible = false

@@ -32,7 +32,7 @@ const BULLET_HOLE_RECT = preload("res://bullet_hole_rect.tscn")
 
 @export var scene_container:MarginContainer
 
-@export var SCENE_1:TextureRect
+@onready var SCENE_1:TextureRect = scene_container.get_node("room_scene_1")
 
 @onready var blood_pool_rect:TextureRect = SCENE_1.get_node("blood_pool_rect")
 @onready var body_rect:TextureRect = SCENE_1.get_node("body_rect")
@@ -49,7 +49,7 @@ const WEBCAM_OFF_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webca
 @onready var webcam_rect:TextureRect = SCENE_1.get_node("webcam_rect")
 
 
-@export var SCENE_2:TextureRect
+@onready var SCENE_2:TextureRect = scene_container.get_node("room_scene_2")
 const SCENE_2__BODY_UNDER_BED = preload("res://assets/art/room_scenes/scene_2__body_under_bed.png")
 
 @export var SCENE_3:TextureRect
