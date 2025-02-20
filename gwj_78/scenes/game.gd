@@ -475,15 +475,14 @@ func unlock_achievement(achievement_name:String) -> void:
 	# Animate popup with proper tween management
 	var tween_in = create_tween()
 	tween_in.tween_property(popup, "modulate:a", 1.0, 1.0)  # Fade in
-	await get_tree().create_timer(3.0).timeout  # Wait 3 seconds
 	
-	var tween_out = create_tween()
-	tween_out.tween_property(popup, "modulate:a", 0.0, 1.0)  # Fade out
-	await tween_out.finished
-	
-	popup.queue_free.call_deferred()  # Remove popup after animation
-		
-		
+	# remove popup
+	get_tree().create_timer(3.0).timeout.connect(func():
+		var tween_out = create_tween()
+		tween_out.tween_property(popup, "modulate:a", 0.0, 1.0)  # Fade out
+		await tween_out.finished
+		popup.queue_free.call_deferred()  # Remove popup after animation
+	)
 
 
 # window event
