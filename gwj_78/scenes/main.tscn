@@ -60,6 +60,14 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 24
 text = "achievements"
 
+[node name="old_art_btn" type="CheckButton" parent="Control/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+button_pressed = true
+action_mode = 0
+text = "Use old art?"
+alignment = 2
+
 [node name="volume_btn" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = 3
@@ -80,3 +88,5 @@ script = ExtResource("3_tbgi4")
 [node name="mouse" type="Sprite2D" parent="."]
 texture = ExtResource("2_sugp2")
 script = ExtResource("3_jyhfs")
+
+[connection signal="pressed" from="Control/VBoxContainer/old_art_btn" to="." method="_on_old_art_btn_pressed"]

@@ -5,10 +5,16 @@ extends Node2D
 
 @export var fireworks:ColorRect
 
+# save data
+var save_data:SaveData
+
 
 
 func _ready() -> void:
-	var unlocked_all = SaveData.has_unlocked_all()
+	# load save data
+	save_data = SaveData.load_or_create()
+	
+	var unlocked_all = save_data.has_unlocked_all()
 	if unlocked_all:
 		fireworks.show()
 	else:
@@ -19,7 +25,7 @@ func _ready() -> void:
 
 
 func display_achievements() -> void:
-	var achievements = SaveData.get_all_achievements()
+	var achievements = save_data.get_all_achievements()
 	for ach in achievements:
 		var hbox = HBoxContainer.new()
 		

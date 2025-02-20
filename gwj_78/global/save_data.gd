@@ -1,7 +1,8 @@
-extends Node
+class_name SaveData
+extends Resource
 
-const SAVE_PATH = "user://save_data.cfg"
-var achievements_unlocked: Dictionary = {}
+const SAVE_PATH = "user://save_data.tres"
+@export var achievements_unlocked: Dictionary = {}
 
 var all_achievements: Array = [
 	"ending_body", "ending_normal", "ending_time", "ending_window",
@@ -85,33 +86,73 @@ var achievement_names: Dictionary = {
 var locked_name = "Locked"
 
 
+@export var bus_volume: Dictionary = {
+	"Master": 1,
+	"music": 1,
+	"sfx": 1,
+}
+
+enum VolumeState {
+	THREE, TWO, ONE, NONE,
+}
+var volume_dict := {
+	VolumeState.THREE: 0.0,
+	VolumeState.TWO: -6.0,
+	VolumeState.ONE: -12.0,
+	VolumeState.NONE: -80.0,
+}
+@export var volume_state:VolumeState = VolumeState.THREE
 
 
-func _ready() -> void:
-	load_achievements()
+@export var use_old_art:bool = false
 
-func save_achievements() -> void:
-	var config = ConfigFile.new()
-	for achievement in achievements_unlocked.keys():
-		config.set_value("achievements", achievement, achievements_unlocked[achievement])
-	config.save(SAVE_PATH)
-
-func load_achievements() -> void:
-	var config = ConfigFile.new()
-	if config.load(SAVE_PATH) == OK:
-		for achievement in config.get_section_keys("achievements"):
-			achievements_unlocked[achievement] = config.get_value("achievements", achievement, false)
+################################################################
 
 
-
+func save() -> void:
+	ResourceSaver.save(self, SAVE_PATH)
 	
 	
+func clear() -> void:
+	self.bus_volume = {
+		"Master": 1,
+		"music": 1,
+		"sfx": 1,
+	}
+	self.volume_state = VolumeState.THREE
+	self.achievements_unlocked = {}
+	self.use_old_art = false
+	save()
 	
+	
+static func load_or_create() -> SaveData:
+	var res:SaveData
+	if FileAccess.file_exists(SAVE_PATH):
+		res = load(SAVE_PATH) as SaveData
+	else:
+		res = SaveData.new()
+	return res
+	
+	
+################################################################
+
+
+func load_volume_state() -> VolumeState:
+	return self.volume_state
+	
+func update_volume_state(new_state: VolumeState) -> void:
+	self.volume_state = new_state
+	self.save()
+
+
+################################################################
+
+
 func unlock_achievement(achievement: String) -> void:
 	if not achievements_unlocked.has(achievement):
 		achievements_unlocked[achievement] = true
-		save_achievements()
 		print("Unlocked achievement: " + achievement)
+		self.save()
 
 func has_unlocked(achievement: String) -> bool:
 	return achievements_unlocked.get(achievement, false)
@@ -123,18 +164,10 @@ func has_unlocked_all() -> bool:
 			return false
 	return true 
 	
-	
-#func get_unlocked_achievements() -> Array:
-	#var unlocked = []
-	#for achievement in achievements_unlocked.keys():
-		#if achievements_unlocked[achievement]:
-			#unlocked.append({
-				#"name": achievement, 
-				#"icon": achievement_icons.get(achievement, null),
-				#"hover_text": achievement_hover_text.get(achievement, null)
-			#})
-	#return unlocked
 
+################################################################
+
+# for displaying in achievements page
 func get_all_achievements() -> Array:
 	var achievements = []
 	for achievement in all_achievements:

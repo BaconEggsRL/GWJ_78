@@ -14,9 +14,16 @@ var anim_speed = 0.5
 
 @export var volume_btn:VolumeButton
 
+# save data
+var save_data:SaveData
+
 
 
 func _ready() -> void:
+	# load save data
+	save_data = SaveData.load_or_create()
+	
+	
 	# play music
 	AudioManager.play_music("music_funk", -6.0)
 	
@@ -54,3 +61,7 @@ func _on_achievements_pressed() -> void:
 	## FancyFade.new().tile_reveal(target_scene)
 	## FancyFade.new().wipe_conical(target_scene, anim_speed)
 	#pass
+
+
+func _on_old_art_btn_pressed() -> void:
+	pass # Replace with function body.

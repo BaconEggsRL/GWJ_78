@@ -110,6 +110,11 @@ signal out_of_time
 
 @export var old_art = false
 
+
+# save data
+var save_data:SaveData
+
+
 ###########################################################
 
 # Endings
@@ -323,6 +328,9 @@ func hide_gun(location:String) -> void:
 	
 	
 func _ready() -> void:
+	# load save data
+	save_data = SaveData.load_or_create()
+	
 	# pick play
 	var play_index:int = randi_range(0, plays.size()-1)
 	print("play_index = %s" % play_index)
@@ -449,7 +457,7 @@ func show_achievement_popup(achievement_name:String) -> void:
 	popup.modulate.a = 0.0
 	
 	var label = Label.new()
-	var ach_name = SaveData.achievement_names.get(achievement_name)
+	var ach_name = save_data.achievement_names.get(achievement_name)
 	label.text = "Achievement Unlocked: \n" + ach_name.replace("_", " ").capitalize()
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -483,11 +491,11 @@ func show_achievement_popup(achievement_name:String) -> void:
 func unlock_achievement(achievement_name:String) -> void:
 	# unlock achievement
 	# check if this ending has been reached before
-	if SaveData.has_unlocked(achievement_name):
+	if save_data.has_unlocked(achievement_name):
 		print("Player has reached '%s' before!" % achievement_name)
 		return
 	# update save data
-	SaveData.unlock_achievement(achievement_name)
+	save_data.unlock_achievement(achievement_name)
 	# show popup
 	show_achievement_popup(achievement_name)
 

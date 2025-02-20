@@ -2,14 +2,10 @@ class_name VolumeButton
 extends Button
 
 
-@export var default_state:VolumeState
+@export var default_state:SaveData.VolumeState
 
-
-enum VolumeState {
-	THREE, TWO, ONE, NONE,
-}
-var current_state:VolumeState
-var last_state:VolumeState
+var current_state:SaveData.VolumeState
+var last_state:SaveData.VolumeState
 
 
 const SPEAKER_MUTED = preload("res://assets/art/UI/speaker_muted.png")
@@ -19,22 +15,30 @@ const SPEAKER_3 = preload("res://assets/art/UI/speaker_3.png")
 
 var master_bus_index = AudioServer.get_bus_index("Master")  # Change to your target audio bus
 
+# save data
+var save_data:SaveData
+
+
 
 func _ready() -> void:
+	# load save data
+	save_data = SaveData.load_or_create()
+	
+	
 	self.pressed.connect(_on_volume_pressed)
 	# Load and apply saved volume
-	self.set_state(get_stored_volume_state(), false)
+	self.set_state(save_data.load_volume_state(), false)
 	
 
 func _on_volume_pressed() -> void:
-	var new_state = (self.current_state + 1) % self.VolumeState.size()
+	var new_state = (self.current_state + 1) % save_data.VolumeState.size()
 	self.set_state(new_state, true)
 	
 
 
 
 
-func set_state(new_state:VolumeState, should_tween:bool) -> void:
+func set_state(new_state:SaveData.VolumeState, should_tween:bool) -> void:
 	if not current_state or new_state != current_state:
 		last_state = current_state
 		current_state = new_state
@@ -43,29 +47,26 @@ func set_state(new_state:VolumeState, should_tween:bool) -> void:
 		var new_volume_db := 0.0
 		
 		match current_state:
-			VolumeState.NONE:
+			SaveData.VolumeState.NONE:
 				self.icon = SPEAKER_MUTED
-				new_volume_db = -80.0
-				
-			VolumeState.ONE:
+			SaveData.VolumeState.ONE:
 				self.icon = SPEAKER_1
-				new_volume_db = -12.0
-				
-			VolumeState.TWO:
+			SaveData.VolumeState.TWO:
 				self.icon = SPEAKER_2
-				new_volume_db = -6.0
-				
-			VolumeState.THREE:
+			SaveData.VolumeState.THREE:
 				self.icon = SPEAKER_3
-				new_volume_db = 0.0
 		
+		# get target volume
+		new_volume_db = save_data.volume_dict[current_state]
+		
+		# tween volume
 		if should_tween:
 			tween_audio_bus_volume("Master", new_volume_db, 0.2)  # Fades volume to -10 dB over X seconds
 		else:
 			AudioServer.set_bus_volume_db(master_bus_index, new_volume_db)
 		
 		# update saved volume
-		store_volume_state(current_state)
+		save_data.update_volume_state(new_state)
 		
 
 
@@ -78,16 +79,3 @@ func tween_audio_bus_volume(bus_name: String, target_db: float, duration: float 
 		func(value): AudioServer.set_bus_volume_db(bus_index, value),
 		start_db, target_db, duration
 	)
-	
-	
-func store_volume_state(_state:VolumeState):
-	var config = ConfigFile.new()
-	config.set_value("audio", "volume_state", _state)
-	config.save("user://volume_state.cfg")
-
-
-func get_stored_volume_state():
-	var config = ConfigFile.new()
-	if config.load("user://volume_state.cfg") == OK:
-		return config.get_value("audio", "volume_state", VolumeState.THREE)
-	return VolumeState.THREE

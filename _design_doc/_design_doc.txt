@@ -127,3 +127,37 @@ tween:
 wave_amplitude from 0 to 0.02
 # noise_scale from 0.1 to 5.0
 blob_strength from 0.0 to 0.5
+
+
+===============
+
+
+TODO:
+
+
+Art:
+Add an "old_art" global/saved bool. Main menu option button to enable/disable.
+When enabled, use the old (current) art.
+When disabled, use the new art.
+
+(Will have to find a way to maintain both --
+save branch as scene, load different ones depending on selection?
+need to double check if just those 4 things are affected.)
+
+Main menu art
+
+
+
+Accessibility:
+Volume controls for effects and music
+Ensure buttons are large enough for touch screen
+Add option for mouse sensitivity (?)
+
+
+
+
+
+
+
+Stretch:
+Minigame to shoot cops if you are holding the gun on exit

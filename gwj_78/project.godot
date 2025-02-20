@@ -23,7 +23,6 @@ SceneManager="*res://global/scene_manager.tscn"
 AudioManager="*res://global/audio_manager.tscn"
 Transitions="*res://addons/transitions/Transitions.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-SaveData="*res://global/save_data.gd"
 
 [dialogue_manager]
 
