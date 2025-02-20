@@ -1,12 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=21 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="Shader" uid="uid://dny7c3ex6hojy" path="res://shaders/blur.gdshader" id="2_rysoc"]
-[ext_resource type="Texture2D" uid="uid://bi6fthdipnt24" path="res://assets/art/room_scenes/scene_1_with_layers.png" id="2_trtic"]
-[ext_resource type="Texture2D" uid="uid://crsy5aygii3a" path="res://assets/art/room_scenes/blood_cleaned_body.png" id="3_kvuet"]
-[ext_resource type="Texture2D" uid="uid://bhch7kbbcn22v" path="res://assets/art/room_scenes/blood_pool.png" id="3_trtic"]
-[ext_resource type="Texture2D" uid="uid://lxc56e7w0xx2" path="res://assets/art/room_scenes/webcam_on.png" id="4_264po"]
-[ext_resource type="Texture2D" uid="uid://c04qa7n7tkljs" path="res://assets/art/room_scenes/gun.png" id="5_ir15t"]
+[ext_resource type="PackedScene" uid="uid://buonbcto11kw4" path="res://room_scenes/old_art/room_scene_1.tscn" id="3_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bcrwf15gp2sbh" path="res://assets/art/room_scenes/scene_2.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://cb2k575pov5pb" path="res://assets/art/room_scenes/scene_3.png" id="6_p57ef"]
 [ext_resource type="Shader" uid="uid://bwii0e5hn3fn6" path="res://shaders/floaty.gdshader" id="6_vtaks"]
@@ -30,8 +26,6 @@ shader_parameter/noise_scale = 5.0
 shader_parameter/noise_speed = 1.0
 shader_parameter/noise_blur_amount = 0.005
 shader_parameter/blob_strength = 0.0
-
-[sub_resource type="Theme" id="Theme_0tnpc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dinhu"]
 shader = ExtResource("6_vtaks")
@@ -65,17 +59,13 @@ shader_parameter/noise_speed = 0.1
 shader_parameter/noise_blur_amount = 0.005
 shader_parameter/blob_strength = 0.0
 
-[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "blur", "mouse", "none", "SCENE_1", "blood_pool_rect", "body_rect", "gun_rect", "webcam_rect", "SCENE_2", "SCENE_3", "SCENE_4", "window_rect", "inventory_container", "time_left_label", "evidence_left_label")]
+[node name="game" type="Node2D" node_paths=PackedStringArray("main_btn", "blur", "mouse", "none", "SCENE_1", "SCENE_2", "SCENE_3", "SCENE_4", "window_rect", "inventory_container", "time_left_label", "evidence_left_label")]
 script = ExtResource("1_uwrxv")
 main_btn = NodePath("Control/UI_container/main_menu")
 blur = NodePath("blur")
 mouse = NodePath("mouse")
 none = NodePath("Control/UI_container/inventory_container/none")
 SCENE_1 = NodePath("Control/scene_container/room_scene_1")
-blood_pool_rect = NodePath("Control/scene_container/room_scene_1/blood_pool_rect")
-body_rect = NodePath("Control/scene_container/room_scene_1/body_rect")
-gun_rect = NodePath("Control/scene_container/room_scene_1/gun_rect")
-webcam_rect = NodePath("Control/scene_container/room_scene_1/web_cam_rect")
 SCENE_2 = NodePath("Control/scene_container/room_scene_2")
 SCENE_3 = NodePath("Control/scene_container/room_scene_3")
 SCENE_4 = NodePath("Control/scene_container/room_scene_4")
@@ -107,174 +97,8 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="room_scene_1" type="TextureRect" parent="Control/scene_container"]
-self_modulate = Color(1, 1, 1, 0.556863)
+[node name="room_scene_1" parent="Control/scene_container" instance=ExtResource("3_ir15t")]
 layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("2_trtic")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="web_cam_rect" type="TextureRect" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 473.0
-offset_top = 263.0
-offset_right = 499.0
-offset_bottom = 289.0
-texture = ExtResource("4_264po")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="web_cam" type="Button" parent="Control/scene_container/room_scene_1/web_cam_rect"]
-layout_mode = 0
-offset_right = 26.0
-offset_bottom = 25.0
-focus_mode = 0
-
-[node name="blood_pool_rect" type="TextureRect" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 287.0
-offset_top = 505.0
-offset_right = 554.0
-offset_bottom = 648.0
-texture = ExtResource("3_trtic")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="blood_pool" type="Button" parent="Control/scene_container/room_scene_1/blood_pool_rect"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 42.0
-offset_right = 254.0
-offset_bottom = 98.0
-focus_mode = 0
-text = "blood"
-
-[node name="body_rect" type="TextureRect" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 378.0
-offset_top = 470.0
-offset_right = 645.0
-offset_bottom = 613.0
-texture = ExtResource("3_kvuet")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="body" type="Button" parent="Control/scene_container/room_scene_1/body_rect"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 23.0
-offset_right = 256.0
-offset_bottom = 137.0
-focus_mode = 0
-text = "body"
-
-[node name="gun_rect" type="TextureRect" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 818.0
-offset_top = 500.0
-offset_right = 944.0
-offset_bottom = 568.0
-texture = ExtResource("5_ir15t")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="gun" type="Button" parent="Control/scene_container/room_scene_1/gun_rect"]
-layout_mode = 0
-offset_left = -5.0
-offset_top = 4.0
-offset_right = 124.0
-offset_bottom = 63.0
-focus_mode = 0
-text = "gun"
-
-[node name="wall" type="Button" parent="Control/scene_container/room_scene_1"]
-visible = false
-layout_mode = 0
-offset_left = 553.0
-offset_top = 182.0
-offset_right = 760.0
-offset_bottom = 330.0
-focus_mode = 0
-text = "wall"
-
-[node name="door" type="Button" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 781.0
-offset_top = 228.0
-offset_right = 910.0
-offset_bottom = 467.0
-focus_mode = 0
-text = "door"
-
-[node name="trash_rect" type="TextureRect" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="trash" type="Button" parent="Control/scene_container/room_scene_1/trash_rect"]
-layout_mode = 0
-offset_left = 633.0
-offset_top = 386.0
-offset_right = 710.0
-offset_bottom = 470.0
-focus_mode = 0
-text = "trash"
-
-[node name="computer" type="Button" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 445.0
-offset_top = 285.0
-offset_right = 529.0
-offset_bottom = 345.0
-focus_mode = 0
-text = "computer"
-
-[node name="chair" type="Button" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 418.0
-offset_top = 366.0
-offset_right = 528.0
-offset_bottom = 485.0
-focus_mode = 0
-text = "chair"
-
-[node name="chair2" type="Button" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 326.0
-offset_right = 458.0
-offset_bottom = 379.0
-focus_mode = 0
-
-[node name="storage_closet" type="Button" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 293.0
-offset_top = 213.0
-offset_right = 401.0
-offset_bottom = 489.0
-focus_mode = 0
-theme = SubResource("Theme_0tnpc")
-text = "storage
-closet"
-
-[node name="top_drawer" type="Button" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 535.0
-offset_top = 366.0
-offset_right = 610.0
-offset_bottom = 408.0
-focus_mode = 0
-text = "top dra"
-
-[node name="bottom_drawer" type="Button" parent="Control/scene_container/room_scene_1"]
-layout_mode = 0
-offset_left = 536.0
-offset_top = 414.0
-offset_right = 611.0
-offset_bottom = 463.0
-focus_mode = 0
-text = "bot dra"
 
 [node name="room_scene_2" type="TextureRect" parent="Control/scene_container"]
 visible = false

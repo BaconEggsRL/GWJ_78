@@ -88,7 +88,7 @@ MC: If I don't get rid of him somehow, the cops might come sooner.
 MC: It's a wall. They could probably hang a nice painting there.
 => END!
 
-~ web_cam
+~ webcam
 if state.webcam_off == false:
 	It's a webcam. It's on.
 	Turn it off?
