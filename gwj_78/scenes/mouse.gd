@@ -2,6 +2,8 @@ class_name Mouse
 extends Sprite2D
 
 
+@export var default_state:State
+
 const eraser_sprite = preload("res://assets/art/mouse/eraser.png")
 const pencil_sprite = preload("res://assets/art/mouse/pencil.png")
 const moving_sprite = preload("res://assets/art/mouse/moving.png")
@@ -24,21 +26,21 @@ signal fire_gun
 
 
 func _ready() -> void:
-	self.set_state(State.NONE)
+	self.set_state(default_state)
 
 func _process(_delta) -> void:
 	self.global_position = get_global_mouse_position()
 	
 func _unhandled_input(event: InputEvent) -> void:
-	print("unhandled_unput")
+	# print("unhandled_unput")
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		do_state_action()
 
 func do_state_action() -> void:
-	print("do_state_action")
+	# print("do_state_action")
 	match current_state:
 		State.GUN:
-			print("emit fire_gun")
+			# print("emit fire_gun")
 			fire_gun.emit(self.global_position)
 	
 
@@ -64,17 +66,24 @@ func set_state(new_state:State) -> void:
 		last_state = current_state
 		current_state = new_state
 		print("updated mouse state to: %s" % current_state)
+		
 		match current_state:
 			State.NONE:
 				self.texture = none_sprite
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			State.ERASER:
 				self.texture = eraser_sprite
+				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			State.MOP:
 				self.texture = mop_sprite
+				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			State.KEY:
 				self.texture = key_sprite
+				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			State.GUN:
 				self.texture = gun_sprite
+				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			State.BODY:
 				self.texture = body_sprite
+				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 				

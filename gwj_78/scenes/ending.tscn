@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5agdh8kvqr5x"]
+[gd_scene load_steps=5 format=3 uid="uid://b5agdh8kvqr5x"]
 
 [ext_resource type="Script" uid="uid://d3tcsyjlmekn6" path="res://scenes/ending.gd" id="1_fyrdv"]
 [ext_resource type="Texture2D" uid="uid://dvutrigsjrche" path="res://assets/art/room_scenes/ending_1.png" id="2_fyrdv"]
+[ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="3_nfmnx"]
+[ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="4_qa3ag"]
 
 [node name="ending" type="Node2D" node_paths=PackedStringArray("ending_text")]
 script = ExtResource("1_fyrdv")
@@ -71,6 +73,10 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 focus_mode = 0
 text = "restart"
+
+[node name="mouse" type="Sprite2D" parent="."]
+texture = ExtResource("3_nfmnx")
+script = ExtResource("4_qa3ag")
 
 [connection signal="pressed" from="Control/UI_container/main_menu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="Control/UI_container/restart_level" to="." method="_on_restart_level_pressed"]

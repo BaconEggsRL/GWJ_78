@@ -1,29 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmavsyk2734g5"]
+[gd_scene load_steps=4 format=3 uid="uid://bmavsyk2734g5"]
 
 [ext_resource type="Script" uid="uid://7ypqu8uyiu70" path="res://scenes/main.gd" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="3_jyhfs"]
 
-[node name="main" type="Node" node_paths=PackedStringArray("play_btn")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn")]
 script = ExtResource("1_o5qli")
-play_btn = NodePath("Control/play")
+play_btn = NodePath("Control/VBoxContainer/play")
+achievements_btn = NodePath("Control/VBoxContainer/achievements")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_right = 1280.0
 offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="play" type="Button" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -119.5
-offset_top = -63.5
-offset_right = 119.5
-offset_bottom = 63.5
+offset_left = -109.5
+offset_top = -122.5
+offset_right = 109.5
+offset_bottom = 122.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="title" type="RichTextLabel" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 48
+text = "Erase the Evidence"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 focus_mode = 0
+theme_override_font_sizes/font_size = 24
 text = "play"
+
+[node name="achievements" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "achievements"
+
+[node name="mouse" type="Sprite2D" parent="."]
+texture = ExtResource("2_sugp2")
+script = ExtResource("3_jyhfs")
+default_state = 1

@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://cocaiu0npv5dm"]
+
+[ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="1_2q86a"]
+[ext_resource type="Script" uid="uid://bruuj2q4n77ct" path="res://scenes/achievements.gd" id="1_jqgop"]
+[ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="2_jqgop"]
+
+[node name="achievements" type="Node2D" node_paths=PackedStringArray("main_menu_btn", "grid_container")]
+script = ExtResource("1_jqgop")
+main_menu_btn = NodePath("Control/UI_container/main_menu")
+grid_container = NodePath("Control/Panel/ScrollContainer/GridContainer")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -163.0
+offset_right = 164.0
+offset_bottom = 149.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 48
+text = "Achievements"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UI_container" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_lock_ = true
+
+[node name="main_menu" type="Button" parent="Control/UI_container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+focus_mode = 0
+text = "exit to main"
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -573.0
+offset_top = -232.0
+offset_right = 577.0
+offset_bottom = 289.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -547.0
+offset_top = -234.5
+offset_right = 547.0
+offset_bottom = 234.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Control/Panel/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 64
+theme_override_constants/v_separation = 64
+columns = 4
+
+[node name="mouse" type="Sprite2D" parent="."]
+texture = ExtResource("1_2q86a")
+script = ExtResource("2_jqgop")

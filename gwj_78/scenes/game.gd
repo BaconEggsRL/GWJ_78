@@ -408,6 +408,10 @@ func _create_shader_tween(node: Node, shader_property: String, value_start: floa
 # eat the magic mushrooms
 func eat_mushrooms() -> void:
 	print("eat the mushrooms")
+	# unlock achievement
+	unlock_achievement("shrooms")
+	
+	
 	var mat = ShaderMaterial.new()
 	mat.shader = BLUR
 	# apply material
@@ -429,6 +433,55 @@ func eat_mushrooms() -> void:
 		show_dialogue(MAIN_DIALOGUE, "mushroom")
 	)
 	
+	
+	
+
+
+func unlock_achievement(achievement_name:String) -> void:
+	# unlock achievement
+	# check if this ending has been reached before
+	#if SaveData.has_unlocked(achievement_name):
+		#print("Player has reached '%s' before!" % achievement_name)
+	#else:
+	# update save data
+	SaveData.unlock_achievement(achievement_name)
+	
+	# show achievement popup
+	var popup = Panel.new()
+	popup.size = Vector2(256, 84)
+	var y_offset = 16
+	popup.set_position(Vector2((get_viewport_rect().size.x - popup.size.x) / 2, y_offset))  # Center top
+	popup.modulate.a = 0.0
+	
+	var label = Label.new()
+	label.text = "Achievement Unlocked: \n" + achievement_name.replace("_", " ").capitalize()
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	# label.set_anchors_preset(Control.PRESET_CENTER)
+	
+	# Set the label's size to match the panel's size
+	label.size = popup.size
+	# Center the label within the panel
+	label.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	
+	
+	popup.add_child(label)
+	
+	# add poppup
+	self.add_child(popup)
+	
+	# Animate popup with proper tween management
+	var tween_in = create_tween()
+	tween_in.tween_property(popup, "modulate:a", 1.0, 1.0)  # Fade in
+	await get_tree().create_timer(3.0).timeout  # Wait 3 seconds
+	
+	var tween_out = create_tween()
+	tween_out.tween_property(popup, "modulate:a", 0.0, 1.0)  # Fade out
+	await tween_out.finished
+	
+	popup.queue_free.call_deferred()  # Remove popup after animation
+		
+		
 
 
 # window event

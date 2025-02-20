@@ -15,6 +15,7 @@ const MAIN = preload("res://scenes/main.tscn")
 const GAME = preload("res://scenes/game.tscn")
 const OPENING = preload("res://scenes/opening.tscn")
 const ENDING = preload("res://scenes/ending.tscn")
+const ACHIEVEMENTS = preload("res://scenes/achievements.tscn")
 
 var next_scene:Resource
 
@@ -123,6 +124,8 @@ func goto(scene_name:String, custom_data:Dictionary={}, fade_out:String="fade_ou
 			scene = OPENING
 		"ending":
 			scene = ENDING
+		"achievements":
+			scene = ACHIEVEMENTS
 		_:
 			push_warning("'%s' has no resource listed in SceneManager" % scene_name)
 	

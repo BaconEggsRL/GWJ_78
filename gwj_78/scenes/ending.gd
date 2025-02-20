@@ -16,6 +16,13 @@ func _ready() -> void:
 		
 		
 	show_dialogue(MAIN_DIALOGUE, custom_data.ending)  # custom function
+	
+	# check if this ending has been reached before
+	if SaveData.has_unlocked(custom_data.ending):
+		print("Player has reached '%s' before!" % custom_data.ending)
+	else:
+		# update save data
+		SaveData.unlock_achievement(custom_data.ending)
 
 	match custom_data.ending:
 		"ending_body":

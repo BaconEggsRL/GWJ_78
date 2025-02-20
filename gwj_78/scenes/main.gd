@@ -1,6 +1,8 @@
-extends Node
+extends Node2D
 
 @export var play_btn:Button
+@export var achievements_btn:Button
+
 const MANUAL_TEST = preload("res://ManualTest.tscn")
 const GAME = preload("res://scenes/game.tscn")
 const OPENING = preload("res://scenes/opening.tscn")
@@ -13,11 +15,21 @@ var anim_speed = 0.5
 
 func _ready() -> void:
 	play_btn.pressed.connect(_on_play_pressed)
+	play_btn.mouse_entered.connect(_on_mouse_entered)
+	
+	achievements_btn.pressed.connect(_on_achievements_pressed)
+	achievements_btn.mouse_entered.connect(_on_mouse_entered)
 
 
+
+func _on_mouse_entered() -> void:
+	AudioManager.play_fx("btn_hover")
+	
 func _on_play_pressed() -> void:
 	SceneManager.goto("opening")
 
+func _on_achievements_pressed() -> void:
+	SceneManager.goto("achievements")
 
 #func _on_play_pressed() -> void:
 	#var _target_scene = GAME.instantiate()

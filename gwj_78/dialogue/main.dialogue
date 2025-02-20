@@ -241,6 +241,7 @@ Eat the magic mushrooms?
 
 ~ mushroom
 MC: Oh damn... I don't feel so good...
+# do unlock_achievement("shrooms")
 => END!
 
 #######################################
@@ -456,6 +457,7 @@ MC: Don't tell me... Is that the toilet?
 ~ window
 if state.window_event == true:
 	if mouse.current_state == mouse.State.GUN:
+		do unlock_achievement("intimidation")
 		???: AHHH! Please don't shoot mister!
 		MC: You gonna keep your mouth shut, punk?
 		???: A-hh-..I..--I mean, about what, sir?

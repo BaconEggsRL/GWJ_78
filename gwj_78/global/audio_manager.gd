@@ -43,6 +43,9 @@ const NIGHTSTAND_DRAWER_CLOSE_9 = preload("res://assets/sound/3_fx/nightstand dr
 const FBI_OPEN_UP = preload("res://assets/sound/3_fx/fbi-open-up-sfx.mp3")
 const YAY = preload("res://assets/sound/3_fx/yay-6326.mp3")
 
+# buttons
+const CAP_HIT_1 = preload("res://assets/sound/3_fx/cap hit 1.wav")
+
 
 func play_ambient(ambient_name: String, fade_in_time: float = 2.0, final_db: float = -6.0) -> void:
 	if ambient_name in ambient_players:
@@ -228,6 +231,8 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> AudioStreamPlay
 			fx = FBI_OPEN_UP
 		"yay":
 			fx = YAY
+		"btn_hover":
+			fx = CAP_HIT_1
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	
