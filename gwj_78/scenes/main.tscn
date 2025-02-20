@@ -6,11 +6,12 @@
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://delgwi5jon8fp" path="res://scenes/volume_btn.gd" id="3_tbgi4"]
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn", "volume_btn")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn", "volume_btn", "old_art_btn")]
 script = ExtResource("1_o5qli")
 play_btn = NodePath("Control/VBoxContainer/play")
 achievements_btn = NodePath("Control/VBoxContainer/achievements")
 volume_btn = NodePath("Control/volume_btn")
+old_art_btn = NodePath("Control/VBoxContainer/old_art_btn")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -63,7 +64,6 @@ text = "achievements"
 [node name="old_art_btn" type="CheckButton" parent="Control/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-button_pressed = true
 action_mode = 0
 text = "Use old art?"
 alignment = 2
@@ -89,4 +89,4 @@ script = ExtResource("3_tbgi4")
 texture = ExtResource("2_sugp2")
 script = ExtResource("3_jyhfs")
 
-[connection signal="pressed" from="Control/VBoxContainer/old_art_btn" to="." method="_on_old_art_btn_pressed"]
+[connection signal="toggled" from="Control/VBoxContainer/old_art_btn" to="." method="_on_old_art_btn_toggled"]

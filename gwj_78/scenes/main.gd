@@ -13,6 +13,7 @@ var anim_speed = 0.5
 
 
 @export var volume_btn:VolumeButton
+@export var old_art_btn:CheckButton
 
 # save data
 var save_data:SaveData
@@ -23,6 +24,8 @@ func _ready() -> void:
 	# load save data
 	save_data = SaveData.load_or_create()
 	
+	# old art optino
+	old_art_btn.button_pressed = save_data.use_old_art
 	
 	# play music
 	AudioManager.play_music("music_funk", -6.0)
@@ -63,5 +66,9 @@ func _on_achievements_pressed() -> void:
 	#pass
 
 
-func _on_old_art_btn_pressed() -> void:
-	pass # Replace with function body.
+func _on_old_art_btn_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		save_data.use_old_art = true
+	else:
+		save_data.use_old_art = false
+	save_data.save()
