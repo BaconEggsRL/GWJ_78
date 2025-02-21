@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dix61so7q02xv"
-path="res://.godot/imported/blood_pool.png-fb643e37cdb0a0136513ee6eab4864ec.ctex"
+uid="uid://nnmbv508phpl"
+path="res://.godot/imported/Ending.png-846cb6507f0372fb6b9e126585c7126f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/room_scenes/new/blood_pool.png"
-dest_files=["res://.godot/imported/blood_pool.png-fb643e37cdb0a0136513ee6eab4864ec.ctex"]
+source_file="res://room_scenes/new_art/Endings/Ending.png"
+dest_files=["res://.godot/imported/Ending.png-846cb6507f0372fb6b9e126585c7126f.ctex"]
 
 [params]
 

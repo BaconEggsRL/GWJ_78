@@ -8,8 +8,19 @@ const BALLOON = preload("res://dialogue/balloon.tscn")
 
 var custom_data = {"ending": "ending_normal"}
 
+
+# ending
+@export var scene_container:MarginContainer
+@export var SCENE_ENDING:TextureRect
+
+# art
+const ENDING = preload("res://assets/art/room_scenes/ending_1.png")
+const ENDING_NEW = preload("res://room_scenes/new_art/Endings/Ending.png")
+
+
 # save data
 var save_data:SaveData
+
 
 
 
@@ -21,6 +32,20 @@ func _ready() -> void:
 	var target_volume = save_data.volume_dict[save_data.load_volume_state()]
 	AudioServer.set_bus_volume_db(0, target_volume)
 	
+	# apply art
+	if save_data.use_old_art:
+		SCENE_ENDING.texture = ENDING
+		scene_container.add_theme_constant_override("margin_left", 16)
+		scene_container.add_theme_constant_override("margin_top", 16)
+		scene_container.add_theme_constant_override("margin_right", 16)
+		scene_container.add_theme_constant_override("margin_bottom", 16)
+	else:
+		SCENE_ENDING.texture = ENDING_NEW
+		scene_container.add_theme_constant_override("margin_left", 0)
+		scene_container.add_theme_constant_override("margin_top", 0)
+		scene_container.add_theme_constant_override("margin_right", 0)
+		scene_container.add_theme_constant_override("margin_bottom", 0)
+	
 	
 	if custom_data.ending != "ending_good":
 		AudioManager.play_fx("fbi")
@@ -28,7 +53,7 @@ func _ready() -> void:
 		AudioManager.play_fx("yay")
 		
 		
-	show_dialogue(MAIN_DIALOGUE, custom_data.ending)  # custom function
+	# show_dialogue(MAIN_DIALOGUE, custom_data.ending)  # custom function
 	
 	# unlock achievement
 	unlock_achievement(custom_data.ending)

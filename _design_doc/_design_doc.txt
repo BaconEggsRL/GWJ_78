@@ -135,6 +135,49 @@ blob_strength from 0.0 to 0.5
 TODO:
 
 
+(Art)
+-Incorporate /code in existing/missing art (faucet on/off, storage closet open/closed, desktop background)
+-Nightstand
+-Finish up main menu design/art
+-Add achievement art
+-Add intro cutscene art
+-Add endings art
+-Window guy -- surprised face (if you have the gun equipped)
+
+(Music)
+-Finalize game timer (5 minutes?)
+-Update music (transition during window guy scene?)
+-"Erase" in the music? delete parts of the track as you get rid of evidence?
+
+(Events)
+-Dialogue action to pee in the toilet
+-Sound effects for unlocking achievements
+-Shoot out police minigame if gun equipped when leaving
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Art:
 # Add an "old_art" global/saved bool. Main menu option button to enable/disable.
 # When enabled, use the old (current) art.
