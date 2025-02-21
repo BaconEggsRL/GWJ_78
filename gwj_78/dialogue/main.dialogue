@@ -213,7 +213,7 @@ if state.storage_closet_unlocked == true:
 		
 else:
 	if mouse.current_state != mouse.State.KEY:
-		do AudioManager.play_fx("locked_door_wiggle")
+		do AudioManager.play_fx("locked_door_wiggle", -6.0)
 		MC: Locked.
 	else:
 		do set_state("storage_closet_unlocked", true)

@@ -7,4 +7,4 @@ script = ExtResource("1_j0pph")
 MUSIC_PLAYER = NodePath("MusicPlayer")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -20.0
+bus = &"music"

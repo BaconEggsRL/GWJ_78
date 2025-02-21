@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmavsyk2734g5"]
+[gd_scene load_steps=7 format=3 uid="uid://bmavsyk2734g5"]
 
 [ext_resource type="Script" uid="uid://7ypqu8uyiu70" path="res://scenes/main.gd" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://cx07of4dhi070" path="res://assets/art/UI/speaker_3.png" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://ctvth5dyak755" path="res://scenes/volume_slider.gd" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://delgwi5jon8fp" path="res://scenes/volume_btn.gd" id="3_tbgi4"]
 
@@ -10,7 +11,7 @@
 script = ExtResource("1_o5qli")
 play_btn = NodePath("Control/VBoxContainer/play")
 achievements_btn = NodePath("Control/VBoxContainer/achievements")
-volume_btn = NodePath("Control/volume_btn")
+volume_btn = NodePath("Control/HBoxContainer/volume_btn")
 old_art_btn = NodePath("Control/VBoxContainer/old_art_btn")
 
 [node name="Control" type="Control" parent="."]
@@ -68,17 +69,56 @@ action_mode = 0
 text = "Use old art?"
 alignment = 2
 
-[node name="volume_btn" type="Button" parent="Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -8.0
+offset_left = -256.0
+offset_top = -72.0
 grow_horizontal = 0
 grow_vertical = 0
+alignment = 2
+
+[node name="GridContainer" type="GridContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+columns = 2
+
+[node name="music" type="Label" parent="Control/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "music"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="music_slider" type="HSlider" parent="Control/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.01
+script = ExtResource("2_tefeu")
+target_bus_name = "music"
+
+[node name="sfx" type="Label" parent="Control/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "sfx"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="sfx_slider" type="HSlider" parent="Control/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.01
+script = ExtResource("2_tefeu")
+target_bus_name = "sfx"
+
+[node name="volume_btn" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
 focus_mode = 0
 action_mode = 0
 icon = ExtResource("2_jyhfs")

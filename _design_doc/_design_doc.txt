@@ -147,7 +147,8 @@ Art:
 
 
 Add new art stuff:
-Storage closet--open/closed
+Storage closet--open/closed, body
+Sink on/off
 
 
 

@@ -70,7 +70,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 focus_mode = 0
-text = "exit to main"
+text = "return to main"
 
 [node name="Panel" type="Panel" parent="Control"]
 layout_mode = 2
