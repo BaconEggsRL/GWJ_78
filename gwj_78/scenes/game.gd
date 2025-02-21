@@ -177,17 +177,20 @@ func exit_through_front_door() -> void:
 	AudioManager.play_fx("door_open")
 	var ending:String = "ending_normal"
 	
-	# hide the body
-	if state.hid_body == false:
-		if inventory.body == true:
-			ending = "ending_body"
+	# hide the gun
+	if state.hid_gun == false:
+		if inventory.gun == true:
+			if mouse.current_state != mouse.State.GUN:
+				ending = "ending_gun"
+			else:
+				ending = "ending_shootout"
 		else:
 			ending = "ending_normal"
 	
-	# hide the gun
-	elif state.hid_gun == false:
-		if inventory.gun == true:
-			ending = "ending_gun"
+	# hide the body
+	elif state.hid_body == false:
+		if inventory.body == true:
+			ending = "ending_body"
 		else:
 			ending = "ending_normal"
 			

@@ -56,9 +56,15 @@ you got caught from webcam footage
 bruh why are you holding a dead body
 => END!
 
+
 ~ ending_gun
 you got caught with the murder weapon
 => END!
+
+~ ending_shootout
+you were holding a gun and the police opened fire
+=> END!
+
 
 ~ ending_time
 you ran out of time and the police showed up

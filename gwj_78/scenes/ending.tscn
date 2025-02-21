@@ -1,9 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5agdh8kvqr5x"]
+[gd_scene load_steps=8 format=3 uid="uid://b5agdh8kvqr5x"]
 
 [ext_resource type="Script" uid="uid://d3tcsyjlmekn6" path="res://scenes/ending.gd" id="1_fyrdv"]
 [ext_resource type="Texture2D" uid="uid://dvutrigsjrche" path="res://assets/art/room_scenes/ending_1.png" id="2_fyrdv"]
+[ext_resource type="Shader" uid="uid://duykroe05j4bw" path="res://shaders/blood.gdshader" id="2_qa3ag"]
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="3_nfmnx"]
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="4_qa3ag"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qa3ag"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5amew"]
+shader = ExtResource("2_qa3ag")
+shader_parameter/noise = SubResource("NoiseTexture2D_qa3ag")
+shader_parameter/blood_coef = 0.0
+shader_parameter/color = Color(0.392157, 0, 0, 1)
+shader_parameter/base_color = Color(1, 1, 1, 0.556)
+shader_parameter/enabled = true
 
 [node name="ending" type="Node2D" node_paths=PackedStringArray("ending_text", "scene_container", "SCENE_ENDING")]
 script = ExtResource("1_fyrdv")
@@ -34,6 +45,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="ending_scene" type="TextureRect" parent="Control/scene_container"]
 self_modulate = Color(1, 1, 1, 0.556863)
+material = SubResource("ShaderMaterial_5amew")
 layout_mode = 2
 texture = ExtResource("2_fyrdv")
 expand_mode = 1
