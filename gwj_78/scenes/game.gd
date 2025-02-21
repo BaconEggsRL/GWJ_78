@@ -43,6 +43,18 @@ const ROOM_SCENE_3 = preload("res://room_scenes/old_art/room_scene_3.tscn")
 const ROOM_SCENE_4 = preload("res://room_scenes/old_art/room_scene_4.tscn")
 
 
+# new inventory icons
+const INVENTORY_NONE = preload("res://assets/art/inventory_objects/none.png")
+
+const INVENTORY_CORPSE_NEW = preload("res://room_scenes/new_art/Inventory icons/Inventory - corpse.png")
+const INVENTORY_KEY_NEW = preload("res://room_scenes/new_art/Inventory icons/Inventory-1.png")
+const INVENTORY_MOP_NEW = preload("res://room_scenes/new_art/Inventory icons/Inventory-2.png")
+const INVENTORY_GUN_NEW = preload("res://room_scenes/new_art/Inventory icons/Inventory-3.png")
+const INVENTORY_NONE_NEW = preload("res://room_scenes/new_art/Inventory icons/Inventory-4.png")
+
+
+
+
 var SCENE_1:TextureRect
 
 var blood_pool_rect:TextureRect
@@ -801,15 +813,28 @@ func add_inventory_button(item_name: String) -> void:
 	AudioManager.play_fx("item_pickup")
 	
 	var button := InventoryButton.new()
-	match item_name:
-		"mop":
-			button.icon = mouse.mop_sprite
-		"storage_closet_key":
-			button.icon = mouse.key_sprite
-		"gun":
-			button.icon = mouse.gun_sprite
-		"body":
-			button.icon = mouse.body_sprite
+	if save_data.use_old_art == true:
+		none.icon = INVENTORY_NONE
+		match item_name:
+			"mop":
+				button.icon = mouse.mop_sprite
+			"storage_closet_key":
+				button.icon = mouse.key_sprite
+			"gun":
+				button.icon = mouse.gun_sprite
+			"body":
+				button.icon = mouse.body_sprite
+	else:
+		none.icon = INVENTORY_NONE_NEW
+		match item_name:
+			"mop":
+				button.icon = INVENTORY_MOP_NEW
+			"storage_closet_key":
+				button.icon = INVENTORY_KEY_NEW
+			"gun":
+				button.icon = INVENTORY_GUN_NEW
+			"body":
+				button.icon = INVENTORY_CORPSE_NEW
 	var mat := ShaderMaterial.new()
 	mat.shader = FLOATY_SHADER
 	button.material = mat
