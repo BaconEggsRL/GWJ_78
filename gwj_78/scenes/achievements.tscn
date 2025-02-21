@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="1_2q86a"]
 [ext_resource type="Script" uid="uid://bruuj2q4n77ct" path="res://scenes/achievements.gd" id="1_jqgop"]
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="2_jqgop"]
-[ext_resource type="Shader" uid="uid://uwggyrjhhx7t" path="res://scenes/fireworks.gdshader" id="2_ttb8s"]
+[ext_resource type="Shader" uid="uid://uwggyrjhhx7t" path="res://shaders/fireworks.gdshader" id="2_ttb8s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uhxyi"]
 shader = ExtResource("2_ttb8s")

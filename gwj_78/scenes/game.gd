@@ -540,7 +540,9 @@ func show_achievement_popup(achievement_name:String) -> void:
 	# show achievement popup
 	var popup = Panel.new()
 	popup.size = Vector2(256, 84)
-	var y_offset = 16
+	
+	# var y_offset = 16  # 16 px from the top
+	var y_offset = get_viewport_rect().size.y - popup.size.y - 16  # 16px from the bottom
 	popup.set_position(Vector2((get_viewport_rect().size.x - popup.size.x) / 2, y_offset))  # Center top
 	popup.modulate.a = 0.0
 	
@@ -614,6 +616,10 @@ func start_window_event() -> void:
 	# update game state
 	set_state("window_event", true)
 	
+	# start timer shader
+	time_left_label.material.set_shader_parameter("enable_flash", true)
+	
+	
 
 
 func stop_window_event(success:bool) -> void:
@@ -626,6 +632,9 @@ func stop_window_event(success:bool) -> void:
 	set_state("window_event", false)
 	if success == false:
 		_on_window_failed()
+		
+	# stop timer shader
+	time_left_label.material.set_shader_parameter("enable_flash", false)
 
 
 

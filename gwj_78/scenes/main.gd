@@ -36,9 +36,6 @@ func _ready() -> void:
 	# init scene
 	init_scene()
 	
-	# old art optino
-	old_art_btn.button_pressed = save_data.use_old_art
-	
 	# play music
 	AudioManager.play_music("music_funk", -6.0)
 	
@@ -92,13 +89,18 @@ func erase_data() -> void:
 	
 	
 func init_scene() -> void:
+	# volume button
 	volume_btn.set_state(save_data.load_volume_state(), false)
 	
+	# volume sliders
 	music_slider.value = save_data.bus_volume.get("music", 1.0)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), linear_to_db(music_slider.value))
 	
 	sfx_slider.value = save_data.bus_volume.get("sfx", 1.0)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sfx"), linear_to_db(sfx_slider.value))
+	
+	# old art optino
+	old_art_btn.button_pressed = save_data.use_old_art
 	
 	
 	

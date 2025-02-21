@@ -87,8 +87,10 @@ you got away
 ~ window_event
 *knock knock*
 ???: Hey! Anybody in there?
-MC: Shit. Somebody's at the window.
-MC: If I don't get rid of him somehow, the cops might come sooner.
+% MC: Great googly moogly! Someone's at the window.
+% MC: Son of a biscuit! Somebody's at the window.
+% MC: Barnacles! Somebody's looking through the window.
+(From now on, time will go by faster until you deal with this person.)
 => END!
 
 
