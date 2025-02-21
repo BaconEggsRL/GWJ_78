@@ -47,6 +47,21 @@ const YAY = preload("res://assets/sound/3_fx/yay-6326.mp3")
 const CAP_HIT_1 = preload("res://assets/sound/3_fx/cap hit 1.wav")
 
 
+# save data
+# var save_data:SaveData
+
+
+
+func _ready() -> void:
+	# load save data
+	# save_data = SaveData.load_or_create()
+	# set bus volumes
+	################################
+	pass
+	
+	
+	
+	
 func play_ambient(ambient_name: String, fade_in_time: float = 2.0, final_db: float = -6.0) -> void:
 	if ambient_name in ambient_players:
 		# push_warning("Ambient sound '%s' is already playing" % ambient_name)
