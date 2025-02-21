@@ -313,21 +313,31 @@ MC: Huh, wonder what this guy reads.
 Pick a book to read?
 - Yes
 	Which one?
+	- Guide to Inventory (For Dummies)
+		"'Guide to Inventory (For Dummies)', by Big Dummy:"
+		"...Always check under the bed for items."
+		"...Click on the items in your inventory to equip them."
+		"...Try clicking on other objects around the room."
+		"...Different actions will occur depending on which item you have equipped."
+		"...Click on the red X to unequip your items."
+		MC: I feel dumber already.
+		
 	- How to Hide A Body
 		"'How to Hide A Body', by M. Light Famalayan:"
 		MC: Some pages are missing...
 		"...Always check under the bed for items."
-		"...Click on the items in your inventory to equip them."
-		"...Try clicking on other objects around the room."
-		"...Different actions will occur depending on what item you have equipped."
-		"...If you have an item equipped, click the red X to unequip your item."
+		"...Try mopping up the blood."
+		"...Get rid of all the evidence before time runs out."
+		"...When you are ready, click the front door to leave."
 		MC: Who wrote this garbage?
+	
 	- The Basics of Horseshoe Crab Racing
 		"'The Basics of Horseshoe Crab Racing', by Alice Jones:"
 		“...Horseshoe crabs are crustaceans.”
 		“...They are not that fast.”
 		“...They can be stealthy.”
 		MC: The heck?
+	
 	- Theatre 101 Syllabus
 		“'Theatre 101 Syllabus', by T. A. Cher:”
 		"...This semester will be featuring [color=yellow]{{correct_play}}[/color] by [color=yellow]{{correct_author}}[/color]."
