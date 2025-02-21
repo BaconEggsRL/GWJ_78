@@ -159,9 +159,11 @@ var save_data:SaveData
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left"):
 		print("You pressed left!")
+		change_scene_to(current_scene_index - 1)
 		
 	if event.is_action_pressed("right"):
 		print("You pressed right!")
+		change_scene_to(current_scene_index + 1)
 	
 	
 
