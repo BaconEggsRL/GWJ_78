@@ -126,7 +126,7 @@ var state := {}
 @export var time_left_label:Label
 # evidence
 @export var evidence_left_label:Label
-@onready var evidence_left:int = 4
+@onready var evidence_left:int = 3
 
 @export var max_seconds:float = 60 * 5.0
 @onready var time_left:float = max_seconds
@@ -292,7 +292,7 @@ func update_evidence_label() -> void:
 
 
 func drink_blood() -> void:
-	var _fx = AudioManager.play_fx("drink_blood")
+	var _fx = AudioManager.play_fx("drink_blood", -6.0)
 	# update state
 	set_state("blood_cleaned", true)
 	set_state("drank_blood", true)
@@ -319,9 +319,10 @@ func turn_webcam_off() -> void:
 	set_state("webcam_off", true)
 	webcam_rect.texture = WEBCAM_OFF if save_data.use_old_art else WEBCAM_OFF_NEW
 	
+	# removed -- webcam doesn't really count as "evidence", although it's required to win
 	# update evidence label
-	evidence_left -= 1
-	update_evidence_label()
+	# evidence_left -= 1
+	# update_evidence_label()
 	
 	
 	

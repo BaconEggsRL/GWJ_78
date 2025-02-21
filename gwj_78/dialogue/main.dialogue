@@ -127,6 +127,8 @@ if inventory.body == false:
 	Pick up the body?
 	- Yes
 		do pickup_body()
+		MC: Darn it J...since it's a rush job, I didn't bring any body bags with me.
+		MC: I'll have to find a place to hide the body.
 	- No
 		Better leave it alone.
 => END!

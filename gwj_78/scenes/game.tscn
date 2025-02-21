@@ -71,7 +71,6 @@ scene_container = NodePath("Control/scene_container")
 inventory_container = NodePath("Control/UI_container/inventory_container")
 time_left_label = NodePath("Control/stat_container/time")
 evidence_left_label = NodePath("Control/stat_container/evidence")
-max_seconds = 180.0
 
 [node name="Control" type="Control" parent="."]
 material = SubResource("ShaderMaterial_ssvqc")
