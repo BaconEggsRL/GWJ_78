@@ -18,4 +18,4 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 focus_mode = 0
-text = "skip to game"
+text = "skip cutscene"

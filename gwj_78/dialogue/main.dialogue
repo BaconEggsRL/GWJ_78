@@ -87,9 +87,16 @@ you got away
 ~ window_event
 *knock knock*
 ???: Hey! Anybody in there?
-% MC: Great googly moogly! Someone's at the window!
+
+% MC: Great galloping gooseberries! Somebody's at the window!
+% MC: Great googly moogly! Somebody's at the window!
+% MC: Mother of meatballs! Somebody's at the window!
+% MC: Flaming fudge nuggets! Somebody's at the window!
+% MC: Hopping jalapeño jellies! Somebody's at the window!
 % MC: Son of a biscuit! Somebody's at the window!
-% MC: Barnacles! Somebody's looking through the window!
+% MC: Son of a nutcracker! Somebody's at the window!
+% MC: Sweet pickled pancakes! Somebody's at the window!
+
 (From now on, time will go by faster unless you deal with this person.)
 => END!
 
@@ -159,7 +166,7 @@ if inventory.gun == false:
 
 ~ door
 if mouse.current_state != mouse.State.KEY:
-	It's a door.
+	It's the front door.
 	Are you sure you want to leave?
 	- Yes
 		do exit_through_front_door()
@@ -254,8 +261,11 @@ Eat the magic mushrooms?
 => END!
 
 ~ mushroom
-MC: Oh damn... I don't feel so good...
-# do unlock_achievement("shrooms")
+% MC: Oh boy... the walls are breathing... that's probably not good...
+% MC: Uh-oh... I think reality just quit its job...
+% MC: Uh-oh... I can hear colors...
+% MC: Uh-oh... My eyeballs are melting...
+% MC: Oh crap... My brain is melting...
 => END!
 
 #######################################
@@ -414,7 +424,8 @@ else:
 			elif wash_count == 6:
 				[b]Unbelievably[/b] filthy.
 			elif wash_count == 7:
-				So filthy, that nothing could possibly clean them. Not even a magnificent industrial sink like this one.
+				So filthy, that nothing could possibly clean them.
+				Not even a magnificent and powerful industrial sink like this one.
 			elif wash_count == 8:
 				Even if you scrubbed them down to the very bone, these hands would still be, in fact, filthy.
 			elif wash_count == 9:
