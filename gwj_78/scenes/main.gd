@@ -13,7 +13,16 @@ var anim_speed = 0.5
 
 
 @export var volume_btn:VolumeButton
+@export var music_slider:VolumeSlider
+@export var sfx_slider:VolumeSlider
+
 @export var old_art_btn:CheckButton
+
+@export var mouse:Mouse
+
+
+var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
+const BALLOON = preload("res://dialogue/balloon.tscn")
 
 # save data
 var save_data:SaveData
@@ -23,6 +32,9 @@ var save_data:SaveData
 func _ready() -> void:
 	# load save data
 	save_data = SaveData.load_or_create()
+	
+	# init scene
+	init_scene()
 	
 	# old art optino
 	old_art_btn.button_pressed = save_data.use_old_art
@@ -72,3 +84,43 @@ func _on_old_art_btn_toggled(toggled_on: bool) -> void:
 	else:
 		save_data.use_old_art = false
 	save_data.save()
+
+
+func erase_data() -> void:
+	save_data.clear()
+	init_scene()
+	
+	
+func init_scene() -> void:
+	volume_btn.set_state(save_data.load_volume_state(), false)
+	
+	music_slider.value = save_data.bus_volume.get("music", 1.0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), linear_to_db(music_slider.value))
+	
+	sfx_slider.value = save_data.bus_volume.get("sfx", 1.0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("sfx"), linear_to_db(sfx_slider.value))
+	
+	
+	
+
+func _on_erase_data_mouse_entered() -> void:
+	# mouse.set_state(mouse.State.ERASER)
+	pass
+
+func _on_erase_data_mouse_exited() -> void:
+	# mouse.set_state(mouse.State.NONE)
+	pass
+
+
+func _on_erase_data_pressed() -> void:
+	# show dialogue
+	var _dialogue = show_dialogue(MAIN_DIALOGUE, "erase_data")  # custom function
+
+
+# show dialogue
+func show_dialogue(resource:DialogueResource, title:String="", extra_game_states:Array=[]) -> Node:
+	var balloon:Node = BALLOON.instantiate()
+	add_child(balloon)
+	balloon.start(resource, title, extra_game_states)
+	DialogueManager.dialogue_started.emit(resource)
+	return balloon

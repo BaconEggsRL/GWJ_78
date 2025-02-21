@@ -1,3 +1,15 @@
+
+~ erase_data
+WARNING: This will erase all saved data, including any achievements and volume settings.
+Are you sure about this?
+- Yes
+	Erasing data...
+	do erase_data()
+	Done.
+- No, don't do it!
+	Aborted.
+=> END!
+
 #######################################
 
 # OPENING
