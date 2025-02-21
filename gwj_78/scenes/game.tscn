@@ -1,7 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://b61hh14421gi8"]
+[gd_scene load_steps=20 format=3 uid="uid://b61hh14421gi8"]
 
 [ext_resource type="Script" uid="uid://c7vmisv8rkjm4" path="res://scenes/game.gd" id="1_uwrxv"]
 [ext_resource type="Shader" uid="uid://dny7c3ex6hojy" path="res://shaders/blur.gdshader" id="2_rysoc"]
+[ext_resource type="Texture2D" uid="uid://c3btswg4o1bve" path="res://assets/art/UI/arrow_left.png" id="3_dinhu"]
+[ext_resource type="Texture2D" uid="uid://0trbt5pjde5m" path="res://assets/art/UI/arrow_right.png" id="4_kvuet"]
 [ext_resource type="Shader" uid="uid://bwii0e5hn3fn6" path="res://shaders/floaty.gdshader" id="6_vtaks"]
 [ext_resource type="Texture2D" uid="uid://cp1csfwkymsgh" path="res://assets/art/inventory_objects/none.png" id="7_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://bxr0wa5in3pdh" path="res://assets/art/inventory_objects/mop.png" id="8_gee14"]
@@ -97,29 +99,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 metadata/_edit_lock_ = true
 
 [node name="look_left" type="Button" parent="Control/UI_container"]
-custom_minimum_size = Vector2(100, 460)
+custom_minimum_size = Vector2(0, 360)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 focus_mode = 0
-text = "look
-left"
+icon = ExtResource("3_dinhu")
+icon_alignment = 1
 
 [node name="look_right" type="Button" parent="Control/UI_container"]
-custom_minimum_size = Vector2(100, 460)
+custom_minimum_size = Vector2(0, 360)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 focus_mode = 0
-text = "look
-right"
+icon = ExtResource("4_kvuet")
+icon_alignment = 1
 
 [node name="main_menu" type="Button" parent="Control/UI_container"]
 layout_mode = 2

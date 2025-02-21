@@ -154,6 +154,18 @@ var save_data:SaveData
 
 ###########################################################
 
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("left"):
+		print("You pressed left!")
+		
+	if event.is_action_pressed("right"):
+		print("You pressed right!")
+	
+	
+
+
 # Endings
 
 # called when the player tries to leave through the fron door
@@ -599,6 +611,14 @@ func start_window_event() -> void:
 		
 	# start window event
 	AudioManager.play_fx("window_knock")
+	
+	# change to window scene
+	var window_index:int
+	if save_data.use_old_art:
+		window_index = 3
+	else:
+		window_index = 2
+	change_scene_to(window_index)
 	
 	# delete active dialogue
 	if current_dialogue:
