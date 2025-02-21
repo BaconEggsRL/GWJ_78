@@ -394,6 +394,9 @@ func _ready() -> void:
 	# play music
 	AudioManager.play_music("music_funk", -6.0)
 	
+	# turn off timer shader
+	time_left_label.material.set_shader_parameter("enable_flash", false)
+	
 	
 	
 	# old art
