@@ -55,6 +55,7 @@ func _ready() -> void:
 	# save_data = SaveData.load_or_create()
 	# set bus volume
 	# set_bus_volume()
+	animation_player.speed_scale = 1.5
 	pass
 	
 	
