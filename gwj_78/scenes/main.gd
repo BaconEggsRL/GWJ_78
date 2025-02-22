@@ -50,8 +50,7 @@ func _ready() -> void:
 	achievements_btn.mouse_entered.connect(_on_mouse_entered)
 	
 	# fingerprint shananigans
-	randomize_fingerprint()
-	fade_fingerprint(true)
+	randomize_fingerprint(true)
 
 
 
@@ -160,7 +159,7 @@ func fade_fingerprint(make_visible:bool, fade_time:float=0.5, max_alpha:float=0.
 		return null
 
 
-func randomize_fingerprint() -> void:
+func randomize_fingerprint(instant:bool = false) -> void:
 	# Generate a random rotation
 	var rot = randf_range(-PI, PI)
 	
@@ -191,10 +190,28 @@ func randomize_fingerprint() -> void:
 	var walk_speed = 100.0
 	var walk_time = actual_distance / walk_speed
 
-	# Apply rotation and tween movement
+	# Apply rotation
 	fingerprint_btn.rotation = rot
-	var pos_tween: Tween = create_tween()
-	pos_tween.tween_property(fingerprint_btn, "position", target_pos, walk_time)
+	
+	# Tween movement
+	if instant == false:
+		var pos_tween: Tween = create_tween()
+		pos_tween.tween_property(fingerprint_btn, "position", target_pos, walk_time)
+		# fade in btn after moved
+		pos_tween.finished.connect(func():
+			print("reset")
+			# fade in texture
+			fade_fingerprint(true)
+			# reset mouse filter to clickable
+			fingerprint_btn.mouse_filter = Control.MOUSE_FILTER_STOP
+		)
+	else:
+		print("reset")
+		fingerprint_btn.position = target_pos
+		fade_fingerprint(true)
+		fingerprint_btn.mouse_filter = Control.MOUSE_FILTER_STOP
+		
+		
 
 
 	
@@ -203,7 +220,7 @@ func randomize_fingerprint() -> void:
 				
 				
 func _on_fingerprint_btn_pressed() -> void:
-	print("you got me")
+	print("pressed")
 	if fingerprint_visible:
 		fingerprint_btn.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		
@@ -211,13 +228,9 @@ func _on_fingerprint_btn_pressed() -> void:
 		var tween:Tween = fade_fingerprint(false)
 		if tween:
 			tween.finished.connect(func():
-				print("erased")
+				print("move")
 				# move position randomly
 				randomize_fingerprint()
-				# fade in texture
-				fade_fingerprint(true)
-				# reset mouse filter to clickable
-				fingerprint_btn.mouse_filter = Control.MOUSE_FILTER_STOP
 			)
 	else:
 		fade_fingerprint(true)
