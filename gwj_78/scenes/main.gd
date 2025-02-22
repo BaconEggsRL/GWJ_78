@@ -21,7 +21,11 @@ var anim_speed = 0.5
 @export var mouse:Mouse
 @export var fingerprint_btn:Button
 @onready var fingerprint_visible:bool = false
-const FOOTPRINT = preload("res://footprint.png")
+@export var footstep_timer:Timer
+
+@export var footstep_container:Control
+const FOOTPRINT_RECT = preload("res://footprint_rect.tscn")
+var walk_angle:float = 0.0
 
 
 var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
@@ -163,15 +167,16 @@ func randomize_fingerprint(instant:bool = false) -> void:
 	# Generate a random rotation
 	var rot = randf_range(-PI, PI)
 	
-	var min_distance = 100.0  # Minimum movement distance
-	var max_distance = 300.0 # Maximum movement distance
+	var min_distance = 200.0  # Minimum movement distance
+	var max_distance = 400.0 # Maximum movement distance
+	var walk_speed = 150.0
 	
 	# Generate a random direction
-	var angle = randf_range(0, TAU)  # TAU = 2 * PI (full circle)
+	walk_angle = randf_range(0, TAU)  # TAU = 2 * PI (full circle)
 	var distance = randf_range(min_distance, max_distance)  # Ensure distance is at least min_distance
 
 	# Calculate new position within the valid range
-	var offset = Vector2(cos(angle), sin(angle)) * distance
+	var offset = Vector2(cos(walk_angle), sin(walk_angle)) * distance
 	var target_pos = fingerprint_btn.position + offset
 
 	# Ensure the position stays within screen bounds
@@ -187,7 +192,6 @@ func randomize_fingerprint(instant:bool = false) -> void:
 		return randomize_fingerprint()
 
 	# Calculate movement duration
-	var walk_speed = 100.0
 	var walk_time = actual_distance / walk_speed
 
 	# Apply rotation
@@ -195,16 +199,22 @@ func randomize_fingerprint(instant:bool = false) -> void:
 	
 	# Tween movement
 	if instant == false:
+		
+		footstep_timer.start()
+		
 		var pos_tween: Tween = create_tween()
 		pos_tween.tween_property(fingerprint_btn, "position", target_pos, walk_time)
 		# fade in btn after moved
 		pos_tween.finished.connect(func():
 			print("reset")
+			# stop footsteps
+			footstep_timer.stop()
 			# fade in texture
 			fade_fingerprint(true)
 			# reset mouse filter to clickable
 			fingerprint_btn.mouse_filter = Control.MOUSE_FILTER_STOP
 		)
+
 	else:
 		print("reset")
 		fingerprint_btn.position = target_pos
@@ -234,3 +244,14 @@ func _on_fingerprint_btn_pressed() -> void:
 			)
 	else:
 		fade_fingerprint(true)
+
+
+func _on_footstep_timer_timeout() -> void:
+	print("step")
+	var footprint = FOOTPRINT_RECT.instantiate()
+	var offset:float = 20.0
+	var offset_vector = Vector2(randf_range(-offset, offset), randf_range(-offset, offset))
+	footprint.position = fingerprint_btn.position + offset_vector
+	footprint.rotation = walk_angle + PI/2
+	footstep_container.add_child(footprint)
+	

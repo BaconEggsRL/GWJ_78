@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c86sm0qm42572"]
+
+[ext_resource type="Texture2D" uid="uid://q7r70cd8x464" path="res://footprint.png" id="1_i3yk8"]
+[ext_resource type="Script" uid="uid://c8kwsl175oojs" path="res://footprint_rect.gd" id="2_6de44"]
+
+[node name="footprint_rect" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+rotation = 1.5708
+pivot_offset = Vector2(32, 32)
+mouse_filter = 2
+texture = ExtResource("1_i3yk8")
+script = ExtResource("2_6de44")

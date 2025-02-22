@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmavsyk2734g5"]
+[gd_scene load_steps=10 format=3 uid="uid://bmavsyk2734g5"]
 
 [ext_resource type="Script" uid="uid://7ypqu8uyiu70" path="res://scenes/main.gd" id="1_o5qli"]
-[ext_resource type="Texture2D" uid="uid://q7r70cd8x464" path="res://footprint.png" id="2_85g3d"]
 [ext_resource type="Texture2D" uid="uid://cx07of4dhi070" path="res://assets/art/UI/speaker_3.png" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://ctvth5dyak755" path="res://scenes/volume_slider.gd" id="2_tefeu"]
@@ -14,7 +13,7 @@
 shader = ExtResource("7_tipki")
 shader_parameter/alpha_control = null
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn", "volume_btn", "music_slider", "sfx_slider", "old_art_btn", "mouse", "fingerprint_btn")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn", "volume_btn", "music_slider", "sfx_slider", "old_art_btn", "mouse", "fingerprint_btn", "footstep_timer", "footstep_container")]
 script = ExtResource("1_o5qli")
 play_btn = NodePath("Control/center/play")
 achievements_btn = NodePath("Control/center/achievements")
@@ -24,11 +23,17 @@ sfx_slider = NodePath("Control/bottom_right/GridContainer/sfx_slider")
 old_art_btn = NodePath("Control/center/old_art_btn")
 mouse = NodePath("mouse")
 fingerprint_btn = NodePath("fingerprint_btn")
+footstep_timer = NodePath("footstep_timer")
+footstep_container = NodePath("footstep_container")
 
-[node name="footprint" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_85g3d")
+[node name="footstep_container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="fingerprint_btn" type="Button" parent="."]
 material = SubResource("ShaderMaterial_tipki")
@@ -190,8 +195,12 @@ expand_icon = true
 texture = ExtResource("2_sugp2")
 script = ExtResource("3_jyhfs")
 
+[node name="footstep_timer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="pressed" from="fingerprint_btn" to="." method="_on_fingerprint_btn_pressed"]
 [connection signal="toggled" from="Control/center/old_art_btn" to="." method="_on_old_art_btn_toggled"]
 [connection signal="mouse_entered" from="Control/MarginContainer/bottom_center/erase_data" to="." method="_on_erase_data_mouse_entered"]
 [connection signal="mouse_exited" from="Control/MarginContainer/bottom_center/erase_data" to="." method="_on_erase_data_mouse_exited"]
 [connection signal="pressed" from="Control/MarginContainer/bottom_center/erase_data" to="." method="_on_erase_data_pressed"]
+[connection signal="timeout" from="footstep_timer" to="." method="_on_footstep_timer_timeout"]
