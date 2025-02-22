@@ -138,7 +138,7 @@ var state := {}
 @export var max_seconds:float = 60 * 5.0
 @onready var time_left:float = max_seconds
 var time_elapsed := 0.0
-@onready var window_event_time:float = max_seconds * 0.5  # time for window check to occur
+@onready var window_event_time:float = max_seconds * 0.8  # time for window check to occur
 @onready var plays:Dictionary = {
 	"Death of a Salesman": "Arthur Miller", 
 	"To Kill a Mockingbird": "Harper Lee", 
