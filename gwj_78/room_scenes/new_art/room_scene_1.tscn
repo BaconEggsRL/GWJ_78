@@ -209,13 +209,3 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("11_cw3um")
-
-[node name="mop" type="Button" parent="mop_rect"]
-visible = false
-layout_mode = 0
-offset_left = 100.0
-offset_top = 196.0
-offset_right = 195.0
-offset_bottom = 513.0
-focus_mode = 0
-text = "mop"

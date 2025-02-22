@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b7tl2gth2ahem"]
+[gd_scene load_steps=12 format=3 uid="uid://b7tl2gth2ahem"]
 
 [ext_resource type="Texture2D" uid="uid://cl5cwvppw3ln2" path="res://room_scenes/new_art/Assets - scene 3/Background.png" id="1_qvvqm"]
 [ext_resource type="Texture2D" uid="uid://dcicd3uiugbis" path="res://room_scenes/new_art/Assets - scene 3/Closet-closed.png" id="2_5wx1i"]
+[ext_resource type="Texture2D" uid="uid://bsqd080knbif4" path="res://room_scenes/new_art/Assets - scene 3/mop.png" id="3_7igfg"]
 [ext_resource type="Texture2D" uid="uid://dugpa61y54ra0" path="res://room_scenes/new_art/Assets - scene 3/Mirror.png" id="3_xsihv"]
 [ext_resource type="Texture2D" uid="uid://cap524ueiluhq" path="res://room_scenes/new_art/Assets - scene 3/Shelf.png" id="4_7igfg"]
 [ext_resource type="Texture2D" uid="uid://ctntwkjigr3vh" path="res://room_scenes/new_art/Assets - scene 3/Sink-off.png" id="5_y8q71"]
@@ -55,6 +56,14 @@ offset_right = 1279.0
 offset_bottom = 624.0
 focus_mode = 0
 text = "storage_closet"
+
+[node name="mop_rect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_7igfg")
 
 [node name="mirror_rect" type="TextureRect" parent="."]
 layout_mode = 0

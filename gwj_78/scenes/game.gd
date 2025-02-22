@@ -70,8 +70,9 @@ const WEBCAM_OFF = preload("res://assets/art/room_scenes/webcam_off.png")
 const WEBCAM_ON_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webcam-on.png")
 const WEBCAM_OFF_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webcam-off.png")
 
-const CLOSET_CLOSED_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Closet.png")
-const CLOSET_OPEN_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Closet-open.png")
+# closet
+const CLOSET_OPEN_1 = preload("res://room_scenes/new_art/Assets - scene 1/Closet-open.png")
+const CLOSET_OPEN_3 = preload("res://room_scenes/new_art/Assets - scene 3/Closet-open (1).png")
 
 const DOOR_OPEN = preload("res://room_scenes/new_art/Assets - scene 1/Door-open.png")
 const DESK_COMPUTER_OFF = preload("res://room_scenes/new_art/Assets - scene 1/Desk.PNG")
@@ -733,20 +734,26 @@ func stop_window_event(success:bool) -> void:
 
 
 # called when opening the storage closet with the key
+# open storage closet
 func unlock_storage_closet() -> void:
 	set_state("storage_closet_unlocked", true)
 	set_inventory_item("storage_closet_key", false)
 	AudioManager.play_fx("door_unlock")
 	# update texture
-	var new_texture:CompressedTexture2D
 	if save_data.use_old_art:
 		pass
 	else:
-		new_texture = CLOSET_OPEN_NEW
-		var storage_closet_rect = SCENE_1.get_node("storage_closet_rect")
-		storage_closet_rect.texture = new_texture
-		var mop_rect = SCENE_1.get_node("mop_rect")
-		mop_rect.show()
+		# scene 1
+		var storage_closet_rect_1 = SCENE_1.get_node("storage_closet_rect")
+		storage_closet_rect_1.texture = CLOSET_OPEN_1
+		var mop_rect_1 = SCENE_1.get_node("mop_rect")
+		mop_rect_1.show()
+		# scene 3
+		var storage_closet_rect_3 = SCENE_3.get_node("storage_closet_rect")
+		storage_closet_rect_3.texture = CLOSET_OPEN_3
+		var mop_rect_3 = SCENE_3.get_node("mop_rect")
+		mop_rect_3.show()
+		
 	
 
 # called when closing the curtains
@@ -800,11 +807,19 @@ func pickup_mop() -> void:
 	if save_data.use_old_art:
 		pass
 	else:
-		var mop_rect = SCENE_1.get_node("mop_rect")
-		var mop_tween = create_tween()
-		mop_tween.tween_property(mop_rect, "self_modulate:a", 0.0, 1.0)
-		mop_tween.finished.connect(func():
-			mop_rect.visible = false
+		# scene 1
+		var mop_rect_1 = SCENE_1.get_node("mop_rect")
+		var mop_tween_1 = create_tween()
+		mop_tween_1.tween_property(mop_rect_1, "self_modulate:a", 0.0, 1.0)
+		mop_tween_1.finished.connect(func():
+			mop_rect_1.visible = false
+		)
+		# scene 3
+		var mop_rect_3 = SCENE_3.get_node("mop_rect")
+		var mop_tween_3 = create_tween()
+		mop_tween_3.tween_property(mop_rect_3, "self_modulate:a", 0.0, 1.0)
+		mop_tween_3.finished.connect(func():
+			mop_rect_3.visible = false
 		)
 	
 	
