@@ -109,6 +109,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="play_btn" type="Button" parent="Control"]
+self_modulate = Color(1, 1, 1, 0.588235)
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 offset_left = 709.0
@@ -117,9 +118,9 @@ offset_right = 1147.0
 offset_bottom = 537.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 24
-text = "play"
 
 [node name="achievements_btn" type="Button" parent="Control"]
+self_modulate = Color(1, 1, 1, 0.588235)
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 offset_left = 709.0
@@ -128,7 +129,6 @@ offset_right = 1144.0
 offset_bottom = 671.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 24
-text = "achievements"
 
 [node name="bottom_right" type="HBoxContainer" parent="Control"]
 layout_mode = 1
@@ -210,11 +210,12 @@ alignment = 1
 
 [node name="old_art_btn" type="CheckButton" parent="Control/bottom_left/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 4
 focus_mode = 0
 action_mode = 0
 text = "Use old art?"
-alignment = 2
+alignment = 1
+icon_alignment = 1
 
 [node name="erase_data" type="Button" parent="Control/bottom_left/VBoxContainer"]
 layout_mode = 2
