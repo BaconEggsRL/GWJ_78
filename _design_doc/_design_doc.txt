@@ -141,6 +141,9 @@ blob_strength from 0.0 to 0.5
 TODO:
 need art for storage_closet open in scene 3
 
+add desktop (horseshoe crab) art
+add door open when leaving scene 1
+add computer_on when clicking desktop monitor
 
 
 playtest notes:
@@ -175,11 +178,13 @@ achievement for just leaving the blood?
 Sam thoughts?
 
 
-sam never saw window guy :(
-5:00 -> 2:30 (3:00? 3:30? 4:00? 1.5x time?)
-maybe make him appear at 3:00
+# sam never saw window guy :(
+# 5:00 -> 2:30 (3:00? 3:30? 4:00? 1.5x time?)
+# maybe make him appear at 3:00
 
-
+# ok, let's try appear at 4:00 and still double time
+# so you get 1 free minute, then 2 minutes double time
+# (so 3 minutes total, but if you close the curtains you get 5 minutes.)
 
 # how to use items? (figured out eventually.)
 
