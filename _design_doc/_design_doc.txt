@@ -4,6 +4,11 @@ Erase
 ==========================
 
 
+ERROR: platform/windows/display_server_windows.cpp:3761 - Parameter "hicon" is null.
+
+
+
+
 TODO:
 # ending art for "good ending"
 
