@@ -143,3 +143,4 @@ func _on_gyat_btn_pressed() -> void:
 func _on_music_option_selected(_index: int) -> void:
 	var text = music_options.get_item_text(_index)
 	print("selected: %s" % text)
+	AudioManager.play_music(AudioManager.music_array[_index])

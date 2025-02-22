@@ -10,11 +10,19 @@ var active_fx_players: Dictionary = {}  # Store FX players with names
 
 # music
 # list of all music
-const SKETCHBOOK_2024_05_22 = preload("res://assets/sound/1_music/Sketchbook 2024-05-22.ogg")
-const SKETCHBOOK_2024_11_20 = preload("res://assets/sound/1_music/Sketchbook 2024-11-20.ogg")
+const MUSIC_FUNK = preload("res://assets/sound/1_music/Sketchbook 2024-05-22.ogg")
+const MUSIC_FUNK_MENU = preload("res://assets/sound/1_music/Sketchbook 2024-11-20.ogg")
 
-const _PANIC_LOOP_FINAL_WAV = preload("res://assets/sound/1_music/_PanicLoopFinal_WAV.wav")
-const _CALM_DRAFT_0_WAV = preload("res://assets/sound/1_music/_CalmDraft0_WAV.wav")
+const MUSIC_ALEX = preload("res://assets/sound/1_music/_PanicLoopFinal_WAV.wav")
+const MUSIC_ALEX_MENU = preload("res://assets/sound/1_music/_CalmDraft0_WAV.wav")
+
+# names of music tracks for switching
+var music_array = [
+	"music_funk",
+	"music_funk_menu",
+	"music_alex",
+	"music_alex_menu",
+]
 
 
 # ambient
@@ -242,13 +250,15 @@ func play_music(scene_name:String, final_db:float=0.0, fade_in:bool=true, fade_i
 		"music_1":
 			music = null  # insert music const here
 		"music_funk":
-			music = SKETCHBOOK_2024_05_22
+			music = MUSIC_FUNK
+			final_db = -6.0
 		"music_funk_menu":
-			music = SKETCHBOOK_2024_11_20
+			music = MUSIC_FUNK_MENU
+			final_db = -6.0
 		"music_alex":
-			music = _PANIC_LOOP_FINAL_WAV
+			music = MUSIC_ALEX
 		"music_alex_menu":
-			music = _CALM_DRAFT_0_WAV
+			music = MUSIC_ALEX_MENU
 			
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % scene_name)
