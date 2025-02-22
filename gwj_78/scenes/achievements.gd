@@ -35,16 +35,27 @@ func _ready() -> void:
 func display_achievements() -> void:
 	var achievements = save_data.get_all_achievements()
 	for ach in achievements:
-		add_achievement_box(ach.icon, ach.ach_name.replace("_", " ").capitalize(), ach.hover_text)
+		var _box = add_achievement_box(ach.icon, ach.ach_name.replace("_", " ").capitalize(), ach.hover_text)
+		print(ach.name)
+		if save_data.has_unlocked(ach.name):
+			# print("hit")
+			# _box.shadow_btn.modulate = Color.YELLOW
+			# _box.frame_btn.self_modulate = Color.YELLOW
+			pass
+		else:
+			# print("miss")
+			# _box.shadow_btn.modulate = Color.WHITE
+			pass
 		
 
 
-func add_achievement_box(icon:Texture2D, label_text:String, hover_text:String) -> void:
+func add_achievement_box(icon:Texture2D, label_text:String, hover_text:String) -> AchievementBoxContainer:
 	var box:AchievementBoxContainer = ACHIEVEMENT_BOX_CONTAINER.instantiate()
 	grid_container.add_child(box)
 	box.icon_rect.texture = icon
 	box.name_label.text = label_text
 	box.tooltip_text = hover_text
+	return box
 	
 	#var box = VBoxContainer.new()
 	#
