@@ -240,14 +240,17 @@ if state.storage_closet_unlocked == true:
 			- Yes
 				do hide_body("storage_closet")
 				MC: Nice.
-				MC: No one's finding him in there.
+				# MC: No one's finding him in there.
 			- No
 				MC: I'll find another spot.
 		else:
 			if state.hid_body_in_storage_closet == true:
 				if save_data.use_old_art == false:
-					# MC: No one's finding him in there.
-					do toggle_storage_closet_with_body()
+					if closet_check_count == 0:
+						MC: No one's finding him in there.
+						do closet_check_count += 1
+					else:
+						do toggle_storage_closet_with_body()
 				else:
 					MC: No one's finding him in there.
 			else:

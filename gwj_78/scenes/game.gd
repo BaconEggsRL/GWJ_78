@@ -113,6 +113,7 @@ const CURTAINS_OPEN_NEW = preload("res://room_scenes/new_art/Assets - scene 4/Cu
 const CURTAINS_CLOSED_NEW = preload("res://room_scenes/new_art/Assets - scene 4/Curtains-closed.png")
 const CURTAINS_OPEN_EVENT_NEW = preload("res://room_scenes/new_art/Assets - scene 4/Witness-in-window.png")
 
+var closet_check_count:int = 0
 
 
 var room_scenes:Array
