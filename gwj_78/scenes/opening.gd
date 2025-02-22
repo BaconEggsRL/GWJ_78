@@ -40,6 +40,8 @@ func _ready() -> void:
 	# play music
 	# AudioManager.play_music("music_funk", -6.0, false)
 	# AudioManager.play_music("music_alex")
+	var _index = save_data.game_music
+	AudioManager.play_music(AudioManager.music_array[_index])
 
 	
 	# show dialogue

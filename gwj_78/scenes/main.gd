@@ -17,7 +17,8 @@ var anim_speed = 0.5
 @export var sfx_slider:VolumeSlider
 
 @export var old_art_btn:CheckBox
-@export var music_options:OptionButton
+@export var menu_music:OptionButton
+@export var game_music:OptionButton
 
 @export var mouse:Mouse
 
@@ -48,8 +49,8 @@ func _ready() -> void:
 	achievements_btn.pressed.connect(_on_achievements_pressed)
 	achievements_btn.mouse_entered.connect(_on_mouse_entered)
 	
-	music_options.item_selected.connect(_on_music_option_selected)
-
+	menu_music.item_selected.connect(_on_menu_music_option_selected)
+	game_music.item_selected.connect(_on_game_music_option_selected)
 
 
 
@@ -108,10 +109,10 @@ func init_scene() -> void:
 	old_art_btn.button_pressed = save_data.use_old_art
 	
 	# music option
-	music_options.select(save_data.music_option)
-	_on_music_option_selected(save_data.music_option)
-	# music_options.item_selected.emit(save_data.music_option)
-	
+	menu_music.select(save_data.menu_music)
+	game_music.select(save_data.game_music)
+	_on_menu_music_option_selected(save_data.menu_music)
+	_on_game_music_option_selected(save_data.game_music)
 	
 	
 	
@@ -143,7 +144,18 @@ func _on_gyat_btn_pressed() -> void:
 	AudioManager.play_fx("gyat")
 
 
-func _on_music_option_selected(_index: int) -> void:
-	var text = music_options.get_item_text(_index)
-	print("selected index %s: %s" % [_index, text])
+
+
+func _on_menu_music_option_selected(_index: int) -> void:
+	var text = menu_music.get_item_text(_index)
+	print("menu_music selected index %s: %s" % [_index, text])
 	AudioManager.play_music(AudioManager.music_array[_index])
+	save_data.menu_music = _index
+	save_data.save()
+
+func _on_game_music_option_selected(_index: int) -> void:
+	var text = game_music.get_item_text(_index)
+	print("game_music selected index %s: %s" % [_index, text])
+	# AudioManager.play_music(AudioManager.music_array[_index])
+	save_data.game_music = _index
+	save_data.save()
