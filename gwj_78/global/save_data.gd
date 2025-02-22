@@ -7,7 +7,7 @@ const SAVE_PATH = "user://save_data.tres"
 var all_achievements: Array = [
 	"ending_body", "ending_normal", "ending_time", "ending_window",
 	"ending_sleep", "ending_webcam", "ending_gun", "ending_vampire", 
-	"ending_clean_hands", "ending_good",
+	"ending_clean_hands", "ending_good", "ending_shootout",
 	
 	"shrooms", "intimidation", "playwright"
 ]
@@ -23,6 +23,7 @@ var achievement_icons: Dictionary = {
 	"ending_vampire": preload("res://icons/ending_vampire.png"),
 	"ending_clean_hands": preload("res://icons/ending_clean_hands.png"),
 	"ending_good": preload("res://icons/ending_good.png"),
+	"ending_shootout": preload("res://icons/ending_shootout.png"),
 	
 	"shrooms": preload("res://icons/shrooms.png"),
 	"intimidation": preload("res://icons/intimidation.png"),
@@ -58,6 +59,7 @@ var achievement_hover_text: Dictionary = {
 	"ending_vampire": "Turn into a vampire",
 	"ending_clean_hands": "Acquire suspiciously clean hands",
 	"ending_good": "You got away!",
+	"ending_shootout": "Get shot by the police",
 	
 	"shrooms": "Get high on shrooms",
 	"intimidation": "Bully window guy into submission",
@@ -78,6 +80,7 @@ var achievement_names: Dictionary = {
 	"ending_vampire": "Vampirism",
 	"ending_clean_hands": "Germaphobe",
 	"ending_good": "The Good Ending™",
+	"ending_shootout": "Gunslinger",
 	
 	"shrooms": "Shroom Lover",
 	"intimidation": "Intimidation",

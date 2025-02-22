@@ -46,6 +46,9 @@ const YAY = preload("res://assets/sound/3_fx/yay-6326.mp3")
 # buttons
 const CAP_HIT_1 = preload("res://assets/sound/3_fx/cap hit 1.wav")
 
+# gun
+const BATTLE_WAR_ZONE_GUN_FIGHT_32155 = preload("res://assets/sound/3_fx/battle-war-zone-gun-fight-32155.wav")
+
 
 # save data
 # var save_data:SaveData
@@ -248,6 +251,8 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> AudioStreamPlay
 			fx = YAY
 		"btn_hover":
 			fx = CAP_HIT_1
+		"shootout":
+			fx = BATTLE_WAR_ZONE_GUN_FIGHT_32155
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	

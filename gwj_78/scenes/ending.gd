@@ -23,8 +23,29 @@ var save_data:SaveData
 
 
 
+func _create_shader_tween(node: Node, shader_property: String, value_start: float, value_end: float, duration: float) -> Tween:
+	var tween = get_tree().create_tween()
+	tween.tween_method(
+		func(value): node.material.set_shader_parameter(shader_property, value),  
+		value_start,
+		value_end,
+		duration
+	);
+	return tween
+	
+
+func blood_shader() -> void:
+	AudioManager.play_fx("shootout")
+	var tween = _create_shader_tween(SCENE_ENDING, "blood_coef", 0.0, 1.0, 3.0)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	
 
 func _ready() -> void:
+	# reset blood shader
+	SCENE_ENDING.material.set_shader_parameter("blood_coef", 0.0)
+	
 	# load save data
 	save_data = SaveData.load_or_create()
 	
@@ -46,18 +67,14 @@ func _ready() -> void:
 		scene_container.add_theme_constant_override("margin_right", 0)
 		scene_container.add_theme_constant_override("margin_bottom", 0)
 	
-	
+	# sound
 	if custom_data.ending != "ending_good":
 		AudioManager.play_fx("fbi")
 	else:
 		AudioManager.play_fx("yay")
 		
-		
-	# show_dialogue(MAIN_DIALOGUE, custom_data.ending)  # custom function
-	
-	# unlock achievement
-	unlock_achievement(custom_data.ending)
-
+	# endings
+	print(custom_data.ending)
 	match custom_data.ending:
 		"ending_body":
 			ending_text.text = "(why are you holding a dead body???)"
@@ -79,7 +96,15 @@ func _ready() -> void:
 			ending_text.text = "(you had suspiciously clean hands.)"
 		"ending_good":
 			ending_text.text = "(you got away.)"
+		"ending_shootout":
+			ending_text.text = "(you got shot by the police.)"
+			self.blood_shader()
 
+	# show dialogue
+	# show_dialogue(MAIN_DIALOGUE, custom_data.ending)  # custom function
+	
+	# unlock achievement
+	unlock_achievement(custom_data.ending)
 
 
 
