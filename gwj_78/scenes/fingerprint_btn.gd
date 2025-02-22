@@ -10,13 +10,16 @@ extends Button
 
 const FOOTPRINT_RECT = preload("res://footprint_rect.tscn")
 var walk_angle:float = 0.0
+var margin: float = 136.0 / 2.0
 
 
 
 func _ready() -> void:
 	fingerprint_btn.pressed.connect(_on_fingerprint_btn_pressed)
 	footstep_timer.timeout.connect(_on_footstep_timer_timeout)
-	randomize_fingerprint(true)
+	self._update_shader_param(0.0, self, "alpha_control")
+	self.global_position = Vector2(randf_range(-margin, 1280-margin), randf_range(-margin, 720-margin))
+	randomize_fingerprint()
 	
 
 
@@ -64,7 +67,6 @@ func randomize_fingerprint(instant:bool = false) -> void:
 	var target_pos = fingerprint_btn.position + offset
 
 	# Ensure the position stays within screen bounds
-	var margin: float = 128.0 / 2.0
 	target_pos.x = clamp(target_pos.x, margin, 1280 - margin)
 	target_pos.y = clamp(target_pos.y, margin, 720 - margin)
 

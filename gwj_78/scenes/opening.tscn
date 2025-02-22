@@ -1,12 +1,98 @@
-[gd_scene load_steps=5 format=3 uid="uid://bewxscl0nctto"]
+[gd_scene load_steps=17 format=3 uid="uid://bewxscl0nctto"]
 
 [ext_resource type="Script" uid="uid://c6s0f2br6862k" path="res://scenes/opening.gd" id="1_gafq3"]
 [ext_resource type="Texture2D" uid="uid://c1bdosl3h2ttg" path="res://assets/art/room_scenes/opening_1.png" id="2_gafq3"]
+[ext_resource type="Texture2D" uid="uid://ctskteuw25qj8" path="res://room_scenes/new_art/Openings/phone_call.png" id="2_jo2c7"]
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="3_fvetl"]
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="4_jo2c7"]
 
-[node name="opening" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_drfco"]
+atlas = ExtResource("2_jo2c7")
+region = Rect2(0, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v10qa"]
+atlas = ExtResource("2_jo2c7")
+region = Rect2(1280, 0, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc7q2"]
+atlas = ExtResource("2_jo2c7")
+region = Rect2(0, 720, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f2m3"]
+atlas = ExtResource("2_jo2c7")
+region = Rect2(1280, 720, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhif4"]
+atlas = ExtResource("2_jo2c7")
+region = Rect2(0, 1440, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu6ng"]
+atlas = ExtResource("2_jo2c7")
+region = Rect2(1280, 1440, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg64x"]
+atlas = ExtResource("2_jo2c7")
+region = Rect2(0, 2160, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myrql"]
+atlas = ExtResource("2_jo2c7")
+region = Rect2(1280, 2160, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80pwo"]
+atlas = ExtResource("2_jo2c7")
+region = Rect2(0, 2880, 1280, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2a5b"]
+atlas = ExtResource("2_jo2c7")
+region = Rect2(1280, 2880, 1280, 720)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_61jm2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drfco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v10qa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc7q2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f2m3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhif4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu6ng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg64x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myrql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80pwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2a5b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="opening" type="Node2D" node_paths=PackedStringArray("opening_scene", "background")]
 script = ExtResource("1_gafq3")
+opening_scene = NodePath("Control/scene_container/opening_scene")
+background = NodePath("background")
+
+[node name="background" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.556863)
+sprite_frames = SubResource("SpriteFrames_61jm2")
+centered = false
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -30,6 +116,7 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="opening_scene" type="TextureRect" parent="Control/scene_container"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 layout_mode = 2
 texture = ExtResource("2_gafq3")

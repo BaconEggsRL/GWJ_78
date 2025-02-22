@@ -203,12 +203,12 @@ layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="old_art_btn" type="CheckButton" parent="Control/bottom_left/VBoxContainer"]
+[node name="old_art_btn" type="CheckBox" parent="Control/bottom_left/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
 action_mode = 0
-text = "Use old art?"
+text = "Use legacy art?"
 alignment = 1
 icon_alignment = 1
 
@@ -265,6 +265,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="footstep_timer" type="Timer" parent="fingerprint_btn"]
 wait_time = 0.5

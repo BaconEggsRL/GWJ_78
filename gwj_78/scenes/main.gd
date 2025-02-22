@@ -16,7 +16,7 @@ var anim_speed = 0.5
 @export var music_slider:VolumeSlider
 @export var sfx_slider:VolumeSlider
 
-@export var old_art_btn:CheckButton
+@export var old_art_btn:CheckBox
 
 @export var mouse:Mouse
 
