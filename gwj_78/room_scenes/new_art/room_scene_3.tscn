@@ -1,11 +1,38 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7tl2gth2ahem"]
+[gd_scene load_steps=11 format=3 uid="uid://b7tl2gth2ahem"]
 
 [ext_resource type="Texture2D" uid="uid://cl5cwvppw3ln2" path="res://room_scenes/new_art/Assets - scene 3/Background.png" id="1_qvvqm"]
 [ext_resource type="Texture2D" uid="uid://dcicd3uiugbis" path="res://room_scenes/new_art/Assets - scene 3/Closet-closed.png" id="2_5wx1i"]
 [ext_resource type="Texture2D" uid="uid://dugpa61y54ra0" path="res://room_scenes/new_art/Assets - scene 3/Mirror.png" id="3_xsihv"]
 [ext_resource type="Texture2D" uid="uid://cap524ueiluhq" path="res://room_scenes/new_art/Assets - scene 3/Shelf.png" id="4_7igfg"]
 [ext_resource type="Texture2D" uid="uid://ctntwkjigr3vh" path="res://room_scenes/new_art/Assets - scene 3/Sink-off.png" id="5_y8q71"]
+[ext_resource type="Script" uid="uid://c5d36sv3gy6m1" path="res://room_scenes/new_art/soap_particles.gd" id="6_5wx1i"]
 [ext_resource type="Texture2D" uid="uid://24uj5twwe3kj" path="res://room_scenes/new_art/Assets - scene 3/Toilet_.png" id="6_qqqry"]
+
+[sub_resource type="Gradient" id="Gradient_5wx1i"]
+offsets = PackedFloat32Array(0, 0.296296, 0.759259, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.935185, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xsihv"]
+gradient = SubResource("Gradient_5wx1i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qvvqm"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0.585, 1.15, 0)
+emission_shape = 1
+emission_sphere_radius = 22.2
+angle_min = -343.3
+angle_max = 125.6
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_min = 10.0
+scale_max = 32.0
+color_ramp = SubResource("GradientTexture1D_xsihv")
+hue_variation_min = -0.36
+hue_variation_max = 0.12
 
 [node name="room_scene_3" type="TextureRect"]
 self_modulate = Color(1, 1, 1, 0.556863)
@@ -80,6 +107,14 @@ text = "sink"
 [node name="sink_timer" type="Timer" parent="sink_rect"]
 wait_time = 5.0
 one_shot = true
+
+[node name="soap_particles" type="GPUParticles2D" parent="sink_rect" node_paths=PackedStringArray("bounding_box")]
+position = Vector2(319, 265)
+amount = 20
+lifetime = 1.2
+process_material = SubResource("ParticleProcessMaterial_qvvqm")
+script = ExtResource("6_5wx1i")
+bounding_box = NodePath("../sink")
 
 [node name="floor_mat" type="Button" parent="."]
 layout_mode = 0

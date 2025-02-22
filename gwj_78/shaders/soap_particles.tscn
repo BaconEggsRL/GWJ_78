@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl7yj6q6qr3yw"]
+
+[ext_resource type="Script" uid="uid://c5d36sv3gy6m1" path="res://room_scenes/new_art/soap_particles.gd" id="1_j3jkp"]
+
+[sub_resource type="Gradient" id="Gradient_5wx1i"]
+offsets = PackedFloat32Array(0, 0.296296, 0.759259, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.935185, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xsihv"]
+gradient = SubResource("Gradient_5wx1i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qvvqm"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0.585, 1.15, 0)
+emission_shape = 1
+emission_sphere_radius = 22.2
+angle_min = -343.3
+angle_max = 125.6
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_min = 10.0
+scale_max = 32.0
+color_ramp = SubResource("GradientTexture1D_xsihv")
+hue_variation_min = -0.36
+hue_variation_max = 0.12
+
+[node name="soap_particles" type="GPUParticles2D"]
+process_material = SubResource("ParticleProcessMaterial_qvvqm")
+script = ExtResource("1_j3jkp")

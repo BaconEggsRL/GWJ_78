@@ -745,6 +745,9 @@ func wash_hands() -> void:
 func _on_sink_timer_timeout() -> void:
 	var SINK_SCENE = SCENE_3
 	var sink_rect:TextureRect = SINK_SCENE.get_node("sink_rect")
+	var soap_particles:SoapParticles = sink_rect.get_node("soap_particles")
+	# soap_particles.enabled = false
+	soap_particles.emitting = false
 	sink_rect.texture = SINK_OFF_NEW
 
 
@@ -756,13 +759,19 @@ func toggle_sink(_toggled_on:bool) -> void:
 		
 	var sink_rect:TextureRect = SINK_SCENE.get_node("sink_rect")
 	var sink_timer:Timer = sink_rect.get_node("sink_timer")
+	var soap_particles:SoapParticles = sink_rect.get_node("soap_particles")
+	
 	if not sink_timer.timeout.is_connected(_on_sink_timer_timeout):
 		sink_timer.timeout.connect(_on_sink_timer_timeout)
 			
 	if _toggled_on:
 		sink_rect.texture = SINK_ON_NEW
+		# soap_particles.enabled = true
+		soap_particles.emitting = true
 		sink_timer.start()
 	else:
+		# soap_particles.enabled = false
+		soap_particles.emitting = false
 		sink_rect.texture = SINK_OFF_NEW
 	
 	
