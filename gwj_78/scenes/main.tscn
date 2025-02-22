@@ -82,10 +82,10 @@ load_path = "res://.godot/imported/fingerprint.png-6daa1ad02f16d421dc34f6894a9f0
 script = ExtResource("1_o5qli")
 play_btn = NodePath("Control/play_btn")
 achievements_btn = NodePath("Control/achievements_btn")
-volume_btn = NodePath("Control/bottom_right/volume_btn")
-music_slider = NodePath("Control/bottom_right/GridContainer/music_slider")
-sfx_slider = NodePath("Control/bottom_right/GridContainer/sfx_slider")
-old_art_btn = NodePath("Control/bottom_left/VBoxContainer/old_art_btn")
+volume_btn = NodePath("Control/sound_options/volume_btn")
+music_slider = NodePath("Control/sound_options/GridContainer/music_slider")
+sfx_slider = NodePath("Control/sound_options/GridContainer/sfx_slider")
+old_art_btn = NodePath("Control/data_options/VBoxContainer/old_art_btn")
 mouse = NodePath("mouse")
 
 [node name="background" type="AnimatedSprite2D" parent="."]
@@ -151,14 +151,14 @@ offset_bottom = 671.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 24
 
-[node name="bottom_right" type="HBoxContainer" parent="Control"]
+[node name="sound_options" type="HBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -256.0
+offset_left = -282.0
 offset_top = -72.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -166,20 +166,20 @@ mouse_filter = 2
 theme_override_constants/separation = 10
 alignment = 2
 
-[node name="GridContainer" type="GridContainer" parent="Control/bottom_right"]
+[node name="GridContainer" type="GridContainer" parent="Control/sound_options"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_constants/h_separation = 20
 columns = 2
 
-[node name="music" type="Label" parent="Control/bottom_right/GridContainer"]
+[node name="music" type="Label" parent="Control/sound_options/GridContainer"]
 layout_mode = 2
 text = "music"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="music_slider" type="HSlider" parent="Control/bottom_right/GridContainer"]
+[node name="music_slider" type="HSlider" parent="Control/sound_options/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -188,13 +188,13 @@ step = 0.01
 script = ExtResource("2_tefeu")
 target_bus_name = "music"
 
-[node name="sfx" type="Label" parent="Control/bottom_right/GridContainer"]
+[node name="sfx" type="Label" parent="Control/sound_options/GridContainer"]
 layout_mode = 2
 text = "sfx"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="sfx_slider" type="HSlider" parent="Control/bottom_right/GridContainer"]
+[node name="sfx_slider" type="HSlider" parent="Control/sound_options/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 1.0
@@ -202,7 +202,7 @@ step = 0.01
 script = ExtResource("2_tefeu")
 target_bus_name = "sfx"
 
-[node name="volume_btn" type="Button" parent="Control/bottom_right"]
+[node name="volume_btn" type="Button" parent="Control/sound_options"]
 layout_mode = 2
 focus_mode = 0
 action_mode = 0
@@ -210,26 +210,25 @@ icon = ExtResource("2_jyhfs")
 flat = true
 script = ExtResource("3_tbgi4")
 
-[node name="bottom_left" type="MarginContainer" parent="Control"]
+[node name="data_options" type="HBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -84.0
-offset_right = 170.0
+offset_top = -68.0
+offset_right = 336.0
 grow_vertical = 0
 mouse_filter = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/separation = 20
+alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/bottom_left"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/data_options"]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="old_art_btn" type="CheckBox" parent="Control/bottom_left/VBoxContainer"]
+[node name="old_art_btn" type="CheckBox" parent="Control/data_options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
@@ -238,12 +237,39 @@ text = "Use legacy art?"
 alignment = 1
 icon_alignment = 1
 
-[node name="erase_data" type="Button" parent="Control/bottom_left/VBoxContainer"]
+[node name="erase_data" type="Button" parent="Control/data_options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 text = "reset data"
 expand_icon = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/data_options"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="music_options_label" type="Label" parent="Control/data_options/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "music options:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="music_options" type="OptionButton" parent="Control/data_options/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 0
+item_count = 4
+popup/item_0/text = "music_funk"
+popup/item_0/id = 0
+popup/item_1/text = "music_funk_menu"
+popup/item_1/id = 1
+popup/item_2/text = "music_alex"
+popup/item_2/id = 2
+popup/item_3/text = "music_alex_menu"
+popup/item_3/id = 3
 
 [node name="fingerprint_btn2" type="Button" parent="."]
 visible = false
@@ -301,7 +327,7 @@ texture = ExtResource("2_sugp2")
 script = ExtResource("3_jyhfs")
 
 [connection signal="pressed" from="gyat_btn" to="." method="_on_gyat_btn_pressed"]
-[connection signal="toggled" from="Control/bottom_left/VBoxContainer/old_art_btn" to="." method="_on_old_art_btn_toggled"]
-[connection signal="mouse_entered" from="Control/bottom_left/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_entered"]
-[connection signal="mouse_exited" from="Control/bottom_left/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_exited"]
-[connection signal="pressed" from="Control/bottom_left/VBoxContainer/erase_data" to="." method="_on_erase_data_pressed"]
+[connection signal="toggled" from="Control/data_options/VBoxContainer/old_art_btn" to="." method="_on_old_art_btn_toggled"]
+[connection signal="mouse_entered" from="Control/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_entered"]
+[connection signal="mouse_exited" from="Control/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_exited"]
+[connection signal="pressed" from="Control/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_pressed"]
