@@ -85,7 +85,7 @@ achievements_btn = NodePath("Control/achievements_btn")
 volume_btn = NodePath("Control/sound_options/volume_btn")
 music_slider = NodePath("Control/sound_options/GridContainer/music_slider")
 sfx_slider = NodePath("Control/sound_options/GridContainer/sfx_slider")
-old_art_btn = NodePath("Control/data_options/VBoxContainer/old_art_btn")
+old_art_btn = NodePath("Control/data_options/VBoxContainer/HBoxContainer/old_art_btn")
 menu_music = NodePath("Control/data_options/VBoxContainer2/menu_music")
 game_music = NodePath("Control/data_options/VBoxContainer3/game_music")
 mouse = NodePath("mouse")
@@ -218,7 +218,7 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -84.0
-offset_right = 544.0
+offset_right = 556.0
 grow_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 20
@@ -229,7 +229,10 @@ layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="old_art_btn" type="CheckBox" parent="Control/data_options/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/data_options/VBoxContainer"]
+layout_mode = 2
+
+[node name="old_art_btn" type="CheckBox" parent="Control/data_options/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -264,9 +267,9 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 focus_mode = 0
 item_count = 4
-popup/item_0/text = "music_funk"
+popup/item_0/text = "music_stock"
 popup/item_0/id = 0
-popup/item_1/text = "music_funk_menu"
+popup/item_1/text = "music_stock_menu"
 popup/item_1/id = 1
 popup/item_2/text = "music_alex"
 popup/item_2/id = 2
@@ -290,9 +293,9 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 focus_mode = 0
 item_count = 4
-popup/item_0/text = "music_funk"
+popup/item_0/text = "music_stock"
 popup/item_0/id = 0
-popup/item_1/text = "music_funk_menu"
+popup/item_1/text = "music_stock_menu"
 popup/item_1/id = 1
 popup/item_2/text = "music_alex"
 popup/item_2/id = 2
@@ -355,7 +358,7 @@ texture = ExtResource("2_sugp2")
 script = ExtResource("3_jyhfs")
 
 [connection signal="pressed" from="gyat_btn" to="." method="_on_gyat_btn_pressed"]
-[connection signal="toggled" from="Control/data_options/VBoxContainer/old_art_btn" to="." method="_on_old_art_btn_toggled"]
+[connection signal="toggled" from="Control/data_options/VBoxContainer/HBoxContainer/old_art_btn" to="." method="_on_old_art_btn_toggled"]
 [connection signal="mouse_entered" from="Control/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_entered"]
 [connection signal="mouse_exited" from="Control/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_exited"]
 [connection signal="pressed" from="Control/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_pressed"]

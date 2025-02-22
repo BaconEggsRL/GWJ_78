@@ -10,16 +10,16 @@ var active_fx_players: Dictionary = {}  # Store FX players with names
 
 # music
 # list of all music
-const MUSIC_FUNK = preload("res://assets/sound/1_music/Sketchbook 2024-05-22.ogg")
-const MUSIC_FUNK_MENU = preload("res://assets/sound/1_music/Sketchbook 2024-11-20.ogg")
+const MUSIC_STOCK = preload("res://assets/sound/1_music/Sketchbook 2024-05-22.ogg")
+const MUSIC_STOCK_MENU = preload("res://assets/sound/1_music/Sketchbook 2024-11-20.ogg")
 
 const MUSIC_ALEX = preload("res://assets/sound/1_music/_PanicLoopFinal_WAV.wav")
 const MUSIC_ALEX_MENU = preload("res://assets/sound/1_music/_CalmDraft0_WAV.wav")
 
 # names of music tracks for switching
 var music_array = [
-	"music_funk",
-	"music_funk_menu",
+	"music_stock",
+	"music_stock_menu",
 	"music_alex",
 	"music_alex_menu",
 ]
@@ -249,11 +249,11 @@ func play_music(scene_name:String, final_db:float=0.0, fade_in:bool=true, fade_i
 	match scene_name:
 		"music_1":
 			music = null  # insert music const here
-		"music_funk":
-			music = MUSIC_FUNK
+		"music_stock":
+			music = MUSIC_STOCK
 			final_db = -6.0
-		"music_funk_menu":
-			music = MUSIC_FUNK_MENU
+		"music_stock_menu":
+			music = MUSIC_STOCK_MENU
 			final_db = -6.0
 		"music_alex":
 			music = MUSIC_ALEX
