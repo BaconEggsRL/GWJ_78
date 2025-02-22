@@ -76,7 +76,9 @@ const CLOSET_OPEN_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Clos
 
 var SCENE_2:TextureRect
 const SCENE_2__BODY_UNDER_BED = preload("res://assets/art/room_scenes/scene_2__body_under_bed.png")
-const CORPSE_1_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Corpse-1.png")
+# const CORPSE_1_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Corpse-1.png")
+const CORPSE_BED_2 = preload("res://room_scenes/new_art/Assets - scene 2/Corpse-bed.png")
+const CORPSE_BED_4 = preload("res://room_scenes/new_art/Assets - scene 4/Corpse-bed (1).png")
 
 
 var SCENE_3:TextureRect
@@ -354,9 +356,12 @@ func hide_body(location:String) -> void:
 			if save_data.use_old_art:
 				current_room_scene.texture = SCENE_2__BODY_UNDER_BED
 			else:
-				var body_under_bed = current_room_scene.get_node("body_under_bed_rect")
-				# body_under_bed.texture = CORPSE_1_NEW
-				body_under_bed.show()
+				var body_under_bed_rect_2 = SCENE_2.get_node("body_under_bed_rect")
+				body_under_bed_rect_2.texture = CORPSE_BED_2
+				body_under_bed_rect_2.show()
+				var body_under_bed_rect_4 = SCENE_4.get_node("body_under_bed_rect")
+				body_under_bed_rect_4.texture = CORPSE_BED_4
+				body_under_bed_rect_4.show()
 				
 			set_state("hid_body_under_bed", true)
 		"storage_closet":
@@ -692,6 +697,8 @@ func unlock_storage_closet() -> void:
 		new_texture = CLOSET_OPEN_NEW
 		var storage_closet_rect = SCENE_1.get_node("storage_closet_rect")
 		storage_closet_rect.texture = new_texture
+		var mop_rect = SCENE_1.get_node("mop_rect")
+		mop_rect.show()
 	
 
 # called when closing the curtains
@@ -738,6 +745,21 @@ func mop_blood() -> void:
 	update_evidence_label()
 
 
+# called when picking up the mop
+func pickup_mop() -> void:
+	set_inventory_item("mop", true)
+	# tween out mop texture, if it exists
+	if save_data.use_old_art:
+		pass
+	else:
+		var mop_rect = SCENE_1.get_node("mop_rect")
+		var mop_tween = create_tween()
+		mop_tween.tween_property(mop_rect, "self_modulate:a", 0.0, 1.0)
+		mop_tween.finished.connect(func():
+			mop_rect.visible = false
+		)
+	
+	
 # called when picking up the body
 func pickup_body() -> void:
 	set_inventory_item("body", true)

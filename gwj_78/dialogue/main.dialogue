@@ -221,8 +221,7 @@ if state.storage_closet_unlocked == true:
 		MC: You open the closet, and there's a mop inside. Take the mop?
 		- Yes
 			MC: You took the mop.
-			# set inventory.mop = true
-			do set_inventory_item("mop", true)
+			do pickup_mop()
 		- No
 			MC: You didn't take the mop.
 	else:

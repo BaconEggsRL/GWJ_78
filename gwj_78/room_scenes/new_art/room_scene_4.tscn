@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://badabtk8rm04w"]
+[gd_scene load_steps=8 format=3 uid="uid://badabtk8rm04w"]
 
 [ext_resource type="Texture2D" uid="uid://dl2i2kjm0vrbr" path="res://room_scenes/new_art/Assets - scene 4/Background.png" id="1_0ikeq"]
 [ext_resource type="Texture2D" uid="uid://dwc640nonne01" path="res://room_scenes/new_art/Assets - scene 4/Curtain-open-window-shut.png" id="2_enhmx"]
+[ext_resource type="Texture2D" uid="uid://cc2215rdahysp" path="res://room_scenes/new_art/Assets - scene 4/Corpse-bed (1).png" id="3_enhmx"]
 [ext_resource type="Texture2D" uid="uid://cwpd1qrkwhhf1" path="res://room_scenes/new_art/Assets - scene 4/Bed.png" id="3_ma70m"]
 [ext_resource type="Texture2D" uid="uid://c64btxxeng686" path="res://room_scenes/new_art/Assets - scene 4/Mess.png" id="4_cjfxt"]
 [ext_resource type="Texture2D" uid="uid://blg7t53cboa6c" path="res://room_scenes/new_art/Assets - scene 4/Toilet_.png" id="5_tqdne"]
@@ -54,12 +55,20 @@ mouse_filter = 2
 
 [node name="night_stand" type="Button" parent="night_stand_rect"]
 layout_mode = 0
-offset_left = 82.0
+offset_left = 90.0
 offset_top = 363.0
 offset_right = 238.0
-offset_bottom = 589.0
+offset_bottom = 524.0
 focus_mode = 0
 text = "night_stand"
+
+[node name="body_under_bed_rect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_enhmx")
 
 [node name="bed_top_rect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -80,7 +89,7 @@ text = "bed_top"
 [node name="bed_top2" type="Button" parent="bed_top_rect"]
 layout_mode = 0
 offset_top = 332.0
-offset_right = 86.0
+offset_right = 71.0
 offset_bottom = 567.0
 focus_mode = 0
 text = "bed_top"

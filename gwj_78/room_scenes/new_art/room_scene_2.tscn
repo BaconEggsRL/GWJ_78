@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://deonbbqibcv71" path="res://room_scenes/new_art/Assets - scene 2/Bookshelf.png" id="3_iqibk"]
 [ext_resource type="Texture2D" uid="uid://d2fnw2nknr7kg" path="res://room_scenes/new_art/Assets - scene 2/Bed.png" id="4_4t6o3"]
 [ext_resource type="Texture2D" uid="uid://c74h26uee3kws" path="res://room_scenes/new_art/Assets - scene 2/nightstand.png" id="4_ev6sa"]
-[ext_resource type="Texture2D" uid="uid://ch0h7sokssygp" path="res://room_scenes/new_art/Assets - scene 2/Corpse-under_bed.png" id="4_vdj16"]
+[ext_resource type="Texture2D" uid="uid://bvesvfgie5qc0" path="res://room_scenes/new_art/Assets - scene 2/Corpse-bed.png" id="4_prg3a"]
 [ext_resource type="Texture2D" uid="uid://cdbe6yq0bem0d" path="res://room_scenes/new_art/Assets - scene 2/Sheets.png" id="5_vdj16"]
 
 [node name="room_scene_2" type="TextureRect"]
@@ -40,15 +40,10 @@ text = "body"
 [node name="body_under_bed_rect" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 753.0
-offset_top = 384.0
-offset_right = 1118.0
-offset_bottom = 572.0
+offset_right = 1280.0
+offset_bottom = 720.0
 mouse_filter = 2
-texture = ExtResource("4_vdj16")
-stretch_mode = 2
-flip_h = true
-flip_v = true
+texture = ExtResource("4_prg3a")
 
 [node name="book_shelf_rect" type="TextureRect" parent="."]
 layout_mode = 0

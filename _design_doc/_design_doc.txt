@@ -139,6 +139,8 @@ blob_strength from 0.0 to 0.5
 
 
 TODO:
+need art for storage_closet open in scene 3
+
 
 
 playtest notes:
