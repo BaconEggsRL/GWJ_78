@@ -135,8 +135,86 @@ blob_strength from 0.0 to 0.5
 TODO:
 
 
+playtest notes:
+
+how to use items? (figured out eventually.)
+random text for garbage disposal
+
+toilet grating for disposing of the gun?
+throw the gun/body out the window?
+
+
+
+does the bed move?
+put gun in trashcan?
+
+grab towel from bed or sink stand to mop up blood?
+should mop still be there if you drink the blood?***
+
+put mop in garbage disposal
+put the key in the garbage disposal
+
+achievement for just leaving the gun?
+achievement for just leaving the blood?
+
+shoot the lock on the storage closet door to open it
+horseshoe crab racing knowledge? to kill a mocking bird / harper lee
+
+sam never saw window guy :(
+5:00 -> 2:30 (3:00? 3:30? 4:00? 1.5x time?)
+maybe make him appear at 3:00
+
+===========
+
+
+Sam thoughts?
+
+# ***mop should still be there if you drink the blood?
+***put body under bed new art
+
+
+
+
+
+
+
+# how to look under bed? (hard to figure out--make under bed box better.)
+# --updated hitbox to be bigger, and takes priority over bed_top
+
+add under bed box to both scenes?
+
+
+
+===========
+
+
+stretch:
+
+skip text faster if already seen in a playthrough
+(hold left click, right click??)
+
+do more combos of actions (body in bed, body out window, etc.)
+
+depending on which achievement is unlocked--snuck out of jail?
+come back -- ahh man my three followers really hated that. that went viral
+
+
+
+
+
+
+
+
+
+
+
+
+
 (Art)
--Incorporate /code in existing/missing art (faucet on/off, storage closet open/closed, desktop background)
+# (faucet on/off, 
+storage closet open/closed, 
+desktop background)
+
 -Nightstand
 -Finish up main menu design/art
 -Add achievement art

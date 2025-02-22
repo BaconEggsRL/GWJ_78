@@ -217,7 +217,7 @@ MC: It's a chair.
 
 ~ storage_closet
 if state.storage_closet_unlocked == true:
-	if inventory.mop == false and state.blood_cleaned == false:
+	if inventory.mop == false and state.blood_cleaned_mopped == false:
 		MC: You open the closet, and there's a mop inside. Take the mop?
 		- Yes
 			MC: You took the mop.
@@ -471,7 +471,7 @@ MC: Why does this guy have so many toothbrushes?
 
 
 ~ mirror
-if state.drank_blood == true:
+if state.blood_cleaned_drank == true:
 	do unlock_achievement("ending_vampire")
 	MC: Weird, I can't see anything. This mirror must be broken or something.
 else:

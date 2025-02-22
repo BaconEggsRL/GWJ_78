@@ -208,7 +208,7 @@ func exit_through_front_door() -> void:
 	elif state.webcam_off == false:
 		ending = "ending_webcam"
 		
-	elif state.drank_blood == true:
+	elif state.blood_cleaned_drank == true:
 		ending = "ending_vampire"
 		
 	elif state.washed_hands == true:
@@ -245,7 +245,8 @@ func exit_through_front_door() -> void:
 		#"storage_closet_unlocked": false,
 		#
 		#"blood_cleaned": false,
-		#"drank_blood": false,
+		#"blood_cleaned_drank": false,
+		#"blood_cleaned_mopped": false,
 	#}
 	
 	var custom_data = {"ending": ending}
@@ -300,7 +301,7 @@ func drink_blood() -> void:
 	var _fx = AudioManager.play_fx("drink_blood", -6.0)
 	# update state
 	set_state("blood_cleaned", true)
-	set_state("drank_blood", true)
+	set_state("blood_cleaned_drank", true)
 	# tween out the blood texture
 	var blood_tween = create_tween()
 	blood_tween.tween_property(blood_pool_rect, "self_modulate:a", 0.0, 1.0)
@@ -700,6 +701,7 @@ func open_curtains() -> void:
 func mop_blood() -> void:
 	AudioManager.play_fx("mopping_sound")
 	set_state("blood_cleaned", true)
+	set_state("blood_cleaned_mopped", true)
 	set_inventory_item("mop", false)
 	# tween out the blood texture
 	var blood_tween = create_tween()
@@ -823,7 +825,8 @@ func reset_progress() -> void:
 		"storage_closet_unlocked": false,
 		
 		"blood_cleaned": false,
-		"drank_blood": false,
+		"blood_cleaned_drank": false,
+		"blood_cleaned_mopped": false,
 	}
 
 

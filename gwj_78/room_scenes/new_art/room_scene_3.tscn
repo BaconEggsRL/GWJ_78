@@ -110,6 +110,7 @@ one_shot = true
 
 [node name="soap_particles" type="GPUParticles2D" parent="sink_rect" node_paths=PackedStringArray("bounding_box")]
 position = Vector2(319, 265)
+emitting = false
 amount = 20
 lifetime = 1.2
 process_material = SubResource("ParticleProcessMaterial_qvvqm")

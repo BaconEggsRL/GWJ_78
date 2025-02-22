@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cdbe6yq0bem0d" path="res://room_scenes/new_art/Assets - scene 2/Sheets.png" id="5_vdj16"]
 
 [node name="room_scene_2" type="TextureRect"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 mouse_filter = 2
 texture = ExtResource("1_sfc13")
@@ -50,31 +49,6 @@ offset_bottom = 532.0
 focus_mode = 0
 text = "night_stand"
 
-[node name="bed_bottom_rect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="bed_bottom" type="Button" parent="bed_bottom_rect"]
-layout_mode = 0
-offset_left = 790.0
-offset_top = 439.0
-offset_right = 1044.0
-offset_bottom = 481.0
-rotation = 1.15192
-focus_mode = 0
-text = "bed_bottom"
-
-[node name="bed_bottom2" type="Button" parent="bed_bottom_rect"]
-layout_mode = 0
-offset_left = 853.0
-offset_top = 671.0
-offset_right = 1229.0
-offset_bottom = 707.0
-focus_mode = 0
-text = "bed_bottom"
-
 [node name="bed_top_rect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1280.0
@@ -108,6 +82,31 @@ offset_right = 1140.0
 offset_bottom = 520.0
 focus_mode = 0
 text = "bed_top"
+
+[node name="bed_bottom_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="bed_bottom" type="Button" parent="bed_bottom_rect"]
+layout_mode = 0
+offset_left = 804.0
+offset_top = 409.0
+offset_right = 1102.0
+offset_bottom = 484.0
+rotation = 1.15192
+focus_mode = 0
+text = "bed_bottom"
+
+[node name="bed_bottom2" type="Button" parent="bed_bottom_rect"]
+layout_mode = 0
+offset_left = 853.0
+offset_top = 608.0
+offset_right = 1248.0
+offset_bottom = 711.0
+focus_mode = 0
+text = "bed_bottom"
 
 [node name="sheets_rect" type="TextureRect" parent="."]
 layout_mode = 0
