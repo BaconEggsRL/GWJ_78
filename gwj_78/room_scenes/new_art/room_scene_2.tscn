@@ -181,6 +181,7 @@ offset_left = 560.0
 offset_top = 61.0
 offset_right = 881.0
 offset_bottom = 417.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_prg3a")
 stretch_mode = 5
 

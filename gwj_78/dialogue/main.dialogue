@@ -534,7 +534,7 @@ MC: Don't tell me... Is that the toilet?
 ~ window
 if state.window_event == true:
 	if mouse.current_state == mouse.State.GUN:
-		do unlock_achievement("intimidation")
+		do intimidation()
 		???: AHHH! Please don't shoot mister!
 		MC: You gonna keep your mouth shut, punk?
 		???: A-hh-..I..--I mean, about what, sir?

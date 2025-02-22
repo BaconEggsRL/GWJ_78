@@ -105,6 +105,8 @@ const SINK_ON_NEW = preload("res://room_scenes/new_art/Assets - scene 3/Sink-on.
 var SCENE_4:TextureRect
 var window_rect:TextureRect
 
+const WINDOW_WITNESS_SCARED = preload("res://room_scenes/new_art/Assets - scene 4/Window-witness-scared.png")
+
 const CURTAINS_OPEN = preload("res://assets/art/room_scenes/curtains_open.png")
 const CURTAINS_CLOSED = preload("res://assets/art/room_scenes/curtains_closed.png")
 const CURTAINS_OPEN_EVENT = preload("res://assets/art/room_scenes/curtains_open_event.png")
@@ -701,6 +703,15 @@ func unlock_achievement(achievement_name:String) -> void:
 	show_achievement_popup(achievement_name)
 
 
+# scare the window guy
+func intimidation() -> void:
+	unlock_achievement("intimidation")
+	if save_data.use_old_art == false:
+		window_rect.texture = WINDOW_WITNESS_SCARED
+	else:
+		pass
+	
+	
 # window event
 func start_window_event() -> void:
 	print("window time")
@@ -725,7 +736,7 @@ func start_window_event() -> void:
 	# show window event
 	current_dialogue = show_dialogue(MAIN_DIALOGUE, "window_event")
 	
-	# update texture
+	# update texture for window_rect
 	var new_texture:CompressedTexture2D
 	if save_data.use_old_art:
 		new_texture = CURTAINS_OPEN_EVENT

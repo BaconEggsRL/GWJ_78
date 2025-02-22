@@ -16,8 +16,8 @@ TODO:
 (Art)
 
 extra:
-main menu art
-intro cutscene art
+# main menu art
+# intro cutscene art
 surprised face for window guy (if you have gun equipped)
 
 
