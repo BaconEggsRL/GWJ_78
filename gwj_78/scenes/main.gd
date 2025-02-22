@@ -255,3 +255,7 @@ func _on_footstep_timer_timeout() -> void:
 	footprint.rotation = walk_angle + PI/2
 	footstep_container.add_child(footprint)
 	
+
+
+func _on_gyat_btn_pressed() -> void:
+	AudioManager.play_fx("gyat")

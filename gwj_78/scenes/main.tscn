@@ -73,13 +73,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="fingerprint_btn" type="Button" parent="."]
-material = SubResource("ShaderMaterial_tipki")
-offset_right = 136.0
-offset_bottom = 136.0
-pivot_offset = Vector2(64, 64)
+[node name="gyat_btn" type="Button" parent="."]
+offset_left = 99.0
+offset_top = 34.0
+offset_right = 328.0
+offset_bottom = 195.0
 focus_mode = 0
-icon = ExtResource("8_tipki")
 flat = true
 
 [node name="Control" type="Control" parent="."]
@@ -224,6 +223,16 @@ focus_mode = 0
 text = "reset data"
 expand_icon = true
 
+[node name="fingerprint_btn" type="Button" parent="."]
+material = SubResource("ShaderMaterial_tipki")
+offset_right = 136.0
+offset_bottom = 136.0
+pivot_offset = Vector2(64, 64)
+focus_mode = 0
+action_mode = 0
+icon = ExtResource("8_tipki")
+flat = true
+
 [node name="mouse" type="Sprite2D" parent="."]
 texture = ExtResource("2_sugp2")
 script = ExtResource("3_jyhfs")
@@ -231,9 +240,10 @@ script = ExtResource("3_jyhfs")
 [node name="footstep_timer" type="Timer" parent="."]
 wait_time = 0.5
 
-[connection signal="pressed" from="fingerprint_btn" to="." method="_on_fingerprint_btn_pressed"]
+[connection signal="pressed" from="gyat_btn" to="." method="_on_gyat_btn_pressed"]
 [connection signal="toggled" from="Control/bottom_left/VBoxContainer/old_art_btn" to="." method="_on_old_art_btn_toggled"]
 [connection signal="mouse_entered" from="Control/bottom_left/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_entered"]
 [connection signal="mouse_exited" from="Control/bottom_left/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_exited"]
 [connection signal="pressed" from="Control/bottom_left/VBoxContainer/erase_data" to="." method="_on_erase_data_pressed"]
+[connection signal="pressed" from="fingerprint_btn" to="." method="_on_fingerprint_btn_pressed"]
 [connection signal="timeout" from="footstep_timer" to="." method="_on_footstep_timer_timeout"]

@@ -59,6 +59,8 @@ const LAMP_OFF_METAL_BUTTON_1 = preload("res://assets/sound/3_fx/lamp_off_metal_
 # closet
 const LARGE_DOOR_LATCH_14_CLOSET_OPEN = preload("res://assets/sound/3_fx/large door latch 14_closet_open.wav")
 
+# menu
+const YEOW = preload("res://assets/sound/3_fx/yeow-103553.mp3")
 
 
 # save data
@@ -272,6 +274,8 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> AudioStreamPlay
 			fx = LAMP_OFF_METAL_BUTTON_1
 		"closet_toggle":
 			fx = LARGE_DOOR_LATCH_14_CLOSET_OPEN
+		"gyat":
+			fx = YEOW
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	
