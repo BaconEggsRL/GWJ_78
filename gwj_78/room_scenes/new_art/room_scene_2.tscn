@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cke7cib7rxi8e"]
 
-[ext_resource type="Texture2D" uid="uid://s11p87o45tot" path="res://room_scenes/new_art/Assets - scene 2/Background.png" id="1_sfc13"]
+[ext_resource type="Texture2D" uid="uid://5r53ccxk2c5g" path="res://room_scenes/new_art/Assets - scene 2/Background-nightstand.png" id="1_sfc13"]
 [ext_resource type="Texture2D" uid="uid://dy22fsoa3qro" path="res://room_scenes/new_art/Assets - scene 2/Lamp.png" id="2_ev6sa"]
 [ext_resource type="Texture2D" uid="uid://deonbbqibcv71" path="res://room_scenes/new_art/Assets - scene 2/Bookshelf.png" id="3_iqibk"]
 [ext_resource type="Texture2D" uid="uid://d2fnw2nknr7kg" path="res://room_scenes/new_art/Assets - scene 2/Bed.png" id="4_4t6o3"]
@@ -42,9 +42,9 @@ mouse_filter = 2
 
 [node name="night_stand" type="Button" parent="night_stand_rect"]
 layout_mode = 0
-offset_left = 1009.0
-offset_top = 327.0
-offset_right = 1165.0
+offset_left = 1007.0
+offset_top = 344.0
+offset_right = 1184.0
 offset_bottom = 532.0
 focus_mode = 0
 text = "night_stand"
@@ -69,7 +69,7 @@ text = "bed_top"
 layout_mode = 0
 offset_left = 785.0
 offset_top = 363.0
-offset_right = 1091.0
+offset_right = 1008.0
 offset_bottom = 448.0
 focus_mode = 0
 text = "bed_top"
@@ -78,8 +78,27 @@ text = "bed_top"
 layout_mode = 0
 offset_left = 824.0
 offset_top = 424.0
-offset_right = 1140.0
+offset_right = 1090.0
 offset_bottom = 520.0
+focus_mode = 0
+text = "bed_top"
+
+[node name="bed_top5" type="Button" parent="bed_top_rect"]
+layout_mode = 0
+offset_left = 849.0
+offset_top = 467.0
+offset_right = 1236.0
+offset_bottom = 549.0
+focus_mode = 0
+text = "bed_top"
+
+[node name="bed_top4" type="Button" parent="bed_top_rect"]
+layout_mode = 0
+offset_left = 1001.0
+offset_top = 353.0
+offset_right = 1202.0
+offset_bottom = 449.0
+rotation = 0.628319
 focus_mode = 0
 text = "bed_top"
 
