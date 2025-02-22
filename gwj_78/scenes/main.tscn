@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmavsyk2734g5"]
+[gd_scene load_steps=16 format=3 uid="uid://bmavsyk2734g5"]
 
 [ext_resource type="Script" uid="uid://7ypqu8uyiu70" path="res://scenes/main.gd" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://drcpxkqlj2qj4" path="res://room_scenes/new_art/Main Menu/Menu_screen_spriteframes.png" id="2_85g3d"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://delgwi5jon8fp" path="res://scenes/volume_btn.gd" id="3_tbgi4"]
 [ext_resource type="Shader" uid="uid://bjrye8fu4h8lu" path="res://shaders/fingerprint.gdshader" id="7_tipki"]
+[ext_resource type="Script" uid="uid://ce1ujyxdpxv1w" path="res://scenes/fingerprint_btn.gd" id="8_choun"]
 [ext_resource type="Texture2D" uid="uid://wenuy42b3iyc" path="res://fingerprint.png" id="8_tipki"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
@@ -43,7 +44,7 @@ animations = [{
 shader = ExtResource("7_tipki")
 shader_parameter/alpha_control = null
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn", "volume_btn", "music_slider", "sfx_slider", "old_art_btn", "mouse", "fingerprint_btn", "footstep_timer", "footstep_container")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn", "volume_btn", "music_slider", "sfx_slider", "old_art_btn", "mouse")]
 script = ExtResource("1_o5qli")
 play_btn = NodePath("Control/play_btn")
 achievements_btn = NodePath("Control/achievements_btn")
@@ -52,9 +53,6 @@ music_slider = NodePath("Control/bottom_right/GridContainer/music_slider")
 sfx_slider = NodePath("Control/bottom_right/GridContainer/sfx_slider")
 old_art_btn = NodePath("Control/bottom_left/VBoxContainer/old_art_btn")
 mouse = NodePath("mouse")
-fingerprint_btn = NodePath("fingerprint_btn")
-footstep_timer = NodePath("footstep_timer")
-footstep_container = NodePath("footstep_container")
 
 [node name="background" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.556863)
@@ -63,15 +61,6 @@ autoplay = "default"
 frame = 2
 frame_progress = 0.41247
 centered = false
-
-[node name="footstep_container" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="gyat_btn" type="Button" parent="."]
 offset_left = 99.0
@@ -232,18 +221,27 @@ focus_mode = 0
 action_mode = 0
 icon = ExtResource("8_tipki")
 flat = true
+script = ExtResource("8_choun")
+
+[node name="footstep_container" type="Control" parent="fingerprint_btn"]
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="footstep_timer" type="Timer" parent="fingerprint_btn"]
+wait_time = 0.5
 
 [node name="mouse" type="Sprite2D" parent="."]
 texture = ExtResource("2_sugp2")
 script = ExtResource("3_jyhfs")
-
-[node name="footstep_timer" type="Timer" parent="."]
-wait_time = 0.5
 
 [connection signal="pressed" from="gyat_btn" to="." method="_on_gyat_btn_pressed"]
 [connection signal="toggled" from="Control/bottom_left/VBoxContainer/old_art_btn" to="." method="_on_old_art_btn_toggled"]
 [connection signal="mouse_entered" from="Control/bottom_left/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_entered"]
 [connection signal="mouse_exited" from="Control/bottom_left/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_exited"]
 [connection signal="pressed" from="Control/bottom_left/VBoxContainer/erase_data" to="." method="_on_erase_data_pressed"]
-[connection signal="pressed" from="fingerprint_btn" to="." method="_on_fingerprint_btn_pressed"]
-[connection signal="timeout" from="footstep_timer" to="." method="_on_footstep_timer_timeout"]
