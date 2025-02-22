@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmavsyk2734g5"]
+[gd_scene load_steps=11 format=3 uid="uid://bmavsyk2734g5"]
 
 [ext_resource type="Script" uid="uid://7ypqu8uyiu70" path="res://scenes/main.gd" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://q7r70cd8x464" path="res://footprint.png" id="2_85g3d"]
 [ext_resource type="Texture2D" uid="uid://cx07of4dhi070" path="res://assets/art/UI/speaker_3.png" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://bfsk7g3vceq8g" path="res://assets/art/mouse/eraser.png" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://ctvth5dyak755" path="res://scenes/volume_slider.gd" id="2_tefeu"]
@@ -23,6 +24,11 @@ sfx_slider = NodePath("Control/bottom_right/GridContainer/sfx_slider")
 old_art_btn = NodePath("Control/center/old_art_btn")
 mouse = NodePath("mouse")
 fingerprint_btn = NodePath("fingerprint_btn")
+
+[node name="footprint" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_85g3d")
 
 [node name="fingerprint_btn" type="Button" parent="."]
 material = SubResource("ShaderMaterial_tipki")

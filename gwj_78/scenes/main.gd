@@ -21,6 +21,7 @@ var anim_speed = 0.5
 @export var mouse:Mouse
 @export var fingerprint_btn:Button
 @onready var fingerprint_visible:bool = false
+const FOOTPRINT = preload("res://footprint.png")
 
 
 var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
@@ -160,20 +161,53 @@ func fade_fingerprint(make_visible:bool, fade_time:float=0.5, max_alpha:float=0.
 
 
 func randomize_fingerprint() -> void:
-	# move position randomly
-	var margin:float = 128.0/2.0
-	var x = randf_range(-margin, 1280-margin)
-	var y = randf_range(-margin, 720-margin)
-	var target_pos = Vector2(x, y)
-	fingerprint_btn.position = target_pos
+	# Generate a random rotation
 	var rot = randf_range(-PI, PI)
+	
+	var min_distance = 100.0  # Minimum movement distance
+	var max_distance = 300.0 # Maximum movement distance
+	
+	# Generate a random direction
+	var angle = randf_range(0, TAU)  # TAU = 2 * PI (full circle)
+	var distance = randf_range(min_distance, max_distance)  # Ensure distance is at least min_distance
+
+	# Calculate new position within the valid range
+	var offset = Vector2(cos(angle), sin(angle)) * distance
+	var target_pos = fingerprint_btn.position + offset
+
+	# Ensure the position stays within screen bounds
+	var margin: float = 128.0 / 2.0
+	target_pos.x = clamp(target_pos.x, margin, 1280 - margin)
+	target_pos.y = clamp(target_pos.y, margin, 720 - margin)
+
+	# Recalculate actual moved distance (after clamping)
+	var actual_distance = (fingerprint_btn.position - target_pos).length()
+	
+	# If the clamped position made the movement too small, re-roll the position
+	if actual_distance < min_distance:
+		return randomize_fingerprint()
+
+	# Calculate movement duration
+	var walk_speed = 100.0
+	var walk_time = actual_distance / walk_speed
+
+	# Apply rotation and tween movement
 	fingerprint_btn.rotation = rot
+	var pos_tween: Tween = create_tween()
+	pos_tween.tween_property(fingerprint_btn, "position", target_pos, walk_time)
+
+
+	
+	
+	
 				
 				
 func _on_fingerprint_btn_pressed() -> void:
 	print("you got me")
 	if fingerprint_visible:
 		fingerprint_btn.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		
+		# fade out tween
 		var tween:Tween = fade_fingerprint(false)
 		if tween:
 			tween.finished.connect(func():
