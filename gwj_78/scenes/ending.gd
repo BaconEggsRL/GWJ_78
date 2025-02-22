@@ -17,7 +17,7 @@ var custom_data = {"ending": "ending_normal"}
 # art
 const ENDING = preload("res://assets/art/room_scenes/ending_1.png")
 const ENDING_NEW = preload("res://room_scenes/new_art/Endings/Ending.png")
-
+const GOOD_ENDING = preload("res://room_scenes/new_art/Endings/Good-Ending.png")
 
 # save data
 var save_data:SaveData
@@ -61,20 +61,32 @@ func _ready() -> void:
 		scene_container.add_theme_constant_override("margin_top", 16)
 		scene_container.add_theme_constant_override("margin_right", 16)
 		scene_container.add_theme_constant_override("margin_bottom", 16)
+		# sound
+		if custom_data.ending != "ending_good":
+			AudioManager.play_fx("fbi")
+			win_lose_text.text = "You Got Caught"
+		else:
+			AudioManager.play_fx("yay")
+			win_lose_text.text = "You Got Away!"
+			
+			
 	else:
-		SCENE_ENDING.texture = ENDING_NEW
 		scene_container.add_theme_constant_override("margin_left", 0)
 		scene_container.add_theme_constant_override("margin_top", 0)
 		scene_container.add_theme_constant_override("margin_right", 0)
 		scene_container.add_theme_constant_override("margin_bottom", 0)
-	
-	# sound
-	if custom_data.ending != "ending_good":
-		AudioManager.play_fx("fbi")
-		win_lose_text.text = "You Got Caught"
-	else:
-		AudioManager.play_fx("yay")
-		win_lose_text.text = "You Got Away!"
+		# sound
+		if custom_data.ending != "ending_good":
+			AudioManager.play_fx("fbi")
+			win_lose_text.text = "You Got Caught"
+			SCENE_ENDING.texture = ENDING_NEW
+		else:
+			AudioManager.play_fx("yay")
+			win_lose_text.text = "You Got Away!"
+			SCENE_ENDING.texture = GOOD_ENDING
+
+
+
 		
 	# endings
 	print(custom_data.ending)
