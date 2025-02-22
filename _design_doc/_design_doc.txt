@@ -1,22 +1,21 @@
 Godot Wild Jam (GWJ) #78:
 Erase
 
-
 ==========================
 
 
 TODO:
+# ending art for "good ending"
 
 
 (Art)
-need art for storage_closet open in scene 3
+
 extra:
 main menu art
 intro cutscene art
-achievement art icons (128x128)
 surprised face for window guy (if you have gun equipped)
-ending art for "good ending"
-(new weapons?)
+
+
 
 VARIATION IN STARTING TEXT:
 depending on which achievement is unlocked--snuck out of jail?
@@ -26,8 +25,6 @@ come back -- ahh man my three followers really hated that. that went viral (Live
 
 
 red flash timer when low on time (<60 sec left?)
-
-
 
 
 ======================
@@ -53,24 +50,17 @@ move the bed to find the key
 
 
 
-
-
-
-
-
-
 ======================
 
 
 stretch:
 
-
 skip text faster if already seen in a playthrough
 (hold left click, right click??)
 
-
-
 do more combos of actions (body in bed, body out window, etc.)
+
+(new weapons?)
 
 
 
@@ -117,6 +107,8 @@ Add option for mouse sensitivity (?)
 
 
 Changelog
+# achievement art icons (128x128)
+# need art for storage_closet open in scene 3
 
 # add door open when leaving scene 1
 # add computer_on when clicking desktop monitor (add desktop (horseshoe crab) art)
