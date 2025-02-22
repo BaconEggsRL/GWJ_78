@@ -49,6 +49,13 @@ const CAP_HIT_1 = preload("res://assets/sound/3_fx/cap hit 1.wav")
 # gun
 const BATTLE_WAR_ZONE_GUN_FIGHT_32155 = preload("res://assets/sound/3_fx/battle-war-zone-gun-fight-32155.wav")
 
+# monitor
+const METAL_SWITCH_9 = preload("res://assets/sound/3_fx/metal switch 9.wav")
+
+# lamp
+const LAMP_ON_METAL_BUTTON_2 = preload("res://assets/sound/3_fx/lamp_on_metal_button_2.wav")
+const LAMP_OFF_METAL_BUTTON_1 = preload("res://assets/sound/3_fx/lamp_off_metal_button_1.wav")
+
 
 # save data
 # var save_data:SaveData
@@ -253,6 +260,12 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> AudioStreamPlay
 			fx = CAP_HIT_1
 		"shootout":
 			fx = BATTLE_WAR_ZONE_GUN_FIGHT_32155
+		"monitor_toggle":
+			fx = METAL_SWITCH_9
+		"lamp_on":
+			fx = LAMP_ON_METAL_BUTTON_2
+		"lamp_off":
+			fx = LAMP_OFF_METAL_BUTTON_1
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	

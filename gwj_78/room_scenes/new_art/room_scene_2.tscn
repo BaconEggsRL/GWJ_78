@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cke7cib7rxi8e"]
+[gd_scene load_steps=13 format=3 uid="uid://cke7cib7rxi8e"]
 
 [ext_resource type="Texture2D" uid="uid://5r53ccxk2c5g" path="res://room_scenes/new_art/Assets - scene 2/Background-nightstand.png" id="1_sfc13"]
 [ext_resource type="Texture2D" uid="uid://dy22fsoa3qro" path="res://room_scenes/new_art/Assets - scene 2/Lamp.png" id="2_ev6sa"]
+[ext_resource type="Shader" uid="uid://t04nb88o18ed" path="res://shaders/lamp.gdshader" id="2_vdj16"]
 [ext_resource type="Texture2D" uid="uid://b75xsr6ev2nmv" path="res://room_scenes/new_art/Assets - scene 2/Corpse 1.2.png" id="3_4t6o3"]
 [ext_resource type="Texture2D" uid="uid://deonbbqibcv71" path="res://room_scenes/new_art/Assets - scene 2/Bookshelf.png" id="3_iqibk"]
 [ext_resource type="Texture2D" uid="uid://d2fnw2nknr7kg" path="res://room_scenes/new_art/Assets - scene 2/Bed.png" id="4_4t6o3"]
@@ -9,17 +10,27 @@
 [ext_resource type="Texture2D" uid="uid://bvesvfgie5qc0" path="res://room_scenes/new_art/Assets - scene 2/Corpse-bed.png" id="4_prg3a"]
 [ext_resource type="Texture2D" uid="uid://cdbe6yq0bem0d" path="res://room_scenes/new_art/Assets - scene 2/Sheets.png" id="5_vdj16"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_prg3a"]
+shader = ExtResource("2_vdj16")
+shader_parameter/glow_color = Color(1, 1, 0.501961, 0.121569)
+shader_parameter/radius = 0.26
+shader_parameter/intensity = 1.5
+shader_parameter/enabled = false
+
+[sub_resource type="Gradient" id="Gradient_vdj16"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_prg3a"]
+gradient = SubResource("Gradient_vdj16")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="room_scene_2" type="TextureRect"]
 self_modulate = Color(1, 1, 1, 0.556863)
 mouse_filter = 2
 texture = ExtResource("1_sfc13")
-
-[node name="lamp_rect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-texture = ExtResource("2_ev6sa")
 
 [node name="body_rect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -161,3 +172,30 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 texture = ExtResource("5_vdj16")
+
+[node name="lamp_glow" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.47451)
+material = SubResource("ShaderMaterial_prg3a")
+layout_mode = 0
+offset_left = 560.0
+offset_top = 61.0
+offset_right = 881.0
+offset_bottom = 417.0
+texture = SubResource("GradientTexture2D_prg3a")
+stretch_mode = 5
+
+[node name="lamp_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("2_ev6sa")
+
+[node name="lamp" type="Button" parent="lamp_rect"]
+layout_mode = 0
+offset_left = 670.0
+offset_top = 177.0
+offset_right = 771.0
+offset_bottom = 328.0
+focus_mode = 0
+text = "lamp"

@@ -117,10 +117,19 @@ offset_bottom = 312.0
 focus_mode = 0
 text = "computer"
 
+[node name="mouse_keyboard" type="Button" parent="desk_rect"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 335.0
+offset_right = 605.0
+offset_bottom = 368.0
+focus_mode = 0
+text = "mouse/keyboard"
+
 [node name="top_drawer" type="Button" parent="desk_rect"]
 layout_mode = 0
 offset_left = 552.0
-offset_top = 377.0
+offset_top = 380.0
 offset_right = 643.0
 offset_bottom = 442.0
 focus_mode = 0

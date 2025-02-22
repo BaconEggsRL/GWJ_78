@@ -74,7 +74,8 @@ const CLOSET_CLOSED_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Cl
 const CLOSET_OPEN_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Closet-open.png")
 
 const DOOR_OPEN = preload("res://room_scenes/new_art/Assets - scene 1/Door-open.png")
-const COMPUTER_ON = preload("res://room_scenes/new_art/Assets - scene 1/Computer-on.png")
+const DESK_COMPUTER_OFF = preload("res://room_scenes/new_art/Assets - scene 1/Desk.PNG")
+const DESK_COMPUTER_ON = preload("res://room_scenes/new_art/Assets - scene 1/Computer-on.png")
 
 
 
@@ -318,8 +319,35 @@ func update_evidence_label() -> void:
 ###########################################################
 
 
-func check_computer() -> void:
-	pass
+
+func toggle_lamp() -> void:
+	set_state("lamp_on", !state.lamp_on)
+	if save_data.use_old_art == false:
+		# var _lamp_rect = SCENE_2.get_node("lamp_rect")
+		var lamp_glow = SCENE_2.get_node("lamp_glow")
+		if state.lamp_on:
+			AudioManager.play_fx("lamp_on")
+			# _lamp_rect.texture = LAMP_ON
+			lamp_glow.material.set_shader_parameter("enabled", true)
+		else:
+			AudioManager.play_fx("lamp_off")
+			# _lamp_rect.texture = LAMP_OFF
+			lamp_glow.material.set_shader_parameter("enabled", false)
+	else:
+		pass
+		
+		
+func toggle_computer() -> void:
+	AudioManager.play_fx("monitor_toggle")
+	set_state("computer_on", !state.computer_on)
+	if save_data.use_old_art == false:
+		var desk_rect = SCENE_1.get_node("desk_rect")
+		if state.computer_on:
+			desk_rect.texture = DESK_COMPUTER_ON
+		else:
+			desk_rect.texture = DESK_COMPUTER_OFF
+	else:
+		pass
 
 
 func drink_blood() -> void:
@@ -877,6 +905,9 @@ func reset_progress() -> void:
 		"body": false,
 	}
 	state = {
+		"computer_on": false,
+		"lamp_on": false,
+		
 		"webcam_off": false,
 		"washed_hands": false,
 		

@@ -141,10 +141,10 @@ blob_strength from 0.0 to 0.5
 TODO:
 need art for storage_closet open in scene 3
 
-add desktop (horseshoe crab) art
-add door open when leaving scene 1
-add computer_on when clicking desktop monitor
 
+# add door open when leaving scene 1
+# add computer_on when clicking desktop monitor (add desktop (horseshoe crab) art)
+add lamp on/off
 
 playtest notes:
 

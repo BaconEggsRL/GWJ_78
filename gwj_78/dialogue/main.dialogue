@@ -205,9 +205,18 @@ else:
 
 
 ~ computer
-It's a computer.
-MC: Why is this guy’s lockscreen a horseshoe crab?
+do toggle_computer()
+if state.computer_on:
+	It's a computer.
+	MC: Why is this guy’s lockscreen a horseshoe crab?
 => END!
+
+
+~ mouse_keyboard
+do toggle_computer()
+=> END!
+
+
 
 
 ~ chair
@@ -275,6 +284,12 @@ Eat the magic mushrooms?
 
 #######################################
 # SCENE 2
+
+~ lamp
+do toggle_lamp()
+=> END!
+
+
 
 ~ bed_top
 It's a bed.
