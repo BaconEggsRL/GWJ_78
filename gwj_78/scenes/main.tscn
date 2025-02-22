@@ -24,6 +24,15 @@ old_art_btn = NodePath("Control/center/old_art_btn")
 mouse = NodePath("mouse")
 fingerprint_btn = NodePath("fingerprint_btn")
 
+[node name="fingerprint_btn" type="Button" parent="."]
+material = SubResource("ShaderMaterial_tipki")
+offset_right = 136.0
+offset_bottom = 136.0
+pivot_offset = Vector2(64, 64)
+focus_mode = 0
+icon = ExtResource("8_tipki")
+flat = true
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -33,6 +42,7 @@ offset_right = 1280.0
 offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="center" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -47,10 +57,12 @@ offset_right = 109.5
 offset_bottom = 122.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="title" type="RichTextLabel" parent="Control/center"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Erase the Evidence"
 fit_content = true
@@ -74,6 +86,7 @@ text = "achievements"
 
 [node name="old_art_btn" type="CheckButton" parent="Control/center"]
 layout_mode = 2
+size_flags_horizontal = 8
 focus_mode = 0
 action_mode = 0
 text = "Use old art?"
@@ -90,11 +103,13 @@ offset_left = -256.0
 offset_top = -72.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 alignment = 2
 
 [node name="GridContainer" type="GridContainer" parent="Control/bottom_right"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/h_separation = 10
 columns = 2
 
@@ -155,6 +170,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="bottom_center" type="HBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="erase_data" type="Button" parent="Control/MarginContainer/bottom_center"]
@@ -164,23 +180,12 @@ focus_mode = 0
 text = "reset data"
 expand_icon = true
 
-[node name="fingerprint_btn" type="Button" parent="."]
-material = SubResource("ShaderMaterial_tipki")
-offset_left = 111.0
-offset_top = 338.0
-offset_right = 247.0
-offset_bottom = 474.0
-pivot_offset = Vector2(64, 64)
-focus_mode = 0
-icon = ExtResource("8_tipki")
-flat = true
-
 [node name="mouse" type="Sprite2D" parent="."]
 texture = ExtResource("2_sugp2")
 script = ExtResource("3_jyhfs")
 
+[connection signal="pressed" from="fingerprint_btn" to="." method="_on_fingerprint_btn_pressed"]
 [connection signal="toggled" from="Control/center/old_art_btn" to="." method="_on_old_art_btn_toggled"]
 [connection signal="mouse_entered" from="Control/MarginContainer/bottom_center/erase_data" to="." method="_on_erase_data_mouse_entered"]
 [connection signal="mouse_exited" from="Control/MarginContainer/bottom_center/erase_data" to="." method="_on_erase_data_mouse_exited"]
 [connection signal="pressed" from="Control/MarginContainer/bottom_center/erase_data" to="." method="_on_erase_data_pressed"]
-[connection signal="pressed" from="fingerprint_btn" to="." method="_on_fingerprint_btn_pressed"]
