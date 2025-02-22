@@ -73,6 +73,8 @@ const WEBCAM_OFF_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webca
 # closet
 const CLOSET_OPEN_1 = preload("res://room_scenes/new_art/Assets - scene 1/Closet-open.png")
 const CLOSET_OPEN_3 = preload("res://room_scenes/new_art/Assets - scene 3/Closet-open (1).png")
+const BODY_CLOSET_OPEN_1 = preload("res://room_scenes/new_art/Assets - scene 1/Body-closet-open.png")
+const BODY_CLOSET_OPEN_3 = preload("res://room_scenes/new_art/Assets - scene 3/Closet-open-body.png")
 
 const DOOR_OPEN = preload("res://room_scenes/new_art/Assets - scene 1/Door-open.png")
 const DESK_COMPUTER_OFF = preload("res://room_scenes/new_art/Assets - scene 1/Desk.PNG")
@@ -392,6 +394,7 @@ func hide_body(location:String) -> void:
 		"sink":
 			AudioManager.play_fx("garbage_disposal")
 			set_state("hid_body_sink", true)
+			
 		"trash":
 			AudioManager.play_fx("trash")
 			if save_data.use_old_art:
@@ -400,6 +403,7 @@ func hide_body(location:String) -> void:
 				var trash_rect:TextureRect = current_room_scene.get_node("trash_rect")
 				trash_rect.texture = TRASH_WITH_CORPSE_NEW
 			set_state("hid_body_in_trash", true)
+			
 		"bed_bottom":
 			AudioManager.play_fx("body_drag")
 			if save_data.use_old_art:
@@ -413,9 +417,22 @@ func hide_body(location:String) -> void:
 				body_under_bed_rect_4.show()
 				
 			set_state("hid_body_under_bed", true)
+			
 		"storage_closet":
 			AudioManager.play_fx("door_unlock")
 			set_state("hid_body_in_storage_closet", true)
+			if save_data.use_old_art:
+				pass
+			else:
+				# scene 1
+				var storage_closet_rect_1:TextureRect = SCENE_1.get_node("storage_closet_rect")
+				storage_closet_rect_1.texture = BODY_CLOSET_OPEN_1
+				# scene 3
+				var storage_closet_rect_3:TextureRect = SCENE_3.get_node("storage_closet_rect")
+				storage_closet_rect_3.texture = BODY_CLOSET_OPEN_3
+			
+			
+			
 			
 	# remove body from inventory
 	set_inventory_item("body", false)
