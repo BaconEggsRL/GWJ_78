@@ -15,7 +15,7 @@ shader_parameter/MOD3 = Vector3(0.1031, 0.11369, 0.13787)
 [node name="achievements" type="Node2D" node_paths=PackedStringArray("main_menu_btn", "grid_container", "fireworks")]
 script = ExtResource("1_jqgop")
 main_menu_btn = NodePath("Control/UI_container/main_menu")
-grid_container = NodePath("Control/Panel/MarginContainer/ScrollContainer/GridContainer")
+grid_container = NodePath("Control/Panel/MarginContainer/ScrollContainer/MarginContainer/GridContainer")
 fireworks = NodePath("Control/fireworks")
 
 [node name="Control" type="Control" parent="."]
@@ -88,15 +88,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Control/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Control/Panel/MarginContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="GridContainer" type="GridContainer" parent="Control/Panel/MarginContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 48
 theme_override_constants/v_separation = 64

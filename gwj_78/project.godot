@@ -40,9 +40,7 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [gui]
 
-timers/tooltip_delay_sec=0.1
-timers/tooltip_delay_sec.editor_hint=0.1
-timers/button_shortcut_feedback_highlight_time=0.1
+timers/tooltip_delay_sec=0.05
 
 [input]
 

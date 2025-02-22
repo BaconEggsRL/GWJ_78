@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://jr4b06y1ad5"]
+
+[ext_resource type="Theme" uid="uid://db4rbyab4kib5" path="res://achieve_btn_theme.tres" id="1_0pp34"]
+[ext_resource type="Script" uid="uid://dxswvytwb4xvh" path="res://achievement_box_container.gd" id="1_ec6p8"]
+[ext_resource type="Texture2D" uid="uid://ccubv6rqogayt" path="res://icon.svg" id="2_ec6p8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wf1mw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 12
+shadow_color = Color(0, 0, 0, 0)
+shadow_size = 10
+
+[node name="achievement_box_container" type="Control"]
+custom_minimum_size = Vector2(128, 155)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 155.0
+script = ExtResource("1_ec6p8")
+
+[node name="shadow_btn" type="Button" parent="."]
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 128.0
+focus_mode = 0
+mouse_filter = 2
+theme = ExtResource("1_0pp34")
+icon_alignment = 1
+expand_icon = true
+
+[node name="icon_rect" type="TextureRect" parent="shadow_btn"]
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 128.0
+mouse_filter = 2
+texture = ExtResource("2_ec6p8")
+
+[node name="frame_btn" type="Button" parent="shadow_btn/icon_rect"]
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 128.0
+focus_mode = 0
+mouse_filter = 2
+theme = ExtResource("1_0pp34")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wf1mw")
+icon_alignment = 1
+expand_icon = true
+
+[node name="name_label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -21.0
+offset_right = 64.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 2
