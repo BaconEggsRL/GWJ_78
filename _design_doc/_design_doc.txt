@@ -26,6 +26,9 @@ menu music
 game music
 Dialogue
 
+panic music feels a little too tense... should be more fun/lighthearted
+
+
 achievement:
 
 

@@ -720,7 +720,9 @@ func start_window_event() -> void:
 		return
 		
 	# start window event
+	# AudioManager.play_music("music_alex")
 	AudioManager.play_fx("window_knock")
+	
 	
 	# change to window scene
 	var window_index:int

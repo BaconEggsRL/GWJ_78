@@ -38,7 +38,8 @@ func _ready() -> void:
 	
 	# play music
 	# AudioManager.play_music("music_funk", -6.0)
-	AudioManager.play_music("music_funk_menu", -6.0, false)
+	# AudioManager.play_music("music_funk_menu", -6.0, false)
+	AudioManager.play_music("music_alex_menu")
 	
 	play_btn.pressed.connect(_on_play_pressed)
 	play_btn.mouse_entered.connect(_on_mouse_entered)

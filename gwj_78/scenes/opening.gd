@@ -38,17 +38,9 @@ func _ready() -> void:
 	AudioServer.set_bus_volume_db(0, target_volume)
 
 	# play music
-	AudioManager.play_music("music_funk", -6.0, false)
-	#func _play_music(
-	#music:AudioStream, 
-	#final_db:=0.0, 
-	#fade_out:bool=true, 
-	#fade_out_time:float=0.25,
-	#fade_in:bool=true,
-	#fade_in_time:float=0.25,
-	#_init:bool=false,
-	#_init_db:float = -80.0,
-	#music_player:=MUSIC_PLAYER) -> void:
+	# AudioManager.play_music("music_funk", -6.0, false)
+	AudioManager.play_music("music_alex")
+
 	
 	# show dialogue
 	var dialogue = show_dialogue(MAIN_DIALOGUE, "opening")  # custom function

@@ -13,8 +13,8 @@ var active_fx_players: Dictionary = {}  # Store FX players with names
 const SKETCHBOOK_2024_05_22 = preload("res://assets/sound/1_music/Sketchbook 2024-05-22.ogg")
 const SKETCHBOOK_2024_11_20 = preload("res://assets/sound/1_music/Sketchbook 2024-11-20.ogg")
 
-const _PANIC_LOOP_FINAL = preload("res://assets/sound/1_music/_PanicLoopFinal.mp3")
-const _CALM_DRAFT_0 = preload("res://assets/sound/1_music/_CalmDraft0.mp3")
+const _PANIC_LOOP_FINAL_WAV = preload("res://assets/sound/1_music/_PanicLoopFinal_WAV.wav")
+const _CALM_DRAFT_0_WAV = preload("res://assets/sound/1_music/_CalmDraft0_WAV.wav")
 
 
 # ambient
@@ -246,9 +246,9 @@ func play_music(scene_name:String, final_db:float=0.0, fade_in:bool=true, fade_i
 		"music_funk_menu":
 			music = SKETCHBOOK_2024_11_20
 		"music_alex":
-			music = _PANIC_LOOP_FINAL
+			music = _PANIC_LOOP_FINAL_WAV
 		"music_alex_menu":
-			music = _CALM_DRAFT_0
+			music = _CALM_DRAFT_0_WAV
 			
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % scene_name)
