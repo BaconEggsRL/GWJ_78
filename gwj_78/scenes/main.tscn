@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bmavsyk2734g5"]
+[gd_scene load_steps=18 format=3 uid="uid://bmavsyk2734g5"]
 
 [ext_resource type="Script" uid="uid://7ypqu8uyiu70" path="res://scenes/main.gd" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://drcpxkqlj2qj4" path="res://room_scenes/new_art/Main Menu/Menu_screen_spriteframes.png" id="2_85g3d"]
@@ -43,6 +43,13 @@ animations = [{
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
 shader = ExtResource("7_tipki")
 shader_parameter/alpha_control = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
+shader = ExtResource("7_tipki")
+shader_parameter/alpha_control = null
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_choun"]
+load_path = "res://.godot/imported/fingerprint.png-6daa1ad02f16d421dc34f6894a9f00ac.ctex"
 
 [node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn", "volume_btn", "music_slider", "sfx_slider", "old_art_btn", "mouse")]
 script = ExtResource("1_o5qli")
@@ -212,14 +219,40 @@ focus_mode = 0
 text = "reset data"
 expand_icon = true
 
-[node name="fingerprint_btn" type="Button" parent="."]
+[node name="fingerprint_btn2" type="Button" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_tipki")
-offset_right = 136.0
+offset_left = 1144.0
+offset_right = 1280.0
 offset_bottom = 136.0
 pivot_offset = Vector2(64, 64)
 focus_mode = 0
 action_mode = 0
 icon = ExtResource("8_tipki")
+flat = true
+script = ExtResource("8_choun")
+
+[node name="footstep_container" type="Control" parent="fingerprint_btn2"]
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="footstep_timer" type="Timer" parent="fingerprint_btn2"]
+wait_time = 0.5
+
+[node name="fingerprint_btn" type="Button" parent="."]
+material = SubResource("ShaderMaterial_choun")
+offset_right = 136.0
+offset_bottom = 136.0
+pivot_offset = Vector2(64, 64)
+focus_mode = 0
+action_mode = 0
+icon = SubResource("CompressedTexture2D_choun")
 flat = true
 script = ExtResource("8_choun")
 

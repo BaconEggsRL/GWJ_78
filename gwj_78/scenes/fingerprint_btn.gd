@@ -18,11 +18,16 @@ func _ready() -> void:
 	footstep_timer.timeout.connect(_on_footstep_timer_timeout)
 	randomize_fingerprint(true)
 	
-	
+
+
+func _update_shader_param(value, node: Node, shader_property: String):
+	if is_instance_valid(node) and node.material:
+		node.material.set_shader_parameter(shader_property, value)
+		
 func _create_shader_tween(node: Node, shader_property: String, value_start: float, value_end: float, duration: float) -> Tween:
 	var tween = get_tree().create_tween()
 	tween.tween_method(
-		func(value): node.material.set_shader_parameter(shader_property, value),  
+		func(value): _update_shader_param(value, node, shader_property),
 		value_start,
 		value_end,
 		duration

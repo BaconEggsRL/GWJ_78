@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwabqhyu6baao"]
+
+[ext_resource type="Shader" uid="uid://bjrye8fu4h8lu" path="res://shaders/fingerprint.gdshader" id="1_4tecl"]
+[ext_resource type="Texture2D" uid="uid://wenuy42b3iyc" path="res://fingerprint.png" id="2_qcj5x"]
+[ext_resource type="Script" uid="uid://ce1ujyxdpxv1w" path="res://scenes/fingerprint_btn.gd" id="3_bh37v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
+shader = ExtResource("1_4tecl")
+shader_parameter/alpha_control = null
+
+[node name="fingerprint_btn" type="Button"]
+material = SubResource("ShaderMaterial_tipki")
+offset_right = 136.0
+offset_bottom = 136.0
+pivot_offset = Vector2(64, 64)
+focus_mode = 0
+action_mode = 0
+icon = ExtResource("2_qcj5x")
+flat = true
+script = ExtResource("3_bh37v")
+
+[node name="footstep_container" type="Control" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="footstep_timer" type="Timer" parent="."]
+wait_time = 0.5
