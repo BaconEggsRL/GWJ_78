@@ -719,11 +719,17 @@ func mop_blood() -> void:
 func pickup_body() -> void:
 	set_inventory_item("body", true)
 	# tween out the body texture
-	var body_tween = create_tween()
-	body_tween.tween_property(body_rect, "self_modulate:a", 0.0, 1.0)
-	body_tween.finished.connect(func():
-		body_rect.visible = false
-	)
+	var bodies:Array = []
+	if save_data.use_old_art == false:
+		bodies = [body_rect, SCENE_2.get_node("body_rect")]
+	else:
+		bodies = [body_rect]
+	for body in bodies:
+		var body_tween = create_tween()
+		body_tween.tween_property(body, "self_modulate:a", 0.0, 1.0)
+		body_tween.finished.connect(func():
+			body.visible = false
+		)
 	
 # called when picking up the gun
 func pickup_gun() -> void:

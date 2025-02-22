@@ -179,6 +179,7 @@ offset_left = 16.0
 offset_top = 654.0
 offset_right = 153.0
 offset_bottom = 704.0
+mouse_filter = 2
 alignment = 2
 
 [node name="evidence" type="Label" parent="Control/stat_container"]
