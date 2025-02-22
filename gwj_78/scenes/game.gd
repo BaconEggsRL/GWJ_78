@@ -73,8 +73,14 @@ const WEBCAM_OFF_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webca
 # closet
 const CLOSET_OPEN_1 = preload("res://room_scenes/new_art/Assets - scene 1/Closet-open.png")
 const CLOSET_OPEN_3 = preload("res://room_scenes/new_art/Assets - scene 3/Closet-open (1).png")
+
 const BODY_CLOSET_OPEN_1 = preload("res://room_scenes/new_art/Assets - scene 1/Body-closet-open.png")
 const BODY_CLOSET_OPEN_3 = preload("res://room_scenes/new_art/Assets - scene 3/Closet-open-body.png")
+
+const BODY_CLOSET_CLOSED_1 = preload("res://room_scenes/new_art/Assets - scene 1/Body-closet-closed.png")
+const BODY_CLOSET_CLOSED_3 = preload("res://room_scenes/new_art/Assets - scene 3/Closet-closed-body.png")
+
+
 
 const DOOR_OPEN = preload("res://room_scenes/new_art/Assets - scene 1/Door-open.png")
 const DESK_COMPUTER_OFF = preload("res://room_scenes/new_art/Assets - scene 1/Desk.PNG")
@@ -750,10 +756,28 @@ func stop_window_event(success:bool) -> void:
 
 
 
+
+func toggle_storage_closet_with_body() -> void:
+	AudioManager.play_fx("closet_toggle")
+	set_state("storage_closet_open", !state.storage_closet_open)
+	if save_data.use_old_art == false:
+		var storage_closet_rect_1 = SCENE_1.get_node("storage_closet_rect")
+		var storage_closet_rect_3 = SCENE_3.get_node("storage_closet_rect")
+		if state.storage_closet_open:
+			storage_closet_rect_1.texture = BODY_CLOSET_OPEN_1
+			storage_closet_rect_3.texture = BODY_CLOSET_OPEN_3
+		else:
+			storage_closet_rect_1.texture = BODY_CLOSET_CLOSED_1
+			storage_closet_rect_3.texture = BODY_CLOSET_CLOSED_3
+	else:
+		pass
+		
+	
 # called when opening the storage closet with the key
 # open storage closet
 func unlock_storage_closet() -> void:
 	set_state("storage_closet_unlocked", true)
+	set_state("storage_closet_open", true)
 	set_inventory_item("storage_closet_key", false)
 	AudioManager.play_fx("door_unlock")
 	# update texture
@@ -957,6 +981,7 @@ func reset_progress() -> void:
 		"window_event": false,
 		
 		"storage_closet_unlocked": false,
+		"storage_closet_open": false,
 		
 		"blood_cleaned": false,
 		"blood_cleaned_drank": false,

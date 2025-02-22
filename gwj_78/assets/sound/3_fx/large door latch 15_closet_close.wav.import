@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bvjwdndieoawa"
+path="res://.godot/imported/large door latch 15_closet_close.wav-5c754f19a2509e5eb07a8abfe315c87f.sample"
+
+[deps]
+
+source_file="res://assets/sound/3_fx/large door latch 15_closet_close.wav"
+dest_files=["res://.godot/imported/large door latch 15_closet_close.wav-5c754f19a2509e5eb07a8abfe315c87f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

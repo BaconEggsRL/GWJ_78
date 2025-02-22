@@ -240,11 +240,13 @@ if state.storage_closet_unlocked == true:
 			- Yes
 				do hide_body("storage_closet")
 				MC: Nice.
+				MC: No one's finding him in there.
 			- No
 				MC: I'll find another spot.
 		else:
 			if state.hid_body_in_storage_closet == true:
-				MC: No one's finding him in there.
+				# MC: No one's finding him in there.
+				do toggle_storage_closet_with_body()
 			else:
 				You check the closet, but there's nothing inside.
 		
