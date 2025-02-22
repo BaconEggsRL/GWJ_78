@@ -16,9 +16,10 @@ shader_parameter/color = Color(0.392157, 0, 0, 1)
 shader_parameter/base_color = Color(1, 1, 1, 0.556)
 shader_parameter/enabled = true
 
-[node name="ending" type="Node2D" node_paths=PackedStringArray("ending_text", "scene_container", "SCENE_ENDING")]
+[node name="ending" type="Node2D" node_paths=PackedStringArray("ending_text", "win_lose_text", "scene_container", "SCENE_ENDING")]
 script = ExtResource("1_fyrdv")
 ending_text = NodePath("Control/scene_container/ending_scene/Panel/VBoxContainer/ending_text")
+win_lose_text = NodePath("Control/scene_container/ending_scene/Panel/VBoxContainer/win_lose_text")
 scene_container = NodePath("Control/scene_container")
 SCENE_ENDING = NodePath("Control/scene_container/ending_scene")
 
@@ -72,7 +73,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/scene_container/ending_scene/Panel/VBoxContainer"]
+[node name="win_lose_text" type="RichTextLabel" parent="Control/scene_container/ending_scene/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 3

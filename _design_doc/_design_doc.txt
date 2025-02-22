@@ -144,7 +144,7 @@ need art for storage_closet open in scene 3
 
 # add door open when leaving scene 1
 # add computer_on when clicking desktop monitor (add desktop (horseshoe crab) art)
-add lamp on/off
+# add lamp on/off texture?
 
 playtest notes:
 

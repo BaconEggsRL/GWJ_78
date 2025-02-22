@@ -2,6 +2,7 @@ extends Node2D
 
 var MAIN = load("res://scenes/main.tscn")
 @export var ending_text:Label
+@export var win_lose_text:RichTextLabel
 
 var MAIN_DIALOGUE = preload("res://dialogue/main.dialogue")
 const BALLOON = preload("res://dialogue/balloon.tscn")
@@ -70,8 +71,10 @@ func _ready() -> void:
 	# sound
 	if custom_data.ending != "ending_good":
 		AudioManager.play_fx("fbi")
+		win_lose_text.text = "You Got Caught"
 	else:
 		AudioManager.play_fx("yay")
+		win_lose_text.text = "You Got Away!"
 		
 	# endings
 	print(custom_data.ending)
