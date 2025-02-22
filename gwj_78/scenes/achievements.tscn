@@ -107,7 +107,8 @@ theme_override_constants/margin_bottom = 16
 
 [node name="GridContainer" type="GridContainer" parent="Control/Panel/MarginContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/h_separation = 48
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 64
 theme_override_constants/v_separation = 64
 columns = 4
 
