@@ -74,6 +74,7 @@ const WEBCAM_OFF_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webca
 
 var SCENE_2:TextureRect
 const SCENE_2__BODY_UNDER_BED = preload("res://assets/art/room_scenes/scene_2__body_under_bed.png")
+const CORPSE_1_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Corpse-1.png")
 
 
 var SCENE_3:TextureRect
@@ -348,7 +349,13 @@ func hide_body(location:String) -> void:
 			set_state("hid_body_in_trash", true)
 		"bed_bottom":
 			AudioManager.play_fx("body_drag")
-			current_room_scene.texture = SCENE_2__BODY_UNDER_BED
+			if save_data.use_old_art:
+				current_room_scene.texture = SCENE_2__BODY_UNDER_BED
+			else:
+				var body_under_bed = current_room_scene.get_node("body_under_bed_rect")
+				# body_under_bed.texture = CORPSE_1_NEW
+				body_under_bed.show()
+				
 			set_state("hid_body_under_bed", true)
 		"storage_closet":
 			AudioManager.play_fx("door_unlock")

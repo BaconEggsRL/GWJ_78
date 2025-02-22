@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cke7cib7rxi8e"]
+[gd_scene load_steps=9 format=3 uid="uid://cke7cib7rxi8e"]
 
 [ext_resource type="Texture2D" uid="uid://5r53ccxk2c5g" path="res://room_scenes/new_art/Assets - scene 2/Background-nightstand.png" id="1_sfc13"]
 [ext_resource type="Texture2D" uid="uid://dy22fsoa3qro" path="res://room_scenes/new_art/Assets - scene 2/Lamp.png" id="2_ev6sa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://deonbbqibcv71" path="res://room_scenes/new_art/Assets - scene 2/Bookshelf.png" id="3_iqibk"]
 [ext_resource type="Texture2D" uid="uid://d2fnw2nknr7kg" path="res://room_scenes/new_art/Assets - scene 2/Bed.png" id="4_4t6o3"]
 [ext_resource type="Texture2D" uid="uid://c74h26uee3kws" path="res://room_scenes/new_art/Assets - scene 2/nightstand.png" id="4_ev6sa"]
+[ext_resource type="Texture2D" uid="uid://ch0h7sokssygp" path="res://room_scenes/new_art/Assets - scene 2/Corpse-under_bed.png" id="4_vdj16"]
 [ext_resource type="Texture2D" uid="uid://cdbe6yq0bem0d" path="res://room_scenes/new_art/Assets - scene 2/Sheets.png" id="5_vdj16"]
 
 [node name="room_scene_2" type="TextureRect"]
@@ -35,6 +36,19 @@ offset_right = 277.0
 offset_bottom = 721.0
 focus_mode = 0
 text = "body"
+
+[node name="body_under_bed_rect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 753.0
+offset_top = 384.0
+offset_right = 1118.0
+offset_bottom = 572.0
+mouse_filter = 2
+texture = ExtResource("4_vdj16")
+stretch_mode = 2
+flip_h = true
+flip_v = true
 
 [node name="book_shelf_rect" type="TextureRect" parent="."]
 layout_mode = 0
