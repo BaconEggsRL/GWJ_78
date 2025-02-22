@@ -18,10 +18,10 @@ const MUSIC_ALEX_MENU = preload("res://assets/sound/1_music/_CalmDraft0_WAV.wav"
 
 # names of music tracks for switching
 var music_array = [
-	"music_stock",
-	"music_stock_menu",
-	"music_alex",
-	"music_alex_menu",
+	"menu_alex",
+	"game_alex",
+	"menu_stock",
+	"game_stock",
 ]
 
 
@@ -249,15 +249,15 @@ func play_music(scene_name:String, final_db:float=0.0, fade_in:bool=true, fade_i
 	match scene_name:
 		"music_1":
 			music = null  # insert music const here
-		"music_stock":
+		"game_stock":
 			music = MUSIC_STOCK
 			final_db = -6.0
-		"music_stock_menu":
+		"menu_stock":
 			music = MUSIC_STOCK_MENU
 			final_db = -6.0
-		"music_alex":
+		"game_alex":
 			music = MUSIC_ALEX
-		"music_alex_menu":
+		"menu_alex":
 			music = MUSIC_ALEX_MENU
 			
 		_:

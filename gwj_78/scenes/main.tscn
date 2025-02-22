@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bmavsyk2734g5"]
+[gd_scene load_steps=20 format=3 uid="uid://bmavsyk2734g5"]
 
 [ext_resource type="Script" uid="uid://7ypqu8uyiu70" path="res://scenes/main.gd" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://drcpxkqlj2qj4" path="res://room_scenes/new_art/Main Menu/Menu_screen_spriteframes.png" id="2_85g3d"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://xlx8ga2i6lsi" path="res://room_scenes/new_art/Main Menu/Menu_screen_with_text.png" id="3_ya4ey"]
 [ext_resource type="Shader" uid="uid://bjrye8fu4h8lu" path="res://shaders/fingerprint.gdshader" id="7_tipki"]
 [ext_resource type="Script" uid="uid://ce1ujyxdpxv1w" path="res://scenes/fingerprint_btn.gd" id="8_choun"]
-[ext_resource type="Texture2D" uid="uid://wenuy42b3iyc" path="res://fingerprint.png" id="8_tipki"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
 atlas = ExtResource("2_85g3d")
@@ -67,10 +66,6 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
-shader = ExtResource("7_tipki")
-shader_parameter/alpha_control = null
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
 shader = ExtResource("7_tipki")
 shader_parameter/alpha_control = null
@@ -85,9 +80,9 @@ achievements_btn = NodePath("Control/achievements_btn")
 volume_btn = NodePath("Control/sound_options/volume_btn")
 music_slider = NodePath("Control/sound_options/GridContainer/music_slider")
 sfx_slider = NodePath("Control/sound_options/GridContainer/sfx_slider")
-old_art_btn = NodePath("Control/data_options/VBoxContainer/HBoxContainer/old_art_btn")
-menu_music = NodePath("Control/data_options/VBoxContainer2/menu_music")
-game_music = NodePath("Control/data_options/VBoxContainer3/game_music")
+old_art_btn = NodePath("Control/MarginContainer/data_options/VBoxContainer/HBoxContainer/old_art_btn")
+menu_music = NodePath("Control/MarginContainer/data_options/VBoxContainer2/menu_music")
+game_music = NodePath("Control/MarginContainer/data_options/VBoxContainer3/game_music")
 mouse = NodePath("mouse")
 
 [node name="background" type="AnimatedSprite2D" parent="."]
@@ -212,27 +207,36 @@ icon = ExtResource("2_jyhfs")
 flat = true
 script = ExtResource("3_tbgi4")
 
-[node name="data_options" type="HBoxContainer" parent="Control"]
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -84.0
-offset_right = 556.0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="data_options" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 mouse_filter = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/data_options"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/data_options"]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/data_options/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/data_options/VBoxContainer"]
 layout_mode = 2
 
-[node name="old_art_btn" type="CheckBox" parent="Control/data_options/VBoxContainer/HBoxContainer"]
+[node name="old_art_btn" type="CheckBox" parent="Control/MarginContainer/data_options/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -242,7 +246,7 @@ text = "Use legacy art?"
 alignment = 1
 icon_alignment = 1
 
-[node name="erase_data" type="Button" parent="Control/data_options/VBoxContainer"]
+[node name="erase_data" type="Button" parent="Control/MarginContainer/data_options/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -250,83 +254,57 @@ focus_mode = 0
 text = "reset data"
 expand_icon = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/data_options"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/data_options"]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="music_options_label" type="Label" parent="Control/data_options/VBoxContainer2"]
+[node name="music_options_label" type="Label" parent="Control/MarginContainer/data_options/VBoxContainer2"]
 self_modulate = Color(1, 1, 1, 0.662745)
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 text = "menu music:"
 vertical_alignment = 1
 
-[node name="menu_music" type="OptionButton" parent="Control/data_options/VBoxContainer2"]
+[node name="menu_music" type="OptionButton" parent="Control/MarginContainer/data_options/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 focus_mode = 0
 item_count = 4
-popup/item_0/text = "music_stock"
+popup/item_0/text = "menu_alex"
 popup/item_0/id = 0
-popup/item_1/text = "music_stock_menu"
-popup/item_1/id = 1
-popup/item_2/text = "music_alex"
-popup/item_2/id = 2
-popup/item_3/text = "music_alex_menu"
-popup/item_3/id = 3
+popup/item_1/text = "game_alex"
+popup/item_1/id = 0
+popup/item_2/text = "menu_stock"
+popup/item_2/id = 0
+popup/item_3/text = "game_stock"
+popup/item_3/id = 0
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Control/data_options"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Control/MarginContainer/data_options"]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="music_options_label2" type="Label" parent="Control/data_options/VBoxContainer3"]
+[node name="music_options_label2" type="Label" parent="Control/MarginContainer/data_options/VBoxContainer3"]
 self_modulate = Color(1, 1, 1, 0.662745)
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 text = "game music:"
 vertical_alignment = 1
 
-[node name="game_music" type="OptionButton" parent="Control/data_options/VBoxContainer3"]
+[node name="game_music" type="OptionButton" parent="Control/MarginContainer/data_options/VBoxContainer3"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 focus_mode = 0
 item_count = 4
-popup/item_0/text = "music_stock"
+popup/item_0/text = "menu_alex"
 popup/item_0/id = 0
-popup/item_1/text = "music_stock_menu"
-popup/item_1/id = 1
-popup/item_2/text = "music_alex"
-popup/item_2/id = 2
-popup/item_3/text = "music_alex_menu"
-popup/item_3/id = 3
-
-[node name="fingerprint_btn2" type="Button" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_tipki")
-offset_left = 1144.0
-offset_right = 1280.0
-offset_bottom = 136.0
-pivot_offset = Vector2(64, 64)
-focus_mode = 0
-action_mode = 0
-icon = ExtResource("8_tipki")
-flat = true
-script = ExtResource("8_choun")
-
-[node name="footstep_container" type="Control" parent="fingerprint_btn2"]
-top_level = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="footstep_timer" type="Timer" parent="fingerprint_btn2"]
-wait_time = 0.5
+popup/item_1/text = "game_alex"
+popup/item_1/id = 0
+popup/item_2/text = "menu_stock"
+popup/item_2/id = 0
+popup/item_3/text = "game_stock"
+popup/item_3/id = 0
 
 [node name="fingerprint_btn" type="Button" parent="."]
 material = SubResource("ShaderMaterial_choun")
@@ -358,7 +336,7 @@ texture = ExtResource("2_sugp2")
 script = ExtResource("3_jyhfs")
 
 [connection signal="pressed" from="gyat_btn" to="." method="_on_gyat_btn_pressed"]
-[connection signal="toggled" from="Control/data_options/VBoxContainer/HBoxContainer/old_art_btn" to="." method="_on_old_art_btn_toggled"]
-[connection signal="mouse_entered" from="Control/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_entered"]
-[connection signal="mouse_exited" from="Control/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_exited"]
-[connection signal="pressed" from="Control/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_pressed"]
+[connection signal="toggled" from="Control/MarginContainer/data_options/VBoxContainer/HBoxContainer/old_art_btn" to="." method="_on_old_art_btn_toggled"]
+[connection signal="mouse_entered" from="Control/MarginContainer/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_entered"]
+[connection signal="mouse_exited" from="Control/MarginContainer/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_mouse_exited"]
+[connection signal="pressed" from="Control/MarginContainer/data_options/VBoxContainer/erase_data" to="." method="_on_erase_data_pressed"]

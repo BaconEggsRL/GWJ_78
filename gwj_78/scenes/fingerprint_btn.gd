@@ -28,13 +28,21 @@ func _update_shader_param(value, node: Node, shader_property: String):
 		node.material.set_shader_parameter(shader_property, value)
 		
 func _create_shader_tween(node: Node, shader_property: String, value_start: float, value_end: float, duration: float) -> Tween:
+	if not is_instance_valid(node):
+		return null  # Prevent creating a tween on an invalid node
+		
 	var tween = get_tree().create_tween()
+	
+	# Use a weak reference to prevent accessing a freed node
 	tween.tween_method(
-		func(value): _update_shader_param(value, node, shader_property),
+		func(value): 
+			if is_instance_valid(node):  # Ensure the node is still valid
+				_update_shader_param(value, node, shader_property),
 		value_start,
 		value_end,
 		duration
-	);
+	)
+	
 	return tween
 	
 
@@ -45,7 +53,10 @@ func fade_fingerprint(make_visible:bool, fade_time:float=0.5, max_alpha:float=0.
 		var end_val: float = max_alpha if make_visible else 0.0
 		
 		fingerprint_visible = !fingerprint_visible
-		return _create_shader_tween(fingerprint_btn, "alpha_control", start_val, end_val, fade_time)
+		if is_instance_valid(fingerprint_btn):
+			return _create_shader_tween(fingerprint_btn, "alpha_control", start_val, end_val, fade_time)
+		else:
+			return null
 	else:
 		return null
 
