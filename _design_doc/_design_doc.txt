@@ -139,12 +139,26 @@ blob_strength from 0.0 to 0.5
 
 
 TODO:
+
+
+(Art)
 need art for storage_closet open in scene 3
+extra:
+main menu art
+intro cutscene art
+achievement art icons (128x128)
+surprised face for window guy (if you have gun equipped)
+ending art for "good ending"
+(new weapons?)
+
+VARIATION IN STARTING TEXT:
+depending on which achievement is unlocked--snuck out of jail?
+come back -- ahh man my three followers really hated that. that went viral (Live on Twitch)
+(blurb at the start of the game, based on which achievement was last unlocked.)
 
 
-# add door open when leaving scene 1
-# add computer_on when clicking desktop monitor (add desktop (horseshoe crab) art)
-# add lamp on/off texture?
+
+
 
 playtest notes:
 
@@ -167,9 +181,29 @@ horseshoe crab racing knowledge? (for window guy event)
 move the bed to find the key
 
 
+
+
+
+
+
+
+
+======================
+
+
+stretch:
+
+skip text faster if already seen in a playthrough
+(hold left click, right click??)
+
+
+
+do more combos of actions (body in bed, body out window, etc.)
+
 ACHIEVEMENTS:
 achievement for just leaving the gun?
 achievement for just leaving the blood?
+
 
 
 ======================
@@ -177,6 +211,10 @@ achievement for just leaving the blood?
 
 Sam thoughts?
 
+
+# add door open when leaving scene 1
+# add computer_on when clicking desktop monitor (add desktop (horseshoe crab) art)
+# add lamp on/off texture?
 
 # sam never saw window guy :(
 # 5:00 -> 2:30 (3:00? 3:30? 4:00? 1.5x time?)
@@ -201,20 +239,6 @@ Sam thoughts?
 # add under bed box to both scenes?
 
 
-
-======================
-
-
-stretch:
-
-skip text faster if already seen in a playthrough
-(hold left click, right click??)
-
-do more combos of actions (body in bed, body out window, etc.)
-
-depending on which achievement is unlocked--snuck out of jail?
-come back -- ahh man my three followers really hated that. that went viral (Live on Twitch)
-(blurb at the start of the game, based on which achievement was last unlocked.)
 
 
 
