@@ -70,6 +70,8 @@ const WEBCAM_OFF = preload("res://assets/art/room_scenes/webcam_off.png")
 const WEBCAM_ON_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webcam-on.png")
 const WEBCAM_OFF_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webcam-off.png")
 
+const CLOSET_CLOSED_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Closet.png")
+const CLOSET_OPEN_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Closet-open.png")
 
 
 var SCENE_2:TextureRect
@@ -677,6 +679,20 @@ func stop_window_event(success:bool) -> void:
 
 
 
+# called when opening the storage closet with the key
+func unlock_storage_closet() -> void:
+	set_state("storage_closet_unlocked", true)
+	set_inventory_item("storage_closet_key", false)
+	AudioManager.play_fx("door_unlock")
+	# update texture
+	var new_texture:CompressedTexture2D
+	if save_data.use_old_art:
+		pass
+	else:
+		new_texture = CLOSET_OPEN_NEW
+		var storage_closet_rect = SCENE_1.get_node("storage_closet_rect")
+		storage_closet_rect.texture = new_texture
+	
 
 # called when closing the curtains
 func close_curtains() -> void:

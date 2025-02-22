@@ -246,9 +246,7 @@ else:
 		do AudioManager.play_fx("locked_door_wiggle", -6.0)
 		MC: Locked.
 	else:
-		do set_state("storage_closet_unlocked", true)
-		do set_inventory_item("storage_closet_key", false)
-		do AudioManager.play_fx("door_unlock")
+		do unlock_storage_closet()
 
 => END!
 

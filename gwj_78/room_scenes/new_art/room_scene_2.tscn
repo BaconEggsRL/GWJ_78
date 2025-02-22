@@ -146,17 +146,17 @@ layout_mode = 0
 offset_left = 804.0
 offset_top = 409.0
 offset_right = 1102.0
-offset_bottom = 484.0
+offset_bottom = 503.0
 rotation = 1.15192
 focus_mode = 0
 text = "bed_bottom"
 
 [node name="bed_bottom2" type="Button" parent="bed_bottom_rect"]
 layout_mode = 0
-offset_left = 853.0
+offset_left = 841.0
 offset_top = 608.0
 offset_right = 1248.0
-offset_bottom = 711.0
+offset_bottom = 723.0
 focus_mode = 0
 text = "bed_bottom"
 

@@ -129,7 +129,13 @@ wave_amplitude from 0 to 0.02
 blob_strength from 0.0 to 0.5
 
 
-===============
+
+
+
+
+
+
+==========================
 
 
 TODO:
@@ -137,37 +143,46 @@ TODO:
 
 playtest notes:
 
-how to use items? (figured out eventually.)
-random text for garbage disposal
 
-toilet grating for disposing of the gun?
-throw the gun/body out the window?
+EVIDENCE:
+move toilet grating and put gun in toilet grating?
+open window and throw body/gun out the window?
+grab towels from bed or sink stand to mop up the blood?
 
-
-
-does the bed move?
 put gun in trashcan?
 
-grab towel from bed or sink stand to mop up blood?
-should mop still be there if you drink the blood?***
+put mop in garbage disposal?
+put the key in the garbage disposal?
 
-put mop in garbage disposal
-put the key in the garbage disposal
 
+
+OTHER OPTIONS:
+shoot the lock on the storage closet door to open it
+horseshoe crab racing knowledge? (for window guy event)
+move the bed to find the key
+
+
+ACHIEVEMENTS:
 achievement for just leaving the gun?
 achievement for just leaving the blood?
 
-shoot the lock on the storage closet door to open it
-horseshoe crab racing knowledge? to kill a mocking bird / harper lee
+
+======================
+
+
+Sam thoughts?
+
 
 sam never saw window guy :(
 5:00 -> 2:30 (3:00? 3:30? 4:00? 1.5x time?)
 maybe make him appear at 3:00
 
-===========
 
 
-Sam thoughts?
+# how to use items? (figured out eventually.)
+
+# random text for garbage disposal
+# should mop still be there if you drink the blood?***
 
 # nightstand updated
 # ***mop should still be there if you drink the blood?
@@ -180,7 +195,7 @@ Sam thoughts?
 
 
 
-===========
+======================
 
 
 stretch:
@@ -191,7 +206,8 @@ skip text faster if already seen in a playthrough
 do more combos of actions (body in bed, body out window, etc.)
 
 depending on which achievement is unlocked--snuck out of jail?
-come back -- ahh man my three followers really hated that. that went viral
+come back -- ahh man my three followers really hated that. that went viral (Live on Twitch)
+(blurb at the start of the game, based on which achievement was last unlocked.)
 
 
 
