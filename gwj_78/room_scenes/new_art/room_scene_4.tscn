@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://d2r3kxnm3dkn3" path="res://room_scenes/new_art/Assets - scene 4/Sink.png" id="6_8d878"]
 
 [node name="room_scene_4" type="TextureRect"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 texture = ExtResource("1_0ikeq")
 expand_mode = 1
@@ -56,7 +55,7 @@ mouse_filter = 2
 [node name="night_stand" type="Button" parent="night_stand_rect"]
 layout_mode = 0
 offset_left = 82.0
-offset_top = 384.0
+offset_top = 363.0
 offset_right = 238.0
 offset_bottom = 589.0
 focus_mode = 0
@@ -71,11 +70,65 @@ texture = ExtResource("3_ma70m")
 
 [node name="bed_top" type="Button" parent="bed_top_rect"]
 layout_mode = 0
-offset_top = 411.0
-offset_right = 448.0
-offset_bottom = 645.0
+offset_left = -3.0
+offset_top = 416.0
+offset_right = 349.0
+offset_bottom = 577.0
 focus_mode = 0
 text = "bed_top"
+
+[node name="bed_top2" type="Button" parent="bed_top_rect"]
+layout_mode = 0
+offset_top = 332.0
+offset_right = 86.0
+offset_bottom = 567.0
+focus_mode = 0
+text = "bed_top"
+
+[node name="bed_top3" type="Button" parent="bed_top_rect"]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 412.0
+offset_right = 422.0
+offset_bottom = 562.0
+rotation = 0.453786
+focus_mode = 0
+text = "bed_top"
+
+[node name="bed_top4" type="Button" parent="bed_top_rect"]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 413.0
+offset_right = 415.0
+offset_bottom = 449.0
+focus_mode = 0
+text = "bed_top"
+
+[node name="bed_bottom_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="bed_bottom" type="Button" parent="bed_bottom_rect"]
+layout_mode = 0
+offset_left = -9.0
+offset_top = 587.0
+offset_right = 415.0
+offset_bottom = 694.0
+rotation = 0.0698132
+focus_mode = 0
+text = "bed_bottom"
+
+[node name="bed_bottom2" type="Button" parent="bed_bottom_rect"]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 685.0
+offset_right = 566.0
+offset_bottom = 770.0
+rotation = -1.15192
+focus_mode = 0
+text = "bed_bottom"
 
 [node name="sheets_rect" type="TextureRect" parent="."]
 layout_mode = 0

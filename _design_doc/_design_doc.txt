@@ -171,13 +171,7 @@ Sam thoughts?
 
 # nightstand updated
 # ***mop should still be there if you drink the blood?
-***put body under bed new art
-
-
-
-
-
-
+# ***put body under bed new art
 
 # how to look under bed? (hard to figure out--make under bed box better.)
 # --updated hitbox to be bigger, and takes priority over bed_top
