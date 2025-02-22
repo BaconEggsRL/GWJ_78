@@ -21,6 +21,17 @@ red flash timer when low on time (<60 sec left?)
 playtest notes:
 
 
+music:
+menu music
+game music
+Dialogue
+
+achievement:
+
+
+
+
+
 EVIDENCE:
 move toilet grating and put gun in toilet grating?
 open window and throw body/gun out the window?

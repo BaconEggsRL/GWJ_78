@@ -11,6 +11,11 @@ var active_fx_players: Dictionary = {}  # Store FX players with names
 # music
 # list of all music
 const SKETCHBOOK_2024_05_22 = preload("res://assets/sound/1_music/Sketchbook 2024-05-22.ogg")
+const SKETCHBOOK_2024_11_20 = preload("res://assets/sound/1_music/Sketchbook 2024-11-20.ogg")
+
+const _PANIC_LOOP_FINAL = preload("res://assets/sound/1_music/_PanicLoopFinal.mp3")
+const _CALM_DRAFT_0 = preload("res://assets/sound/1_music/_CalmDraft0.mp3")
+
 
 # ambient
 # list of all ambient sounds
@@ -133,65 +138,104 @@ func stop_music(fade_out_time=0.5, music_player:=MUSIC_PLAYER) -> void:
 	music_player.stream = null  # Reset to ensure _play_music() reloads it
 		
 		
+#func _play_music(
+	#music:AudioStream, 
+	#final_db:=0.0, 
+	#fade_out:bool=true, 
+	#fade_out_time:float=0.5,
+	#fade_in:bool=true,
+	#fade_in_time:float=0.5,
+	#init:bool=false,
+	#init_db:float = -80.0,
+	#music_player:=MUSIC_PLAYER) -> void:
+#
+	## If the music is currently being played already, do nothing
+	#print("test1")
+	#if music_player.stream == music:
+		#return
+	#
+	#print("test2")
+	## don't fade out prev track if there's no stream
+	#if !music_player.stream:
+		#fade_out = false
+#
+	#print("test3")
+	## check if should fade audio in/out
+	#if fade_out:
+		#print("test4")
+		#var tween_out = get_tree().create_tween()
+		#tween_out.tween_property(music_player, "volume_db", -80.0, fade_out_time)
+		#await tween_out.finished
+	#
+	#else:
+		#print("test5")
+		## check if we need to initialize the volume
+		#if init:
+			#music_player.volume_db = init_db
+		#
+		#if fade_in:
+			## audio_player.stop()
+			#music_player.stream = music
+			#music_player.play()
+			#
+			#var tween_in = get_tree().create_tween()
+			#tween_in.set_ease(Tween.EASE_OUT)
+			#tween_in.set_trans(Tween.TRANS_CUBIC)
+			#tween_in.tween_property(music_player, "volume_db", final_db, fade_in_time)
+			#await tween_in.finished
+		#
+		#else:
+			#
+			## audio_player.stop()
+			#music_player.stream = music
+			#music_player.volume_db = final_db
+			#music_player.bus = "music"
+			#music_player.play()
+
 func _play_music(
 	music:AudioStream, 
 	final_db:=0.0, 
 	fade_out:bool=true, 
-	fade_out_time:float=0.5,
+	fade_out_time:float=0.25,
 	fade_in:bool=true,
-	fade_in_time:float=0.5,
-	init:bool=false,
-	init_db:float = -80.0,
+	fade_in_time:float=0.25,
+	_init:bool=false,
+	_init_db:float = -80.0,
 	music_player:=MUSIC_PLAYER) -> void:
 
-	# If the music is currently being played already, do nothing
+	# If the music is already playing, do nothing
 	if music_player.stream == music:
 		return
 	
-	
-	# don't fade out prev track if there's no stream
-	if !music_player.stream:
-		fade_out = false
-
-	
-	# check if should fade audio in/out
-	if fade_out:
+	# Fade out previous track if needed
+	if fade_out and music_player.stream:
 		var tween_out = get_tree().create_tween()
 		tween_out.tween_property(music_player, "volume_db", -80.0, fade_out_time)
 		await tween_out.finished
+		music_player.stop()
 	
+	# Assign the new music track
+	music_player.stream = music
+	music_player.play()
+	
+	# Fade in the new track if needed
+	if fade_in:
+		music_player.volume_db = -80.0  # Start low before fade-in
+		var tween_in = get_tree().create_tween()
+		tween_in.set_ease(Tween.EASE_OUT)
+		tween_in.set_trans(Tween.TRANS_CUBIC)
+		tween_in.tween_property(music_player, "volume_db", final_db, fade_in_time)
+		await tween_in.finished
 	else:
+		music_player.volume_db = final_db
 		
-		# check if we need to initialize the volume
-		if init:
-			music_player.volume_db = init_db
 		
-		if fade_in:
-			# audio_player.stop()
-			music_player.stream = music
-			music_player.play()
-			
-			var tween_in = get_tree().create_tween()
-			tween_in.set_ease(Tween.EASE_OUT)
-			tween_in.set_trans(Tween.TRANS_CUBIC)
-			tween_in.tween_property(music_player, "volume_db", final_db, fade_in_time)
-			await tween_in.finished
-		
-		else:
-			
-			# audio_player.stop()
-			music_player.stream = music
-			music_player.volume_db = final_db
-			music_player.bus = "music"
-			music_player.play()
-
 
 # Play music for scene
-func play_music(scene_name:String, final_db:float=0.0, fade_in_time=0.5) -> void:
+func play_music(scene_name:String, final_db:float=0.0, fade_in:bool=true, fade_in_time=0.5) -> void:
 	var music:Resource
 	var fade_out:bool = true
 	var fade_out_time = 0.5
-	var fade_in:bool = true
 	var init:bool = false
 	var init_db:float = -80.0
 	match scene_name:
@@ -199,6 +243,13 @@ func play_music(scene_name:String, final_db:float=0.0, fade_in_time=0.5) -> void
 			music = null  # insert music const here
 		"music_funk":
 			music = SKETCHBOOK_2024_05_22
+		"music_funk_menu":
+			music = SKETCHBOOK_2024_11_20
+		"music_alex":
+			music = _PANIC_LOOP_FINAL
+		"music_alex_menu":
+			music = _CALM_DRAFT_0
+			
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % scene_name)
 	

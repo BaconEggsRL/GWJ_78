@@ -37,8 +37,8 @@ func _ready() -> void:
 	init_scene()
 	
 	# play music
-	AudioManager.play_music("music_funk", -6.0)
-	
+	# AudioManager.play_music("music_funk", -6.0)
+	AudioManager.play_music("music_funk_menu", -6.0, false)
 	
 	play_btn.pressed.connect(_on_play_pressed)
 	play_btn.mouse_entered.connect(_on_mouse_entered)
@@ -53,6 +53,7 @@ func _on_mouse_entered() -> void:
 	AudioManager.play_fx("btn_hover", -12.0)
 	
 func _on_play_pressed() -> void:
+	# AudioManager.stop_music(0.50)
 	SceneManager.goto("opening")
 
 func _on_achievements_pressed() -> void:

@@ -488,7 +488,7 @@ func _ready() -> void:
 	AudioServer.set_bus_volume_db(0, target_volume)
 	
 	# play music
-	AudioManager.play_music("music_funk", -6.0)
+	# AudioManager.play_music("music_funk", -6.0)
 	
 	# turn off timer shader
 	time_left_label.material.set_shader_parameter("enable_flash", false)
@@ -1180,6 +1180,7 @@ func _on_restart_level_pressed() -> void:
 	self.restart_level()
 
 func _on_main_pressed() -> void:
+	# AudioManager.stop_music(0.50)
 	self.goto_main()
 
 
