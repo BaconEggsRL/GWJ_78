@@ -78,7 +78,7 @@ shader_parameter/alpha_control = null
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_choun"]
 load_path = "res://.godot/imported/fingerprint.png-6daa1ad02f16d421dc34f6894a9f00ac.ctex"
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn", "volume_btn", "music_slider", "sfx_slider", "old_art_btn", "mouse")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn", "volume_btn", "music_slider", "sfx_slider", "old_art_btn", "music_options", "mouse")]
 script = ExtResource("1_o5qli")
 play_btn = NodePath("Control/play_btn")
 achievements_btn = NodePath("Control/achievements_btn")
@@ -86,6 +86,7 @@ volume_btn = NodePath("Control/sound_options/volume_btn")
 music_slider = NodePath("Control/sound_options/GridContainer/music_slider")
 sfx_slider = NodePath("Control/sound_options/GridContainer/sfx_slider")
 old_art_btn = NodePath("Control/data_options/VBoxContainer/old_art_btn")
+music_options = NodePath("Control/data_options/VBoxContainer2/music_options")
 mouse = NodePath("mouse")
 
 [node name="background" type="AnimatedSprite2D" parent="."]
@@ -215,8 +216,8 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -68.0
-offset_right = 336.0
+offset_top = -84.0
+offset_right = 352.0
 grow_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 20
@@ -261,6 +262,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 focus_mode = 0
+selected = 0
 item_count = 4
 popup/item_0/text = "music_funk"
 popup/item_0/id = 0

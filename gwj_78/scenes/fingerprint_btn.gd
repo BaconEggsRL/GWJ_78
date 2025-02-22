@@ -92,7 +92,7 @@ func randomize_fingerprint(instant:bool = false) -> void:
 		pos_tween.tween_property(fingerprint_btn, "position", target_pos, walk_time)
 		# fade in btn after moved
 		pos_tween.finished.connect(func():
-			print("reset")
+			# print("reset")
 			# stop footsteps
 			footstep_timer.stop()
 			# fade in texture
@@ -102,7 +102,7 @@ func randomize_fingerprint(instant:bool = false) -> void:
 		)
 
 	else:
-		print("reset")
+		# print("reset")
 		fingerprint_btn.position = target_pos
 		fade_fingerprint(true)
 		fingerprint_btn.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -110,7 +110,7 @@ func randomize_fingerprint(instant:bool = false) -> void:
 		
 		
 func _on_fingerprint_btn_pressed() -> void:
-	print("pressed")
+	# print("pressed")
 	if fingerprint_visible:
 		fingerprint_btn.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		
@@ -118,7 +118,7 @@ func _on_fingerprint_btn_pressed() -> void:
 		var tween:Tween = fade_fingerprint(false)
 		if tween:
 			tween.finished.connect(func():
-				print("move")
+				# print("move")
 				# move position randomly
 				randomize_fingerprint()
 			)
@@ -127,7 +127,7 @@ func _on_fingerprint_btn_pressed() -> void:
 
 
 func _on_footstep_timer_timeout() -> void:
-	print("step")
+	# print("step")
 	var footprint = FOOTPRINT_RECT.instantiate()
 	var offset:float = 20.0
 	var offset_vector = Vector2(randf_range(-offset, offset), randf_range(-offset, offset))

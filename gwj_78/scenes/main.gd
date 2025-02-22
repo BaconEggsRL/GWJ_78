@@ -17,6 +17,7 @@ var anim_speed = 0.5
 @export var sfx_slider:VolumeSlider
 
 @export var old_art_btn:CheckBox
+@export var music_options:OptionButton
 
 @export var mouse:Mouse
 
@@ -46,6 +47,8 @@ func _ready() -> void:
 	
 	achievements_btn.pressed.connect(_on_achievements_pressed)
 	achievements_btn.mouse_entered.connect(_on_mouse_entered)
+	
+	music_options.item_selected.connect(_on_music_option_selected)
 
 
 
@@ -104,6 +107,9 @@ func init_scene() -> void:
 	# old art optino
 	old_art_btn.button_pressed = save_data.use_old_art
 	
+	# music option
+	music_options.select(save_data.music_option)
+	
 	
 	
 
@@ -132,3 +138,8 @@ func show_dialogue(resource:DialogueResource, title:String="", extra_game_states
 
 func _on_gyat_btn_pressed() -> void:
 	AudioManager.play_fx("gyat")
+
+
+func _on_music_option_selected(_index: int) -> void:
+	var text = music_options.get_item_text(_index)
+	print("selected: %s" % text)

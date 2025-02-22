@@ -108,6 +108,7 @@ var volume_dict := {
 
 
 @export var use_old_art:bool = false
+@export var music_option:int = 0
 
 ################################################################
 
@@ -125,6 +126,7 @@ func clear() -> void:
 	self.volume_state = VolumeState.THREE
 	self.achievements_unlocked = {}
 	self.use_old_art = false
+	self.music_option = 0
 	save()
 	
 	
