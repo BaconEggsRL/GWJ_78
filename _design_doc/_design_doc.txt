@@ -176,7 +176,7 @@ Sam thoughts?
 # how to look under bed? (hard to figure out--make under bed box better.)
 # --updated hitbox to be bigger, and takes priority over bed_top
 
-add under bed box to both scenes?
+# add under bed box to both scenes?
 
 
 
