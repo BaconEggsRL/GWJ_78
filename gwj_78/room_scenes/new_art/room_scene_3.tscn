@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://24uj5twwe3kj" path="res://room_scenes/new_art/Assets - scene 3/Toilet_.png" id="6_qqqry"]
 
 [node name="room_scene_3" type="TextureRect"]
-visible = false
 self_modulate = Color(1, 1, 1, 0.556863)
 texture = ExtResource("1_qvvqm")
 expand_mode = 1
@@ -77,6 +76,10 @@ offset_right = 433.0
 offset_bottom = 450.0
 focus_mode = 0
 text = "sink"
+
+[node name="sink_timer" type="Timer" parent="sink_rect"]
+wait_time = 5.0
+one_shot = true
 
 [node name="floor_mat" type="Button" parent="."]
 layout_mode = 0

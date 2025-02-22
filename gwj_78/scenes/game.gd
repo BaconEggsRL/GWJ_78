@@ -78,6 +78,8 @@ const SCENE_2__BODY_UNDER_BED = preload("res://assets/art/room_scenes/scene_2__b
 
 var SCENE_3:TextureRect
 @onready var wash_count = 0
+const SINK_OFF_NEW = preload("res://room_scenes/new_art/Assets - scene 3/Sink-off.png")
+const SINK_ON_NEW = preload("res://room_scenes/new_art/Assets - scene 3/Sink-on.png")
 
 
 
@@ -736,6 +738,32 @@ func wash_hands() -> void:
 	AudioManager.play_fx("sink_running")
 	set_state("washed_hands", true)
 	wash_count += 1
+	# update sink sprite
+	toggle_sink(true)
+
+
+func _on_sink_timer_timeout() -> void:
+	var SINK_SCENE = SCENE_3
+	var sink_rect:TextureRect = SINK_SCENE.get_node("sink_rect")
+	sink_rect.texture = SINK_OFF_NEW
+
+
+func toggle_sink(_toggled_on:bool) -> void:
+	var SINK_SCENE = SCENE_3
+
+	if save_data.use_old_art == true:
+		return
+		
+	var sink_rect:TextureRect = SINK_SCENE.get_node("sink_rect")
+	var sink_timer:Timer = sink_rect.get_node("sink_timer")
+	if not sink_timer.timeout.is_connected(_on_sink_timer_timeout):
+		sink_timer.timeout.connect(_on_sink_timer_timeout)
+			
+	if _toggled_on:
+		sink_rect.texture = SINK_ON_NEW
+		sink_timer.start()
+	else:
+		sink_rect.texture = SINK_OFF_NEW
 	
 	
 	
