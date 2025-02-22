@@ -16,6 +16,7 @@ var margin: float = 136.0 / 2.0
 
 func _ready() -> void:
 	fingerprint_btn.pressed.connect(_on_fingerprint_btn_pressed)
+	# fingerprint_btn.mouse_entered.connect(_on_fingerprint_btn_pressed)
 	footstep_timer.timeout.connect(_on_footstep_timer_timeout)
 	self._update_shader_param(0.0, self, "alpha_control")
 	self.global_position = Vector2(randf_range(-margin, 1280-margin), randf_range(-margin, 720-margin))

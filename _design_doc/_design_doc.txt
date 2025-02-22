@@ -7,6 +7,8 @@ Erase
 
 TODO:
 
+make achievements menu nicer (background)
+
 
 VARIATION IN STARTING TEXT:
 depending on which achievement is unlocked--snuck out of jail?
@@ -22,15 +24,11 @@ playtest notes:
 
 
 music:
-menu music
-game music
+# menu music
+# game music
 Dialogue
 
-panic music feels a little too tense... should be more fun/lighthearted
-
-
-achievement:
-
+# panic music feels a little too tense... should be more fun/lighthearted
 
 
 
