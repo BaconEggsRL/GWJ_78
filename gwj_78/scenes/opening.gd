@@ -39,7 +39,7 @@ func _ready() -> void:
 
 	# play music
 	# AudioManager.play_music("music_funk", -6.0, false)
-	AudioManager.play_music("music_alex")
+	# AudioManager.play_music("music_alex")
 
 	
 	# show dialogue

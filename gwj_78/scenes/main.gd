@@ -40,7 +40,7 @@ func _ready() -> void:
 	# play music
 	# AudioManager.play_music("music_funk", -6.0)
 	# AudioManager.play_music("music_funk_menu", -6.0, false)
-	AudioManager.play_music("music_alex_menu")
+	# AudioManager.play_music("music_alex_menu")
 	
 	play_btn.pressed.connect(_on_play_pressed)
 	play_btn.mouse_entered.connect(_on_mouse_entered)
@@ -109,6 +109,9 @@ func init_scene() -> void:
 	
 	# music option
 	music_options.select(save_data.music_option)
+	_on_music_option_selected(save_data.music_option)
+	# music_options.item_selected.emit(save_data.music_option)
+	
 	
 	
 	
@@ -142,5 +145,5 @@ func _on_gyat_btn_pressed() -> void:
 
 func _on_music_option_selected(_index: int) -> void:
 	var text = music_options.get_item_text(_index)
-	print("selected: %s" % text)
+	print("selected index %s: %s" % [_index, text])
 	AudioManager.play_music(AudioManager.music_array[_index])
