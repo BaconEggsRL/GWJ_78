@@ -73,6 +73,10 @@ const WEBCAM_OFF_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Webca
 const CLOSET_CLOSED_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Closet.png")
 const CLOSET_OPEN_NEW = preload("res://room_scenes/new_art/Assets - scene 1/Closet-open.png")
 
+const DOOR_OPEN = preload("res://room_scenes/new_art/Assets - scene 1/Door-open.png")
+const COMPUTER_ON = preload("res://room_scenes/new_art/Assets - scene 1/Computer-on.png")
+
+
 
 var SCENE_2:TextureRect
 const SCENE_2__BODY_UNDER_BED = preload("res://assets/art/room_scenes/scene_2__body_under_bed.png")
@@ -182,6 +186,15 @@ func exit_through_front_door() -> void:
 	self.set_process(false)
 	print("exit")
 	AudioManager.play_fx("door_open")
+	
+	# show door open
+	if save_data.use_old_art == false:
+		SCENE_1.texture = DOOR_OPEN
+		SCENE_1.get_node("door_rect").texture = null
+	else:
+		pass
+	
+	
 	var ending:String = "ending_normal"
 	
 	# hide the gun
@@ -300,6 +313,13 @@ func update_time_label() -> void:
 func update_evidence_label() -> void:
 	evidence_left_label.text = "Evidence left: %d" % evidence_left
 
+
+
+###########################################################
+
+
+func check_computer() -> void:
+	pass
 
 
 func drink_blood() -> void:
