@@ -111,8 +111,8 @@ func init_scene() -> void:
 	
 	# music option
 	var options = {
-		"menu_alex": "Muqic – Brush of Melancholy",
-		"game_alex": "Muqic – Erasure Endanger",
+		"menu_alex": "ANEMOIA – Brush of Melancholy",
+		"game_alex": "ANEMOIA – Erasure Endanger",
 		"menu_stock": "Abstraction – Ooh, Ahh",
 		"game_stock": "Abstraction – Funk Bass",
 	}

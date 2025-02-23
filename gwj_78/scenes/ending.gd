@@ -183,7 +183,7 @@ func _on_main_menu_pressed() -> void:
 	SceneManager.goto("main")
 
 func _on_restart_level_pressed() -> void:
-	SceneManager.goto("game")
+	SceneManager.goto("game", custom_data)
 
 
 # show dialogue

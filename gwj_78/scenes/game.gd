@@ -16,6 +16,12 @@ var fade:Dictionary = {
 	"cell_noise": Callable(ff.noise)
 }
 
+
+# this gets passed from ending scene to game upon a restart
+# and changes the flavor text at the beginning
+# if not empty / null
+var custom_data:Dictionary
+
 ###########################################################
 # exports
 
@@ -273,8 +279,8 @@ func exit_through_front_door() -> void:
 	
 	# get ending
 	var ending:String = get_ending()
-	var custom_data = {"ending": ending}
-	SceneManager.goto("ending", custom_data)
+	var custom_data_ending = {"ending": ending}
+	SceneManager.goto("ending", custom_data_ending)
 
 
 
@@ -282,22 +288,22 @@ func sleep_in_bed() -> void:
 	self.set_process(false)
 	print("you got caught sleeping")
 	var ending:String = "ending_sleep"
-	var custom_data = {"ending": ending}
-	SceneManager.goto("ending", custom_data)
+	var custom_data_ending = {"ending": ending}
+	SceneManager.goto("ending", custom_data_ending)
 
 func _on_out_of_time() -> void:
 	self.set_process(false)
 	print("you ran out of time")
 	var ending:String = "ending_time"
-	var custom_data = {"ending": ending}
-	SceneManager.goto("ending", custom_data)
+	var custom_data_ending = {"ending": ending}
+	SceneManager.goto("ending", custom_data_ending)
 	
 func _on_window_failed() -> void:
 	self.set_process(false)
 	print("you got caught")
 	var ending:String = "ending_window"
-	var custom_data = {"ending": ending}
-	SceneManager.goto("ending", custom_data)
+	var custom_data_ending = {"ending": ending}
+	SceneManager.goto("ending", custom_data_ending)
 	
 
 
@@ -501,7 +507,8 @@ func _ready() -> void:
 		scene_container.add_theme_constant_override("margin_top", 16)
 		scene_container.add_theme_constant_override("margin_right", 16)
 		scene_container.add_theme_constant_override("margin_bottom", 16)
-		
+	
+	# new art
 	else:
 		SCENE_1 = ROOM_SCENE_1_NEW.instantiate()
 		SCENE_2 = ROOM_SCENE_2_NEW.instantiate()
@@ -514,6 +521,11 @@ func _ready() -> void:
 		scene_container.add_theme_constant_override("margin_top", 0)
 		scene_container.add_theme_constant_override("margin_right", 0)
 		scene_container.add_theme_constant_override("margin_bottom", 0)
+		
+		# disable lamp glow
+		var lamp_glow = SCENE_2.get_node("lamp_glow")
+		lamp_glow.material.set_shader_parameter("enabled", false)
+	
 	
 	# add childs
 	scene_container.add_child(SCENE_1)
@@ -573,6 +585,12 @@ func _ready() -> void:
 		# delete active dialogue
 		if current_dialogue:
 			current_dialogue.queue_free.call_deferred()
+		
+		# change dialogue based on last ending (if restart)
+		if self.custom_data:
+			print_debug("Starting game with custom data = %s" % self.custom_data)
+			
+		
 		# show dialogue
 		current_dialogue = show_dialogue(MAIN_DIALOGUE, "opening_game")
 		

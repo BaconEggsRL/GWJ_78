@@ -35,12 +35,82 @@ do start_game()
 
 
 ~ opening_game
-...
-MC: Seriously? What a mess... I don't get paid enough for this.
-MC: Seems like the mafia's really gone downhill lately.
-MC: I'll just have to hide as much of the evidence as I can and get out of here before the cops show up.
-MC: Oh well. Time for me to get to work...
+if !custom_data:
+	...
+	MC: Seriously? What a mess... I don't get paid enough for this.
+	MC: Seems like the mafia's really gone downhill lately.
+	MC: I'll just have to hide as much of the evidence as I can and get out of here before the cops show up.
+	MC: Oh well. Time for me to get to work...
+else:
+	...
+	match custom_data.ending
+		when "ending_body"
+			MC: *pants*
+			MC: Dang. I really thought that would work.
+			MC: ...I've really let myself go. I used to be able to haul dead bodies for miles.
+			MC: Whatever. Gotta get to work...
+		when "ending_normal"
+			MC: *pants*
+			MC: I don't know how, but I managed to get away from the police.
+			MC: Everything went black, and then suddenly... I was here again.
+			MC: I feel kind of weird... Like somebody is controlling me.
+			MC: Whatever. Gotta get to work...
+		when "ending_time"
+			MC: *coughs*
+			MC: Huh. Wonder what all the rush is about.
+			MC: I don't see anything here worth getting all bent out of shape over.
+			MC: Anywho, that's enough dilly-dallying. I guess it's time to get to work...
+		when "ending_window"
+			MC: *pants*
+			% MC: Dang. I can't believe that guy ratted me out. What a smelly dude.
+			% MC: Dang. I can't believe that guy ratted me out. What a rambunctious dude.
+			% MC: Dang. I can't believe that guy ratted me out. What a squirrley dude.
+			% MC: Dang. I can't believe that guy ratted me out. What a creepy dude.
+			% MC: Dang. I can't believe that guy ratted me out. What a shifty dude.
+			MC: Whatever. I've been through worse. Gotta get to work...
+		when "ending_sleep"
+			MC: *yawn*
+			MC: *stretch*
+			MC: Ahh... Nothing like a good cap nap. I'm feeling better already!
+			MC: Now then. Time to get to work...
+		when "ending_webcam"
+			MC: *pants*
+			MC: Twitch followers are truly vicious. They lap up this stuff up like it's hot honey.
+			MC: Whoever donates 10 subs gets a pinky! 20 subs for the whole carcass!
+			MC: ...Anyway. Time to get to work.
+		when "ending_gun"
+			MC: *pants*
+			MC: And I would have gotten away with it too, if it weren't for you meddling kids...
+			MC: ...Anyway. Time to get to work.
+		when "ending_vampire"
+			MC: *hiss*
+			MC: Need more blood... Must drink... Blood...
+			MC: *shakes head*
+			MC: Uhh, what? Nevermind that. Gotta get to work...
+		when "ending_clean_hands"
+			MC: *pants*
+			MC: Wild. I feel like I just woke up from a terrible dream...
+			MC: Like there were germs crawling all over me.
+			MC: Whatever. Gotta get to work...
+		when "ending_good"
+			MC: *pants*
+			MC: Huh. I thought I escaped, but I guess I'm back.
+			MC: It feels like someone is playing a cruel joke on me...
+			MC: Whatever. Gotta get to work...
+		when "ending_shootout"
+			MC: *pants*
+			MC: That was weird. I feel like I just died or something.
+			MC: How did I end up back here?
+			MC: Whatever. Gotta get to work...
+		else
+			MC: *pants*
+			MC: I don't know how, but I managed to get away from the police.
+			MC: Everything went black, and then suddenly... I was here again.
+			MC: I feel kind of weird... Like somebody is controlling me.
+			MC: Whatever. Gotta get to work...
 => END!
+
+
 
 
 #######################################

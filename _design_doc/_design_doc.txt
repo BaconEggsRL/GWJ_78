@@ -1,39 +1,65 @@
 Godot Wild Jam (GWJ) #78:
 Erase
 
-==========================
 
+==========================
 
 
 TODO:
 
-# Alpha for locked achievements
-# Yellow highlights for mouse over (unlocked?) acheivements
-# Tooltip hint for locked achievements
-make achievements menu nicer (background)
+Sunday
+12pm - 3pm (EST)
+
+-- playtest and fix bugs
+
+All optional stuff if we have time:
+-- update style of itch page (screenshots, videos, css.)
+-- add short dialogue voiceovers for window guy
+-- add background art for achievements menu / update text style
+
+
+3pm - 4pm
+Final export and game submission
 
 
 
-
-
-
-VARIATION IN STARTING TEXT:
-depending on which achievement is unlocked--snuck out of jail?
-come back -- ahh man my three followers really hated that. that went viral (Live on Twitch)
-(blurb at the start of the game, based on which achievement was last unlocked.)
-
-
-red flash timer when low on time (<60 sec left?)
 
 
 
 ==========================
 
 
+var achievement_hover_text: Dictionary = {
+    "ending_body": "Leave with the body in your inventory",
+    "ending_normal": "Leave without getting rid of the evidence",
+    "ending_time": "Run out of time",
+    "ending_window": "Get caught by window guy",
+    "ending_sleep": "Get caught sleeping on the job",
+    "ending_webcam": "Get caught via webcam footage",
+    "ending_gun": "Leave with the murder weapon",
+    "ending_vampire": "Turn into a vampire",
+    "ending_clean_hands": "Acquire suspiciously clean hands",
+    "ending_good": "You got away!",
+    "ending_shootout": "Get shot by the police",
+    
+    "shrooms": "Get high on shrooms",
+    "intimidation": "Bully window guy into submission",
+    "playwright": "Charm window guy with your literary prowess",
+}
 
 
+==========================
+
+
+BUGS:
+
+
+==========================
+
+
+Something with the main menu, shader on the moving fingerprint
 when changing from title scene to any other scene
-sometimes this happens:
+sometimes this happens
 
 
 E 0:00:03:0273   call: Trying to call a lambda with an invalid instance.
@@ -46,19 +72,26 @@ E 0:00:03:0273   step: Error calling method from MethodTweener: 'Label::<anonymo
 
 
 
+
+
 ======================
-playtest notes:
 
 
-music:
-# menu music
-# game music
-Dialogue
+STRETCH GOALS (post-jam):
 
-# panic music feels a little too tense... should be more fun/lighthearted
+
+======================
 
 
 
+red flash timer when low on time (<60 sec left?)
+
+skip text faster if already seen in a playthrough
+(hold left click, right click??)
+
+do more combos of actions (body in bed, body out window, etc.)
+
+(new weapons?)
 
 EVIDENCE:
 move toilet grating and put gun in toilet grating?
@@ -70,27 +103,10 @@ put mop in garbage disposal?
 put the key in the garbage disposal?
 
 
-
 OTHER OPTIONS:
 shoot the lock on the storage closet door to open it
 horseshoe crab racing knowledge? (for window guy event)
 move the bed to find the key
-
-
-
-======================
-
-
-stretch:
-
-skip text faster if already seen in a playthrough
-(hold left click, right click??)
-
-do more combos of actions (body in bed, body out window, etc.)
-
-(new weapons?)
-
-
 
 
 MUSIC:
@@ -98,13 +114,6 @@ MUSIC:
 -keep game music the same
 -if add window guy music: needs to be able to occur at any time (not sure if 5 min is final.)
 
-
-
-
-
-
-
-======================
 
 
 ACHIEVEMENTS:
@@ -133,8 +142,30 @@ Add option for mouse sensitivity (?)
 ======================
 
 
+CHANGELOG:
 
-Changelog
+
+======================
+
+
+# VARIATION IN STARTING TEXT:
+# depending on which achievement is unlocked--snuck out of jail?
+# come back -- ahh man my three followers really hated that. that went viral (Live on Twitch)
+# (blurb at the start of the game, based on which achievement was last unlocked.)
+
+# fixed lamp glow not resetting
+
+# Alpha for locked achievements
+# Yellow highlights for mouse over (unlocked?) acheivements
+# Tooltip hint for locked achievements
+
+# menu music
+# game music
+# Dialogue
+
+# panic music feels a little too tense... should be more fun/lighthearted
+
+
 # achievement art icons (128x128)
 # need art for storage_closet open in scene 3
 
