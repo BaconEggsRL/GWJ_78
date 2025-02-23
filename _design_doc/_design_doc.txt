@@ -11,7 +11,7 @@ Sunday
 12pm - 3pm (EST)
 
 -- add short dialogue voiceovers for window guy
--- playtest and fix bugs
+-- check for typos, playtest and fix bugs
 
 
 
