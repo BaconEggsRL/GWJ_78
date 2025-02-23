@@ -71,11 +71,11 @@ else:
 		when "ending_sleep"
 			MC: *yawn*
 			MC: *stretch*
-			MC: Ahh... Nothing like a good cap nap. I'm feeling better already!
+			MC: Ahh... Nothing like a good cat nap. I'm feeling better already!
 			MC: Now then. Time to get to work...
 		when "ending_webcam"
 			MC: *pants*
-			MC: Twitch followers are truly vicious. They lap up this stuff up like it's hot honey.
+			MC: Twitch followers are truly vicious. They lap this stuff up like it's hot honey.
 			MC: Whoever donates 10 subs gets a pinky! 20 subs for the whole carcass!
 			MC: ...Anyway. Time to get to work.
 		when "ending_gun"
