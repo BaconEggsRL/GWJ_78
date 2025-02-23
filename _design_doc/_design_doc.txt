@@ -22,6 +22,26 @@ come back -- ahh man my three followers really hated that. that went viral (Live
 red flash timer when low on time (<60 sec left?)
 
 
+
+==========================
+
+
+
+
+when changing from title scene to any other scene
+sometimes this happens:
+
+
+E 0:00:03:0273   call: Trying to call a lambda with an invalid instance.
+  <C++ Source>   modules/gdscript/gdscript_lambda_callable.cpp:217 @ call()
+
+
+E 0:00:03:0273   step: Error calling method from MethodTweener: 'Label::<anonymous lambda>': Instance is null.
+  <C++ Error>    Method/function failed. Returning: false
+  <C++ Source>   scene/animation/tween.cpp:826 @ step()
+
+
+
 ======================
 playtest notes:
 
