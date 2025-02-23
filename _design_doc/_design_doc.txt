@@ -10,12 +10,9 @@ TODO:
 Sunday
 12pm - 3pm (EST)
 
+-- add short dialogue voiceovers for window guy
 -- playtest and fix bugs
 
-All optional stuff if we have time:
--- update style of itch page (screenshots, videos, css.)
--- add short dialogue voiceovers for window guy
--- add background art for achievements menu / update text style
 
 
 3pm - 4pm
@@ -83,6 +80,7 @@ STRETCH GOALS (post-jam):
 ======================
 
 
+-- add background art for achievements menu / update text style
 
 red flash timer when low on time (<60 sec left?)
 
@@ -147,6 +145,7 @@ CHANGELOG:
 
 ======================
 
+# -- update style of itch page (screenshots, videos, css.)
 
 # VARIATION IN STARTING TEXT:
 # depending on which achievement is unlocked--snuck out of jail?
