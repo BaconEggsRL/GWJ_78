@@ -17,6 +17,7 @@ var anim_speed = 0.5
 @export var sfx_slider:VolumeSlider
 
 @export var old_art_btn:CheckBox
+
 @export var menu_music:OptionButton
 @export var game_music:OptionButton
 
@@ -109,6 +110,19 @@ func init_scene() -> void:
 	old_art_btn.button_pressed = save_data.use_old_art
 	
 	# music option
+	var options = {
+		"menu_alex": "Muqic – Brush of Melancholy",
+		"game_alex": "Muqic – Erasure Endanger",
+		"menu_stock": "Abstraction – Ooh, Ahh",
+		"game_stock": "Abstraction – Funk Bass",
+	}
+	menu_music.clear()
+	game_music.clear()
+	
+	for item in options.values():
+		menu_music.add_item(item)
+		game_music.add_item(item)
+	
 	menu_music.select(save_data.menu_music)
 	game_music.select(save_data.game_music)
 	_on_menu_music_option_selected(save_data.menu_music)

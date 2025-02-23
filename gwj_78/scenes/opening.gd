@@ -88,5 +88,6 @@ func phone_ring() -> void:
 	
 func slam_down_phone() -> void:
 	AudioManager.play_fx("slam_down_phone", -12.0)
+	AudioManager.stop_fx("j_line_3")
 	background.stop()
 	

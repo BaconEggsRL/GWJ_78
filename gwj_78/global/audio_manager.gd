@@ -14,7 +14,8 @@ const MUSIC_STOCK = preload("res://assets/sound/1_music/Sketchbook 2024-05-22.og
 const MUSIC_STOCK_MENU = preload("res://assets/sound/1_music/Sketchbook 2024-11-20.ogg")
 
 const MUSIC_ALEX = preload("res://assets/sound/1_music/_PanicLoopFinal_WAV.wav")
-const MUSIC_ALEX_MENU = preload("res://assets/sound/1_music/_CalmDraft0_WAV.wav")
+const MUSIC_ALEX_MENU = preload("res://assets/sound/1_music/_CalmLoopFinal.wav")
+
 
 # names of music tracks for switching
 var music_array = [
@@ -85,6 +86,13 @@ const GUN_COCK = preload("res://assets/sound/3_fx/gun_cock.wav")
 const SHROOM_LOVER = preload("res://assets/sound/3_fx/shroom_lover.mp3")
 const INTIMIDATION = preload("res://assets/sound/3_fx/intimidation.mp3")
 const PLAYWRIGHT = preload("res://assets/sound/3_fx/playwright.mp3")
+
+
+# voiceovers
+const J_LINE_1 = preload("res://assets/sound/3_fx/JLine1.mp3")
+const J_LINE_2 = preload("res://assets/sound/3_fx/JLine2.mp3")
+const J_LINE_3 = preload("res://assets/sound/3_fx/JLine3.wav")
+
 
 
 # save data
@@ -270,6 +278,7 @@ func play_music(scene_name:String, final_db:float=0.0, fade_in:bool=true, fade_i
 			music = MUSIC_ALEX
 		"menu_alex":
 			music = MUSIC_ALEX_MENU
+			final_db = -6.0
 			
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % scene_name)
@@ -362,6 +371,12 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> AudioStreamPlay
 			fx = INTIMIDATION
 		"playwright":
 			fx = PLAYWRIGHT
+		"j_line_1":
+			fx = J_LINE_1
+		"j_line_2":
+			fx = J_LINE_2
+		"j_line_3":
+			fx = J_LINE_3
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	

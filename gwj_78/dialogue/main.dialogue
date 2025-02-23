@@ -17,11 +17,17 @@ Are you sure about this?
 
 *ring ring ring* [do! phone_ring()]
 # do pick_up_phone()
+do AudioManager.play_fx("j_line_1")
 J: “Heyyyy man. How’s it hangin’?”
 MC: “Ahh you know. As well as cleaning up someone else’s mess can go.”
+do AudioManager.stop_fx("j_line_1")
+do AudioManager.play_fx("j_line_2")
 J: “Haha you’re funny man. Funny. Look, so basically, it’s been about like 4? 5? Minutes since, uh, the unfortunate incident occurred."
 MC: "OK. And how'd it go?"
-J: "Ahmmmm, well, I kinda didn’t actually succeed at the beginning, so there are like… 3 different weapons that you’ll probably have to get rid of. And I thiiiink he got a call out to the police? So I’d give you like… 5 minutes until they get there. Anyway, I gotta go, got another job to take care of, good luck maaan”
+do AudioManager.stop_fx("j_line_2")
+do AudioManager.play_fx("j_line_3")
+J: "Ahmmmm, well, I kinda didn’t actually succeed at the beginning, so there are like… 3 different pieces of evidence that you’ll probably have to get rid of. And I thiiiink he got a call out to the police? So I’d give you like… 5 minutes until they get there. Anyway, I gotta go, got another job to take care of, good luck maaan”
+# do AudioManager.stop_fx("j_line_3")
 *click* [do! slam_down_phone()]
 MC: Sigh. I hate this job.
 do start_game()

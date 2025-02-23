@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bmavsyk2734g5"]
+[gd_scene load_steps=17 format=3 uid="uid://bmavsyk2734g5"]
 
 [ext_resource type="Script" uid="uid://7ypqu8uyiu70" path="res://scenes/main.gd" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://drcpxkqlj2qj4" path="res://room_scenes/new_art/Main Menu/Menu_screen_spriteframes.png" id="2_85g3d"]
@@ -8,8 +8,7 @@
 [ext_resource type="Script" uid="uid://ope4rod7xll4" path="res://scenes/mouse.gd" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://delgwi5jon8fp" path="res://scenes/volume_btn.gd" id="3_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://xlx8ga2i6lsi" path="res://room_scenes/new_art/Main Menu/Menu_screen_with_text.png" id="3_ya4ey"]
-[ext_resource type="Shader" uid="uid://bjrye8fu4h8lu" path="res://shaders/fingerprint.gdshader" id="7_tipki"]
-[ext_resource type="Script" uid="uid://ce1ujyxdpxv1w" path="res://scenes/fingerprint_btn.gd" id="8_choun"]
+[ext_resource type="PackedScene" uid="uid://cwabqhyu6baao" path="res://fingerprint_btn.tscn" id="7_85g3d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_choun"]
 atlas = ExtResource("2_85g3d")
@@ -65,13 +64,6 @@ animations = [{
 "name": &"with_text",
 "speed": 3.0
 }]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
-shader = ExtResource("7_tipki")
-shader_parameter/alpha_control = null
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_choun"]
-load_path = "res://.godot/imported/fingerprint.png-6daa1ad02f16d421dc34f6894a9f00ac.ctex"
 
 [node name="main" type="Node2D" node_paths=PackedStringArray("play_btn", "achievements_btn", "volume_btn", "music_slider", "sfx_slider", "old_art_btn", "menu_music", "game_music", "mouse")]
 script = ExtResource("1_o5qli")
@@ -306,30 +298,7 @@ popup/item_2/id = 0
 popup/item_3/text = "game_stock"
 popup/item_3/id = 0
 
-[node name="fingerprint_btn" type="Button" parent="."]
-material = SubResource("ShaderMaterial_choun")
-offset_right = 136.0
-offset_bottom = 136.0
-pivot_offset = Vector2(64, 64)
-focus_mode = 0
-action_mode = 0
-icon = SubResource("CompressedTexture2D_choun")
-flat = true
-script = ExtResource("8_choun")
-
-[node name="footstep_container" type="Control" parent="fingerprint_btn"]
-top_level = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="footstep_timer" type="Timer" parent="fingerprint_btn"]
-wait_time = 0.5
+[node name="fingerprint_btn" parent="." instance=ExtResource("7_85g3d")]
 
 [node name="mouse" type="Sprite2D" parent="."]
 texture = ExtResource("2_sugp2")
