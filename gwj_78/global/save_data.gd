@@ -69,6 +69,28 @@ var locked_hover = "(You haven't unlocked this achievement yet.)"
 
 
 
+var achievement_sfx: Dictionary = {
+	"ending_body": "trash", # "splatt",
+	"ending_normal": "door_open", # "thinking",
+	"ending_time": "slowpoke", # need to add
+	"ending_window": "curtains", # "window", 
+	"ending_sleep": "snore", # need to add
+	"ending_webcam": "camera_shutter", # need to add
+	"ending_gun": "gun_cock", # need to add
+	"ending_vampire": "drink_blood", # "slurp",
+	"ending_clean_hands": "sink_running", # "water",
+	"ending_good": "yay", # "yay",
+	"ending_shootout": "gun_shot", # "shootout", 
+	
+	"shrooms": "shroom_lover",  #
+	"intimidation": "intimidation",  #
+	"playwright": "playwright",  #
+}
+var locked_sfx = "locked_door_wiggle" #
+
+
+
+
 var achievement_names: Dictionary = {
 	"ending_body": "Dead Man Walking",
 	"ending_normal": "Evidently Lacking",
@@ -182,6 +204,7 @@ func get_all_achievements() -> Array:
 		achievements.append({
 			# "name": achievement.replace("_", " ").capitalize() if unlocked else "locked",
 			"name": achievement if unlocked else "locked",
+			"sfx": achievement_sfx.get(achievement, locked_sfx) if unlocked else locked_sfx,
 			"icon": achievement_icons.get(achievement, locked_icon) if unlocked else locked_icon,
 			"hover_text": achievement_hover_text.get(achievement, locked_hover), # if unlocked else locked_hover,
 			"ach_name": achievement_names.get(achievement, locked_name) if unlocked else locked_name

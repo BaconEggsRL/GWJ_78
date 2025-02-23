@@ -7,9 +7,19 @@ Erase
 
 TODO:
 
+
+	"ending_time": "slowpoke", # need to add##################
+	"ending_sleep": "snore", # need to add#####################
+	"ending_webcam": "camera_shutter", # need to add############
+	"ending_gun": "gun_cock", # need to add####################
+
+	
+	
+	
+
 # Alpha for locked achievements
-Yellow highlights for mouse over (unlocked?) acheivements
-Tooltip hint for locked achievements
+# Yellow highlights for mouse over (unlocked?) acheivements
+# Tooltip hint for locked achievements
 make achievements menu nicer (background)
 
 

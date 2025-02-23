@@ -35,7 +35,7 @@ layout_mode = 2
 offset_right = 128.0
 offset_bottom = 128.0
 focus_mode = 0
-mouse_filter = 2
+mouse_filter = 1
 theme = ExtResource("1_0pp34")
 icon_alignment = 1
 expand_icon = true
@@ -77,3 +77,4 @@ vertical_alignment = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="shadow_btn" to="." method="_on_shadow_btn_pressed"]

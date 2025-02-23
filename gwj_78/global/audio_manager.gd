@@ -76,6 +76,17 @@ const LARGE_DOOR_LATCH_14_CLOSET_OPEN = preload("res://assets/sound/3_fx/large d
 const YEOW = preload("res://assets/sound/3_fx/yeow-103553.mp3")
 
 
+# achievements
+const SLOWPOKE = preload("res://assets/sound/3_fx/slowpoke.wav")
+const SNORE = preload("res://assets/sound/3_fx/snore.mp3")
+const CAMERA_SHUTTER = preload("res://assets/sound/3_fx/camera_shutter.wav")
+const GUN_COCK = preload("res://assets/sound/3_fx/gun_cock.wav")
+
+const SHROOM_LOVER = preload("res://assets/sound/3_fx/shroom_lover.mp3")
+const INTIMIDATION = preload("res://assets/sound/3_fx/intimidation.mp3")
+const PLAYWRIGHT = preload("res://assets/sound/3_fx/playwright.mp3")
+
+
 # save data
 # var save_data:SaveData
 
@@ -337,6 +348,20 @@ func play_fx(fx_name:String, volume:float=0.0, _index:int=-1) -> AudioStreamPlay
 			fx = LARGE_DOOR_LATCH_14_CLOSET_OPEN
 		"gyat":
 			fx = YEOW
+		"slowpoke":
+			fx = SLOWPOKE
+		"snore":
+			fx = SNORE
+		"camera_shutter":
+			fx = CAMERA_SHUTTER
+		"gun_cock":
+			fx = GUN_COCK
+		"shroom_lover":
+			fx = SHROOM_LOVER
+		"intimidation":
+			fx = INTIMIDATION
+		"playwright":
+			fx = PLAYWRIGHT
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % fx_name)
 	
