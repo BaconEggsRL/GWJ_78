@@ -7,6 +7,9 @@ Erase
 
 TODO:
 
+# Alpha for locked achievements
+Yellow highlights for mouse over (unlocked?) acheivements
+Tooltip hint for locked achievements
 make achievements menu nicer (background)
 
 

@@ -183,7 +183,7 @@ func get_all_achievements() -> Array:
 			# "name": achievement.replace("_", " ").capitalize() if unlocked else "locked",
 			"name": achievement if unlocked else "locked",
 			"icon": achievement_icons.get(achievement, locked_icon) if unlocked else locked_icon,
-			"hover_text": achievement_hover_text.get(achievement, locked_hover) if unlocked else locked_hover,
+			"hover_text": achievement_hover_text.get(achievement, locked_hover), # if unlocked else locked_hover,
 			"ach_name": achievement_names.get(achievement, locked_name) if unlocked else locked_name
 		})
 	return achievements

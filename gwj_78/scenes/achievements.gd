@@ -45,6 +45,7 @@ func display_achievements() -> void:
 		else:
 			# print("miss")
 			# _box.shadow_btn.modulate = Color.WHITE
+			_box.modulate.a = 0.5
 			pass
 		
 

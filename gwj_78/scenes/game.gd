@@ -194,6 +194,70 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Endings
 
+
+
+func get_ending() -> String:
+	
+	# Event endings
+	# if window event is active you will always get this ending
+	if state.window_event == true:
+		return "ending_window"
+	
+	##############################
+	
+	# Normal endings
+	var temp = ""  # return this if didn't hide all the evidence (gun, body, blood)
+	# or check if evidence_left != 0
+
+	# hide the gun
+	if state.hid_gun == false:
+		if inventory.gun == true:
+			if mouse.current_state != mouse.State.GUN:
+				return "ending_gun"
+			else:
+				return "ending_shootout"
+		else:
+			temp = "ending_normal"
+	
+	# hide the body
+	if state.hid_body == false:
+		if inventory.body == true:
+			return "ending_body"
+		else:
+			temp = "ending_normal"
+			
+	# clean the blood
+	if state.blood_cleaned == false:
+		temp = "ending_normal"
+	
+	# check if hid all evidence
+	if temp == "ending_normal":
+		return temp
+	
+	##############################
+	
+	# Special endings
+	# Either--look in the mirror after drinking the blood, or hide all the evidence and leave after drinking the blood
+	if state.blood_cleaned_drank == true:
+		return "ending_vampire"
+		
+	# Either--wash hands 10 times, or hide all the evidence and leave after washing hands once.
+	if state.washed_hands == true:
+		return "ending_clean_hands"
+
+	# finally, check webcam
+	# Hide all the evidence, do not get any special endings, and forget to turn off the webcam
+	if state.webcam_off == false:
+		return "ending_webcam"
+	
+	##############################
+
+	# Good ending
+	return "ending_good"
+	
+	
+	
+
 # called when the player tries to leave through the fron door
 func exit_through_front_door() -> void:
 	self.set_process(false)
@@ -207,79 +271,8 @@ func exit_through_front_door() -> void:
 	else:
 		pass
 	
-	
-	var ending:String = "ending_normal"
-	
-	# hide the gun
-	if state.hid_gun == false:
-		if inventory.gun == true:
-			if mouse.current_state != mouse.State.GUN:
-				ending = "ending_gun"
-			else:
-				ending = "ending_shootout"
-		else:
-			ending = "ending_normal"
-	
-	# hide the body
-	elif state.hid_body == false:
-		if inventory.body == true:
-			ending = "ending_body"
-		else:
-			ending = "ending_normal"
-			
-	# clean the blood
-	elif state.blood_cleaned == false:
-		ending = "ending_normal"
-	
-	# Event endings
-	elif state.window_event == true:
-		ending = "ending_window"
-	
-	# Special endings
-	elif state.webcam_off == false:
-		ending = "ending_webcam"
-		
-	elif state.blood_cleaned_drank == true:
-		ending = "ending_vampire"
-		
-	elif state.washed_hands == true:
-		ending = "ending_clean_hands"
-	
-	
-	
-	# Good ending
-	else:
-		ending = "ending_good"
-		
-	# hid body
-	# cleaned blood with mop
-	# picked up the gun
-	# webcam is off
-
-	#inventory = {
-		#"mop": false,
-		#"gun": false,
-		#"storage_closet_key": false,
-		#"body": false,
-	#}
-	#state = {
-		#"webcam_off": false,
-		#
-		#"hid_body": false,
-		#"hid_body_in_trash": false,
-		#"hid_body_under_bed": false,
-		#"hid_body_in_storage_closet": false,
-		#
-		#"curtains_closed": false,
-		#"window_event": false,
-		#
-		#"storage_closet_unlocked": false,
-		#
-		#"blood_cleaned": false,
-		#"blood_cleaned_drank": false,
-		#"blood_cleaned_mopped": false,
-	#}
-	
+	# get ending
+	var ending:String = get_ending()
 	var custom_data = {"ending": ending}
 	SceneManager.goto("ending", custom_data)
 
@@ -607,15 +600,42 @@ func _process(_delta):
 			start_window_event()
 
 
+
+
+func _update_shader_param(value, node: Node, shader_property: String):
+	if is_instance_valid(node) and node.material:
+		node.material.set_shader_parameter(shader_property, value)
+		
 func _create_shader_tween(node: Node, shader_property: String, value_start: float, value_end: float, duration: float) -> Tween:
+	if not is_instance_valid(node):
+		return null  # Prevent creating a tween on an invalid node
+		
 	var tween = get_tree().create_tween()
+	
+	# Use a weak reference to prevent accessing a freed node
 	tween.tween_method(
-		func(value): node.material.set_shader_parameter(shader_property, value),  
+		func(value): 
+			if is_instance_valid(node):  # Ensure the node is still valid
+				_update_shader_param(value, node, shader_property),
 		value_start,
 		value_end,
 		duration
-	);
+	)
+	
 	return tween
+	
+	
+	
+	
+#func _create_shader_tween(node: Node, shader_property: String, value_start: float, value_end: float, duration: float) -> Tween:
+	#var tween = get_tree().create_tween()
+	#tween.tween_method(
+		#func(value): node.material.set_shader_parameter(shader_property, value),  
+		#value_start,
+		#value_end,
+		#duration
+	#);
+	#return tween
 
 
 # eat the magic mushrooms
