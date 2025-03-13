@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3ir8nuw0e4ys"]
+[gd_scene load_steps=3 format=3 uid="uid://b3ir8nuw0e4ys"]
 
 [ext_resource type="Script" uid="uid://c3jwg05pmm2r" path="res://global/audio_manager.gd" id="1_j0pph"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_siwhy"]
+polyphony = 128
 
 [node name="AudioManager" type="Node" node_paths=PackedStringArray("MUSIC_PLAYER")]
 script = ExtResource("1_j0pph")
@@ -8,3 +11,6 @@ MUSIC_PLAYER = NodePath("MusicPlayer")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"music"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPolyphonic_siwhy")

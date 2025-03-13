@@ -106,24 +106,32 @@ var polyphonic_player: AudioStreamPlayer
 
 
 func _ready() -> void:
-	# load save data
-	# save_data = SaveData.load_or_create()
-	# set bus volumes
-	################################
-	
 	# sound test
 	
 	# polyphonic player
 	polyphonic_player = AudioStreamPlayer.new()
 	polyphonic_player.bus = "sfx"  # Ensure this matches an existing audio bus
+	polyphonic_player.max_polyphony = 128  # arbitrary, default is 1--max number of fx that can play at the same time
 	add_child(polyphonic_player)
 	
-	# load sounds
+	# Load sounds
 	load_sounds()
 	print(sounds)
-	# play_sound("yeow-103553.mp3")
 	
-
+	# Test sounds
+	# play_sound("yeow-103553.mp3", -40.0, 0.8)  # Lower volume, higher pitch
+	# play_sound("yay-6326.mp3", 0.0, 0.8)  # Normal volume, lower pitch
+	
+	# How to play a random sound
+	#var fx = ["yeow-103553.mp3", "yay-6326.mp3"].pick_random()
+	#print(fx)
+	#play_sound(fx)
+	
+	# How to play a sound with random pitch variation
+	#var diff = 0.2
+	#var pitch = randf_range(1.0 - diff, 1.0 + diff)
+	#play_sound("yeow-103553.mp3", 0.0, pitch)
+	
 	pass
 
 
@@ -151,7 +159,11 @@ func load_sounds() -> void:
 
 
 
-func play_sound(sound_name: String) -> void:
+func play_sound(sound_name:String, volume:float=0.0, pitch:float=1.0) -> void:
+	var offset = 0.0  # starting time/point of sound
+	var bus = "sfx"  # sound bus
+	var playback_type = AudioServer.PLAYBACK_TYPE_DEFAULT
+			
 	if sound_name in sounds:
 		# Ensure the player has an active (default) stream
 		if polyphonic_player.stream == null:
@@ -160,7 +172,7 @@ func play_sound(sound_name: String) -> void:
 		
 		var playback = polyphonic_player.get_stream_playback() as AudioStreamPlaybackPolyphonic
 		if playback:
-			playback.play_stream(sounds[sound_name])
+			playback.play_stream(sounds[sound_name], offset, volume, pitch, playback_type, bus)
 		else:
 			print("Error: Failed to retrieve AudioStreamPlaybackPolyphonic")
 	else:
@@ -169,6 +181,8 @@ func play_sound(sound_name: String) -> void:
 		
 		
 #######################################################################################
+
+
 
 
 func play_ambient(ambient_name: String, fade_in_time: float = 2.0, final_db: float = -6.0) -> void:
