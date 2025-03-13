@@ -100,7 +100,8 @@ const J_LINE_3 = preload("res://assets/sound/3_fx/JLine3.wav")
 
 # sound load test
 var fx_path = "res://assets/sound/3_fx/"
-var sounds: Dictionary = {}
+var sounds: Dictionary[String, AudioStream] = {}  # key: name of sound, value: AudioStream
+var active_sounds: Dictionary[String, Array] = {}  # key: name of sound, value: array of stream ids
 var polyphonic_player: AudioStreamPlayer
 
 
@@ -172,14 +173,52 @@ func play_sound(sound_name:String, volume:float=0.0, pitch:float=1.0) -> void:
 		
 		var playback = polyphonic_player.get_stream_playback() as AudioStreamPlaybackPolyphonic
 		if playback:
-			playback.play_stream(sounds[sound_name], offset, volume, pitch, playback_type, bus)
+			
+			var stream_ids:Array = []
+			
+			if active_sounds.has(sound_name):
+				stream_ids = active_sounds[sound_name]
+				# print("Stream IDs = ", stream_ids)
+				for id in stream_ids:
+					if not playback.is_stream_playing(id):
+						stream_ids.erase(id)
+				
+			var stream_id = playback.play_stream(sounds[sound_name], offset, volume, pitch, playback_type, bus)
+			stream_ids.append(stream_id)
+			
+			active_sounds[sound_name] = stream_ids
+			print("playing '%s', id = %s" % [sound_name, stream_id])
+
 		else:
 			print("Error: Failed to retrieve AudioStreamPlaybackPolyphonic")
 	else:
 		print("Sound not found:", sound_name)
 
+
+# If there are duplicate of the same sound, will stop all
+func stop_sound(sound_name:String) -> void:
+
+	if sound_name in sounds:
+		# Ensure the player has an active (default) stream
+		if polyphonic_player.stream == null:
+			polyphonic_player.stream = AudioStreamPolyphonic.new()
+			polyphonic_player.play()
 		
-		
+		var playback = polyphonic_player.get_stream_playback() as AudioStreamPlaybackPolyphonic
+		if playback:
+			if active_sounds.has(sound_name):
+				var stream_ids:Array = active_sounds[sound_name]
+				# print("Stream IDs = ", stream_ids)
+				for id in stream_ids:
+					if playback.is_stream_playing(id):
+						playback.stop_stream(id)
+				active_sounds.erase(sound_name)
+		else:
+			print("Error: Failed to retrieve AudioStreamPlaybackPolyphonic")
+	else:
+		print("Sound not found:", sound_name)
+
+
 #######################################################################################
 
 
