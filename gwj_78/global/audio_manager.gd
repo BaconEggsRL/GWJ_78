@@ -98,6 +98,11 @@ const J_LINE_3 = preload("res://assets/sound/3_fx/JLine3.wav")
 # save data
 # var save_data:SaveData
 
+# sound load test
+var fx_path = "res://assets/sound/3_fx/"
+var sounds: Dictionary = {}
+var polyphonic_player: AudioStreamPlayer
+
 
 
 func _ready() -> void:
@@ -105,11 +110,67 @@ func _ready() -> void:
 	# save_data = SaveData.load_or_create()
 	# set bus volumes
 	################################
+	
+	# sound test
+	
+	# polyphonic player
+	polyphonic_player = AudioStreamPlayer.new()
+	polyphonic_player.bus = "sfx"  # Ensure this matches an existing audio bus
+	add_child(polyphonic_player)
+	
+	# load sounds
+	load_sounds()
+	print(sounds)
+	# play_sound("yeow-103553.mp3")
+	
+
 	pass
-	
-	
-	
-	
+
+
+
+func load_sounds() -> void:
+	var dir: DirAccess = DirAccess.open(fx_path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name: String = dir.get_next()
+		var extensions: Array = [".ogg", ".wav", ".mp3"]  # Only load sound files
+		
+		while file_name != "":
+			if !dir.current_is_dir() and extensions.any(func(ending): return file_name.ends_with(ending)):
+				var file_path: String = fx_path + file_name
+				var sound: Resource = ResourceLoader.load(file_path)  # Use ResourceLoader for safety
+				if sound:
+					sounds[file_name] = sound
+				else:
+					print("Warning: Failed to load sound file - " + file_path)
+			file_name = dir.get_next()
+		
+		dir.list_dir_end()  # Properly close the directory access
+	else:
+		print("Failed to open directory: " + fx_path)
+
+
+
+func play_sound(sound_name: String) -> void:
+	if sound_name in sounds:
+		# Ensure the player has an active (default) stream
+		if polyphonic_player.stream == null:
+			polyphonic_player.stream = AudioStreamPolyphonic.new()
+			polyphonic_player.play()
+		
+		var playback = polyphonic_player.get_stream_playback() as AudioStreamPlaybackPolyphonic
+		if playback:
+			playback.play_stream(sounds[sound_name])
+		else:
+			print("Error: Failed to retrieve AudioStreamPlaybackPolyphonic")
+	else:
+		print("Sound not found:", sound_name)
+
+		
+		
+#######################################################################################
+
+
 func play_ambient(ambient_name: String, fade_in_time: float = 2.0, final_db: float = -6.0) -> void:
 	if ambient_name in ambient_players:
 		# push_warning("Ambient sound '%s' is already playing" % ambient_name)

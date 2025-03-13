@@ -1,6 +1,38 @@
 Godot Wild Jam (GWJ) #78:
 Erase
 
+==========================
+
+Mining,
+Sculpting/Drawing with subtractive space
+
+
+Takeaways from other games:
+
+it kind of doesn't matter how long your game is, as long as it fits the theme and is fun.
+
+
+how do you make text with shadow/black borders?
+transitions/tweens on button highlights?
+
+Game Feedback:
+
+erase me
+--exe build crashed after pressing play: this happened twice in a row so I went to web build
+--a couple times on the typing program, the text overlapped and got messed up, even though it was correct.
+
+
+
+
+Desolation
+--i like the particle effects and animations
+--combat: I got stuck in the cave, wasn't sure exactly which room i was in and how to get out
+(maybe there's no way out? it drops you in the center of a room when you enter the cave.)
+--when I died and returned to town, I couldn't move, so I was stuck and had to reload the page
+
+
+
+
 
 ==========================
 
@@ -24,6 +56,116 @@ Final export and game submission
 
 
 ==========================
+
+
+```
+~ window_event
+*knock knock*
+???: Hey! Anybody in there?
+
+% MC: Great galloping gooseberries! Somebody's at the window!
+% MC: Great googly moogly! Somebody's at the window!
+% MC: Mother of meatballs! Somebody's at the window!
+% MC: Flaming fudge nuggets! Somebody's at the window!
+% MC: Hopping jalapeño jellies! Somebody's at the window!
+% MC: Son of a biscuit! Somebody's at the window!
+% MC: Son of a nutcracker! Somebody's at the window!
+% MC: Sweet pickled pancakes! Somebody's at the window!
+
+(From now on, time will go by faster until you deal with this person.)
+(If you do nothing he will report you to the police.)
+=> END!
+```
+
+
+```
+~ window
+if state.window_event == true:
+	if mouse.current_state == mouse.State.GUN:
+		do intimidation()
+		???: AHHH! Please don't shoot mister!
+		MC: You gonna keep your mouth shut, punk?
+		???: A-hh-..I..--I mean, about what, sir?
+		MC: I mean, you didn't see nothing suspicious here, am I right?
+		???: Oh--oh, yes, yes of course sir.
+		MC: And we ain't gonna be calling no men in blue uniforms, are we now?
+		???: Uhh... no sir, no. I swear.
+		MC: You swear? *puts gun to forehead*
+		???: AHHHH!! ...
+		???: I.... I swear... Please let me go... *sobs*
+		MC: Alright. Scram.
+		???: Th-th...Thanks mister... You won't regret this!
+		do stop_window_event(true)
+		
+	else:
+		MC: Hello there.
+		???: Hey man. What's going on here?
+		MC: Uhh...
+		- Ignore him
+			if state.hid_body == false:
+				???: Dude... I think that guy's dead. I'm calling the cops.
+			else:
+				???: Hmmm... something's not right here. I'm calling the kappas.
+			do stop_window_event(false)
+		- Attempt to use jedi mind tricks
+			???: ...
+			???: I dunno what's going on here, but that was super weird. I'm calling the cops.
+			do stop_window_event(false)
+		- Make up an excuse
+			What's your excuse?
+			- I killed someone, obviously.
+				???: ...
+				???: Riiiiight. Yeah I'm calling the cops.
+				do stop_window_event(false)
+			- We're filming a commercial.
+				???: ...
+				???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+				do stop_window_event(false)
+			- It's for a school play.
+				???: Oh yeah? Which one?
+				- Death of a Salesman.
+					do response = "Death of a Salesman"
+				- To Kill a Mockingbird.
+					do response = "To Kill a Mockingbird"
+				- Les Miserables.
+					do response = "Les Miserables"
+				if response == correct_play:
+					???: Right on. And who wrote that one again?
+					- Arthur Miller.
+						do response = "Arthur Miller"
+					- Harper Lee.
+						do response = "Harper Lee"
+					- Victor Hugo.
+						do response = "Victor Hugo"
+					if response == correct_author:
+						do unlock_achievement("playwright")
+						???: Hmm. You seem to really know your stuff. I guess I can trust you.
+						???: Be more careful next time. Somebody might think there was a murder or something.
+						MC: Roger that. Don't worry, no murders happening here!
+						???: Hahahaha... Yeah. I mean that body over there just looks [b]super[/b] realistic. Crazy.
+						MC: Yeah, our makeup artists, they're crazy good.
+						???: Hmm... Alright then. I won't bother you anymore. Have a good one.
+						MC: See ya later. (I hope not...)
+						???: What was that?
+						MC: Nothing. Bye!
+						???: Bye...
+						do stop_window_event(true)
+						
+					else:
+						???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+						do stop_window_event(false)
+				else:
+					???: Hmph, I dunno. Seems suspicious. I'm calling the cops.
+					do stop_window_event(false)
+
+else:
+	if state.curtains_closed == false:
+		MC: It's a window. Might want to close the curtains.
+=> END!
+```
+
+
+
 
 
 var achievement_hover_text: Dictionary = {

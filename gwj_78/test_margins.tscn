@@ -1,0 +1,176 @@
+[gd_scene load_steps=16 format=3 uid="uid://cgc6yflbda4ve"]
+
+[ext_resource type="Shader" uid="uid://dny7c3ex6hojy" path="res://shaders/blur.gdshader" id="1_hwufg"]
+[ext_resource type="PackedScene" uid="uid://buonbcto11kw4" path="res://room_scenes/old_art/room_scene_1.tscn" id="2_1iw7c"]
+[ext_resource type="Texture2D" uid="uid://c3btswg4o1bve" path="res://assets/art/UI/arrow_left.png" id="3_1x3ks"]
+[ext_resource type="Texture2D" uid="uid://0trbt5pjde5m" path="res://assets/art/UI/arrow_right.png" id="4_n7ylm"]
+[ext_resource type="Shader" uid="uid://bwii0e5hn3fn6" path="res://shaders/floaty.gdshader" id="5_ptu8i"]
+[ext_resource type="Texture2D" uid="uid://cp1csfwkymsgh" path="res://assets/art/inventory_objects/none.png" id="6_lj0s0"]
+[ext_resource type="Script" uid="uid://5k3hfsuxvvbt" path="res://scenes/inventory_button.gd" id="7_6prmm"]
+[ext_resource type="Texture2D" uid="uid://bxr0wa5in3pdh" path="res://assets/art/inventory_objects/mop.png" id="8_uuglp"]
+[ext_resource type="Texture2D" uid="uid://c5cuqk27im1mk" path="res://assets/art/inventory_objects/key.png" id="9_f1iel"]
+[ext_resource type="Shader" uid="uid://dlojug6gaq4tv" path="res://shaders/alarm_text.gdshader" id="10_0vp5a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_13qtx"]
+shader = ExtResource("1_hwufg")
+shader_parameter/wave_amplitude = 0.02
+shader_parameter/wave_frequency = 10.0
+shader_parameter/wave_speed = 2.0
+shader_parameter/time_offset = 0.0
+shader_parameter/noise_scale = 5.0
+shader_parameter/noise_speed = 1.0
+shader_parameter/noise_blur_amount = 0.005
+shader_parameter/blob_strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sgqgv"]
+shader = ExtResource("5_ptu8i")
+shader_parameter/amplitude = 0.0
+shader_parameter/texture_size = Vector2(64, 64)
+shader_parameter/enabled = false
+shader_parameter/start_time = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xu46i"]
+shader = ExtResource("5_ptu8i")
+shader_parameter/amplitude = 0.0
+shader_parameter/texture_size = Vector2(64, 64)
+shader_parameter/enabled = false
+shader_parameter/start_time = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w0iox"]
+shader = ExtResource("5_ptu8i")
+shader_parameter/amplitude = 0.0
+shader_parameter/texture_size = Vector2(64, 64)
+shader_parameter/enabled = false
+shader_parameter/start_time = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u7eug"]
+shader = ExtResource("10_0vp5a")
+shader_parameter/enable_flash = false
+
+[node name="test_margins" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+material = SubResource("ShaderMaterial_13qtx")
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="scene_container" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="room_scene_1" parent="Control/scene_container" instance=ExtResource("2_1iw7c")]
+layout_mode = 2
+
+[node name="UI_container" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="look_left" type="Button" parent="Control/UI_container"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+icon = ExtResource("3_1x3ks")
+icon_alignment = 1
+
+[node name="look_right" type="Button" parent="Control/UI_container"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+icon = ExtResource("4_n7ylm")
+icon_alignment = 1
+
+[node name="main_menu" type="Button" parent="Control/UI_container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+focus_mode = 0
+text = "return to main"
+
+[node name="restart_level" type="Button" parent="Control/UI_container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+focus_mode = 0
+text = "restart"
+
+[node name="inventory_container" type="HBoxContainer" parent="Control/UI_container"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+alignment = 1
+
+[node name="none" type="Button" parent="Control/UI_container/inventory_container"]
+visible = false
+material = SubResource("ShaderMaterial_sgqgv")
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+icon = ExtResource("6_lj0s0")
+flat = true
+script = ExtResource("7_6prmm")
+item_name = "none"
+
+[node name="mop" type="Button" parent="Control/UI_container/inventory_container"]
+visible = false
+material = SubResource("ShaderMaterial_xu46i")
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("8_uuglp")
+flat = true
+script = ExtResource("7_6prmm")
+item_name = "mop"
+
+[node name="key" type="Button" parent="Control/UI_container/inventory_container"]
+visible = false
+material = SubResource("ShaderMaterial_w0iox")
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("9_f1iel")
+flat = true
+script = ExtResource("7_6prmm")
+item_name = "storage_closet_key"
+
+[node name="stat_container" type="VBoxContainer" parent="Control"]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 654.0
+offset_right = 153.0
+offset_bottom = 704.0
+mouse_filter = 2
+alignment = 2
+
+[node name="evidence" type="Label" parent="Control/stat_container"]
+layout_mode = 2
+text = "Evidence left: 0"
+
+[node name="time" type="Label" parent="Control/stat_container"]
+material = SubResource("ShaderMaterial_u7eug")
+layout_mode = 2
+text = "Time left: 0"

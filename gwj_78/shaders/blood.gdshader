@@ -9,7 +9,7 @@ uniform bool enabled = false;
 
 void fragment() {
 	if (enabled == true) {
-		
+
 	    vec4 curr_texture = texture(TEXTURE, UV);
 	    vec4 noise_texture = texture(noise, UV);
 

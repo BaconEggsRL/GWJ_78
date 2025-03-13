@@ -20,6 +20,8 @@ var save_data:SaveData
 
 
 func _ready() -> void:
+	# AudioManager.play_sound("yay-6326.mp3")
+	
 	# load save data
 	save_data = SaveData.load_or_create()
 	
